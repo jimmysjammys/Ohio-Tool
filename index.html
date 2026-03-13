@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ohio General Assembly — 136th Session</title>
+<style>
+/* ── FIND MY REPS ─────────────────────────────────────────────────────── */
+.lookup-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
+.lookup-hero { max-width: 640px; margin: 0 auto 32px; text-align: center; }
+.lookup-hero h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+.lookup-hero p { color: var(--muted); font-size: 0.85rem; font-family: 'IBM Plex Mono', monospace; line-height: 1.6; }
+.lookup-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+.lookup-input { background: var(--surface); border: 2px solid var(--border); color: var(--text); padding: 12px 18px; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; width: 320px; outline: none; transition: border-color 0.2s; }
+.lookup-input:focus { border-color: var(--accent); }
+.lookup-btn { padding: 12px 28px; background: var(--accent); color: #000; border: none; border-radius: 8px; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 2px; cursor: pointer; transition: opacity 0.15s; }
+.lookup-btn:hover { opacity: 0.85; }
+.lookup-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.lookup-note { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 8px; text-align: center; }
+
+.rep-results { max-width: 900px; margin: 0 auto; }
+.rep-results-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.rep-results-title span { color: var(--accent); }
+.rep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+
+.rep-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color 0.2s, transform 0.15s; cursor: pointer; text-decoration: none; display: block; }
+.rep-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.rep-card-top { display: flex; align-items: center; gap: 14px; padding: 16px; }
+.rep-photo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; background: var(--surface2); border: 2px solid var(--border); flex-shrink: 0; }
+.rep-photo-placeholder { width: 64px; height: 64px; border-radius: 50%; background: var(--surface2); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; color: var(--muted); }
+.rep-info { flex: 1; min-width: 0; }
+.rep-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+.rep-district { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); margin-bottom: 4px; }
+.rep-badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600; }
+.rep-badge.R { background: #3d1010; color: #ff9090; }
+.rep-badge.D { background: #0d1e35; color: #90bbff; }
+.rep-card-footer { border-top: 1px solid var(--border); padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
+.rep-footer-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--muted); }
+.rep-footer-links { display: flex; gap: 8px; }
+.rep-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; padding: 3px 8px; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
+.rep-link:hover { border-color: var(--accent); color: var(--accent); }
+.rep-link.primary { border-color: var(--accent); color: var(--accent); }
+
+.lookup-error { text-align: center; color: #ff6b6b; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; margin-top: 20px; padding: 16px; background: #1a0808; border: 1px solid #3d1010; border-radius: 8px; max-width: 500px; margin: 20px auto; }
+.lookup-spinner { text-align: center; padding: 30px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; letter-spacing: 2px; }
+.lookup-spinner::after { content: ''; display: inline-block; animation: dots 1.2s infinite; }
+@keyframes dots { 0%{content:'.'} 33%{content:'..'} 66%{content:'...'} }
+
+.also-on-map { display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; cursor: pointer; transition: all 0.15s; text-decoration: none; }
+.also-on-map:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root {
+  --rep: #c0392b; --dem: #2471a3;
+  --bg: #0d0d0d; --surface: #161616; --surface2: #1e1e1e;
+  --border: #2a2a2a; --text: #e8e8e8; --muted: #aaa; --accent: #f0c040;
+  font-size: 17px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* HEADER */
+header { background: var(--surface); border-bottom: 2px solid var(--accent); padding: 14px 28px; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 2px; color: var(--accent); }
+header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
+.header-countdown { margin-left: auto; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; text-align: center; min-width: 120px; }
+.countdown-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+.countdown-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--accent); line-height: 1.1; letter-spacing: 1px; }
+.countdown-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--muted); }
+
+/* SCOREBOARD */
+.scoreboard { display: flex; gap: 8px; padding: 10px 28px; background: var(--surface2); border-bottom: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
+.sc { background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 6px 14px; }
+.sc.sc-link { text-decoration: none; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.sc.sc-link:hover { border-color: var(--accent); background: #1a1500; }
+.sc.sc-link:hover .lbl { color: var(--accent); }
+.sc .lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.sc .val { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; line-height: 1.1; }
+.val.rep { color: var(--rep); } .val.dem { color: var(--dem); } .val.neu { color: var(--accent); font-size: 0.85rem; padding-top: 2px; }
+
+/* TABS */
+.tabs { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; }
+.tab { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 18px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 3px solid transparent; color: var(--muted); transition: all 0.15s; white-space: nowrap; }
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* MAIN CONTENT */
+.pane { display: none; flex: 1; }
+.pane.active { display: flex; flex-direction: column; }
+
+/* MAP PANE */
+.map-pane { display: none; flex-direction: row; flex: 1; min-height: 0; }
+.map-pane.active { display: flex; }
+#map { flex: 1; min-height: 500px; background: #111; }
+.map-sidebar { width: 380px; background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+.sidebar-header { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+.sidebar-header h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--accent); margin-bottom: 8px; }
+.chamber-toggle { display: flex; gap: 0; }
+.ch-btn { flex: 1; padding: 6px 10px; border: 1px solid var(--border); cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; background: var(--surface2); color: var(--muted); transition: all 0.15s; }
+.ch-btn:first-child { border-radius: 4px 0 0 4px; }
+.ch-btn:last-child { border-radius: 0 4px 4px 0; border-left: 0; }
+.ch-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+.district-info { padding: 16px; flex: 1; overflow-y: auto; }
+.district-info .no-sel { color: var(--muted); font-size: 0.8rem; font-family: 'IBM Plex Mono', monospace; line-height: 1.6; }
+.info-dist { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
+.info-name { font-size: 1.1rem; font-weight: 600; margin: 4px 0; }
+.info-party { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 600; margin: 4px 0 12px; }
+.info-party.R { background: #3d1010; color: #ff9090; }
+.info-party.D { background: #0d1e35; color: #90bbff; }
+.info-row { font-size: 0.8rem; color: var(--muted); margin: 4px 0; font-family: 'IBM Plex Mono', monospace; }
+.info-row span { color: var(--text); }
+.map-legend { padding: 12px 16px; border-top: 1px solid var(--border); }
+.legend-row { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; color: var(--muted); margin: 3px 0; font-family: 'IBM Plex Mono', monospace; }
+.legend-swatch { width: 14px; height: 14px; border-radius: 2px; }
+.loading-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.85); color: var(--accent); padding: 20px 32px; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; z-index: 1000; letter-spacing: 1px; text-align: center; pointer-events: none; }
+
+/* TABLE PANE */
+.table-pane { padding: 20px 28px; flex: 1; overflow-y: auto; }
+
+/* GLOBAL SEARCH */
+.search-bar-wrap { padding: 14px 28px; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.global-search { position: relative; }
+.global-search input { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 12px 8px 36px; border-radius: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; width: 320px; outline: none; }
+.global-search input:focus { border-color: var(--accent); }
+.global-search .icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.9rem; pointer-events: none; }
+.search-results-drop { position: absolute; top: 100%; left: 0; width: 100%; background: var(--surface); border: 1px solid var(--accent); border-top: 0; border-radius: 0 0 6px 6px; z-index: 9999; max-height: 280px; overflow-y: auto; display: none; }
+.search-results-drop.open { display: block; }
+.sr-item { padding: 9px 14px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; border-bottom: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
+.sr-item:hover { background: var(--surface2); }
+.sr-item .sr-dist { color: var(--muted); min-width: 60px; }
+.sr-item .sr-name { color: var(--text); flex: 1; }
+.sr-item .sr-badge { font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; }
+.sr-item .sr-badge.R { background: #3d1010; color: #ff9090; }
+.sr-item .sr-badge.D { background: #0d1e35; color: #90bbff; }
+.sr-item .sr-chamber { color: var(--muted); font-size: 0.65rem; }
+
+.controls { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.tbl-search { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; width: 240px; outline: none; }
+.tbl-search:focus { border-color: var(--accent); }
+.fbtn { padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; background: var(--surface); color: var(--muted); transition: all 0.15s; }
+.fbtn:hover, .fbtn.active { border-color: var(--accent); color: var(--accent); }
+.fbtn.rep.active { border-color: var(--rep); color: var(--rep); }
+.fbtn.dem.active { border-color: var(--dem); color: var(--dem); }
+.cnt { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-left: auto; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+th { background: var(--surface2); color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+th:hover { color: var(--accent); }
+td { padding: 8px 12px; border-bottom: 1px solid #191919; vertical-align: middle; }
+tr:hover td { background: var(--surface2); }
+.pb { display: inline-block; padding: 2px 7px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; font-weight: 600; }
+.pb.R { background: #3d1010; color: #ff9090; }
+.pb.D { background: #0d1e35; color: #90bbff; }
+.dn { font-family: 'IBM Plex Mono', monospace; color: var(--muted); font-size: 0.78rem; }
+
+/* Leaflet overrides */
+.leaflet-container { background: #0d0d0d; }
+
+/* LEGISLATURE TAB */
+.leg-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
+.leg-section { margin-bottom: 36px; max-width: 1100px; }
+.leg-section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 4px; padding-bottom: 6px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.leg-section-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
+.leg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.leg-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-decoration: none; display: block; transition: border-color 0.15s, transform 0.1s; }
+.leg-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.leg-card-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
+.leg-card-title { font-weight: 600; font-size: 0.85rem; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+.leg-card-desc { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+.leg-card-tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; border: 1px solid var(--border); background: var(--surface2); color: var(--muted); }
+.leg-card-tag.in-committee { border-color: #7bafd4; color: #7bafd4; }
+.leg-card-tag.passed { border-color: #7dbf7d; color: #7dbf7d; }
+.leg-card-tag.vote { border-color: var(--accent); color: var(--accent); }
+.leg-card-tag.calendar { border-color: #c9a0dc; color: #c9a0dc; }
+.leg-divider { border: none; border-top: 2px solid var(--border); margin: 32px 0; max-width: 1100px; }
+.leg-federal-badge { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; padding: 2px 8px; border-radius: 3px; background: #1a1000; border: 1px solid var(--accent); color: var(--accent); margin-left: 10px; vertical-align: middle; letter-spacing: 1px; }
+
+/* OFFICIALS TAB */
+.officials-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
+.officials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; max-width: 1100px; }
+.official-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.official-card-top { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.official-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
+.official-name { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+.official-party { display: inline-block; padding: 2px 9px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600; margin-bottom: 8px; }
+.official-party.R { background: #3d1010; color: #ff9090; }
+.official-party.D { background: #0d1e35; color: #90bbff; }
+.official-bio { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); line-height: 1.6; }
+.official-card-body { padding: 14px 20px; }
+.official-section { margin-bottom: 12px; }
+.official-section-hdr { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--border); }
+.official-item { font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; color: var(--muted); padding: 3px 0; line-height: 1.45; }
+.official-item::before { content: '→ '; color: var(--accent); }
+.official-links { padding: 10px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; }
+.official-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
+.official-link:hover { border-color: var(--accent); color: var(--accent); }
+.official-link.primary { border-color: var(--accent); color: var(--accent); }
+
+/* RESOURCES TAB */
+.resources-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
+.resources-hero { max-width: 700px; margin-bottom: 32px; }
+.resources-hero h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+.resources-hero p { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
+.resources-section { margin-bottom: 32px; max-width: 1000px; }
+.resources-section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--text); letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.resource-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-decoration: none; display: block; transition: border-color 0.15s, transform 0.1s; }
+.resource-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.resource-card-title { font-weight: 600; font-size: 0.85rem; color: var(--accent); margin-bottom: 4px; }
+.resource-card-desc { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; }
+.resource-card-tag { display: inline-block; margin-top: 6px; padding: 1px 7px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+
+/* ── SENATOR PROFILE EXPANSION PANEL ────────────────────────────────────── */
+.profile-toggle {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  margin-top: 14px; padding: 8px 10px;
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+  cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
+  color: var(--accent); letter-spacing: 1px; text-transform: uppercase;
+  transition: all 0.15s;
+}
+.profile-toggle:hover { border-color: var(--accent); background: #1a1500; }
+.profile-toggle .pt-arrow { margin-left: auto; transition: transform 0.2s; font-size: 0.6rem; }
+.profile-toggle.open .pt-arrow { transform: rotate(180deg); }
+
+.profile-panel {
+  display: none; margin-top: 0;
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 6px 6px; overflow: hidden;
+  background: var(--surface2);
+}
+.profile-panel.open { display: block; }
+
+.profile-tenure {
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--border);
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted);
+  line-height: 1.6;
+}
+.profile-tenure span { color: var(--text); }
+
+.profile-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.profile-col {
+  padding: 10px 12px;
+}
+.profile-col:first-child { border-right: 1px solid var(--border); }
+.profile-col-header {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
+  padding-bottom: 4px; border-bottom: 1px solid var(--border);
+}
+.profile-col.stated .profile-col-header { color: #7bafd4; }
+.profile-col.actual .profile-col-header { color: #e08080; }
+.profile-col ul {
+  list-style: none; padding: 0; margin: 0;
+}
+.profile-col li {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.71rem;
+  color: var(--muted); padding: 4px 0; line-height: 1.5;
+  border-bottom: 1px solid #1e1e1e;
+}
+.profile-col li:last-child { border-bottom: none; }
+.profile-col.stated li::before { content: '→ '; color: #7bafd4; }
+.profile-col.actual li::before { content: '→ '; color: #e08080; }
+
+.profile-donors-row {
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: flex-end;
+}
+.donor-btn {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem;
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
+  color: var(--muted); text-decoration: none; transition: all 0.15s;
+  letter-spacing: 0.5px;
+}
+.donor-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Contact chips */
+.profile-contact {
+  display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.contact-chip {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem;
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 20px;
+  color: var(--muted); text-decoration: none; transition: all 0.15s;
+  background: var(--bg);
+}
+.contact-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Committees */
+.profile-committees {
+  padding: 8px 12px; border-top: 1px solid var(--border);
+}
+.profile-committees-hdr {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
+  margin-bottom: 6px;
+}
+.profile-committees-list { list-style: none; padding: 0; margin: 0; }
+.profile-committees-list li {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.67rem;
+  color: var(--muted); padding: 2px 0; line-height: 1.5;
+}
+.profile-committees-list li::before { content: '▸ '; color: var(--accent); }
+.leaflet-popup-content-wrapper { background: var(--surface); color: var(--text); border: 1px solid var(--accent); border-radius: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
+.leaflet-popup-tip { background: var(--surface); }
+.leaflet-popup-close-button { color: var(--muted) !important; }
+
+/* ═══ TABLE SCROLL WRAPPER (all sizes) ══════════════════════════════════════ */
+.tbl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tbl-scroll table { min-width: 520px; }
+
+/* ═══ SENATOR MOBILE CARDS ═══════════════════════════════════════════════════
+   Hidden on desktop, shown only on mobile via JS isMobile() check            */
+.senator-cards { display: none; padding: 12px; gap: 10px; flex-direction: column; }
+.sen-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color 0.15s; }
+.sen-card-header { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.sen-card-dist { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); min-width: 46px; }
+.sen-card-name { flex: 1; font-size: 0.95rem; font-weight: 600; line-height: 1.2; }
+.sen-card-region { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--muted); margin-top: 2px; }
+.sen-card-party { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 3px; flex-shrink: 0; }
+.sen-card-party.R { background: #3d1010; color: #ff9090; }
+.sen-card-party.D { background: #0d1e35; color: #90bbff; }
+.sen-card-chevron { color: var(--muted); font-size: 0.7rem; transition: transform 0.2s; flex-shrink: 0; }
+.sen-card.open .sen-card-chevron { transform: rotate(180deg); }
+.sen-card.open { border-color: var(--accent); }
+
+.sen-card-actions { display: none; border-top: 1px solid var(--border); padding: 10px 14px; gap: 8px; flex-wrap: wrap; }
+.sen-card.open .sen-card-actions { display: flex; }
+.sen-action { display: inline-flex; align-items: center; gap: 5px; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; background: var(--surface2); -webkit-tap-highlight-color: transparent; }
+.sen-action.phone { border-color: #3a6b3a; color: #7ec87e; }
+.sen-action.twitter { border-color: #1a3a5c; color: #5ba3e0; }
+.sen-action.official { border-color: var(--accent); color: var(--accent); }
+.sen-action.donors { border-color: var(--border); }
+
+.sen-card-profile { display: none; border-top: 1px solid var(--border); }
+.sen-card.open .sen-card-profile { display: block; }
+.sen-profile-toggle { width: 100%; background: #111; border: none; border-bottom: 1px solid var(--border); color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 1px; padding: 9px 14px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; -webkit-tap-highlight-color: transparent; }
+.sen-profile-toggle.active { color: var(--accent); background: #0d0d0d; }
+.sen-profile-body { display: none; padding: 12px 14px; }
+.sen-profile-body.open { display: block; }
+.sen-profile-tenure { font-family: 'IBM Plex Mono', monospace; font-size: 0.64rem; color: var(--muted); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); line-height: 1.6; }
+.sen-profile-section { margin-bottom: 12px; }
+.sen-profile-section-hdr { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--border); }
+.sen-profile-section.stated .sen-profile-section-hdr { color: #7bafd4; }
+.sen-profile-section.actual .sen-profile-section-hdr { color: #e08080; }
+.sen-profile-section ul { margin: 0; padding-left: 14px; }
+.sen-profile-section li { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); padding: 3px 0; line-height: 1.55; }
+.sen-committees-hdr { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; margin-top: 4px; }
+.sen-committees-list { margin: 0; padding-left: 14px; }
+.sen-committees-list li { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); padding: 2px 0; }
+.sen-committees-list li::before { content: '▸ '; color: var(--accent); }
+
+/* ═══ BOTTOM NAV ═════════════════════════════════════════════════════════════ */
+.bottom-nav { display: none; }
+
+/* ═══ MORE DRAWER ════════════════════════════════════════════════════════════ */
+.more-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; }
+.more-overlay.open { display: block; }
+.more-drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 2px solid var(--accent); border-radius: 18px 18px 0 0; z-index: 1000; padding: 0 0 env(safe-area-inset-bottom,16px); transform: translateY(100%); transition: transform 0.28s cubic-bezier(0.4,0,0.2,1); }
+.more-drawer.open { transform: translateY(0); }
+.more-drawer-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 12px auto 16px; }
+.more-drawer-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); padding: 0 20px 10px; }
+.more-drawer-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px 20px; }
+.more-item { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: border-color 0.15s; }
+.more-item:active { border-color: var(--accent); }
+.more-item svg { color: var(--accent); }
+.more-item span { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); text-align: center; }
+
+/* ═══ MOBILE BREAKPOINTS ════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  :root { font-size: 15px; }
+
+  /* BODY needs bottom padding for nav bar */
+  body { padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px)); }
+
+  /* HEADER */
+  header { padding: 10px 16px; gap: 6px; align-items: center; }
+  header h1 { font-size: 1.5rem; }
+  header span { display: none; }
+  .header-countdown { margin-left: auto; min-width: 84px; padding: 4px 10px; }
+  .countdown-val { font-size: 1.1rem; }
+
+  /* SCOREBOARD */
+  .scoreboard { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 6px 10px; gap: 5px; }
+  .sc { flex-shrink: 0; padding: 4px 9px; }
+  .sc .val { font-size: 1rem; }
+  .sc .lbl { font-size: 0.5rem; }
+  .val.neu { font-size: 0.68rem; }
+
+  /* SEARCH BAR */
+  .search-bar-wrap { padding: 8px 12px; flex-direction: column; align-items: stretch; gap: 6px; }
+  .global-search { width: 100%; }
+  #global-search { width: 100%; font-size: 0.8rem; }
+  .search-bar-wrap > span { display: none; }
+
+  /* HIDE desktop top tabs on mobile */
+  .tabs { display: none; }
+
+  /* SHOW bottom nav */
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    z-index: 900;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .bnav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 4px 6px;
+    cursor: pointer;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.5px;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.15s;
+    text-transform: uppercase;
+    border: none;
+    background: none;
+  }
+  .bnav-item svg { width: 20px; height: 20px; }
+  .bnav-item.active { color: var(--accent); }
+  .bnav-item:active { color: var(--accent); }
+
+  /* MAP PANE */
+  .map-pane.active { flex-direction: column; }
+  #map { min-height: 260px; flex: none; width: 100%; }
+  .map-sidebar { width: 100%; border-left: none; border-top: 1px solid var(--border); max-height: 400px; overflow-y: auto; }
+
+  /* PROFILE GRID — single column */
+  .profile-grid { grid-template-columns: 1fr; gap: 0; }
+  .profile-col { border-right: none !important; border-bottom: 1px solid var(--border); }
+  .profile-col:last-child { border-bottom: none; }
+
+  /* HIDE desktop table, SHOW mobile cards for senate */
+  #pane-senate .tbl-scroll,
+  #pane-senate table,
+  #pane-senate .tbl-scroll { display: none; }
+  #pane-senate .senator-cards { display: flex; }
+
+  /* HOUSE TABLE — keep table but make it scroll */
+  .table-pane { padding: 12px 10px; }
+  .controls { gap: 6px; }
+  .tbl-search { width: 100%; }
+  .cnt { margin-left: 0; width: 100%; text-align: right; }
+
+  /* OFFICIALS GRID */
+  .officials-pane { padding: 14px 12px; }
+  .officials-grid { grid-template-columns: 1fr; }
+
+  /* LEGISLATURE PANE */
+  .leg-pane { padding: 14px 12px; }
+  .leg-grid { grid-template-columns: 1fr; }
+
+  /* RESOURCES PANE */
+  .resources-pane { padding: 14px 12px; }
+  .resources-grid { grid-template-columns: 1fr; }
+
+  /* LOOKUP PANE */
+  .lookup-hero { padding: 0 4px; }
+  .lookup-form { flex-direction: column; align-items: stretch; }
+  .lookup-btn { width: 100%; }
+  #lookup-addr { width: 100%; }
+  .rep-card { flex-direction: column; gap: 10px; }
+  .rep-photo { align-self: center; }
+
+  .official-card-top { padding: 12px 14px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Ohio General Assembly</h1>
+  <span>136th Session · 2025–2026 · Republican Trifecta</span>
+  <div class="header-countdown">
+    <div class="countdown-lbl">2026 Midterms</div>
+    <div class="countdown-val" id="midterm-days"><script>document.write(Math.ceil((new Date('2026-11-03')-new Date())/(864e5)))</script></div>
+    <div class="countdown-sub">days remaining</div>
+  </div>
+</header>
+
+<div class="scoreboard">
+  <div class="sc"><div class="lbl">Senate R</div><div class="val rep">24</div></div>
+  <div class="sc"><div class="lbl">Senate D</div><div class="val dem">9</div></div>
+  <div class="sc"><div class="lbl">House R</div><div class="val rep">65</div></div>
+  <div class="sc"><div class="lbl">House D</div><div class="val dem">34</div></div>
+  <a class="sc sc-link" href="https://governor.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Governor</div><div class="val neu">DeWine (R)</div></a>
+  <a class="sc sc-link" href="https://www.ohiosenate.gov/senators/senator-detail/rob-mccolleys-bio" target="_blank" rel="noopener"><div class="lbl">Senate President</div><div class="val neu">McColley (R)</div></a>
+  <a class="sc sc-link" href="https://www.ohiohouse.gov/members/matt-huffman" target="_blank" rel="noopener"><div class="lbl">House Speaker</div><div class="val neu">Huffman (R)</div></a>
+  <a class="sc sc-link" href="https://www.ohioattorneygeneral.gov" target="_blank" rel="noopener"><div class="lbl">Atty General</div><div class="val neu">Yost (R)</div></a>
+  <a class="sc sc-link" href="https://www.ohioauditor.gov" target="_blank" rel="noopener"><div class="lbl">Auditor</div><div class="val neu">Faber (R)</div></a>
+  <a class="sc sc-link" href="https://www.sos.state.oh.us" target="_blank" rel="noopener"><div class="lbl">Sec. of State</div><div class="val neu">LaRose (R)</div></a>
+  <a class="sc sc-link" href="https://treasurer.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Treasurer</div><div class="val neu">Sprague (R)</div></a>
+</div>
+
+<!-- Global search bar -->
+<div class="search-bar-wrap">
+  <div class="global-search">
+    <span class="icon">⌕</span>
+    <input type="text" id="global-search" placeholder="Search any legislator, district, or county…" autocomplete="off" oninput="doGlobalSearch(this.value)" onblur="setTimeout(()=>closeSearch(),200)">
+    <div class="search-results-drop" id="search-drop"></div>
+  </div>
+  <span style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted)">Search Senate + House · Click a result to highlight on map</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('map')">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    District Map
+  </div>
+  <div class="tab" onclick="showTab('senate')">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M4 21V10M20 21V10M12 3L2 10h20L12 3z"/><path d="M9 21v-6h6v6"/><ellipse cx="12" cy="6" rx="1.5" ry="1"/></svg>
+    Senate (33)
+  </div>
+  <div class="tab" onclick="showTab('house')">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+    House (99)
+  </div>
+  <div class="tab" onclick="showTab('legislature')">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+    Legislature
+  </div>
+  <div class="tab" onclick="showTab('officials')">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    Officials
+  </div>
+  <div class="tab" onclick="showTab('resources')">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    Resources
+  </div>
+  <div class="tab" onclick="showTab('lookup')" style="color:var(--accent)">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Find My Reps
+  </div>
+</div>
+
+<!-- BOTTOM NAVIGATION (mobile only) -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="bnav-item active" id="bnav-lookup" onclick="showTab('lookup');setBottomNav('lookup')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Find
+  </button>
+  <button class="bnav-item" id="bnav-senate" onclick="showTab('senate');setBottomNav('senate')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M4 21V10M20 21V10M12 3L2 10h20L12 3z"/><path d="M9 21v-6h6v6"/></svg>
+    Senate
+  </button>
+  <button class="bnav-item" id="bnav-house" onclick="showTab('house');setBottomNav('house')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+    House
+  </button>
+  <button class="bnav-item" id="bnav-officials" onclick="showTab('officials');setBottomNav('officials')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    Officials
+  </button>
+  <button class="bnav-item" id="bnav-more" onclick="openMoreDrawer()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    More
+  </button>
+</nav>
+
+<!-- MORE DRAWER (mobile only) -->
+<div class="more-overlay" id="more-overlay" onclick="closeMoreDrawer()"></div>
+<div class="more-drawer" id="more-drawer">
+  <div class="more-drawer-handle"></div>
+  <div class="more-drawer-title">More sections</div>
+  <div class="more-drawer-items">
+    <div class="more-item" onclick="closeMoreDrawer();showTab('map');setBottomNav('map')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <span>District Map</span>
+    </div>
+    <div class="more-item" onclick="closeMoreDrawer();showTab('legislature');setBottomNav('legislature')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      <span>Legislature</span>
+    </div>
+    <div class="more-item" onclick="closeMoreDrawer();showTab('resources');setBottomNav('resources')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Resources</span>
+    </div>
+    <div class="more-item" onclick="closeMoreDrawer();showTab('resources');setBottomNav('resources');setTimeout(()=>{const el=document.getElementById('marxist-lib');if(el)el.scrollIntoView({behavior:'smooth'})},200)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span>Marx Library</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAP TAB -->
+<div id="pane-map" class="map-pane active">
+  <div style="position:relative;flex:1;display:flex;flex-direction:column;">
+    <div id="map"></div>
+    <div class="loading-overlay" id="loading">Loading district boundaries…</div>
+  </div>
+  <div class="map-sidebar">
+    <div class="sidebar-header">
+      <h3>Chamber</h3>
+      <div class="chamber-toggle">
+        <button class="ch-btn active" id="btn-senate" onclick="switchChamber('senate')">Senate</button>
+        <button class="ch-btn" id="btn-house" onclick="switchChamber('house')">House</button>
+      </div>
+    </div>
+    <div class="district-info" id="district-info">
+      <div class="no-sel">← Click a district on the map to see details about the legislator.</div>
+    </div>
+    <div class="map-legend">
+      <div class="legend-row"><div class="legend-swatch" style="background:rgba(192,57,43,0.75)"></div>Republican</div>
+      <div class="legend-row"><div class="legend-swatch" style="background:rgba(36,113,163,0.75)"></div>Democrat</div>
+      <div class="legend-row" style="margin-top:6px;font-size:0.65rem;color:#555">Census TIGER boundaries (2024)</div>
+    </div>
+  </div>
+</div>
+
+<!-- SENATE TAB -->
+<div id="pane-senate" class="pane">
+  <div class="table-pane">
+    <div class="controls">
+      <input class="tbl-search" type="text" id="s-search" placeholder="Search name, district, county…" oninput="renderSenate()">
+      <button class="fbtn active" id="s-all" onclick="setFilter('s','all')">ALL</button>
+      <button class="fbtn rep" id="s-rep" onclick="setFilter('s','R')">REPUBLICAN</button>
+      <button class="fbtn dem" id="s-dem" onclick="setFilter('s','D')">DEMOCRAT</button>
+      <span class="cnt" id="s-cnt"></span>
+    </div>
+    <div class="tbl-scroll">
+    <table><thead><tr>
+      <th onclick="sortTbl('s',0)">Dist</th>
+      <th onclick="sortTbl('s',1)">Senator</th>
+      <th onclick="sortTbl('s',2)">Party</th>
+      <th onclick="sortTbl('s',3)">Region / Counties</th>
+    </tr></thead><tbody id="s-body"></tbody></table>
+    </div>
+    <!-- MOBILE CARDS — rendered by renderSenateCards() -->
+    <div class="senator-cards" id="senator-cards"></div>
+  </div>
+</div>
+
+<!-- HOUSE TAB -->
+<div id="pane-house" class="pane">
+  <div class="table-pane">
+    <div class="controls">
+      <input class="tbl-search" type="text" id="h-search" placeholder="Search name or district…" oninput="renderHouse()">
+      <button class="fbtn active" id="h-all" onclick="setFilter('h','all')">ALL</button>
+      <button class="fbtn rep" id="h-rep" onclick="setFilter('h','R')">REPUBLICAN</button>
+      <button class="fbtn dem" id="h-dem" onclick="setFilter('h','D')">DEMOCRAT</button>
+      <span class="cnt" id="h-cnt"></span>
+    </div>
+    <div class="tbl-scroll">
+    <table><thead><tr>
+      <th onclick="sortTbl('h',0)">Dist</th>
+      <th onclick="sortTbl('h',1)">Representative</th>
+      <th onclick="sortTbl('h',2)">Party</th>
+    </tr></thead><tbody id="h-body"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- FIND MY REPS TAB -->
+<div id="pane-lookup" class="pane" style="display:none;overflow-y:auto;">
+  <div class="lookup-pane">
+    <div id="file-warning" style="display:none;max-width:640px;margin:0 auto 20px;padding:12px 18px;background:#1a1200;border:1px solid var(--accent);border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--accent);line-height:1.7;text-align:center">
+      ⚠ This tool requires a web server to make API calls.<br>
+      Open a terminal in the folder containing this file and run:<br>
+      <strong>python3 -m http.server 8000</strong><br>
+      Then visit <strong>http://localhost:8000</strong> in your browser.
+    </div>
+    <div class="lookup-hero">
+      <h2>Find My Representatives</h2>
+      <p>Enter your street address or zip code to find your Ohio state legislators.<br>Results link directly to their official pages.</p>
+      <div class="lookup-form">
+        <input class="lookup-input" type="text" id="lookup-addr" placeholder="123 Main St, Columbus, OH — or just: 44094" autocomplete="off"
+          onkeydown="if(event.key==='Enter')doLookup()">
+        <button class="lookup-btn" id="lookup-btn" onclick="doLookup()">Look Up</button>
+      </div>
+      <div class="lookup-note">Free geocoding — no account needed. Street address gives more precise results than zip alone.</div>
+    </div>
+    <div id="lookup-output"></div>
+  </div>
+</div>
+<!-- LEGISLATURE TAB -->
+<div id="pane-legislature" class="pane" style="display:none;overflow-y:auto;">
+  <div class="leg-pane">
+
+    <!-- OHIO STATE LEGISLATURE -->
+    <div class="leg-section">
+      <div class="leg-section-title">Ohio State Legislature</div>
+      <div class="leg-section-sub">136th General Assembly · 2025–2026 session · Links open official Ohio Legislature records</div>
+
+      <div style="margin-bottom:24px;">
+        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">📅 Session Calendar</div>
+        <div class="leg-grid">
+          <a class="leg-card" href="https://www.ohiosenate.gov/session/calendar" target="_blank" rel="noopener">
+            <div class="leg-card-label">Ohio Senate</div>
+            <div class="leg-card-title">Senate Session Schedule</div>
+            <div class="leg-card-desc">Upcoming floor sessions, committee hearings, and recess periods for the Ohio Senate</div>
+            <span class="leg-card-tag calendar">Calendar</span>
+          </a>
+          <a class="leg-card" href="https://www.ohiohouse.gov/session/calendar" target="_blank" rel="noopener">
+            <div class="leg-card-label">Ohio House</div>
+            <div class="leg-card-title">House Session Schedule</div>
+            <div class="leg-card-desc">Upcoming floor sessions, committee hearings, and recess periods for the Ohio House</div>
+            <span class="leg-card-tag calendar">Calendar</span>
+          </a>
+          <a class="leg-card" href="https://www.legislature.ohio.gov/committees/senate-committees" target="_blank" rel="noopener">
+            <div class="leg-card-label">Senate Committees</div>
+            <div class="leg-card-title">Senate Committee Directory</div>
+            <div class="leg-card-desc">All standing committees, membership rosters, and upcoming hearing schedules</div>
+            <span class="leg-card-tag calendar">Calendar</span>
+          </a>
+          <a class="leg-card" href="https://www.legislature.ohio.gov/committees/house-committees" target="_blank" rel="noopener">
+            <div class="leg-card-label">House Committees</div>
+            <div class="leg-card-title">House Committee Directory</div>
+            <div class="leg-card-desc">All standing committees, membership rosters, and upcoming hearing schedules</div>
+            <span class="leg-card-tag calendar">Calendar</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="margin-bottom:24px;">
+        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🔄 Bills Currently in Committee</div>
+        <div class="leg-grid">
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode[]=SB" target="_blank" rel="noopener">
+            <div class="leg-card-label">Ohio Senate Bills</div>
+            <div class="leg-card-title">Senate Bills in Committee</div>
+            <div class="leg-card-desc">Live search — all active Senate bills currently assigned to committee in the 136th GA</div>
+            <span class="leg-card-tag in-committee">In Committee</span>
+          </a>
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode[]=HB" target="_blank" rel="noopener">
+            <div class="leg-card-label">Ohio House Bills</div>
+            <div class="leg-card-title">House Bills in Committee</div>
+            <div class="leg-card-desc">Live search — all active House bills currently assigned to committee in the 136th GA</div>
+            <span class="leg-card-tag in-committee">In Committee</span>
+          </a>
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode[]=SB&committeeCode=SFIN" target="_blank" rel="noopener">
+            <div class="leg-card-label">Finance Committee</div>
+            <div class="leg-card-title">Senate Finance — Active Bills</div>
+            <div class="leg-card-desc">Bills in the Senate Finance Committee — controls the state budget and tax legislation</div>
+            <span class="leg-card-tag in-committee">In Committee</span>
+          </a>
+          <a class="leg-card" href="https://www.legislature.ohio.gov/legislation/search" target="_blank" rel="noopener">
+            <div class="leg-card-label">LSC Fiscal Notes</div>
+            <div class="leg-card-title">Bill Analyses &amp; Fiscal Notes</div>
+            <div class="leg-card-desc">Search any bill — each entry includes the LSC nonpartisan fiscal note and bill analysis. Essential for calling out budget hypocrisy.</div>
+            <span class="leg-card-tag in-committee">In Committee</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="margin-bottom:24px;">
+        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🗳️ Recent Floor Votes</div>
+        <div class="leg-grid">
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=passed-one-chamber" target="_blank" rel="noopener">
+            <div class="leg-card-label">Floor Votes</div>
+            <div class="leg-card-title">Bills That Passed One Chamber</div>
+            <div class="leg-card-desc">Bills that passed the Senate or House — includes vote tallies and roll call records</div>
+            <span class="leg-card-tag vote">Floor Vote</span>
+          </a>
+          <a class="leg-card" href="https://www.legislature.ohio.gov/schedules/session-schedule" target="_blank" rel="noopener">
+            <div class="leg-card-label">Session Schedule</div>
+            <div class="leg-card-title">Ohio Legislature Session Calendar</div>
+            <div class="leg-card-desc">Official combined session schedule for Senate and House — floor dates, committee weeks, and recess periods</div>
+            <span class="leg-card-tag vote">Floor Vote</span>
+          </a>
+          <a class="leg-card" href="https://www.ohiohouse.gov/session/session-dates" target="_blank" rel="noopener">
+            <div class="leg-card-label">House Session Dates</div>
+            <div class="leg-card-title">Ohio House Session Dates &amp; Journals</div>
+            <div class="leg-card-desc">Official House session date calendar and links to session journals with roll call votes and floor minutes</div>
+            <span class="leg-card-tag vote">Floor Vote</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">✅ Passed &amp; Signed into Law</div>
+        <div class="leg-grid">
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=passed-both-chambers" target="_blank" rel="noopener">
+            <div class="leg-card-label">136th GA</div>
+            <div class="leg-card-title">Bills Passed Both Chambers</div>
+            <div class="leg-card-desc">All legislation that cleared both Senate and House — awaiting or received Governor signature</div>
+            <span class="leg-card-tag passed">Passed</span>
+          </a>
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=signed-by-governor" target="_blank" rel="noopener">
+            <div class="leg-card-label">136th GA — Signed Law</div>
+            <div class="leg-card-title">Signed by Governor DeWine</div>
+            <div class="leg-card-desc">All bills signed into law this session — the full record of what Republicans have actually done</div>
+            <span class="leg-card-tag passed">Signed</span>
+          </a>
+          <a class="leg-card" href="https://codes.ohio.gov/ohio-revised-code" target="_blank" rel="noopener">
+            <div class="leg-card-label">Ohio Law</div>
+            <div class="leg-card-title">Ohio Revised Code</div>
+            <div class="leg-card-desc">Permanent statutory law — searchable by section with amendment history per provision</div>
+            <span class="leg-card-tag passed">Law</span>
+          </a>
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=vetoed-by-governor" target="_blank" rel="noopener">
+            <div class="leg-card-label">136th GA — Vetoed</div>
+            <div class="leg-card-title">Vetoed by Governor</div>
+            <div class="leg-card-desc">Bills the legislature passed that DeWine vetoed — reveals fault lines within the Republican coalition</div>
+            <span class="leg-card-tag vote">Vetoed</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="leg-divider">
+
+    <!-- FEDERAL DELEGATION -->
+    <div class="leg-section">
+      <div class="leg-section-title">Ohio Federal Delegation <span class="leg-federal-badge">Federal</span></div>
+      <div class="leg-section-sub">Ohio's two U.S. Senators and 15 House members in the 119th Congress (2025–2026) · Republican-controlled House and Senate · Links open congress.gov records</div>
+
+      <div style="margin-bottom:24px;">
+        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🏛 Ohio U.S. Senators</div>
+        <div class="leg-grid">
+          <a class="leg-card" href="https://www.congress.gov/member/bernie-moreno/M001224" target="_blank" rel="noopener">
+            <div class="leg-card-label">U.S. Senator · Republican</div>
+            <div class="leg-card-title">Bernie Moreno</div>
+            <div class="leg-card-desc">Elected Nov 2024. Car dealership businessman. Trump-endorsed. Defeated incumbent Sherrod Brown. Full MAGA alignment — immigration, tariffs, anti-DEI.</div>
+            <span class="leg-card-tag in-committee">119th Congress</span>
+          </a>
+          <a class="leg-card" href="https://www.congress.gov/member/jon-husted/H001100" target="_blank" rel="noopener">
+            <div class="leg-card-label">U.S. Senator · Republican</div>
+            <div class="leg-card-title">Jon Husted</div>
+            <div class="leg-card-desc">Appointed Jan 2025 after Trump nominated former Gov. Mike DeWine's Lt. Gov. to fill vacancy. Former Ohio SoS and Lt. Governor. Innovation/tech focus.</div>
+            <span class="leg-card-tag in-committee">119th Congress</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="margin-bottom:24px;">
+        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">📋 Ohio House Delegation</div>
+        <div class="leg-grid">
+          <a class="leg-card" href="https://www.congress.gov/members?q=%7B%22congress%22%3A%22119%22%2C%22state%22%3A%22Ohio%22%2C%22chamber%22%3A%22house%22%7D" target="_blank" rel="noopener">
+            <div class="leg-card-label">All 15 Ohio House Members</div>
+            <div class="leg-card-title">Ohio U.S. House Delegation</div>
+            <div class="leg-card-desc">Full list of Ohio's 15 House members — 10 Republican, 5 Democrat. Click any name for voting record, sponsored bills, and committee assignments.</div>
+            <span class="leg-card-tag in-committee">119th Congress</span>
+          </a>
+          <a class="leg-card" href="https://www.congress.gov/member/marcy-kaptur/K000009" target="_blank" rel="noopener">
+            <div class="leg-card-label">OH-9 · Democrat</div>
+            <div class="leg-card-title">Marcy Kaptur</div>
+            <div class="leg-card-desc">Longest-serving woman in Congress. Toledo/Northwest Ohio. Appropriations Committee. Labor hawk, Ukraine aid supporter, progressive on domestic spending.</div>
+            <span class="leg-card-tag passed">Senior Member</span>
+          </a>
+          <a class="leg-card" href="https://www.congress.gov/member/jim-jordan/J000289" target="_blank" rel="noopener">
+            <div class="leg-card-label">OH-4 · Republican</div>
+            <div class="leg-card-title">Jim Jordan</div>
+            <div class="leg-card-desc">House Judiciary Committee Chair. North-central Ohio. Freedom Caucus founder. Central figure in MAGA legislative strategy and oversight investigations.</div>
+            <span class="leg-card-tag vote">Committee Chair</span>
+          </a>
+          <a class="leg-card" href="https://www.congress.gov/member/greg-landsman/L000601" target="_blank" rel="noopener">
+            <div class="leg-card-label">OH-1 · Democrat</div>
+            <div class="leg-card-title">Greg Landsman</div>
+            <div class="leg-card-desc">Cincinnati. Flipped seat in 2022. Former Cincinnati City Councilmember. Education, healthcare, and working families focus. Competitive district.</div>
+            <span class="leg-card-tag passed">Swing District</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🗳️ Federal Votes &amp; Activity</div>
+        <div class="leg-grid">
+          <a class="leg-card" href="https://www.congress.gov/roll-call-votes?q=%7B%22congress%22%3A%22119%22%7D" target="_blank" rel="noopener">
+            <div class="leg-card-label">119th Congress</div>
+            <div class="leg-card-title">Federal Roll Call Votes</div>
+            <div class="leg-card-desc">All House and Senate roll call votes — searchable by bill, date, and member. Cross-reference Ohio delegation votes.</div>
+            <span class="leg-card-tag vote">Roll Call</span>
+          </a>
+          <a class="leg-card" href="https://www.congress.gov/legislation?q=%7B%22congress%22%3A%22119%22%2C%22search%22%3A%22Ohio%22%7D" target="_blank" rel="noopener">
+            <div class="leg-card-label">Federal Bills</div>
+            <div class="leg-card-title">Federal Legislation Mentioning Ohio</div>
+            <div class="leg-card-desc">Search congress.gov for bills referencing Ohio — useful for tracking federal policy with direct state impact</div>
+            <span class="leg-card-tag in-committee">Search</span>
+          </a>
+          <a class="leg-card" href="https://projects.propublica.org/represent/#states/OH" target="_blank" rel="noopener">
+            <div class="leg-card-label">ProPublica Congress API</div>
+            <div class="leg-card-title">Ohio Delegation Voting Records</div>
+            <div class="leg-card-desc">ProPublica Represent — full voting records, missed votes, party-line percentages, and bill sponsorship for every Ohio federal member</div>
+            <span class="leg-card-tag vote">Voting Record</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- OFFICIALS TAB -->
+<div id="pane-officials" class="pane" style="display:none;overflow-y:auto;">
+  <div class="officials-pane">
+    <div style="margin-bottom:24px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--accent);letter-spacing:2px;margin-bottom:6px;">Ohio Statewide Elected Officials</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--muted);line-height:1.7;">All officers elected statewide for 4-year terms. Current term: 2023–2027.</div>
+    </div>
+    <div class="officials-grid" id="officials-grid"></div>
+  </div>
+</div>
+
+<!-- RESOURCES TAB -->
+<div id="pane-resources" class="pane" style="display:none;overflow-y:auto;">
+  <div class="resources-pane">
+    <div class="resources-hero">
+      <h2>Research &amp; Resources</h2>
+      <p>Curated links for tracking Ohio legislation, campaign finance, voting records, and political context. Primary sources first — always verify before publishing.</p>
+    </div>
+
+    <div class="resources-section">
+      <div class="resources-section-title">📜 Official Ohio Government</div>
+      <div class="resources-grid">
+        <a class="resource-card" href="https://www.ohiosenate.gov" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio Senate</div>
+          <div class="resource-card-desc">Official site — bill text, schedules, senator bios, committee rosters</div>
+          <span class="resource-card-tag">Primary</span>
+        </a>
+        <a class="resource-card" href="https://www.ohiohouse.gov" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio House of Representatives</div>
+          <div class="resource-card-desc">Official site — legislation, member pages, floor session archives</div>
+          <span class="resource-card-tag">Primary</span>
+        </a>
+        <a class="resource-card" href="https://codes.ohio.gov/ohio-revised-code" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio Revised Code</div>
+          <div class="resource-card-desc">Full Ohio statutory law — searchable, with legislative history per section</div>
+          <span class="resource-card-tag">Primary</span>
+        </a>
+        <a class="resource-card" href="https://legislature.ohio.gov/legislation/search" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio Legislation Search</div>
+          <div class="resource-card-desc">Search bills by keyword, sponsor, session, or status — current and prior sessions</div>
+          <span class="resource-card-tag">Primary</span>
+        </a>
+        <a class="resource-card" href="https://www.ohioauditor.gov" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio Auditor of State</div>
+          <div class="resource-card-desc">Public agency audits, financial reports, fraud tips, and GAAP compliance reviews</div>
+          <span class="resource-card-tag">Primary</span>
+        </a>
+        <a class="resource-card" href="https://www.sos.state.oh.us/elections" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio Secretary of State — Elections</div>
+          <div class="resource-card-desc">Voter registration, election results, candidate filings, and campaign finance reports</div>
+          <span class="resource-card-tag">Primary</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="resources-section">
+      <div class="resources-section-title">💰 Money &amp; Lobbying</div>
+      <div class="resources-grid">
+        <a class="resource-card" href="https://www.transparencyusa.org/oh" target="_blank" rel="noopener">
+          <div class="resource-card-title">Transparency USA — Ohio</div>
+          <div class="resource-card-desc">Donor industry breakdowns, contribution histories, and PAC money by legislator</div>
+          <span class="resource-card-tag">Campaign Finance</span>
+        </a>
+        <a class="resource-card" href="https://www.followthemoney.org/state-overview?s=OH" target="_blank" rel="noopener">
+          <div class="resource-card-title">Follow the Money — Ohio</div>
+          <div class="resource-card-desc">National Institute on Money in Politics — multi-cycle donor tracking</div>
+          <span class="resource-card-tag">Campaign Finance</span>
+        </a>
+        <a class="resource-card" href="https://www.opensecrets.org" target="_blank" rel="noopener">
+          <div class="resource-card-title">OpenSecrets</div>
+          <div class="resource-card-desc">Federal PAC and lobbying data — useful for tracking national money flowing into state races</div>
+          <span class="resource-card-tag">Federal / PAC</span>
+        </a>
+        <a class="resource-card" href="https://www.jlec-olig.state.oh.us" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio JLEC — Ethics Filings</div>
+          <div class="resource-card-desc">Joint Legislative Ethics Committee — lobbyist registrations, financial disclosure filings</div>
+          <span class="resource-card-tag">Ethics / Lobbying</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="resources-section">
+      <div class="resources-section-title">📰 Investigative &amp; Policy Journalism</div>
+      <div class="resources-grid">
+        <a class="resource-card" href="https://ohiocapitaljournal.com" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio Capital Journal</div>
+          <div class="resource-card-desc">Non-profit statehouse reporting — best independent coverage of the Ohio legislature</div>
+          <span class="resource-card-tag">Journalism</span>
+        </a>
+        <a class="resource-card" href="https://www.cleveland.com/politics" target="_blank" rel="noopener">
+          <div class="resource-card-title">Cleveland.com — Politics</div>
+          <div class="resource-card-desc">Northeast Ohio political coverage, statehouse bureau, Northeast Ohio voter data</div>
+          <span class="resource-card-tag">Journalism</span>
+        </a>
+        <a class="resource-card" href="https://www.dispatch.com/politics" target="_blank" rel="noopener">
+          <div class="resource-card-title">Columbus Dispatch — Politics</div>
+          <div class="resource-card-desc">Statehouse and Columbus political coverage; largest Ohio daily with Capitol bureau</div>
+          <span class="resource-card-tag">Journalism</span>
+        </a>
+        <a class="resource-card" href="https://ideastream.org/politics-government" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ideastream Public Media</div>
+          <div class="resource-card-desc">Northeast Ohio NPR affiliate — statewide and local political accountability reporting</div>
+          <span class="resource-card-tag">Public Media</span>
+        </a>
+        <a class="resource-card" href="https://www.cincinnati.com/politics" target="_blank" rel="noopener">
+          <div class="resource-card-title">Cincinnati Enquirer — Politics</div>
+          <div class="resource-card-desc">Southwest Ohio coverage, SW delegation tracking, statehouse bureau</div>
+          <span class="resource-card-tag">Journalism</span>
+        </a>
+        <a class="resource-card" href="https://www.propublica.org" target="_blank" rel="noopener">
+          <div class="resource-card-title">ProPublica</div>
+          <div class="resource-card-desc">National investigative reporting — frequent Ohio coverage (gerrymandering, HB 6 scandal, etc.)</div>
+          <span class="resource-card-tag">Investigative</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="resources-section">
+      <div class="resources-section-title">🗳️ Elections &amp; Districts</div>
+      <div class="resources-grid">
+        <a class="resource-card" href="https://davesredistricting.org/maps#state::OH" target="_blank" rel="noopener">
+          <div class="resource-card-title">Dave's Redistricting App</div>
+          <div class="resource-card-desc">Interactive Ohio district maps with demographic overlays, compactness scores</div>
+          <span class="resource-card-tag">Mapping</span>
+        </a>
+        <a class="resource-card" href="https://ballotpedia.org/Ohio_elections" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ballotpedia — Ohio Elections</div>
+          <div class="resource-card-desc">Candidate profiles, ballot measures, primary and general election summaries</div>
+          <span class="resource-card-tag">Elections</span>
+        </a>
+        <a class="resource-card" href="https://www.vote411.org" target="_blank" rel="noopener">
+          <div class="resource-card-title">VOTE411 (LWV)</div>
+          <div class="resource-card-desc">League of Women Voters voter guide — nonpartisan candidate Q&amp;A by district</div>
+          <span class="resource-card-tag">Voter Guide</span>
+        </a>
+        <a class="resource-card" href="https://redistricting.ohio.gov" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio Redistricting Commission</div>
+          <div class="resource-card-desc">Official redistricting maps, public hearings, court filings, and adopted plans</div>
+          <span class="resource-card-tag">Redistricting</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="resources-section">
+      <div class="resources-section-title">🔬 Policy &amp; Research</div>
+      <div class="resources-grid">
+        <a class="resource-card" href="https://www.lsc.ohio.gov" target="_blank" rel="noopener">
+          <div class="resource-card-title">Ohio Legislative Service Commission</div>
+          <div class="resource-card-desc">Nonpartisan fiscal notes, bill analyses, and budget breakdowns for all Ohio legislation</div>
+          <span class="resource-card-tag">Nonpartisan Research</span>
+        </a>
+        <a class="resource-card" href="https://policymattersohio.org" target="_blank" rel="noopener">
+          <div class="resource-card-title">Policy Matters Ohio</div>
+          <div class="resource-card-desc">Progressive policy research — taxes, labor, health, education; rigorous sourcing</div>
+          <span class="resource-card-tag">Policy Research</span>
+        </a>
+        <a class="resource-card" href="https://www.opportunityohio.org" target="_blank" rel="noopener">
+          <div class="resource-card-title">Opportunity Ohio</div>
+          <div class="resource-card-desc">Center-right policy shop — useful for understanding conservative framing of Ohio legislation</div>
+          <span class="resource-card-tag">Policy Research</span>
+        </a>
+        <a class="resource-card" href="https://www.brookings.edu/topic/ohio" target="_blank" rel="noopener">
+          <div class="resource-card-title">Brookings Institution — Ohio</div>
+          <div class="resource-card-desc">National center-left think tank with Ohio-relevant metro, economy, and workforce research</div>
+          <span class="resource-card-tag">National Research</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="resources-section">
+      <div class="resources-section-title" style="color:#c9a0dc;border-color:#3a2a4a;">☭ Marxist Library — Theoretical Foundations</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:16px;line-height:1.7;max-width:700px;">Primary texts for materialist analysis of state power, capital, and class — directly applicable to Ohio legislative commentary. All links open Marxists Internet Archive (marxists.org), the largest free digital library of socialist literature.</div>
+
+      <div style="margin-bottom:20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Labor &amp; Class Struggle</div>
+        <div class="resources-grid">
+          <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1867-c1/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">Capital, Volume I — Marx</div>
+            <div class="resource-card-desc">The commodity, surplus value, the working day, primitive accumulation. The foundational text for understanding how capital extracts value from labor — directly applicable to Ohio wage suppression and right-to-work legislation.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1867</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1847/wage-labour/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">Wage Labour and Capital — Marx</div>
+            <div class="resource-card-desc">Concise explanation of the wage relation, competition between workers, and capital accumulation. Accessible entry point — maps directly onto Ohio labor law debates and union suppression.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1847</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1865/value-price-profit/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">Value, Price and Profit — Marx</div>
+            <div class="resource-card-desc">Marx's clearest explanation of surplus value for a working-class audience. Short, readable, and devastating — useful for framing Ohio Chamber of Commerce-backed legislation.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1865</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1848/communist-manifesto/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">The Communist Manifesto — Marx &amp; Engels</div>
+            <div class="resource-card-desc">Class struggle as the motor of history; the bourgeois state as an executive committee. The essential framing document — the Ohio Republican supermajority is a case study in this analysis.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx &amp; Engels · 1848</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">State Power &amp; Bourgeois Democracy</div>
+        <div class="resources-grid">
+          <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1917/staterev/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">The State and Revolution — Lenin</div>
+            <div class="resource-card-desc">The state as an instrument of class rule, not a neutral arbiter. Essential for cutting through procedural arguments about Ohio redistricting, legislative process, and "democracy" rhetoric from Republicans.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Lenin · 1917</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1871/civil-war-france/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">The Civil War in France — Marx</div>
+            <div class="resource-card-desc">Marx on the Paris Commune — state power, bourgeois repression, and the difference between parliamentary and popular democracy. Frames questions about Ohio ballot initiative suppression.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1871</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/engels/works/1884/origin-family/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">The Origin of the Family, Private Property and the State — Engels</div>
+            <div class="resource-card-desc">How the state arose to protect private property and class interests. Relevant to Ohio property tax legislation, inheritance law, and the ideological function of "family values" legislation.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Engels · 1884</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/gramsci/selections.htm" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">Selections from the Prison Notebooks — Gramsci</div>
+            <div class="resource-card-desc">Hegemony, civil society, and the "war of position." Explains how Republican ideological dominance in Ohio is reproduced through media, education, and cultural institutions — not just legislation.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Gramsci · 1929–35</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Imperialism &amp; Military Spending</div>
+        <div class="resources-grid">
+          <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1916/imp-hsc/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">Imperialism, the Highest Stage of Capitalism — Lenin</div>
+            <div class="resource-card-desc">Finance capital, monopoly, and the export of capital as the basis of modern imperialism. The theoretical backbone for critiquing the defense budget, Pentagon contracting, and Ohio's military-industrial presence.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Lenin · 1916</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/luxemburg/1913/accumulation-capital/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">The Accumulation of Capital — Luxemburg</div>
+            <div class="resource-card-desc">Militarism as a mechanism of capital accumulation. Directly applicable to the H.R. 1 defense spending mandate and the contradiction between military bloat and domestic austerity.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Luxemburg · 1913</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1867-c1/ch25.htm" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">Capital Ch. 25: The General Law of Capitalist Accumulation — Marx</div>
+            <div class="resource-card-desc">The reserve army of labor, relative surplus population, and immiseration. Framework for understanding military recruitment pipelines from Ohio's working-class and rural communities.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1867</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Party Organization &amp; Political Strategy</div>
+        <div class="resources-grid">
+          <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1902/witbd/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">What Is to Be Done? — Lenin</div>
+            <div class="resource-card-desc">Vanguard organization, trade union consciousness vs. socialist consciousness, and the role of political agitation. Relevant to questions about building effective Ohio political commentary and movement infrastructure.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Lenin · 1902</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1852/18th-brumaire/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">The 18th Brumaire of Louis Bonaparte — Marx</div>
+            <div class="resource-card-desc">"History repeats itself, first as tragedy, then as farce." Marx on bonapartism, lumpenproletariat politics, and how reactionary movements use democratic forms. Essential for analyzing Trumpism and Ohio's MAGA apparatus.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1852</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/luxemburg/1918/russian-revolution/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">The Russian Revolution — Luxemburg</div>
+            <div class="resource-card-desc">Luxemburg's internal critique of Bolshevik methods — on democracy, freedom of the press, and socialist organization. A counterweight for dialectical thinking about ends and means in political strategy.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Luxemburg · 1918</span>
+          </a>
+          <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1875/gotha/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
+            <div class="resource-card-title" style="color:#c9a0dc;">Critique of the Gotha Programme — Marx</div>
+            <div class="resource-card-desc">Marx's sharpest attack on reformist socialism and bourgeois rights discourse. Directly applicable when evaluating Democratic Party compromises and liberal NGO framing in Ohio politics.</div>
+            <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1875</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ═══ DATA ════════════════════════════════════════════════════════════════════
+const SENATE = [
+  [1,"Rob McColley","R","NW Ohio — Henry, Defiance, Fulton, Williams, Paulding, Putnam, Van Wert"],
+  [2,"Theresa Gavarone","R","NW Ohio — Wood, Ottawa, Sandusky, Erie, Huron"],
+  [3,"Michele Reynolds","R","Central Ohio — Franklin Co. (Westerville/Gahanna area)"],
+  [4,"George F. Lang","R","SW Ohio — Butler Co. (West Chester)"],
+  [5,"Stephen A. Huffman","R","W Ohio — Auglaize, Mercer, Darke, part Shelby"],
+  [6,"Willis E. Blackshear Jr.","D","NW Ohio — Lucas Co. (Toledo)"],
+  [7,"Steve Wilson","R","SW Ohio — Warren Co."],
+  [8,"Louis W. Blessing III","R","SW Ohio — Hamilton Co. (eastern)"],
+  [9,"Catherine D. Ingram","D","SW Ohio — Hamilton Co. (Cincinnati)"],
+  [10,"Kyle Koehler","R","W Ohio — Clark, Champaign, Logan"],
+  [11,"Paula Hicks-Hudson","D","NW Ohio — Lucas Co. (Toledo)"],
+  [12,"Susan Manchester","R","NW Ohio — Allen, Hardin, Marion, Wyandot, Crawford, Morrow"],
+  [13,"Nathan H. Manning","R","NE Ohio — Lorain Co. (western)"],
+  [14,"Terry Johnson","R","S Ohio — Gallia, Jackson, Lawrence, Pike, Scioto"],
+  [15,"Hearcel F. Craig","D","Central Ohio — Franklin Co. (Columbus SE)"],
+  [16,"Beth Liston","D","Central Ohio — Franklin Co. (Dublin/Upper Arlington)"],
+  [17,"Shane Wilkin","R","S Ohio — Highland, Ross, Adams, Brown, Clinton"],
+  [18,"Jerry C. Cirino","R","NE Ohio — Lake, eastern Geauga"],
+  [19,"Andrew O. Brenner","R","Central Ohio — Delaware Co."],
+  [20,"Tim Schaffer","R","E Ohio — Licking, Knox, Holmes, Coshocton, Perry"],
+  [21,"Kent Smith","D","NE Ohio — Cuyahoga (Euclid/eastern suburbs)"],
+  [22,"Mark Romanchuk","R","N Ohio — Richland, Ashland, western Wayne"],
+  [23,"Nickie J. Antonio","D","NE Ohio — Cuyahoga (Lakewood/west Cleveland)"],
+  [24,"Thomas F. Patton","R","NE Ohio — Cuyahoga (Rocky River/Westlake)"],
+  [25,"William P. DeMora","D","Central Ohio — Franklin Co. (Columbus west/OSU area)"],
+  [26,"Bill Reineke","R","N Ohio — Seneca, Hancock, part Wyandot"],
+  [27,"Kristina D. Roegner","R","NE Ohio — Summit (eastern), Portage Co."],
+  [28,"Casey Weinstein","D","NE Ohio — Summit Co. (Akron/western)"],
+  [29,"Jane M. Timken","R","NE Ohio — part of Stark Co."],
+  [30,"Brian M. Chavez","R","NE Ohio — Trumbull Co. (Warren/Niles area)"],
+  [31,"Al Landis","R","E Ohio — Guernsey, Muskingum, Tuscarawas, Wayne, part Stark"],
+  [32,"Sandra O'Brien","R","NE Ohio — Ashtabula, northern Geauga, Trumbull"],
+  [33,"Al Cutrona","R","NE Ohio — Carroll, Columbiana, Mahoning"],
+];
+
+const HOUSE = [
+  [1,"Dontavius L. Jarrells","D"],[2,"Latyna M. Humphrey","D"],[3,"Ismail Mohamed","D"],
+  [4,"Beryl Brown Piccolantonio","D"],[5,"Meredith R. Lawson-Rowe","D"],[6,"Christine Cockley","D"],
+  [7,"C. Allison Russo","D"],[8,"Anita Somani","D"],[9,"Munira Abdullahi","D"],
+  [10,"Mark Sigrist","D"],[11,"Crystal Lett","D"],[12,"Brian Stewart","R"],
+  [13,"Tristan Rader","D"],[14,"Sean P. Brennan","D"],[15,"Chris Glassburn","D"],
+  [16,"Bride Rose Sweeney","D"],[17,"Michael D. Dovilla","R"],[18,"Juanita O. Brent","D"],
+  [19,"Phillip M. Robinson Jr.","D"],[20,"Terrence Upchurch","D"],[21,"Eric Synenberg","D"],
+  [22,"Darnell T. Brewer","D"],[23,"Daniel P. Troy","D"],[24,"Dani Isaacsohn","D"],
+  [25,"Cecil Thomas","D"],[26,"Ashley Bryant Bailey","D"],[27,"Rachel B. Baker","D"],
+  [28,"Karen Brownlee","D"],[29,"Cindy Abrams","R"],[30,"Mike Odioso","R"],
+  [31,"Bill Roemer","R"],[32,"Jack K. Daniels","R"],[33,"Veronica R. Sims","D"],
+  [34,"Derrick Hall","D"],[35,"Steve Demetriou","R"],[36,"Andrea White","R"],
+  [37,"Tom Young","R"],[38,"Desiree Tims","D"],[39,"Phil Plummer","R"],
+  [40,"Rodney Creech","R"],[41,"Erika White","D"],[42,"Elgin Rogers Jr.","D"],
+  [43,"Michele Grim","D"],[44,"Josh Williams","R"],[45,"Jennifer Gross","R"],
+  [46,"Thomas Hall","R"],[47,"Diane Mullins","R"],[48,"Scott Oelslager","R"],
+  [49,"Jim Thomas","R"],[50,"Matthew Kishman","R"],[51,"Jodi Salvo","R"],
+  [52,"Gayle Manning","R"],[53,"Joseph A. Miller III","D"],[54,"Kellie Deeter","R"],
+  [55,"Michelle Teska","R"],[56,"Adam Mathews","R"],[57,"Jamie Callender","R"],
+  [58,"Lauren McNally","D"],[59,"Tex Fischer","R"],[60,"Brian Lorenz","R"],
+  [61,"Beth Lear","R"],[62,"Jean Schmidt","R"],[63,"Adam C. Bird","R"],
+  [64,"Nick Santucci","R"],[65,"David Thomas","R"],[66,"Sharon A. Ray","R"],
+  [67,"Melanie Miller","R"],[68,"Thaddeus J. Claggett","R"],[69,"Kevin D. Miller","R"],
+  [70,"Brian Lampton","R"],[71,"Levi Dean","R"],[72,"Heidi Workman","R"],
+  [73,"Jeff LaRe","R"],[74,"Bernard Willis","R"],[75,"Haraz N. Ghanbari","R"],
+  [76,"Marilyn John","R"],[77,"Meredith Craig","R"],[78,"Matt Huffman","R"],
+  [79,"Monica Robb Blasdel","R"],[80,"Johnathan Newman","R"],[81,"James M. Hoops","R"],
+  [82,"Roy Klopfenstein","R"],[83,"Ty D. Mathews","R"],[84,"Angela N. King","R"],
+  [85,"Tim Barhorst","R"],[86,"Tracy M. Richardson","R"],[87,"Riordan McClain","R"],
+  [88,"Gary Click","R"],[89,"D.J. Swearingen","R"],[90,"Justin Pizzulli","R"],
+  [91,"Bob Peterson","R"],[92,"Mark Johnson","R"],[93,"Jason Stephens","R"],
+  [94,"Kevin Ritter","R"],[95,"Ty Moore","R"],[96,"Ron Ferguson","R"],
+  [97,"Adam Holmes","R"],[98,"Mark Hiner","R"],[99,"Sarah Fowler Arthur","R"],
+];
+
+// quick lookup maps
+const senateMap = {};  SENATE.forEach(r => senateMap[r[0]] = r);
+const houseMap  = {};  HOUSE.forEach(r => houseMap[r[0]] = r);
+
+// ═══ MAP ═════════════════════════════════════════════════════════════════════
+// Ohio bounding box
+const OHIO_BOUNDS = L.latLngBounds(
+  L.latLng(38.40, -84.82),  // SW corner
+  L.latLng(42.33, -80.52)   // NE corner
+);
+
+const map = L.map('map', {
+  center: [40.35, -82.7],
+  zoom: 7,
+  minZoom: 6,
+  maxZoom: 13,
+  maxBounds: OHIO_BOUNDS,
+  maxBoundsViscosity: 1.0,
+  zoomControl: true,
+  attributionControl: false
+});
+
+map.fitBounds(OHIO_BOUNDS);
+
+// Dark tile layer
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19
+}).addTo(map);
+
+// City/town label overlay on top
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19,
+  pane: 'shadowPane'
+}).addTo(map);
+
+L.control.attribution({ prefix: false })
+  .addAttribution('© <a href="https://carto.com" style="color:#888">CartoDB</a> · Boundaries: U.S. Census TIGER')
+  .addTo(map);
+
+let currentChamber = 'senate';
+let senateLayer = null, houseLayer = null;
+let selectedLayer = null;
+
+function districtColor(distNum, chamber) {
+  const data = chamber === 'senate' ? senateMap[distNum] : houseMap[distNum];
+  if (!data) return 'rgba(100,100,100,0.4)';
+  return data[2] === 'R' ? 'rgba(192,57,43,0.72)' : 'rgba(36,113,163,0.72)';
+}
+
+function styleFeature(feature, chamber) {
+  const raw = feature.properties.SLDUST || feature.properties.SLDLST || feature.properties.BASENAME || '';
+  const distNum = parseInt(raw, 10);
+  return {
+    fillColor: districtColor(distNum, chamber),
+    weight: 1,
+    opacity: 0.9,
+    color: '#0d0d0d',
+    fillOpacity: 0.75
+  };
+}
+
+function onEachFeature(feature, layer, chamber) {
+  layer.on({
+    mouseover(e) {
+      const l = e.target;
+      l.setStyle({ weight: 2, color: '#f0c040', fillOpacity: 0.88 });
+      l.bringToFront();
+    },
+    mouseout(e) {
+      if (selectedLayer !== layer) {
+        (chamber === 'senate' ? senateLayer : houseLayer).resetStyle(e.target);
+      }
+    },
+    click(e) {
+      if (selectedLayer && selectedLayer !== layer) {
+        (chamber === 'senate' ? senateLayer : houseLayer).resetStyle(selectedLayer);
+      }
+      selectedLayer = layer;
+      layer.setStyle({ weight: 3, color: '#f0c040', fillOpacity: 0.92 });
+      const raw = feature.properties.SLDUST || feature.properties.SLDLST || feature.properties.BASENAME || '';
+      const distNum = parseInt(raw, 10);
+      showDistrictInfo(distNum, chamber);
+      map.fitBounds(layer.getBounds(), { padding: [30, 30] });
+    }
+  });
+}
+
+function showDistrictInfo(distNum, chamber) {
+  const data = chamber === 'senate' ? senateMap[distNum] : houseMap[distNum];
+  const el = document.getElementById('district-info');
+  if (!data) { el.innerHTML = `<div class="no-sel">No data for district ${distNum}</div>`; return; }
+  const chamberLabel = chamber === 'senate' ? 'Senate District' : 'House District';
+  const roleLabel = chamber === 'senate' ? 'State Senator' : 'State Representative';
+  const partyFull = data[2] === 'R' ? 'Republican' : 'Democrat';
+  const countyHTML = chamber === 'senate'
+    ? `<div class="info-row" style="margin-top:10px;line-height:1.5"><span>${data[3]}</span></div>`
+    : '';
+
+  // Build senator profile panel for senate chamber
+  let profileHTML = '';
+  if (chamber === 'senate') {
+    const prof = SENATOR_PROFILES[distNum];
+    if (prof) {
+      const slug = data[1].toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
+      const tuUrl = `https://www.transparencyusa.org/oh/legislator/${slug}`;
+      const statedItems = prof.stated.map(s => `<li>${s}</li>`).join('');
+      const actualItems = prof.actual.map(a => `<li>${a}</li>`).join('');
+      const committeeItems = prof.committees ? prof.committees.map(c => `<li>${c}</li>`).join('') : '';
+      const twitterChip = prof.twitter
+        ? `<a class="contact-chip" href="https://twitter.com/${prof.twitter.replace('@','')}" target="_blank" rel="noopener">𝕏 ${prof.twitter}</a>`
+        : '';
+      const officialLink = prof.url
+        ? `<a class="donor-btn" href="${prof.url}" target="_blank" rel="noopener" style="background:none;border-color:var(--accent);color:var(--accent)">Official Page →</a>`
+        : '';
+      const contactHTML = prof.phone ? `
+        <div class="profile-contact">
+          <a class="contact-chip" href="tel:${prof.phone}">📞 ${prof.phone}</a>
+          ${twitterChip}
+        </div>` : '';
+      const committeesHTML = committeeItems ? `
+        <div class="profile-committees">
+          <div class="profile-committees-hdr">📋 Committees</div>
+          <ul class="profile-committees-list">${committeeItems}</ul>
+        </div>` : '';
+      profileHTML = `
+        <button class="profile-toggle" id="profile-btn-${distNum}" onclick="toggleSenatorProfile(${distNum})">
+          ⬛ STATED VS ACTUAL RECORD
+          <span class="pt-arrow">▼</span>
+        </button>
+        <div class="profile-panel" id="profile-panel-${distNum}">
+          <div class="profile-tenure"><span>Tenure: </span>${prof.tenure}</div>
+          ${contactHTML}
+          <div class="profile-grid">
+            <div class="profile-col stated">
+              <div class="profile-col-header">📋 Stated Priorities</div>
+              <ul>${statedItems}</ul>
+            </div>
+            <div class="profile-col actual">
+              <div class="profile-col-header">📌 Actual Record</div>
+              <ul>${actualItems}</ul>
+            </div>
+          </div>
+          ${committeesHTML}
+          <div class="profile-donors-row">
+            ${officialLink}
+            <a class="donor-btn" href="${tuUrl}" target="_blank" rel="noopener">View Donors →</a>
+          </div>
+        </div>`;
+    }
+  }
+
+  el.innerHTML = `
+    <div class="info-dist">${chamberLabel.split(' ')[0][0]}D-${String(distNum).padStart(2,'0')}</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:6px">${chamberLabel}</div>
+    <div class="info-name">${data[1]}</div>
+    <span class="info-party ${data[2]}">${partyFull}</span>
+    <div class="info-row">${roleLabel}</div>
+    ${countyHTML}
+    ${profileHTML}
+  `;
+}
+
+// Fetch from Census TIGERweb REST API
+// Layer 1 = 2024 SLDU (Senate), Layer 2 = 2024 SLDL (House)
+// Filter to Ohio (STATE = '39')
+async function fetchDistricts(layerId) {
+  const base = 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer';
+  const url = `${base}/${layerId}/query?where=STATE%3D%2739%27&outFields=*&f=geojson&outSR=4326`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return res.json();
+}
+
+async function loadSenate() {
+  if (senateLayer) { senateLayer.addTo(map); return; }
+  const geojson = await fetchDistricts(1);
+  senateLayer = L.geoJSON(geojson, {
+    style: f => styleFeature(f, 'senate'),
+    onEachFeature: (f, l) => onEachFeature(f, l, 'senate')
+  }).addTo(map);
+  map.fitBounds(senateLayer.getBounds());
+}
+
+async function loadHouse() {
+  if (houseLayer) { houseLayer.addTo(map); return; }
+  const geojson = await fetchDistricts(2);
+  houseLayer = L.geoJSON(geojson, {
+    style: f => styleFeature(f, 'house'),
+    onEachFeature: (f, l) => onEachFeature(f, l, 'house')
+  });
+  // don't auto-add; only shown when chamber switched
+}
+
+async function switchChamber(chamber) {
+  currentChamber = chamber;
+  selectedLayer = null;
+  document.getElementById('district-info').innerHTML = '<div class="no-sel">← Click a district to see legislator details.</div>';
+  document.getElementById('btn-senate').classList.toggle('active', chamber === 'senate');
+  document.getElementById('btn-house').classList.toggle('active', chamber === 'house');
+
+  const loading = document.getElementById('loading');
+  loading.style.display = 'block';
+  loading.textContent = `Loading ${chamber === 'senate' ? 'Senate' : 'House'} district boundaries…`;
+  try {
+    if (chamber === 'senate') {
+      if (houseLayer) map.removeLayer(houseLayer);
+      await loadSenate();
+    } else {
+      if (senateLayer) map.removeLayer(senateLayer);
+      await loadHouse();
+      houseLayer.addTo(map);
+      map.fitBounds(houseLayer.getBounds());
+    }
+  } catch(e) {
+    loading.textContent = '⚠ Failed to load boundaries. Check network connection.';
+    setTimeout(() => loading.style.display = 'none', 4000);
+    return;
+  }
+  loading.style.display = 'none';
+}
+
+// Initial load
+(async () => {
+  const loading = document.getElementById('loading');
+  loading.textContent = 'Loading Senate district boundaries…';
+  try {
+    await loadSenate();
+    loading.style.display = 'none';
+  } catch(e) {
+    loading.textContent = '⚠ Could not load boundaries. Check network.';
+    setTimeout(() => loading.style.display = 'none', 5000);
+  }
+})();
+
+// ═══ GLOBAL SEARCH ═══════════════════════════════════════════════════════════
+function doGlobalSearch(q) {
+  const drop = document.getElementById('search-drop');
+  if (!q || q.length < 2) { drop.classList.remove('open'); return; }
+  const ql = q.toLowerCase();
+
+  const results = [];
+  SENATE.forEach(r => {
+    if (r[1].toLowerCase().includes(ql) || r[0].toString().includes(ql) || r[3].toLowerCase().includes(ql)) {
+      results.push({ dist: r[0], name: r[1], party: r[2], chamber: 'Senate', region: r[3] });
+    }
+  });
+  HOUSE.forEach(r => {
+    if (r[1].toLowerCase().includes(ql) || r[0].toString().includes(ql)) {
+      results.push({ dist: r[0], name: r[1], party: r[2], chamber: 'House', region: '' });
+    }
+  });
+
+  if (!results.length) { drop.innerHTML = '<div class="sr-item" style="color:var(--muted)">No results found</div>'; drop.classList.add('open'); return; }
+
+  drop.innerHTML = results.slice(0, 12).map(r => `
+    <div class="sr-item" onclick="selectSearchResult(${r.dist},'${r.chamber.toLowerCase()}')">
+      <span class="sr-dist">${r.chamber[0]}D-${String(r.dist).padStart(2,'0')}</span>
+      <span class="sr-name">${r.name}</span>
+      <span class="sr-badge ${r.party}">${r.party}</span>
+      <span class="sr-chamber">${r.chamber}</span>
+    </div>`).join('');
+  drop.classList.add('open');
+}
+
+function selectSearchResult(distNum, chamber) {
+  document.getElementById('search-drop').classList.remove('open');
+  document.getElementById('global-search').value = '';
+  showTab('map');
+  // Switch chamber if needed
+  if (currentChamber !== chamber) {
+    switchChamber(chamber).then(() => highlightDistrict(distNum, chamber));
+  } else {
+    highlightDistrict(distNum, chamber);
+  }
+}
+
+function highlightDistrict(distNum, chamber) {
+  const layer = chamber === 'senate' ? senateLayer : houseLayer;
+  if (!layer) return;
+  layer.eachLayer(l => {
+    const raw = l.feature.properties.SLDUST || l.feature.properties.SLDLST || l.feature.properties.BASENAME || '';
+    const dn = parseInt(raw, 10);
+    if (dn === distNum) {
+      if (selectedLayer) layer.resetStyle(selectedLayer);
+      selectedLayer = l;
+      l.setStyle({ weight: 3, color: '#f0c040', fillOpacity: 0.92 });
+      map.fitBounds(l.getBounds(), { padding: [40, 40] });
+      showDistrictInfo(distNum, chamber);
+    }
+  });
+}
+
+function closeSearch() { document.getElementById('search-drop').classList.remove('open'); }
+
+// ═══ TABLES ═══════════════════════════════════════════════════════════════════
+let sFilter='all', hFilter='all', sSortCol=0, sSortDir=1, hSortCol=0, hSortDir=1;
+
+function renderSenate() {
+  const q = document.getElementById('s-search').value.toLowerCase();
+  let rows = SENATE.filter(r => {
+    if (sFilter !== 'all' && r[2] !== sFilter) return false;
+    return !q || r[0].toString().includes(q) || r[1].toLowerCase().includes(q) || r[3].toLowerCase().includes(q);
+  }).sort((a,b) => {
+    let av=a[sSortCol], bv=b[sSortCol];
+    return typeof av==='number' ? (av-bv)*sSortDir : av.localeCompare(bv)*sSortDir;
+  });
+  document.getElementById('s-cnt').textContent = `${rows.length} / 33`;
+  document.getElementById('s-body').innerHTML = rows.map(r=>`
+    <tr style="cursor:pointer" onclick="goToDistrict(${r[0]},'senate')">
+      <td class="dn">SD-${String(r[0]).padStart(2,'0')}</td>
+      <td>${r[1]}</td>
+      <td><span class="pb ${r[2]}">${r[2]==='R'?'Republican':'Democrat'}</span></td>
+      <td style="font-size:0.74rem;color:var(--muted)">${r[3]}</td>
+    </tr>`).join('');
+}
+
+function renderHouse() {
+  const q = document.getElementById('h-search').value.toLowerCase();
+  let rows = HOUSE.filter(r => {
+    if (hFilter !== 'all' && r[2] !== hFilter) return false;
+    return !q || r[0].toString().includes(q) || r[1].toLowerCase().includes(q);
+  }).sort((a,b) => {
+    let av=a[hSortCol], bv=b[hSortCol];
+    return typeof av==='number' ? (av-bv)*hSortDir : av.localeCompare(bv)*hSortDir;
+  });
+  document.getElementById('h-cnt').textContent = `${rows.length} / 99`;
+  document.getElementById('h-body').innerHTML = rows.map(r=>`
+    <tr style="cursor:pointer" onclick="goToDistrict(${r[0]},'house')">
+      <td class="dn">HD-${String(r[0]).padStart(2,'0')}</td>
+      <td>${r[1]}</td>
+      <td><span class="pb ${r[2]}">${r[2]==='R'?'Republican':'Democrat'}</span></td>
+    </tr>`).join('');
+}
+
+function goToDistrict(distNum, chamber) {
+  showTab('map');
+  if (currentChamber !== chamber) {
+    switchChamber(chamber).then(() => highlightDistrict(distNum, chamber));
+  } else {
+    highlightDistrict(distNum, chamber);
+  }
+}
+
+function setFilter(tbl, val) {
+  if (tbl==='s') { sFilter=val; ['all','rep','dem'].forEach(x=>document.getElementById(`s-${x}`).classList.remove('active')); document.getElementById(`s-${val==='all'?'all':val==='R'?'rep':'dem'}`).classList.add('active'); renderSenate(); if (isMobile()) renderSenateCards(); }
+  else { hFilter=val; ['all','rep','dem'].forEach(x=>document.getElementById(`h-${x}`).classList.remove('active')); document.getElementById(`h-${val==='all'?'all':val==='R'?'rep':'dem'}`).classList.add('active'); renderHouse(); }
+}
+
+function sortTbl(tbl, col) {
+  if (tbl==='s') { sSortDir = sSortCol===col ? -sSortDir : 1; sSortCol=col; renderSenate(); }
+  else { hSortDir = hSortCol===col ? -hSortDir : 1; hSortCol=col; renderHouse(); }
+}
+
+// ═══ TABS ════════════════════════════════════════════════════════════════════
+function showTab(name) {
+  const tabs = ['map','senate','house','legislature','officials','resources','lookup'];
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', tabs[i]===name));
+  document.getElementById('pane-map').classList.toggle('active', name==='map');
+  ['senate','house','lookup','officials','resources','legislature'].forEach(p => {
+    const el = document.getElementById(`pane-${p}`);
+    if (el) el.style.display = (name===p) ? 'flex' : 'none';
+  });
+  if (name==='map') setTimeout(()=>{ if (map) map.invalidateSize(); },50);
+  if (name==='lookup') setTimeout(()=>document.getElementById('lookup-addr').focus(),100);
+  if (name==='officials') renderOfficials();
+}
+
+// ═══ FIND MY REPS ════════════════════════════════════════════════════════════
+
+function nameToSlug(name) {
+  return name.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
+}
+
+function getSenatorByDistrict(dist) { return SENATE.find(r => r[0] === dist); }
+function getRepByDistrict(dist) { return HOUSE.find(r => r[0] === dist); }
+
+function repCard(member, chamber) {
+  const [d, name, party] = member;
+  const isR = party === 'R';
+  const slug = nameToSlug(name);
+  const officialUrl = chamber === 'senate'
+    ? `https://www.ohiosenate.gov/members/${slug}`
+    : `https://www.ohiohouse.gov/members/${slug}`;
+  const tuUrl = `https://www.transparencyusa.org/oh/legislator/${slug}`;
+  const chamberLabel = chamber === 'senate' ? 'Ohio Senate' : 'Ohio House';
+  const distLabel = chamber === 'senate' ? `Senate District ${d}` : `House District ${d}`;
+
+  const photoFile = chamber === 'senate' ? `photos/senate_${d}.png` : `photos/house_${d}.png`;
+  const photoHtml = `<img class="rep-photo" src="${photoFile}" alt="${name}" onerror="this.outerHTML='<div class=\\"rep-photo-placeholder\\">👤</div>'">`;
+
+  return `
+  <a class="rep-card" href="${officialUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+    <div class="rep-card-top">
+      ${photoHtml}
+      <div class="rep-info">
+        <div class="rep-name">${name}</div>
+        <div class="rep-district">${distLabel}</div>
+        <span class="rep-badge ${party}">${isR ? 'Republican' : 'Democrat'}</span>
+      </div>
+    </div>
+    <div class="rep-card-footer">
+      <span class="rep-footer-label">${chamberLabel}</span>
+      <div class="rep-footer-links" onclick="event.stopPropagation()">
+        <a class="rep-link primary" href="${officialUrl}" target="_blank" rel="noopener">OFFICIAL SITE</a>
+        <a class="rep-link" href="${tuUrl}" target="_blank" rel="noopener">DONORS</a>
+      </div>
+    </div>
+  </a>`;
+}
+
+// ═══ ZIP → DISTRICT LOOKUP (static, no API needed) ═══════════════════════
+// Ohio zip codes mapped to [house_district, senate_district]
+const ZIP_DISTRICTS = {
+  "43001":[67,20],"43002":[25,16],"43003":[67,19],"43004":[20,3],"43005":[97,20],
+  "43006":[97,20],"43007":[67,10],"43008":[20,20],"43009":[67,10],"43010":[67,10],
+  "43011":[67,20],"43013":[67,19],"43014":[97,20],"43015":[73,19],"43016":[25,16],
+  "43017":[25,16],"43018":[20,3],"43019":[87,22],"43021":[73,19],"43022":[97,20],
+  "43023":[20,20],"43025":[20,20],"43026":[25,16],"43027":[67,10],"43028":[97,20],
+  "43029":[67,10],"43030":[20,20],"43031":[67,20],"43032":[67,19],"43033":[20,20],
+  "43035":[73,19],"43036":[67,12],"43037":[97,20],"43040":[67,10],"43041":[67,10],
+  "43044":[67,10],"43045":[67,10],"43046":[20,20],"43047":[67,10],"43048":[67,10],
+  "43050":[97,20],"43054":[20,3],"43055":[20,20],"43056":[20,20],"43060":[67,10],
+  "43061":[67,10],"43062":[20,3],"43064":[25,16],"43065":[73,19],"43066":[67,12],
+  "43067":[67,10],"43068":[20,3],"43071":[97,20],"43072":[67,10],"43074":[67,19],
+  "43076":[20,20],"43077":[67,10],"43078":[67,10],"43080":[20,20],"43081":[20,3],
+  "43082":[20,3],"43083":[67,10],"43084":[67,10],"43085":[83,25],"43086":[20,3],
+  "43101":[81,17],"43102":[81,17],"43103":[81,17],"43105":[20,20],"43106":[81,17],
+  "43107":[81,17],"43109":[84,15],"43110":[84,15],"43111":[31,14],"43112":[81,17],
+  "43113":[81,17],"43115":[81,17],"43116":[84,15],"43117":[84,15],"43119":[25,16],
+  "43123":[84,15],"43125":[84,15],"43126":[25,16],"43127":[81,17],"43128":[81,17],
+  "43130":[81,17],"43135":[81,17],"43136":[84,15],"43137":[84,15],"43138":[81,17],
+  "43140":[67,10],"43142":[81,17],"43143":[81,17],"43144":[31,14],"43145":[81,17],
+  "43146":[84,15],"43147":[84,15],"43148":[20,20],"43149":[81,17],"43150":[81,17],
+  "43151":[81,17],"43152":[81,17],"43153":[81,17],"43154":[81,17],"43155":[81,17],
+  "43156":[81,17],"43157":[20,20],"43158":[81,17],"43160":[81,17],"43162":[25,16],
+  "43164":[81,17],"43201":[83,15],"43202":[83,25],"43203":[83,15],"43204":[83,25],
+  "43205":[83,15],"43206":[84,15],"43207":[84,15],"43209":[84,15],"43210":[83,25],
+  "43211":[83,15],"43212":[83,25],"43213":[20,3],"43214":[83,25],"43215":[83,25],
+  "43216":[83,25],"43217":[84,15],"43218":[83,25],"43219":[20,3],"43220":[83,25],
+  "43221":[83,25],"43222":[83,25],"43223":[84,15],"43224":[20,3],"43226":[83,25],
+  "43227":[20,3],"43228":[25,16],"43229":[20,3],"43230":[20,3],"43231":[20,3],
+  "43232":[84,15],"43235":[83,25],"43240":[20,3],"43251":[83,25],"43260":[83,25],
+  "43266":[83,25],"43268":[83,25],"43270":[83,25],"43271":[83,25],"43272":[83,25],
+  "43279":[83,25],"43287":[83,25],"43291":[83,25],"43301":[87,12],"43302":[87,12],
+  "43310":[87,12],"43311":[67,10],"43314":[87,12],"43315":[87,12],"43316":[87,12],
+  "43317":[87,12],"43318":[87,12],"43319":[87,12],"43320":[87,12],"43321":[87,12],
+  "43322":[87,12],"43323":[87,12],"43324":[87,12],"43325":[87,12],"43326":[87,12],
+  "43330":[87,12],"43331":[87,12],"43332":[87,12],"43333":[87,12],"43334":[87,12],
+  "43335":[87,12],"43336":[87,10],"43337":[87,12],"43338":[87,12],"43340":[87,12],
+  "43341":[87,12],"43342":[87,12],"43343":[87,12],"43344":[87,12],"43345":[87,12],
+  "43346":[87,12],"43347":[87,12],"43348":[87,12],"43349":[87,12],"43350":[87,12],
+  "43351":[87,12],"43356":[87,12],"43357":[87,10],"43358":[87,10],"43359":[87,12],
+  "43360":[87,10],"43401":[16,2],"43402":[16,2],"43403":[16,2],"43406":[16,2],
+  "43407":[16,2],"43408":[16,2],"43410":[16,2],"43412":[16,2],"43413":[12,2],
+  "43414":[16,2],"43416":[16,2],"43420":[16,2],"43430":[16,2],"43431":[16,2],
+  "43432":[16,2],"43433":[16,2],"43434":[16,2],"43435":[16,2],"43436":[16,2],
+  "43437":[16,2],"43438":[16,2],"43439":[16,2],"43440":[16,2],"43441":[16,2],
+  "43442":[16,2],"43443":[16,2],"43445":[16,2],"43446":[16,2],"43447":[16,2],
+  "43449":[16,2],"43450":[16,2],"43451":[16,2],"43452":[16,2],"43456":[16,2],
+  "43457":[16,2],"43458":[16,2],"43460":[16,2],"43462":[16,2],"43463":[16,2],
+  "43464":[16,2],"43465":[16,2],"43466":[16,2],"43467":[16,2],"43468":[16,2],
+  "43469":[16,2],"43501":[12,1],"43502":[12,1],"43504":[68,6],"43505":[12,1],
+  "43506":[12,1],"43510":[12,1],"43511":[12,1],"43512":[12,1],"43515":[12,1],
+  "43516":[12,1],"43517":[12,1],"43518":[12,1],"43519":[12,1],"43520":[12,1],
+  "43521":[12,1],"43522":[12,1],"43523":[12,1],"43524":[12,1],"43525":[68,6],
+  "43526":[12,1],"43527":[12,1],"43528":[68,6],"43529":[12,1],"43530":[12,1],
+  "43531":[12,1],"43532":[12,1],"43533":[12,1],"43534":[12,1],"43535":[12,1],
+  "43536":[12,1],"43537":[68,6],"43540":[12,1],"43541":[12,1],"43542":[68,6],
+  "43543":[12,1],"43545":[12,1],"43547":[12,1],"43548":[12,1],"43549":[12,1],
+  "43550":[12,1],"43551":[68,6],"43553":[12,1],"43554":[12,1],"43555":[12,1],
+  "43556":[12,1],"43557":[12,1],"43558":[68,6],"43560":[68,6],"43565":[68,6],
+  "43566":[68,6],"43567":[12,1],"43569":[16,2],"43570":[12,1],"43571":[68,6],
+  "43601":[68,6],"43602":[68,6],"43603":[68,6],"43604":[68,6],"43605":[68,6],
+  "43606":[68,6],"43607":[68,6],"43608":[68,11],"43609":[68,6],"43610":[68,11],
+  "43611":[68,11],"43612":[68,11],"43613":[68,6],"43614":[68,6],"43615":[68,6],
+  "43616":[68,6],"43617":[68,6],"43619":[68,6],"43620":[68,6],"43623":[68,6],
+  "43701":[76,31],"43702":[76,31],"43711":[76,30],"43713":[76,30],"43716":[76,30],
+  "43717":[76,30],"43718":[76,31],"43719":[76,31],"43720":[76,31],"43721":[76,31],
+  "43722":[76,30],"43723":[76,30],"43724":[76,30],"43725":[76,31],"43727":[76,31],
+  "43728":[31,30],"43730":[31,30],"43731":[31,30],"43732":[76,31],"43733":[76,31],
+  "43734":[76,30],"43735":[76,31],"43736":[76,31],"43738":[76,31],"43739":[76,31],
+  "43740":[76,31],"43746":[76,31],"43747":[76,30],"43748":[76,31],"43749":[76,31],
+  "43750":[76,30],"43752":[76,30],"43754":[76,30],"43755":[76,31],"43756":[76,31],
+  "43757":[76,30],"43758":[76,31],"43759":[76,31],"43760":[76,31],"43761":[76,31],
+  "43762":[76,31],"43764":[31,14],"43766":[31,14],"43767":[76,31],"43768":[76,31],
+  "43771":[76,31],"43772":[76,30],"43773":[76,30],"43777":[76,31],"43778":[76,31],
+  "43779":[76,30],"43780":[76,31],"43782":[81,17],"43783":[76,31],"43786":[76,30],
+  "43787":[31,30],"43788":[76,31],"43791":[76,31],"43793":[76,30],"43801":[93,31],
+  "43802":[93,20],"43804":[93,31],"43805":[93,31],"43811":[97,20],"43812":[93,31],
+  "43821":[93,20],"43822":[93,20],"43824":[93,31],"43830":[93,31],"43832":[93,31],
+  "43836":[93,31],"43837":[93,31],"43840":[93,31],"43842":[93,20],"43843":[97,20],
+  "43844":[97,20],"43845":[93,31],"43901":[95,30],"43902":[95,30],"43903":[95,30],
+  "43906":[95,30],"43907":[95,30],"43908":[95,30],"43909":[95,33],"43910":[95,30],
+  "43912":[95,30],"43913":[95,30],"43914":[95,30],"43915":[95,30],"43916":[95,30],
+  "43917":[95,30],"43920":[90,33],"43925":[95,30],"43926":[95,30],"43927":[95,30],
+  "43928":[95,30],"43930":[90,33],"43931":[95,30],"43932":[95,30],"43933":[95,30],
+  "43934":[95,30],"43935":[95,30],"43937":[95,30],"43938":[95,30],"43939":[95,30],
+  "43940":[95,30],"43941":[95,30],"43942":[95,30],"43943":[95,30],"43944":[95,30],
+  "43945":[95,30],"43946":[95,30],"43947":[95,30],"43948":[95,30],"43950":[95,30],
+  "43951":[95,30],"43952":[95,30],"43953":[95,30],"43961":[90,33],"43962":[90,33],
+  "43963":[95,30],"43964":[95,30],"43967":[95,30],"43968":[90,33],"43971":[95,30],
+  "43972":[95,30],"43973":[95,30],"43974":[95,30],"43976":[90,33],"43977":[95,30],
+  "43981":[95,30],"43983":[95,30],"43984":[95,30],"43985":[95,30],"43986":[95,30],
+  "43988":[90,31],"44001":[42,13],"44003":[90,32],"44004":[90,32],"44010":[57,18],
+  "44011":[42,13],"44012":[42,13],"44017":[23,24],"44021":[57,18],"44022":[59,18],
+  "44023":[59,27],"44024":[57,18],"44026":[59,18],"44028":[42,13],"44030":[90,32],
+  "44032":[90,32],"44033":[59,27],"44035":[42,13],"44036":[42,13],"44039":[42,13],
+  "44040":[59,18],"44041":[90,32],"44044":[42,13],"44045":[57,18],"44046":[57,18],
+  "44047":[90,32],"44048":[90,32],"44049":[42,13],"44050":[42,13],"44052":[42,13],
+  "44053":[42,13],"44054":[42,13],"44055":[42,13],"44056":[37,27],"44057":[90,32],
+  "44060":[57,18],"44061":[57,18],"44062":[57,18],"44064":[57,18],"44065":[59,27],
+  "44067":[37,27],"44068":[90,32],"44070":[23,24],"44072":[59,18],"44073":[59,18],
+  "44074":[42,13],"44076":[90,32],"44077":[57,18],"44080":[59,27],"44081":[57,18],
+  "44082":[90,32],"44084":[90,32],"44085":[90,32],"44086":[57,18],"44087":[37,27],
+  "44088":[90,32],"44089":[42,13],"44090":[42,13],"44092":[57,18],"44093":[90,32],
+  "44094":[57,18],"44095":[57,18],"44096":[57,18],"44097":[57,18],"44099":[90,32],
+  "44101":[11,21],"44102":[23,23],"44103":[10,21],"44104":[10,21],"44105":[10,21],
+  "44106":[10,21],"44107":[23,23],"44108":[10,21],"44109":[10,21],"44110":[10,21],
+  "44111":[23,23],"44112":[21,21],"44113":[10,23],"44114":[10,21],"44115":[10,21],
+  "44116":[23,24],"44117":[21,21],"44118":[21,21],"44119":[21,21],"44120":[10,21],
+  "44121":[21,21],"44122":[21,21],"44123":[21,21],"44124":[59,18],"44125":[14,21],
+  "44126":[23,24],"44127":[14,21],"44128":[14,21],"44129":[62,24],"44130":[62,24],
+  "44131":[62,24],"44132":[21,25],"44133":[62,24],"44134":[62,24],"44135":[23,23],
+  "44136":[62,24],"44137":[14,21],"44138":[23,24],"44139":[59,27],"44140":[23,24],
+  "44141":[37,27],"44142":[23,23],"44143":[59,18],"44144":[23,23],"44145":[23,24],
+  "44146":[14,21],"44147":[37,27],"44149":[62,24],"44201":[50,29],"44202":[50,27],
+  "44203":[37,28],"44210":[37,27],"44211":[50,27],"44212":[37,22],"44214":[50,22],
+  "44215":[37,22],"44216":[37,28],"44217":[37,22],"44221":[61,28],"44222":[61,28],
+  "44223":[61,28],"44224":[61,27],"44230":[93,31],"44231":[50,27],"44232":[37,28],
+  "44233":[37,28],"44234":[50,27],"44235":[42,22],"44236":[37,27],"44237":[37,28],
+  "44240":[61,27],"44241":[61,27],"44242":[61,27],"44243":[61,27],"44250":[37,28],
+  "44251":[37,22],"44253":[42,22],"44254":[42,22],"44255":[59,27],"44256":[37,22],
+  "44258":[37,22],"44260":[61,28],"44262":[61,27],"44264":[37,28],"44265":[37,28],
+  "44266":[50,27],"44270":[37,22],"44272":[37,28],"44273":[37,22],"44274":[37,22],
+  "44275":[37,22],"44276":[50,22],"44278":[61,28],"44280":[42,22],"44281":[37,22],
+  "44285":[50,27],"44286":[37,27],"44287":[50,22],"44288":[50,27],"44301":[37,28],
+  "44302":[37,28],"44303":[37,28],"44304":[37,28],"44305":[37,28],"44306":[37,28],
+  "44307":[37,28],"44308":[37,28],"44309":[37,28],"44310":[61,28],"44311":[37,28],
+  "44312":[37,28],"44313":[61,28],"44314":[37,28],"44315":[37,28],"44316":[37,28],
+  "44317":[37,28],"44319":[37,28],"44320":[37,28],"44321":[61,28],"44325":[61,28],
+  "44326":[37,28],"44328":[37,28],"44333":[61,28],"44334":[61,28],"44372":[37,28],
+  "44393":[37,28],"44396":[37,28],"44398":[37,28],"44399":[37,28],"44401":[90,33],
+  "44402":[64,32],"44403":[64,32],"44404":[71,33],"44405":[64,33],"44406":[71,33],
+  "44408":[90,33],"44410":[64,32],"44411":[50,29],"44412":[50,29],"44413":[90,33],
+  "44417":[64,32],"44418":[64,32],"44420":[64,33],"44422":[90,33],"44423":[90,33],
+  "44424":[64,32],"44425":[64,32],"44427":[90,33],"44428":[64,32],"44429":[90,33],
+  "44430":[64,32],"44431":[90,33],"44432":[90,33],"44436":[90,33],"44437":[64,32],
+  "44438":[71,33],"44439":[64,32],"44440":[64,33],"44441":[90,33],"44442":[90,33],
+  "44443":[90,33],"44444":[64,32],"44445":[90,33],"44446":[64,32],"44449":[50,29],
+  "44450":[64,32],"44451":[71,33],"44452":[90,33],"44453":[71,33],"44454":[90,33],
+  "44455":[90,33],"44460":[90,33],"44470":[64,32],"44471":[64,33],"44473":[64,32],
+  "44481":[64,32],"44483":[64,32],"44484":[64,32],"44485":[64,32],"44486":[64,32],
+  "44490":[90,33],"44491":[64,32],"44492":[90,33],"44493":[90,33],"44501":[71,33],
+  "44502":[71,33],"44503":[71,33],"44504":[71,33],"44505":[71,33],"44506":[71,33],
+  "44507":[71,33],"44509":[71,33],"44510":[71,33],"44511":[71,33],"44512":[71,33],
+  "44513":[71,33],"44514":[71,33],"44515":[71,33],"44555":[71,33],"44601":[48,31],
+  "44606":[93,31],"44607":[48,31],"44608":[48,31],"44609":[48,31],"44610":[93,31],
+  "44611":[93,31],"44612":[48,31],"44613":[48,31],"44614":[48,29],"44615":[48,31],
+  "44617":[93,31],"44618":[93,31],"44619":[48,31],"44620":[48,31],"44621":[93,31],
+  "44622":[93,31],"44624":[93,31],"44625":[48,31],"44626":[93,31],"44627":[93,31],
+  "44628":[93,31],"44629":[48,31],"44630":[48,29],"44631":[48,31],"44632":[48,29],
+  "44633":[93,31],"44634":[48,31],"44637":[93,31],"44638":[93,31],"44639":[48,31],
+  "44640":[48,29],"44641":[48,29],"44643":[48,31],"44644":[48,31],"44645":[48,29],
+  "44646":[48,29],"44647":[48,29],"44648":[48,29],"44650":[48,29],"44651":[48,31],
+  "44652":[48,29],"44653":[48,31],"44654":[93,31],"44656":[48,31],"44657":[48,31],
+  "44659":[93,31],"44660":[93,31],"44661":[93,31],"44662":[93,31],"44663":[48,31],
+  "44665":[48,31],"44666":[93,31],"44667":[93,22],"44669":[48,31],"44670":[48,31],
+  "44671":[48,31],"44672":[48,29],"44675":[48,31],"44676":[93,22],"44677":[93,22],
+  "44678":[48,31],"44679":[48,31],"44680":[48,31],"44681":[93,31],"44682":[48,31],
+  "44683":[48,31],"44685":[37,28],"44687":[93,31],"44688":[48,31],"44689":[93,31],
+  "44690":[93,31],"44691":[93,22],"44693":[48,31],"44695":[48,31],"44697":[48,31],
+  "44699":[48,31],"44701":[48,29],"44702":[48,29],"44703":[48,29],"44704":[48,29],
+  "44705":[48,29],"44706":[48,29],"44707":[48,29],"44708":[48,29],"44709":[48,29],
+  "44710":[48,29],"44711":[48,29],"44714":[48,29],"44718":[48,29],"44720":[48,29],
+  "44721":[48,29],"44730":[48,29],"44735":[48,29],"44750":[48,29],"44767":[48,29],
+  "44799":[48,29],"44802":[87,26],"44804":[87,26],"44805":[50,22],"44807":[87,26],
+  "44809":[87,26],"44811":[87,26],"44813":[87,22],"44814":[87,26],"44815":[87,26],
+  "44816":[87,26],"44817":[87,26],"44818":[87,26],"44820":[87,26],"44821":[87,26],
+  "44822":[87,22],"44824":[87,26],"44825":[87,26],"44826":[87,26],"44827":[87,26],
+  "44828":[87,26],"44830":[87,26],"44833":[87,22],"44836":[87,26],"44837":[87,22],
+  "44838":[87,22],"44839":[89,2],"44840":[87,22],"44841":[87,26],"44842":[87,22],
+  "44843":[87,22],"44844":[87,26],"44845":[87,26],"44846":[87,26],"44847":[87,26],
+  "44848":[87,22],"44849":[87,26],"44850":[87,26],"44851":[87,26],"44853":[87,26],
+  "44854":[87,26],"44855":[87,26],"44856":[87,22],"44857":[87,26],"44859":[87,22],
+  "44860":[87,26],"44861":[87,26],"44862":[87,22],"44864":[87,22],"44865":[87,22],
+  "44866":[87,22],"44867":[87,26],"44870":[89,2],"44871":[89,2],"44874":[87,22],
+  "44875":[87,22],"44878":[87,22],"44880":[87,22],"44881":[87,26],"44882":[87,26],
+  "44883":[87,26],"44887":[87,22],"44888":[87,22],"44889":[89,2],"44890":[87,22],
+  "44901":[87,22],"44902":[87,22],"44903":[87,22],"44904":[87,22],"44905":[87,22],
+  "44906":[87,22],"44907":[87,22],"45001":[29,7],"45002":[29,8],"45003":[40,7],
+  "45004":[40,5],"45005":[40,7],"45011":[4,4],"45012":[4,4],"45013":[4,4],
+  "45014":[4,4],"45015":[4,4],"45018":[4,4],"45030":[29,7],"45032":[40,7],
+  "45033":[29,7],"45034":[29,7],"45036":[40,7],"45039":[40,7],"45040":[40,7],
+  "45041":[29,7],"45042":[40,5],"45044":[40,5],"45050":[4,4],"45051":[29,8],
+  "45052":[29,8],"45053":[29,7],"45054":[40,7],"45055":[4,4],"45056":[4,4],
+  "45061":[4,4],"45062":[4,4],"45063":[4,4],"45064":[40,7],"45065":[40,7],
+  "45066":[40,7],"45067":[4,4],"45068":[40,7],"45069":[4,4],"45070":[40,5],
+  "45101":[36,17],"45102":[30,9],"45103":[30,9],"45105":[36,17],"45106":[36,17],
+  "45107":[36,17],"45111":[30,9],"45112":[30,9],"45113":[36,17],"45114":[36,17],
+  "45115":[36,17],"45118":[36,17],"45119":[36,17],"45120":[30,9],"45121":[36,17],
+  "45122":[30,9],"45123":[36,17],"45130":[30,9],"45131":[36,17],"45132":[36,17],
+  "45133":[36,17],"45135":[36,17],"45140":[30,9],"45142":[36,17],"45144":[36,17],
+  "45145":[30,9],"45146":[36,17],"45147":[30,9],"45148":[36,17],"45150":[30,9],
+  "45152":[36,17],"45153":[36,17],"45154":[36,17],"45155":[36,17],"45156":[30,9],
+  "45157":[36,17],"45158":[30,9],"45159":[36,17],"45160":[30,9],"45162":[30,9],
+  "45164":[36,17],"45166":[36,17],"45167":[36,17],"45168":[36,17],"45169":[36,17],
+  "45171":[36,17],"45172":[36,17],"45174":[30,9],"45176":[30,9],"45177":[36,17],
+  "45201":[24,9],"45202":[24,9],"45203":[24,9],"45204":[24,9],"45205":[24,9],
+  "45206":[24,9],"45207":[24,9],"45208":[24,9],"45209":[24,9],"45210":[24,9],
+  "45211":[24,9],"45212":[24,9],"45213":[24,9],"45214":[24,9],"45215":[29,9],
+  "45216":[29,9],"45217":[29,9],"45218":[29,9],"45219":[24,9],"45220":[24,9],
+  "45221":[24,9],"45222":[24,9],"45223":[24,9],"45224":[29,9],"45225":[24,9],
+  "45226":[29,9],"45227":[29,9],"45228":[29,9],"45229":[24,9],"45230":[30,9],
+  "45231":[29,9],"45232":[29,9],"45233":[29,8],"45234":[24,9],"45235":[24,9],
+  "45236":[29,9],"45237":[29,9],"45238":[24,9],"45239":[29,9],"45240":[29,9],
+  "45241":[29,9],"45242":[29,9],"45243":[29,9],"45244":[30,9],"45245":[30,9],
+  "45246":[29,9],"45247":[29,8],"45248":[29,8],"45249":[29,9],"45250":[24,9],
+  "45251":[29,8],"45252":[29,8],"45253":[24,9],"45254":[30,9],"45255":[30,9],
+  "45301":[40,7],"45302":[85,5],"45303":[85,5],"45304":[85,5],"45305":[40,7],
+  "45306":[85,5],"45307":[40,7],"45308":[85,5],"45309":[40,5],"45310":[85,5],
+  "45311":[40,7],"45312":[85,10],"45314":[40,7],"45315":[40,5],"45316":[40,7],
+  "45317":[85,10],"45318":[85,5],"45319":[40,7],"45320":[40,5],"45321":[40,5],
+  "45322":[40,5],"45323":[40,7],"45324":[40,7],"45325":[40,5],"45326":[85,10],
+  "45327":[40,5],"45328":[85,5],"45330":[40,5],"45331":[85,5],"45332":[85,5],
+  "45333":[85,5],"45334":[85,5],"45335":[40,7],"45336":[85,5],"45337":[85,5],
+  "45338":[40,5],"45339":[40,5],"45340":[85,5],"45341":[40,7],"45342":[40,5],
+  "45344":[40,7],"45345":[40,5],"45346":[85,5],"45347":[40,5],"45348":[85,5],
+  "45349":[40,7],"45350":[85,5],"45351":[85,5],"45352":[85,5],"45353":[85,5],
+  "45354":[40,5],"45356":[85,5],"45358":[85,5],"45359":[40,5],"45360":[85,10],
+  "45361":[40,5],"45362":[85,5],"45363":[85,5],"45365":[85,5],"45368":[40,7],
+  "45369":[40,7],"45370":[40,7],"45371":[40,7],"45372":[40,7],"45373":[40,7],
+  "45374":[40,7],"45377":[40,5],"45378":[40,5],"45380":[85,5],"45381":[40,5],
+  "45382":[85,5],"45383":[40,5],"45384":[40,7],"45385":[40,7],"45387":[40,7],
+  "45388":[85,5],"45389":[40,7],"45390":[85,5],"45401":[39,5],"45402":[39,5],
+  "45403":[39,5],"45404":[39,5],"45405":[39,5],"45406":[39,5],"45407":[39,5],
+  "45408":[39,5],"45409":[39,5],"45410":[39,5],"45412":[39,5],"45413":[39,5],
+  "45414":[39,5],"45415":[39,5],"45416":[39,5],"45417":[39,5],"45418":[39,5],
+  "45419":[39,5],"45420":[39,5],"45422":[39,5],"45423":[39,5],"45424":[39,5],
+  "45426":[39,5],"45427":[39,5],"45428":[39,5],"45429":[39,5],"45430":[39,5],
+  "45431":[39,5],"45432":[39,5],"45433":[39,5],"45434":[39,5],"45435":[39,5],
+  "45437":[39,5],"45439":[39,5],"45440":[39,5],"45441":[39,5],"45448":[39,5],
+  "45449":[39,5],"45458":[39,5],"45459":[39,5],"45469":[39,5],"45470":[39,5],
+  "45475":[39,5],"45479":[39,5],"45481":[39,5],"45482":[39,5],"45490":[39,5],
+  "45501":[92,10],"45502":[92,10],"45503":[92,10],"45504":[92,10],"45505":[92,10],
+  "45506":[92,10],"45601":[31,14],"45612":[31,14],"45613":[31,14],"45614":[31,14],
+  "45616":[36,17],"45617":[31,14],"45618":[36,17],"45619":[94,14],"45620":[94,14],
+  "45621":[31,14],"45622":[31,14],"45623":[94,14],"45624":[31,14],"45628":[31,14],
+  "45629":[94,14],"45630":[94,14],"45631":[94,14],"45634":[31,14],"45636":[94,14],
+  "45638":[94,14],"45640":[31,14],"45642":[36,17],"45643":[94,14],"45644":[31,14],
+  "45645":[94,14],"45646":[36,17],"45647":[31,14],"45648":[94,14],"45650":[36,17],
+  "45651":[31,14],"45652":[94,14],"45653":[94,14],"45654":[31,14],"45656":[94,14],
+  "45657":[94,14],"45658":[94,14],"45659":[94,14],"45660":[36,17],"45661":[31,14],
+  "45662":[94,14],"45663":[94,14],"45669":[94,14],"45671":[31,14],"45672":[31,14],
+  "45673":[31,14],"45674":[94,14],"45675":[94,14],"45677":[94,14],"45678":[94,14],
+  "45679":[36,17],"45680":[94,14],"45681":[31,14],"45682":[94,14],"45683":[94,14],
+  "45684":[94,14],"45685":[94,14],"45686":[94,14],"45688":[94,14],"45690":[36,17],
+  "45692":[94,14],"45693":[36,17],"45694":[94,14],"45695":[94,14],"45696":[94,14],
+  "45697":[36,17],"45698":[94,14],"45699":[94,14],"45701":[31,30],"45710":[31,30],
+  "45711":[31,30],"45712":[31,30],"45713":[31,30],"45714":[94,30],"45715":[31,30],
+  "45716":[31,30],"45717":[31,30],"45719":[31,30],"45720":[94,30],"45721":[31,30],
+  "45723":[31,30],"45724":[31,30],"45727":[31,30],"45729":[31,30],"45732":[31,30],
+  "45734":[31,30],"45735":[31,30],"45739":[31,30],"45740":[31,30],"45741":[94,30],
+  "45742":[31,30],"45743":[94,30],"45744":[94,30],"45745":[94,30],"45746":[94,30],
+  "45750":[94,30],"45760":[31,30],"45761":[31,30],"45764":[31,30],"45766":[31,30],
+  "45767":[94,30],"45768":[94,30],"45769":[94,30],"45770":[94,30],"45771":[94,30],
+  "45772":[94,30],"45773":[94,30],"45775":[31,30],"45776":[31,30],"45778":[31,30],
+  "45779":[94,30],"45780":[31,30],"45782":[31,30],"45783":[94,30],"45784":[94,30],
+  "45786":[94,30],"45787":[94,30],"45788":[94,30],"45789":[94,30],"45801":[81,1],
+  "45802":[81,1],"45804":[81,1],"45805":[81,1],"45806":[81,1],"45807":[81,1],
+  "45808":[81,1],"45809":[81,1],"45810":[81,1],"45812":[81,1],"45813":[12,1],
+  "45814":[81,1],"45815":[81,1],"45816":[81,1],"45817":[81,1],"45819":[81,1],
+  "45820":[81,1],"45821":[12,1],"45822":[85,5],"45826":[85,5],"45827":[81,1],
+  "45828":[85,5],"45830":[81,1],"45831":[12,1],"45832":[81,1],"45833":[81,1],
+  "45835":[81,1],"45836":[81,1],"45837":[12,1],"45838":[81,1],"45839":[12,1],
+  "45840":[87,26],"45841":[81,1],"45843":[81,1],"45844":[81,1],"45845":[85,5],
+  "45846":[85,5],"45848":[81,1],"45849":[12,1],"45850":[81,1],"45851":[12,1],
+  "45853":[81,1],"45854":[81,1],"45855":[12,1],"45856":[12,1],"45858":[12,2],
+  "45859":[81,1],"45860":[85,5],"45861":[12,1],"45862":[85,5],"45863":[81,1],
+  "45864":[12,1],"45865":[85,5],"45866":[85,5],"45867":[87,26],"45868":[81,1],
+  "45869":[85,5],"45870":[81,1],"45871":[85,5],"45872":[12,2],"45873":[12,1],
+  "45874":[12,1],"45875":[12,1],"45876":[12,1],"45877":[81,1],"45879":[12,1],
+  "45880":[12,1],"45881":[81,1],"45882":[85,5],"45883":[85,5],"45884":[85,5],
+  "45885":[85,5],"45886":[81,1],"45887":[81,1],"45888":[81,1],"45889":[12,2],
+  "45890":[81,1],"45891":[12,1],"45893":[12,1],"45894":[81,1],"45895":[81,1],
+  "45896":[81,1],"45897":[87,26],"45898":[85,5],"45899":[85,5],
+};
+
+// ═══ SENATOR PROFILE DATA ════════════════════════════════════════════════════
+const SENATOR_PROFILES = {
+  1: {
+    tenure: "Senate since Dec 2017 · Senate President (136th GA) · Running for Lt. Governor 2026",
+    stated: ["Flat income tax / tax reform", "Deregulation & small business", "School choice & parental rights"],
+    actual: ["Led SB 2 energy overhaul — favored utility/fossil fuel interests (Ohio Capital Journal)", "Co-sponsored Heartbeat Bill SB 23 (2019) — no rape/incest exceptions", "2021 bill letting county commissioners block wind/solar projects", "Defended gerrymandered redistricting maps through multiple court challenges"],
+    phone: "(614) 466-8150", twitter: "@Rob_McColley", url: "https://ohiosenate.gov/members/rob-mccolley",
+    committees: ["Senate President (presides over all)", "Rules & Reference", "Redistricting Commission"]
+  },
+  2: {
+    tenure: "Senate since Feb 2019 · Senate Majority Floor Leader (136th GA)",
+    stated: ["Election integrity & voter ID", "2nd Amendment protection", "Anti-abortion / pro-life", "Small business & deregulation"],
+    actual: ["Co-sponsored HB 6 — later at center of $60M FirstEnergy bribery scandal", "Received FirstEnergy PAC money 2018–2020", "Sponsored SB 52 (voting audit requirements) & SB 320 (photo voter ID)", "Pushed party affiliation labels on Supreme Court ballots"],
+    phone: "(614) 466-8060", twitter: null, url: "https://ohiosenate.gov/members/theresa-gavarone",
+    committees: ["Majority Floor Leader", "Government Oversight", "Finance"]
+  },
+  3: {
+    tenure: "Senate since Jan 2023 · 1st term · First Black Republican woman elected in Franklin County",
+    stated: ["Stable economy & affordable housing", "Public safety & responsive government", "Community reinvestment"],
+    actual: ["Residential stability zones bill (with Craig) — property tax exemptions for homeowners", "Conveyance fee bill (with Brenner) — county housing fund allocation", "Residential economic development districts & rural infrastructure grants", "Eviction law revisions & homeowner property tax deferral bill (with Craig)", "Tax credits for charitable housing organizations"],
+    phone: "(614) 466-8064", twitter: null, url: "https://ohiosenate.gov/members/michele-reynolds",
+    committees: ["Housing", "Commerce & Labor", "Finance"]
+  },
+  4: {
+    tenure: "Senate since Jan 2021 · Senate Majority Whip (136th GA) · Appointed to House Sep 2017",
+    stated: ["Most business-friendly state in the country", "Fiscal conservatism & deregulation", "Pro-life & 2nd Amendment"],
+    actual: ["SB 33 — employers may post labor law notices online instead of workplace (anti-worker)", "Permanent ban on local plastic bag bans — backed by Ohio Chamber of Commerce", "Publicly opposed COVID-19 vaccine; avoided masks during pandemic", "July 2024 rally: suggested 'civil war' if election lost — condemned by both parties", "SB 198 — inmate reentry resources (with Manning)"],
+    phone: "(614) 466-8072", twitter: null, url: "https://ohiosenate.gov/members/george-f-lang",
+    committees: ["Majority Whip", "Commerce & Labor", "Finance", "Rules & Reference"]
+  },
+  5: {
+    tenure: "Senate since Jan 2019 · 3 terms total (House 2015–2018)",
+    stated: ["Healthcare access & rural health", "Opioid crisis response", "Fiscal conservatism"],
+    actual: ["June 2020 hearing: asked if Black people contract COVID at higher rates because 'the colored population do not wash their hands as well' — widely condemned", "Anti-abortion votes; chaired Senate Health Committee (appointed by cousin Matt Huffman despite controversy)", "Medicare for All editorial drafted with pharmaceutical/insurance lobbyist (Washington Post, Dec 2019)", "Rural Health Transformation Program advocacy via 'One Big Beautiful Bill'"],
+    phone: "(614) 466-6247", twitter: null, url: "https://ohiosenate.gov/members/stephen-a-huffman",
+    committees: ["Health (Chair)", "Veterans & Public Safety", "Finance"]
+  },
+  6: {
+    tenure: "Senate since Jan 2025 · 1st term · House 2021–2024",
+    stated: ["Affordable living & neighborhood reinvestment", "Mental health advocacy", "Gun safety", "Public education funding"],
+    actual: ["Introduced Statewide Youth Council bill (advisory body on youth legislation)", "Opposed SB 56 cannabis changes as undermining voter will on Issue 2", "Commended DeWine veto of child labor extension bill (SB 50)", "Co-sponsored SB 75 — increased penalties for failure to report lost/stolen firearms (with Ingram)"],
+    phone: "(614) 466-4538", twitter: null, url: "https://ohiosenate.gov/members/willis-e-blackshear-jr",
+    committees: ["Education", "Health", "Finance"]
+  },
+  7: {
+    tenure: "Senate since Jan 2017 · Dean of Senate (longest-serving) · Retired bank CEO",
+    stated: ["Financial literacy & senior protection", "Workforce development", "Fiscal conservatism", "Trails & outdoor recreation"],
+    actual: ["100% conservative voting record (American Conservative Union)", "Co-sponsored Heartbeat Bill SB 23 (2019) — no rape/incest exceptions", "Chair, Financial Institutions, Insurance & Technology Committee", "Co-sponsored SB 33 — employers post labor notices online (with Lang)", "Founder of Ohio's Legislative Trails Caucus"],
+    phone: "(614) 466-9737", twitter: "@SteveWilsonOH", url: "https://ohiosenate.gov/members/steve-wilson",
+    committees: ["Financial Institutions, Insurance & Technology (Chair)", "Ways & Means", "Judiciary"]
+  },
+  8: {
+    tenure: "Senate since 2017 · Son of former Sen./Rep. Lou Blessing Jr. · Professional engineer",
+    stated: ["Conservative fiscal policy", "Deregulation", "Pro-life"],
+    actual: ["Co-sponsored Heartbeat Bill SB 23 (2019) — no rape/incest exceptions", "Consistent conservative voting record aligned with Ohio Chamber of Commerce", "Cincinnati/Hamilton County focus"],
+    phone: "(614) 466-8068", twitter: null, url: "https://ohiosenate.gov/members/louis-w-blessing-iii",
+    committees: ["Transportation", "Energy & Public Utilities", "Finance"]
+  },
+  9: {
+    tenure: "Senate since 2019 · House 2015–2018 · 20+ years Cincinnati Board of Education",
+    stated: ["Education equity & public school investment", "Affordable housing", "Workforce development & healthcare access"],
+    actual: ["Ranking Member: Primary/Secondary Education, Workforce/Higher Education, and Medicaid Committees", "Co-sponsored SB 75 — lost/stolen firearm reporting penalties (with Hicks-Hudson)", "WorkOhio regional hub launch (workforce training)"],
+    phone: "(614) 466-5980", twitter: null, url: "https://ohiosenate.gov/members/catherine-d-ingram",
+    committees: ["Primary & Secondary Education (Ranking)", "Workforce Development & Higher Education (Ranking)", "Medicaid (Ranking)"]
+  },
+  10: {
+    tenure: "Senate since Jan 2025 · 1st term in Senate · House 2015–2022 · Chairs Sunset Review Committee",
+    stated: ["Consumer protection & payday lending reform", "Occupational licensing deregulation", "Agriculture & fiscal responsibility"],
+    actual: ["House HB 123 (2018) — landmark payday lending reform, capped interest rates", "Occupational licensing reform — reduced barriers to entry for trades", "Homestead exemption increase bill (Feb 2026) — property tax relief for seniors"],
+    phone: "(614) 466-3780", twitter: null, url: "https://ohiosenate.gov/members/kyle-koehler",
+    committees: ["Sunset Review (Chair)", "Agriculture", "Ways & Means"]
+  },
+  11: {
+    tenure: "Senate since Nov 2022 · House Oct 2021–Nov 2022 · Former Mayor of Toledo (1st Black female mayor)",
+    stated: ["Empowering people & quality of life", "Education as pathway to success", "Urban farming & environmental health"],
+    actual: ["Co-sponsored SB 75 — firearm loss/theft reporting (with Ingram)", "SB 120 — Urban Farming Act", "SB 236 — suicide prevention & mental health (with Craig)", "SB 329 — ban radioactive brine on roads (with Smith)"],
+    phone: "(614) 466-5204", twitter: null, url: "https://ohiosenate.gov/members/paula-hicks-hudson",
+    committees: ["Health", "Environment & Natural Resources", "Education"]
+  },
+  12: {
+    tenure: "Senate since Jan 2025 · 1st term · House 2018–2024 · Worked for Jim Jordan · Trump 2016 field organizer",
+    stated: ["Agriculture & family farming", "Child welfare & anti-trafficking", "Fiscal conservatism"],
+    actual: ["Created Ohio Youth and Family Ombudsman Office (DJF oversight)", "Beginning Farmer Tax Credit Program — intergenerational farm asset transfer", "Criminalized use of controlled substance addiction as human trafficking method"],
+    phone: "(614) 466-7584", twitter: null, url: "https://ohiosenate.gov/members/susan-manchester",
+    committees: ["Agriculture (Chair)", "Housing", "Judiciary"]
+  },
+  13: {
+    tenure: "Senate since Jan 2019 · House 2015–2018 · Running for House District 52 (2026, term-limited)",
+    stated: ["Workforce development & job training", "Community college investment", "Public safety"],
+    actual: ["Co-sponsored SB 198 — inmate reentry resources (with Lang)", "Prosecutor background; North Ridgeville/Lorain County focus", "Championed Lorain County Community College and JVS funding"],
+    phone: "(614) 644-7613", twitter: null, url: "https://ohiosenate.gov/members/nathan-h-manning",
+    committees: ["Judiciary (Chair)", "Criminal Justice", "Education"]
+  },
+  14: {
+    tenure: "Senate since Sept 2019 (appointed) · Re-elected 2020, 2024 · House 2011–2018 · Retired D.O. & Army Colonel",
+    stated: ["Opioid/addiction crisis response", "Healthcare access & rural medicine", "2nd Amendment & pro-life", "Veterans affairs"],
+    actual: ["Authored Anti-Pill Mill Bill (HB 93, 2011) — landmark opioid law, shut down pill mills in 5 months", "Expanded naloxone access — HB 170 (2013)", "Authored Ohio Constitutional Carry Law; NRA Defender of Freedom Award", "Co-sponsored SB 22 — legislative oversight of COVID emergency powers"],
+    phone: "(614) 466-8082", twitter: null, url: "https://ohiosenate.gov/members/terry-johnson",
+    committees: ["Veterans & Public Safety (Chair)", "Health", "Agriculture"]
+  },
+  15: {
+    tenure: "Senate since Jan 2019 · House 2015–2018 · Columbus City Council 2007–2014 · U.S. Army veteran",
+    stated: ["Veterans affairs & community reinvestment", "Gun safety", "Housing affordability", "Mental health"],
+    actual: ["SB 235 — ban devices that accelerate firearm rate of fire (with Smith)", "SB 238 — safe firearm storage", "SB 98 — domestic violence conviction triggers firearm prohibition (with Weinstein)", "SB 236 — suicide prevention (with Hicks-Hudson)"],
+    phone: "(614) 466-5131", twitter: "@HearcelCraig", url: "https://ohiosenate.gov/members/hearcel-f-craig",
+    committees: ["Housing (Ranking)", "Veterans & Public Safety", "Environment & Natural Resources"]
+  },
+  16: {
+    tenure: "Senate since 2019 · House 2018 · Physician (MD) · Columbus/Dublin area",
+    stated: ["Healthcare equity", "Education investment", "Environmental protection", "Working families"],
+    actual: ["Dementia-specific training bill for care facility nurse aides (with Craig)", "Physician background informs health committee work", "Reliable Democratic caucus vote"],
+    phone: "(614) 466-5981", twitter: null, url: "https://ohiosenate.gov/members/beth-liston",
+    committees: ["Health (Ranking)", "Primary & Secondary Education", "Finance"]
+  },
+  17: {
+    tenure: "Senate since 2021 · House prior · Rural south-central Ohio",
+    stated: ["Rural communities & agriculture", "Fiscal conservatism", "Local control"],
+    actual: ["Represents Fayette, Highland, Pike, Ross, and Vinton counties — deeply rural conservative district", "Consistent conservative voting record; aligned with agricultural and property interests", "Limited high-profile independent legislative record"],
+    phone: "(614) 466-8156", twitter: null, url: "https://ohiosenate.gov/members/shane-wilkin",
+    committees: ["Agriculture", "Transportation", "Ways & Means"]
+  },
+  18: {
+    tenure: "Senate since Jan 2023 · Lake County · Finance Committee Chair",
+    stated: ["Education reform", "Fiscal responsibility", "Economic development"],
+    actual: ["Led SB 1 (135th GA) — 'anti-indoctrination' bill restricting DEI at public universities", "Finance Committee Chair — central to state budget negotiations", "Lake County suburban focus"],
+    phone: "(614) 644-7718", twitter: null, url: "https://ohiosenate.gov/members/jerry-c-cirino",
+    committees: ["Finance", "Education", "Government Oversight"]
+  },
+  19: {
+    tenure: "Senate since Jan 2019 · House 2011–2018 · Delaware County Recorder 2005–2010",
+    stated: ["Education reform & school choice", "Deregulation & fiscal conservatism", "Housing policy"],
+    actual: ["Co-sponsored Heartbeat Bill SB 23 with Roegner (2019)", "April 2020 Facebook posts comparing Ohio COVID policy to Nazi Germany — day after Holocaust Remembrance Day, targeting Jewish Health Director Amy Acton", "Housing legislation: short-term rental regulation, conveyance fees with Reynolds"],
+    phone: "(614) 466-8086", twitter: null, url: "https://ohiosenate.gov/members/andrew-o-brenner",
+    committees: ["Primary & Secondary Education (Chair)", "Housing", "Ways & Means"]
+  },
+  20: {
+    tenure: "Senate since 2019 · House prior · Lancaster/Fairfield County area",
+    stated: ["Fiscal conservatism", "Rural communities", "Agriculture & local business"],
+    actual: ["Represents Fairfield, Perry, Hocking, and Morgan counties", "Consistent conservative voting record; Chamber of Commerce endorsed", "Limited high-profile sponsorships"],
+    phone: "(614) 466-8076", twitter: null, url: "https://ohiosenate.gov/members/tim-schaffer",
+    committees: ["Agriculture", "Ways & Means", "Local Government & Elections"]
+  },
+  21: {
+    tenure: "Senate since Jan 2025 · Air Force veteran · Euclid/northeast Cleveland suburbs",
+    stated: ["Working families & labor rights", "Gun safety", "Environmental protection"],
+    actual: ["Co-sponsored SB 235 — ban devices that accelerate firearm rate of fire (with Craig)", "Co-sponsored SB 329 — ban radioactive brine on roads (with Hicks-Hudson)", "New senator; reliable Democratic caucus vote"],
+    phone: "(614) 466-4857", twitter: null, url: "https://ohiosenate.gov/members/kent-smith",
+    committees: ["Environment & Natural Resources", "Commerce & Labor", "Veterans & Public Safety"]
+  },
+  22: {
+    tenure: "Senate since 2019 · Mansfield/Richland County area · Manufacturing corridor focus",
+    stated: ["Fiscal conservatism", "Manufacturing & economic development", "Local business"],
+    actual: ["Represents north-central Ohio manufacturing corridor", "Consistent conservative voting record aligned with Chamber of Commerce", "Manufacturing and agriculture committee work"],
+    phone: "(614) 466-7505", twitter: null, url: "https://ohiosenate.gov/members/mark-romanchuk",
+    committees: ["Energy & Public Utilities (Chair)", "Finance", "Commerce & Labor"]
+  },
+  23: {
+    tenure: "Senate Minority Leader · Long-serving · Lakewood/west Cleveland suburbs",
+    stated: ["LGBTQ+ equality & civil rights", "Healthcare access", "Working families & labor", "Education funding"],
+    actual: ["Senate Minority Leader — leads 9-member caucus against 24-R supermajority", "One of Ohio's longest-serving progressive voices", "LGBTQ+ protections sponsor over multiple sessions"],
+    phone: "(614) 466-5123", twitter: null, url: "https://ohiosenate.gov/members/nickie-j-antonio",
+    committees: ["Minority Leader (all committees ex officio)", "Rules & Reference", "Finance"]
+  },
+  24: {
+    tenure: "Senate since 2019 · House prior · Cuyahoga County/west suburbs",
+    stated: ["Public safety", "Fiscal conservatism", "Property tax relief"],
+    actual: ["SB 188 — increased criminal penalties for fugitives who barricade in structures", "Property tax freeze legislation (2025) for owner-occupied homes", "Consistent conservative voting record"],
+    phone: "(614) 466-8056", twitter: null, url: "https://ohiosenate.gov/members/thomas-f-patton",
+    committees: ["Criminal Justice", "Finance", "Local Government & Elections"]
+  },
+  25: {
+    tenure: "Senate since 2023 · Columbus area Democrat",
+    stated: ["Working families & labor rights", "Progressive policy", "Columbus community investment"],
+    actual: ["Represents Columbus urban core and inner suburbs", "Reliable Democratic caucus vote", "Part of Senate minority under Republican supermajority"],
+    phone: "(614) 466-4583", twitter: null, url: "https://ohiosenate.gov/members/william-p-demora",
+    committees: ["Commerce & Labor", "Housing", "Finance"]
+  },
+  26: {
+    tenure: "Senate since Jan 2021 · House 2015–2020 · Senate President Pro Tempore · Partner, Reineke Family Dealerships",
+    stated: ["100% pro-life & pro-2nd Amendment", "Tax cuts & deregulation", "Small business"],
+    actual: ["Senate President Pro Tempore — second in command to McColley", "100% pro-life and 2nd Amendment voting record", "Endorsed by Ohio Chamber of Commerce; auto dealership background informs regulatory positions"],
+    phone: "(614) 466-8049", twitter: null, url: "https://ohiosenate.gov/members/bill-reineke",
+    committees: ["President Pro Tempore", "Finance", "Rules & Reference"]
+  },
+  27: {
+    tenure: "Senate since 2019 · Hudson/Summit County area",
+    stated: ["Pro-life", "Fiscal conservatism", "Deregulation"],
+    actual: ["Co-sponsored Heartbeat Bill SB 23 with Brenner (2019)", "Consistent conservative voting record", "Limited high-profile independent sponsorships beyond SB 23"],
+    phone: "(614) 466-4823", twitter: null, url: "https://ohiosenate.gov/members/kristina-d-roegner",
+    committees: ["Ways & Means", "Judiciary", "Financial Institutions, Insurance & Technology"]
+  },
+  28: {
+    tenure: "Senate since Jan 2025 · House 2018–2024 · U.S. Air Force veteran · Hudson/Akron area",
+    stated: ["Veterans affairs & military families", "Education & children's healthcare", "Renewable energy", "Working families"],
+    actual: ["Co-sponsored SB 98 — domestic violence conviction triggers firearm prohibition (with Craig)", "Dog breeder regulation bill (Nov 2025) — high-volume breeder standards", "Data center regulation — water use, reliability, local control"],
+    phone: "(614) 466-7041", twitter: null, url: "https://ohiosenate.gov/members/casey-weinstein",
+    committees: ["Armed Services & Veterans Affairs (Ranking)", "Energy & Public Utilities", "Education"]
+  },
+  29: {
+    tenure: "Appointed Jan 29, 2025 · Replacing late Sen. Kirk Schuring · Former Ohio Republican Party Chair 2017–2021",
+    stated: ["Conservative economic development", "Public policy reform", "Stark County representation"],
+    actual: ["SB 158 passed — only confirmed significant bill in short tenure", "Very limited legislative record — appointed fewer than 14 months ago", "Known primarily as former state party chair"],
+    phone: "(614) 466-0626", twitter: null, url: "https://ohiosenate.gov/members/jane-m-timken",
+    committees: ["Finance", "Economic Development", "Government Oversight"]
+  },
+  30: {
+    tenure: "Senate since Jan 2025 · 1st term · NE Ohio/Trumbull County area",
+    stated: ["Fiscal conservatism", "Economic development", "Northeast Ohio communities"],
+    actual: ["New senator; limited legislative record", "Represents Trumbull County (Warren/Niles) — historically competitive area gone Republican", "Part of Republican supermajority; voting record aligned with caucus"],
+    phone: "(614) 466-6508", twitter: null, url: "https://ohiosenate.gov/members/brian-m-chavez",
+    committees: ["Transportation", "Agriculture", "Local Government & Elections"]
+  },
+  31: {
+    tenure: "Senate since prior session · Rural east-central Ohio · Coshocton/Tuscarawas area",
+    stated: ["Fiscal conservatism", "Rural communities", "Agriculture"],
+    actual: ["Represents Coshocton, Guernsey, Muskingum, Tuscarawas, and Morgan counties", "Consistent conservative voting record; agricultural and small-business aligned", "Limited high-profile independent sponsorships"],
+    phone: "(614) 466-5838", twitter: null, url: "https://ohiosenate.gov/members/al-landis",
+    committees: ["Agriculture", "Energy & Public Utilities", "Ways & Means"]
+  },
+  32: {
+    tenure: "Senate since prior session · Northeast Ohio · Ashtabula area",
+    stated: ["Fiscal conservatism", "Agriculture & rural communities", "Northeast Ohio"],
+    actual: ["Represents Ashtabula, Geauga, Portage (part) counties — northeast corner of Ohio", "Consistent conservative voting record; agricultural interests", "Limited high-profile independent sponsorships"],
+    phone: "(614) 466-7182", twitter: null, url: "https://ohiosenate.gov/members/sandra-obrien",
+    committees: ["Agriculture", "Finance", "Environment & Natural Resources"]
+  },
+  33: {
+    tenure: "Senate since Jan 2025 · 1st term · Mahoning Valley/Youngstown area",
+    stated: ["Fiscal conservatism", "Public safety", "Economic development"],
+    actual: ["Property tax reduction bill (May 2025) — reduction for owner-occupied homes", "Represents Mahoning County (Youngstown) and Columbiana County", "New senator; limited record beyond property tax bill; reliable Republican vote"],
+    phone: "(614) 466-8285", twitter: null, url: "https://ohiosenate.gov/members/al-cutrona",
+    committees: ["Criminal Justice", "Economic Development", "Local Government & Elections"]
+  }
+};
+
+function toggleSenatorProfile(distNum) {
+  const btn = document.getElementById(`profile-btn-${distNum}`);
+  const panel = document.getElementById(`profile-panel-${distNum}`);
+  if (!btn || !panel) return;
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
+
+function doLookup() {
+  const raw = document.getElementById('lookup-addr').value.trim();
+  if (!raw) return;
+  const out = document.getElementById('lookup-output');
+
+  const isZipOnly = /^\d{5}$/.test(raw);
+  const zip = isZipOnly ? raw : (raw.match(/\b(\d{5})\b/) || [])[1];
+
+  if (!zip) {
+    out.innerHTML = `<div class="lookup-error">⚠ Please enter a 5-digit Ohio zip code (e.g. 44094). Full address lookup coming soon.</div>`;
+    return;
+  }
+
+  const districts = ZIP_DISTRICTS[zip];
+  if (!districts) {
+    out.innerHTML = `<div class="lookup-error">⚠ Zip code ${zip} not found. Make sure it's an Ohio zip code.</div>`;
+    return;
+  }
+
+  const [houseDist, senateDist] = districts;
+  const houseRep = getRepByDistrict(houseDist);
+  const senator  = getSenatorByDistrict(senateDist);
+
+  let html = `<div class="rep-results">
+    <div class="rep-results-title">Results for zip: <span>${zip}</span></div>
+    <div class="rep-grid">`;
+
+  if (senator)  html += repCard(senator,  'senate');
+  if (houseRep) html += repCard(houseRep, 'house');
+
+  html += `</div>
+    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+      <button class="also-on-map" onclick="goToDistrict(${senateDist},'senate')">🗺 View Senate District ${senateDist} on map</button>
+      <button class="also-on-map" onclick="goToDistrict(${houseDist},'house')">🗺 View House District ${houseDist} on map</button>
+    </div>
+  </div>`;
+
+  out.innerHTML = html;
+}
+
+// ═══ STATEWIDE OFFICIALS ═════════════════════════════════════════════════════
+const OFFICIALS = [
+  {
+    title: "Governor",
+    name: "Mike DeWine",
+    party: "R",
+    since: "Jan 2019 · Re-elected Nov 2022",
+    bio: "Former U.S. Senator (1995–2007), Ohio AG (2011–2018). Moderate Republican with bipartisan moments on gun violence, children's welfare, and opioids — but signs nearly every Republican priority bill.",
+    priorities: ["'Safer Ohio' public safety agenda", "Opioid/addiction crisis response", "Economic development & job creation", "Parental rights & abortion restriction"],
+    record: ["Vetoed child labor extension SB 50 (2024)", "Signed SB 22 — stripped COVID emergency powers from AG (2021)", "Signed HB 6 into law — later revealed as $60M bribery scheme (FirstEnergy)", "Signed near-total abortion ban after Issue 1 passed (constitutional conflict)", "Signed permitless carry gun law (2022)"],
+    links: [
+      { label: "Official Site", url: "https://governor.ohio.gov", primary: true },
+      { label: "Ballotpedia", url: "https://ballotpedia.org/Mike_DeWine" },
+      { label: "Transparency USA", url: "https://www.transparencyusa.org/oh/committee/governor-dewine" }
+    ]
+  },
+  {
+    title: "Attorney General",
+    name: "Dave Yost",
+    party: "R",
+    since: "Jan 2019 · Re-elected Nov 2022",
+    bio: "Former Ohio Auditor (2011–2019). Known for aggressive anti-trust litigation against opioid manufacturers — but also aggressive challenges to Biden-era federal policy and litigation against Medicaid expansion.",
+    priorities: ["Consumer protection & anti-trust", "Opioid manufacturer accountability", "Fighting federal regulatory overreach", "Election integrity enforcement"],
+    record: ["Led $26B national opioid settlement negotiations (2021)", "Sued Biden admin over vaccine mandates, student debt, Title IX rules", "Joined Texas lawsuit challenging 2020 election results", "Investigated ECOT online charter school fraud ($80M+ recovered)", "Challenged Columbus police reform consent decree"],
+    links: [
+      { label: "Official Site", url: "https://www.ohioattorneygeneral.gov", primary: true },
+      { label: "Ballotpedia", url: "https://ballotpedia.org/Dave_Yost" }
+    ]
+  },
+  {
+    title: "Auditor of State",
+    name: "Keith Faber",
+    party: "R",
+    since: "Jan 2019 · Re-elected Nov 2022",
+    bio: "Former Senate President (2013–2016) and House member. As Senate President, was central architect of HB 6 — the FirstEnergy bribery vehicle. Now audits the agencies he once helped legislate.",
+    priorities: ["Government efficiency & waste reduction", "Charter school accountability", "Local government fiscal health", "Transparency in public spending"],
+    record: ["As Senate President, instrumental in passing HB 6 ($60M bribery law)", "Audited ECOT online school — found $80M+ in overpayments", "Released audit of Ohio opioid spending (2023)", "Faced criticism for conflict of interest given HB 6 history", "Initiated performance audits of several state agencies"],
+    links: [
+      { label: "Official Site", url: "https://www.ohioauditor.gov", primary: true },
+      { label: "Ballotpedia", url: "https://ballotpedia.org/Keith_Faber" }
+    ]
+  },
+  {
+    title: "Secretary of State",
+    name: "Frank LaRose",
+    party: "R",
+    since: "Jan 2019 · Re-elected Nov 2022",
+    bio: "Former Ohio Senate (2012–2018). Failed 2024 U.S. Senate candidate (lost primary). Known for contradictory positions on voting access — expanded some, restricted others. Oversees all elections.",
+    priorities: ["Election security & voter ID", "Business filing modernization", "Military & overseas voting", "'Election integrity' enforcement"],
+    record: ["Proposed raising Issue 1 supermajority threshold to block abortion amendment (failed)", "Supported photo voter ID requirements (SB 320)", "Moved 2023 special election to August to reduce turnout (cost $20M, widely condemned)", "Attempted to add partisan labels to Ohio Supreme Court ballots", "Expanded early voting access in some counties"],
+    links: [
+      { label: "Official Site", url: "https://www.sos.state.oh.us", primary: true },
+      { label: "Ballotpedia", url: "https://ballotpedia.org/Frank_LaRose" }
+    ]
+  },
+  {
+    title: "State Treasurer",
+    name: "Robert Sprague",
+    party: "R",
+    since: "Jan 2019 · Re-elected Nov 2022",
+    bio: "Former House member (2011–2018). Manages Ohio's $20B+ investment portfolio. Lower-profile office; mostly technocratic financial management with some policy positions on ESG investing.",
+    priorities: ["State investment management", "Financial literacy programs", "Anti-ESG investing mandates", "Local government financial assistance"],
+    record: ["Signed onto multi-state letter opposing BlackRock ESG investment practices (2022)", "Launched 'STABLE Account' program for Ohioans with disabilities", "Directed Ohio pension divestment from Russian assets after 2022 invasion", "Supported legislation restricting ESG criteria in state investment decisions"],
+    links: [
+      { label: "Official Site", url: "https://treasurer.ohio.gov", primary: true },
+      { label: "Ballotpedia", url: "https://ballotpedia.org/Robert_Sprague" }
+    ]
+  },
+  {
+    title: "Senate President",
+    name: "Rob McColley",
+    party: "R",
+    since: "Senate since Dec 2017 · Senate President since Jan 2023",
+    bio: "District 1 (NW Ohio). Running for Lt. Governor 2026. Manages the 24-9 Republican supermajority. Architect of major energy, education, and electoral legislation.",
+    priorities: ["Fiscal conservatism & tax reform", "School choice expansion", "Energy policy (fossil fuel aligned)", "Supermajority agenda management"],
+    record: ["Led SB 2 — major energy overhaul favoring utility/fossil fuel interests", "Defended gerrymandered legislative maps through years of court challenges", "Co-sponsored Heartbeat Bill SB 23 (2019)", "Chaired redistricting commission that drew maps courts rejected 7 times"],
+    links: [
+      { label: "Ohio Senate Bio", url: "https://www.ohiosenate.gov", primary: true },
+      { label: "Transparency USA", url: "https://www.transparencyusa.org/oh/legislator/rob-mccolleys" }
+    ]
+  },
+  {
+    title: "House Speaker",
+    name: "Matt Huffman",
+    party: "R",
+    since: "House since 2011 · Senate President 2021–2022 · House Speaker since Jan 2023",
+    bio: "District 78 (Lima/Allen Co.). Arguably the most powerful Republican in the General Assembly. Architect of school voucher expansion, anti-DEI legislation, and redistricting strategy.",
+    priorities: ["School choice & voucher expansion", "Anti-DEI & 'parental rights'", "Fiscal conservatism", "Republican caucus discipline"],
+    record: ["Expanded EdChoice voucher program to universal eligibility — defunding public schools", "Appointed cousin Stephen Huffman to chair Health Committee despite 2020 racism controversy", "Architect of 2021/2022 redistricting maps courts rejected as unconstitutional gerrymanders", "Pushed August 2023 special election to block abortion rights amendment (failed)", "Led SB 1 (anti-DEI) through Senate in prior session"],
+    links: [
+      { label: "Ohio House Bio", url: "https://www.ohiohouse.gov/members/matt-huffman", primary: true },
+      { label: "Transparency USA", url: "https://www.transparencyusa.org/oh/legislator/matt-huffman" }
+    ]
+  }
+];
+
+let officialsRendered = false;
+function renderOfficials() {
+  if (officialsRendered) return;
+  officialsRendered = true;
+  const grid = document.getElementById('officials-grid');
+  grid.innerHTML = OFFICIALS.map(o => {
+    const priorityItems = o.priorities.map(p => `<div class="official-item">${p}</div>`).join('');
+    const recordItems = o.record.map(r => `<div class="official-item">${r}</div>`).join('');
+    const linkItems = o.links.map(l => `<a class="official-link${l.primary?' primary':''}" href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`).join('');
+    return `
+      <div class="official-card">
+        <div class="official-card-top">
+          <div class="official-title">${o.title}</div>
+          <div class="official-name">${o.name}</div>
+          <span class="official-party ${o.party}">${o.party==='R'?'Republican':'Democrat'}</span>
+          <div class="official-bio">${o.since}</div>
+          <div class="official-bio" style="margin-top:6px">${o.bio}</div>
+        </div>
+        <div class="official-card-body">
+          <div class="official-section">
+            <div class="official-section-hdr">📋 Stated Priorities</div>
+            ${priorityItems}
+          </div>
+          <div class="official-section">
+            <div class="official-section-hdr">📌 Actual Record</div>
+            ${recordItems}
+          </div>
+        </div>
+        <div class="official-links">${linkItems}</div>
+      </div>`;
+  }).join('');
+}
+
+// ═══ MIDTERM COUNTDOWN ═══════════════════════════════════════════════════════
+(function updateCountdown() {
+  // Ohio 2026 midterm general election: November 3, 2026
+  const election = new Date('2026-11-03T00:00:00');
+  function tick() {
+    const now = new Date();
+    const diff = election - now;
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    const el = document.getElementById('midterm-days');
+    if (el) el.textContent = days > 0 ? days : '0';
+  }
+  tick();
+  setInterval(tick, 60000);
+})();
+
+// init
+renderSenate();
+renderHouse();
+// fix display for non-map panes
+document.getElementById('pane-senate').style.display='none';
+document.getElementById('pane-house').style.display='none';
+document.getElementById('pane-lookup').style.display='none';
+document.getElementById('pane-officials').style.display='none';
+document.getElementById('pane-resources').style.display='none';
+document.getElementById('pane-legislature').style.display='none';
+
+// ═══ BOTTOM NAV ══════════════════════════════════════════════════════════════
+function setBottomNav(name) {
+  const map = { lookup:'lookup', senate:'senate', house:'house', officials:'officials' };
+  document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('active'));
+  const key = map[name];
+  if (key) {
+    const el = document.getElementById(`bnav-${key}`);
+    if (el) el.classList.add('active');
+  } else {
+    // map/legislature/resources — highlight More
+    const el = document.getElementById('bnav-more');
+    if (el) el.classList.add('active');
+  }
+}
+
+function openMoreDrawer() {
+  document.getElementById('more-overlay').classList.add('open');
+  document.getElementById('more-drawer').classList.add('open');
+}
+function closeMoreDrawer() {
+  document.getElementById('more-overlay').classList.remove('open');
+  document.getElementById('more-drawer').classList.remove('open');
+}
+
+// ═══ SENATOR MOBILE CARDS ════════════════════════════════════════════════════
+function isMobile() { return window.innerWidth <= 768; }
+
+function renderSenateCards() {
+  if (!isMobile()) return;
+  const q = (document.getElementById('s-search').value || '').toLowerCase();
+  let rows = SENATE.filter(r => {
+    if (sFilter !== 'all' && r[2] !== sFilter) return false;
+    return !q || r[0].toString().includes(q) || r[1].toLowerCase().includes(q) || r[3].toLowerCase().includes(q);
+  }).sort((a,b) => (a[0]-b[0]));
+
+  document.getElementById('s-cnt').textContent = `${rows.length} / 33`;
+  const container = document.getElementById('senator-cards');
+  if (!container) return;
+  container.innerHTML = rows.map(r => {
+    const [dist, name, party, region] = r;
+    const prof = SENATOR_PROFILES[dist];
+    const slug = name.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
+    const tuUrl = `https://www.transparencyusa.org/oh/legislator/${slug}`;
+    const phoneChip = prof && prof.phone
+      ? `<a class="sen-action phone" href="tel:${prof.phone}">📞 ${prof.phone}</a>` : '';
+    const twitterChip = prof && prof.twitter
+      ? `<a class="sen-action twitter" href="https://twitter.com/${prof.twitter.replace('@','')}" target="_blank" rel="noopener">𝕏 ${prof.twitter}</a>` : '';
+    const officialChip = prof && prof.url
+      ? `<a class="sen-action official" href="${prof.url}" target="_blank" rel="noopener">Official Page →</a>` : '';
+    const donorChip = `<a class="sen-action donors" href="${tuUrl}" target="_blank" rel="noopener">Donors →</a>`;
+
+    let profileBody = '';
+    if (prof) {
+      const statedItems = prof.stated.map(s=>`<li>${s}</li>`).join('');
+      const actualItems = prof.actual.map(a=>`<li>${a}</li>`).join('');
+      const committeeItems = prof.committees ? prof.committees.map(c=>`<li>${c}</li>`).join('') : '';
+      profileBody = `
+        <div class="sen-card-profile">
+          <button class="sen-profile-toggle" onclick="toggleCardProfile(${dist},this)">
+            ⬛ Stated vs Actual Record <span>▼</span>
+          </button>
+          <div class="sen-profile-body" id="sen-profile-body-${dist}">
+            <div class="sen-profile-tenure">${prof.tenure}</div>
+            <div class="sen-profile-section stated">
+              <div class="sen-profile-section-hdr">📋 Stated Priorities</div>
+              <ul>${statedItems}</ul>
+            </div>
+            <div class="sen-profile-section actual">
+              <div class="sen-profile-section-hdr">📌 Actual Record</div>
+              <ul>${actualItems}</ul>
+            </div>
+            ${committeeItems ? `<div class="sen-committees-hdr">📋 Committees</div><ul class="sen-committees-list">${committeeItems}</ul>` : ''}
+          </div>
+        </div>`;
+    }
+
+    return `<div class="sen-card" id="sen-card-${dist}">
+      <div class="sen-card-header" onclick="toggleSenCard(${dist})">
+        <div>
+          <div class="sen-card-dist">SD-${String(dist).padStart(2,'0')}</div>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div class="sen-card-name">${name}</div>
+          <div class="sen-card-region">${region}</div>
+        </div>
+        <span class="sen-card-party ${party}">${party}</span>
+        <span class="sen-card-chevron">▼</span>
+      </div>
+      <div class="sen-card-actions">
+        ${phoneChip}${twitterChip}${officialChip}${donorChip}
+      </div>
+      ${profileBody}
+    </div>`;
+  }).join('');
+}
+
+function toggleSenCard(dist) {
+  const card = document.getElementById(`sen-card-${dist}`);
+  if (!card) return;
+  card.classList.toggle('open');
+}
+
+function toggleCardProfile(dist, btn) {
+  const body = document.getElementById(`sen-profile-body-${dist}`);
+  if (!body) return;
+  const isOpen = body.classList.toggle('open');
+  btn.classList.toggle('active', isOpen);
+  btn.querySelector('span').textContent = isOpen ? '▲' : '▼';
+}
+
+// Hook renderSenate to also render cards on mobile — use wrapper, not reassignment
+const _senateRenderOrig = renderSenate;
+function renderSenateWithCards() { _senateRenderOrig(); if (isMobile()) renderSenateCards(); }
+
+// ═══ MOBILE INIT ═════════════════════════════════════════════════════════════
+window.addEventListener('load', function() {
+  if (isMobile()) {
+    // Switch to Find tab without triggering map invalidation
+    const tabs = ['map','senate','house','legislature','officials','resources','lookup'];
+    document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', tabs[i]==='lookup'));
+    document.getElementById('pane-map').classList.remove('active');
+    ['senate','house','lookup','officials','resources','legislature'].forEach(p => {
+      const el = document.getElementById(`pane-${p}`);
+      if (el) el.style.display = (p === 'lookup') ? 'flex' : 'none';
+    });
+    setBottomNav('lookup');
+    renderSenateCards();
+    // Hook senate search input
+    const si = document.getElementById('s-search');
+    if (si) si.addEventListener('input', () => { if (isMobile()) renderSenateCards(); });
+  }
+});
+if (window.location.protocol === 'file:') {
+  document.getElementById('file-warning').style.display = 'block';
+  // Also warn on the map tab
+  const loadingEl = document.getElementById('loading');
+  if (loadingEl) {
+    loadingEl.textContent = '⚠ Map requires a web server. Run: python3 -m http.server 8000 — then open http://localhost:8000';
+    loadingEl.style.fontSize = '0.8rem';
+    loadingEl.style.padding = '20px';
+  }
+}
+</script>
+</body>
+</html>
