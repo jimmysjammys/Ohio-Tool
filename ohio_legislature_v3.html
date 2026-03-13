@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ohio Campaign Finance Tracker</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; padding: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.container { padding: 1rem 0; }
+h1 { font-size: 18px; font-weight: 600; margin-bottom: 1.5rem; }
+.tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab { padding: 6px 16px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; cursor: pointer; background: transparent; color: #555; }
+.tab.active { background: #f0f0f0; color: #1a1a1a; border-color: #bbb; font-weight: 500; }
+.filters { display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; align-items: center; }
+.filters select, .filters input { font-size: 13px; padding: 5px 10px; border-radius: 6px; border: 1px solid #ddd; background: #fff; color: #1a1a1a; height: 32px; }
+.filters input { flex: 1; min-width: 160px; }
+.add-btn { margin-left: auto; padding: 6px 14px; font-size: 13px; border-radius: 6px; border: 1px solid #ddd; background: transparent; color: #1a1a1a; cursor: pointer; }
+.add-btn:hover { background: #f0f0f0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+th { text-align: left; font-size: 12px; font-weight: 500; color: #666; border-bottom: 1px solid #e5e5e5; padding: 6px 8px; }
+td { padding: 10px 8px; border-bottom: 1px solid #e5e5e5; vertical-align: top; word-wrap: break-word; }
+tr:last-child td { border-bottom: none; }
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+.badge-pac { background: #FAECE7; color: #993C1D; }
+.badge-corp { background: #FAEEDA; color: #854F0B; }
+.badge-individual { background: #EAF3DE; color: #3B6D11; }
+.badge-party { background: #E6F1FB; color: #185FA5; }
+.badge-federal { background: #EEEDFE; color: #534AB7; }
+.badge-state { background: #E1F5EE; color: #0F6E56; }
+.concern { font-size: 11px; color: #993C1D; }
+.amount { font-weight: 500; }
+.empty { color: #aaa; font-size: 13px; padding: 2rem 0; text-align: center; }
+.summary-row { display: flex; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.metric { background: #f7f7f7; border-radius: 8px; padding: 12px 16px; flex: 1; min-width: 120px; }
+.metric-label { font-size: 12px; color: #666; margin-bottom: 4px; }
+.metric-value { font-size: 22px; font-weight: 500; }
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 100; align-items: center; justify-content: center; }
+.modal-bg.open { display: flex; }
+.modal { background: #fff; border-radius: 10px; border: 1px solid #e5e5e5; padding: 1.5rem; width: 100%; max-width: 460px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+.modal h3 { font-size: 15px; font-weight: 500; margin-bottom: 1rem; }
+.form-row { margin-bottom: 12px; }
+.form-row label { display: block; font-size: 12px; color: #666; margin-bottom: 4px; }
+.form-row input, .form-row select, .form-row textarea { width: 100%; font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid #ddd; background: #fff; color: #1a1a1a; }
+.form-row textarea { resize: vertical; min-height: 60px; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1rem; }
+.btn-cancel { padding: 7px 16px; font-size: 13px; border-radius: 6px; border: 1px solid #ddd; background: transparent; color: #666; cursor: pointer; }
+.btn-save { padding: 7px 16px; font-size: 13px; border-radius: 6px; border: 1px solid #bbb; background: #f0f0f0; color: #1a1a1a; cursor: pointer; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Ohio Campaign Finance Tracker</h1>
+  <div class="summary-row" id="summaryRow"></div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('candidates')">By candidate</button>
+    <button class="tab" onclick="switchTab('donors')">By donor / PAC</button>
+    <button class="tab" onclick="switchTab('races')">By race / district</button>
+  </div>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Search..." oninput="renderAll()" />
+    <select id="levelFilter" onchange="renderAll()">
+      <option value="">All levels</option>
+      <option value="federal">Federal</option>
+      <option value="state">State</option>
+    </select>
+    <select id="donorTypeFilter" onchange="renderAll()">
+      <option value="">All donor types</option>
+      <option value="pac">PAC / Super PAC</option>
+      <option value="corp">Corporate</option>
+      <option value="individual">Individual</option>
+      <option value="party">Party committee</option>
+    </select>
+    <button class="add-btn" onclick="openModal()">+ Add entry</button>
+  </div>
+
+  <div id="tableArea"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h3 id="modalTitle">Add donation record</h3>
+    <div class="form-row"><label>Candidate name</label><input id="f-candidate" placeholder="e.g. Shontel Brown" /></div>
+    <div class="form-row"><label>Office / race</label><input id="f-race" placeholder="e.g. OH-11 US House" /></div>
+    <div class="form-row"><label>Level</label>
+      <select id="f-level"><option value="federal">Federal</option><option value="state">State</option></select>
+    </div>
+    <div class="form-row"><label>Donor / PAC name</label><input id="f-donor" placeholder="e.g. United Democracy Project" /></div>
+    <div class="form-row"><label>Donor type</label>
+      <select id="f-dtype">
+        <option value="pac">PAC / Super PAC</option>
+        <option value="corp">Corporate</option>
+        <option value="individual">Individual</option>
+        <option value="party">Party committee</option>
+      </select>
+    </div>
+    <div class="form-row"><label>Amount ($)</label><input id="f-amount" type="number" placeholder="e.g. 198877" /></div>
+    <div class="form-row"><label>Cycle / year</label><input id="f-cycle" placeholder="e.g. 2022" /></div>
+    <div class="form-row"><label>Notes</label><textarea id="f-notes" placeholder="Lobby affiliation, context, etc."></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveEntry()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'ohio_cf_tracker_v3';
+let data = [];
+let currentTab = 'candidates';
+let editingId = null;
+
+const SEED_DATA = [
+  { id: 1, candidate: 'Shontel Brown', race: 'OH-11 US House', level: 'federal', donor: 'DMFI PAC', dtype: 'pac', amount: 1980000, cycle: '2021', notes: 'Democratic Majority for Israel — opposed Nina Turner' },
+  { id: 2, candidate: 'Shontel Brown', race: 'OH-11 US House', level: 'federal', donor: 'Pro-Israel America PAC', dtype: 'pac', amount: 520000, cycle: '2021', notes: 'AIPAC-aligned PAC' },
+  { id: 3, candidate: 'Shontel Brown', race: 'OH-11 US House', level: 'federal', donor: 'DMFI PAC', dtype: 'pac', amount: 1600000, cycle: '2022', notes: 'Supported Brown, opposed Turner rematch' },
+  { id: 4, candidate: 'Greg Landsman', race: 'OH-1 US House', level: 'federal', donor: 'AIPAC', dtype: 'pac', amount: 5000, cycle: '2022', notes: 'Direct AIPAC contribution; also AIPAC-affiliated Israel trip' },
+  { id: 5, candidate: 'Emilia Sykes', race: 'OH-13 US House', level: 'federal', donor: 'AIPAC', dtype: 'pac', amount: 5000, cycle: '2022', notes: 'Direct AIPAC contribution; also AIPAC-affiliated Israel trip' },
+  { id: 6, candidate: 'Nina Turner', race: 'OH-11 US House', level: 'federal', donor: 'United Democracy Project', dtype: 'pac', amount: 198877, cycle: '2022', notes: 'AIPAC Super PAC — independent expenditure against Turner' },
+];
+
+function load() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    data = stored ? JSON.parse(stored) : [...SEED_DATA];
+  } catch(e) {
+    data = [...SEED_DATA];
+  }
+  renderAll();
+}
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function fmt(n) {
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
+  if (n >= 1000) return '$' + (n/1000).toFixed(0) + 'K';
+  return '$' + Number(n).toLocaleString();
+}
+
+function badgeDtype(t) {
+  const labels = { pac: 'PAC / Super PAC', corp: 'Corporate', individual: 'Individual', party: 'Party committee' };
+  return `<span class="badge badge-${t}">${labels[t]||t}</span>`;
+}
+
+function badgeLevel(l) {
+  return `<span class="badge ${l==='federal'?'badge-federal':'badge-state'}">${l}</span>`;
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach((el, i) => {
+    el.classList.toggle('active', ['candidates','donors','races'][i] === tab);
+  });
+  renderAll();
+}
+
+function filtered() {
+  const q = (document.getElementById('searchInput').value||'').toLowerCase();
+  const lv = document.getElementById('levelFilter').value;
+  const dt = document.getElementById('donorTypeFilter').value;
+  return data.filter(d => {
+    const text = [d.candidate, d.race, d.donor, d.notes, d.cycle].join(' ').toLowerCase();
+    return (!q || text.includes(q)) && (!lv || d.level === lv) && (!dt || d.dtype === dt);
+  });
+}
+
+function renderSummary(rows) {
+  const total = rows.reduce((s,r) => s + Number(r.amount||0), 0);
+  const pacs = rows.filter(r => r.dtype === 'pac').reduce((s,r) => s + Number(r.amount||0), 0);
+  const candidates = new Set(rows.map(r => r.candidate)).size;
+  const donors = new Set(rows.map(r => r.donor)).size;
+  document.getElementById('summaryRow').innerHTML = `
+    <div class="metric"><div class="metric-label">Total tracked</div><div class="metric-value">${fmt(total)}</div></div>
+    <div class="metric"><div class="metric-label">PAC / lobby money</div><div class="metric-value">${fmt(pacs)}</div></div>
+    <div class="metric"><div class="metric-label">Candidates</div><div class="metric-value">${candidates}</div></div>
+    <div class="metric"><div class="metric-label">Donor sources</div><div class="metric-value">${donors}</div></div>
+  `;
+}
+
+function renderCandidates(rows) {
+  const grouped = {};
+  rows.forEach(r => {
+    if (!grouped[r.candidate]) grouped[r.candidate] = { race: r.race, level: r.level, entries: [] };
+    grouped[r.candidate].entries.push(r);
+  });
+  if (!Object.keys(grouped).length) return '<div class="empty">No records match.</div>';
+  let html = '<table><colgroup><col style="width:22%"><col style="width:22%"><col style="width:18%"><col style="width:14%"><col style="width:24%"></colgroup>';
+  html += '<tr><th>Candidate</th><th>Top donor</th><th>Amount</th><th>Cycle</th><th>Notes</th></tr>';
+  Object.entries(grouped).forEach(([name, info]) => {
+    const top = [...info.entries].sort((a,b) => b.amount - a.amount)[0];
+    const total = info.entries.reduce((s,r) => s + Number(r.amount||0), 0);
+    html += `<tr>
+      <td><strong>${name}</strong><br><span style="font-size:11px;color:#888">${info.race}</span><br>${badgeLevel(info.level)}</td>
+      <td>${top.donor}<br>${badgeDtype(top.dtype)}</td>
+      <td class="amount">${fmt(total)}<br><span style="font-size:11px;color:#888">${info.entries.length} record${info.entries.length>1?'s':''}</span></td>
+      <td>${[...new Set(info.entries.map(e=>e.cycle))].join(', ')}</td>
+      <td class="concern">${top.notes||''}</td>
+    </tr>`;
+  });
+  html += '</table>';
+  return html;
+}
+
+function renderDonors(rows) {
+  const grouped = {};
+  rows.forEach(r => {
+    if (!grouped[r.donor]) grouped[r.donor] = { dtype: r.dtype, entries: [] };
+    grouped[r.donor].entries.push(r);
+  });
+  if (!Object.keys(grouped).length) return '<div class="empty">No records match.</div>';
+  const sorted = Object.entries(grouped).sort((a,b) => b[1].entries.reduce((s,r)=>s+Number(r.amount||0),0) - a[1].entries.reduce((s,r)=>s+Number(r.amount||0),0));
+  let html = '<table><colgroup><col style="width:28%"><col style="width:16%"><col style="width:16%"><col style="width:14%"><col style="width:26%"></colgroup>';
+  html += '<tr><th>Donor / PAC</th><th>Type</th><th>Total spent</th><th>Candidates</th><th>Notes</th></tr>';
+  sorted.forEach(([name, info]) => {
+    const total = info.entries.reduce((s,r) => s + Number(r.amount||0), 0);
+    const cands = [...new Set(info.entries.map(e=>e.candidate))];
+    const notes = [...new Set(info.entries.map(e=>e.notes).filter(Boolean))][0]||'';
+    html += `<tr>
+      <td><strong>${name}</strong></td>
+      <td>${badgeDtype(info.dtype)}</td>
+      <td class="amount">${fmt(total)}</td>
+      <td style="font-size:12px">${cands.join(', ')}</td>
+      <td class="concern">${notes}</td>
+    </tr>`;
+  });
+  html += '</table>';
+  return html;
+}
+
+function renderRaces(rows) {
+  const grouped = {};
+  rows.forEach(r => {
+    if (!grouped[r.race]) grouped[r.race] = { level: r.level, entries: [] };
+    grouped[r.race].entries.push(r);
+  });
+  if (!Object.keys(grouped).length) return '<div class="empty">No records match.</div>';
+  let html = '<table><colgroup><col style="width:24%"><col style="width:12%"><col style="width:16%"><col style="width:20%"><col style="width:28%"></colgroup>';
+  html += '<tr><th>Race / district</th><th>Level</th><th>Total tracked</th><th>Candidates</th><th>Top donor sources</th></tr>';
+  Object.entries(grouped).forEach(([race, info]) => {
+    const total = info.entries.reduce((s,r) => s + Number(r.amount||0), 0);
+    const cands = [...new Set(info.entries.map(e=>e.candidate))];
+    const topDonors = Object.entries(
+      info.entries.reduce((acc,r) => { acc[r.donor] = (acc[r.donor]||0)+Number(r.amount||0); return acc; }, {})
+    ).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([d])=>d);
+    html += `<tr>
+      <td><strong>${race}</strong></td>
+      <td>${badgeLevel(info.level)}</td>
+      <td class="amount">${fmt(total)}</td>
+      <td style="font-size:12px">${cands.join(', ')}</td>
+      <td style="font-size:12px;color:#888">${topDonors.join('; ')}</td>
+    </tr>`;
+  });
+  html += '</table>';
+  return html;
+}
+
+function renderAll() {
+  const rows = filtered();
+  renderSummary(rows);
+  const area = document.getElementById('tableArea');
+  if (currentTab === 'candidates') area.innerHTML = renderCandidates(rows);
+  else if (currentTab === 'donors') area.innerHTML = renderDonors(rows);
+  else area.innerHTML = renderRaces(rows);
+}
+
+function openModal(id) {
+  editingId = id || null;
+  document.getElementById('modalTitle').textContent = id ? 'Edit entry' : 'Add donation record';
+  if (id) {
+    const r = data.find(d => d.id === id);
+    document.getElementById('f-candidate').value = r.candidate;
+    document.getElementById('f-race').value = r.race;
+    document.getElementById('f-level').value = r.level;
+    document.getElementById('f-donor').value = r.donor;
+    document.getElementById('f-dtype').value = r.dtype;
+    document.getElementById('f-amount').value = r.amount;
+    document.getElementById('f-cycle').value = r.cycle;
+    document.getElementById('f-notes').value = r.notes||'';
+  } else {
+    ['f-candidate','f-race','f-donor','f-amount','f-cycle','f-notes'].forEach(fid => document.getElementById(fid).value = '');
+    document.getElementById('f-level').value = 'federal';
+    document.getElementById('f-dtype').value = 'pac';
+  }
+  document.getElementById('modalBg').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
+
+function saveEntry() {
+  const entry = {
+    id: editingId || Date.now(),
+    candidate: document.getElementById('f-candidate').value.trim(),
+    race: document.getElementById('f-race').value.trim(),
+    level: document.getElementById('f-level').value,
+    donor: document.getElementById('f-donor').value.trim(),
+    dtype: document.getElementById('f-dtype').value,
+    amount: Number(document.getElementById('f-amount').value) || 0,
+    cycle: document.getElementById('f-cycle').value.trim(),
+    notes: document.getElementById('f-notes').value.trim(),
+  };
+  if (!entry.candidate || !entry.donor) return;
+  if (editingId) { const i = data.findIndex(d => d.id === editingId); if (i > -1) data[i] = entry; }
+  else data.push(entry);
+  save();
+  closeModal();
+  renderAll();
+}
+
+document.getElementById('modalBg').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalBg')) closeModal();
+});
+
+load();
+</script>
+</body>
+</html>
