@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ohio General Assembly — 136th Session</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Ohio Watch</title>
 <style>
 /* ── FIND MY REPS ─────────────────────────────────────────────────────── */
 .lookup-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
@@ -72,8 +72,10 @@ header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color:
 .countdown-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--muted); }
 
 /* SCOREBOARD */
-.scoreboard { display: flex; gap: 8px; padding: 10px 28px; background: var(--surface2); border-bottom: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
-.sc { background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 6px 14px; }
+.scoreboard { display: flex; gap: 8px; padding: 8px 28px; background: var(--surface2); border-bottom: 1px solid var(--border); align-items: center; flex-wrap: wrap; }
+.sc-group { display: flex; gap: 6px; align-items: center; }
+.sc { background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 5px 12px; }
+.sc-split { display: flex; gap: 8px; align-items: baseline; }
 .sc.sc-link { text-decoration: none; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
 .sc.sc-link:hover { border-color: var(--accent); background: #1a1500; }
 .sc.sc-link:hover .lbl { color: var(--accent); }
@@ -262,8 +264,8 @@ tr:hover td { background: var(--surface2); }
   list-style: none; padding: 0; margin: 0;
 }
 .profile-col li {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.71rem;
-  color: var(--muted); padding: 4px 0; line-height: 1.5;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem;
+  color: var(--muted); padding: 4px 0; line-height: 1.55;
   border-bottom: 1px solid #1e1e1e;
 }
 .profile-col li:last-child { border-bottom: none; }
@@ -354,7 +356,7 @@ tr:hover td { background: var(--surface2); }
 .sen-profile-section.stated .sen-profile-section-hdr { color: #7bafd4; }
 .sen-profile-section.actual .sen-profile-section-hdr { color: #e08080; }
 .sen-profile-section ul { margin: 0; padding-left: 14px; }
-.sen-profile-section li { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); padding: 3px 0; line-height: 1.55; }
+.sen-profile-section li { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--muted); padding: 4px 0; line-height: 1.6; }
 .sen-committees-hdr { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; margin-top: 4px; }
 .sen-committees-list { margin: 0; padding-left: 14px; }
 .sen-committees-list li { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); padding: 2px 0; }
@@ -364,7 +366,7 @@ tr:hover td { background: var(--surface2); }
 .bottom-nav { display: none; }
 
 /* ═══ MORE DRAWER ════════════════════════════════════════════════════════════ */
-.more-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; }
+.more-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .more-overlay.open { display: block; }
 .more-drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 2px solid var(--accent); border-radius: 18px 18px 0 0; z-index: 1000; padding: 0 0 env(safe-area-inset-bottom,16px); transform: translateY(100%); transition: transform 0.28s cubic-bezier(0.4,0,0.2,1); }
 .more-drawer.open { transform: translateY(0); }
@@ -391,11 +393,12 @@ tr:hover td { background: var(--surface2); }
   .countdown-val { font-size: 1.1rem; }
 
   /* SCOREBOARD */
-  .scoreboard { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 6px 10px; gap: 5px; }
-  .sc { flex-shrink: 0; padding: 4px 9px; }
-  .sc .val { font-size: 1rem; }
+  .scoreboard { padding: 6px 12px; gap: 8px; flex-wrap: nowrap; overflow-x: auto; }
+  .sc-group { flex-shrink: 0; gap: 5px; }
+  .sc { padding: 4px 10px; }
   .sc .lbl { font-size: 0.5rem; }
-  .val.neu { font-size: 0.68rem; }
+  .sc .val { font-size: 0.95rem; }
+  .val.neu { font-size: 0.7rem; }
 
   /* SEARCH BAR */
   .search-bar-wrap { padding: 8px 12px; flex-direction: column; align-items: stretch; gap: 6px; }
@@ -488,8 +491,7 @@ tr:hover td { background: var(--surface2); }
 <body>
 
 <header>
-  <h1>Ohio General Assembly</h1>
-  <span>136th Session · 2025–2026 · Republican Trifecta</span>
+  <h1>Ohio Watch</h1>
   <div class="header-countdown">
     <div class="countdown-lbl">2026 Midterms</div>
     <div class="countdown-val" id="midterm-days"><script>document.write(Math.ceil((new Date('2026-11-03')-new Date())/(864e5)))</script></div>
@@ -498,17 +500,14 @@ tr:hover td { background: var(--surface2); }
 </header>
 
 <div class="scoreboard">
-  <div class="sc"><div class="lbl">Senate R</div><div class="val rep">24</div></div>
-  <div class="sc"><div class="lbl">Senate D</div><div class="val dem">9</div></div>
-  <div class="sc"><div class="lbl">House R</div><div class="val rep">65</div></div>
-  <div class="sc"><div class="lbl">House D</div><div class="val dem">34</div></div>
-  <a class="sc sc-link" href="https://governor.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Governor</div><div class="val neu">DeWine (R)</div></a>
-  <a class="sc sc-link" href="https://www.ohiosenate.gov/senators/senator-detail/rob-mccolleys-bio" target="_blank" rel="noopener"><div class="lbl">Senate President</div><div class="val neu">McColley (R)</div></a>
-  <a class="sc sc-link" href="https://www.ohiohouse.gov/members/matt-huffman" target="_blank" rel="noopener"><div class="lbl">House Speaker</div><div class="val neu">Huffman (R)</div></a>
-  <a class="sc sc-link" href="https://www.ohioattorneygeneral.gov" target="_blank" rel="noopener"><div class="lbl">Atty General</div><div class="val neu">Yost (R)</div></a>
-  <a class="sc sc-link" href="https://www.ohioauditor.gov" target="_blank" rel="noopener"><div class="lbl">Auditor</div><div class="val neu">Faber (R)</div></a>
-  <a class="sc sc-link" href="https://www.sos.state.oh.us" target="_blank" rel="noopener"><div class="lbl">Sec. of State</div><div class="val neu">LaRose (R)</div></a>
-  <a class="sc sc-link" href="https://treasurer.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Treasurer</div><div class="val neu">Sprague (R)</div></a>
+  <div class="sc-group">
+    <div class="sc"><div class="lbl">Senate</div><div class="sc-split"><span class="val rep">24R</span><span class="val dem">9D</span></div></div>
+    <div class="sc"><div class="lbl">House</div><div class="sc-split"><span class="val rep">65R</span><span class="val dem">34D</span></div></div>
+  </div>
+  <div class="sc-group">
+    <a class="sc sc-link" href="https://governor.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Gov</div><div class="val neu">DeWine</div></a>
+    <a class="sc sc-link" href="https://www.sos.state.oh.us" target="_blank" rel="noopener"><div class="lbl">SoS</div><div class="val neu">LaRose</div></a>
+  </div>
 </div>
 
 <!-- Global search bar -->
@@ -1067,7 +1066,7 @@ tr:hover td { background: var(--surface2); }
       </div>
     </div>
 
-    <div class="resources-section">
+    <div class="resources-section" id="marxist-lib">
       <div class="resources-section-title" style="color:#c9a0dc;border-color:#3a2a4a;">☭ Marxist Library — Theoretical Foundations</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:16px;line-height:1.7;max-width:700px;">Primary texts for materialist analysis of state power, capital, and class — directly applicable to Ohio legislative commentary. All links open Marxists Internet Archive (marxists.org), the largest free digital library of socialist literature.</div>
 
@@ -1352,7 +1351,7 @@ function showDistrictInfo(distNum, chamber) {
     const prof = SENATOR_PROFILES[distNum];
     if (prof) {
       const slug = data[1].toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
-      const tuUrl = `https://www.transparencyusa.org/oh/legislator/${slug}`;
+      const tuUrl = `https://www.transparencyusa.org/oh/candidate/${slug}`;
       const statedItems = prof.stated.map(s => `<li>${s}</li>`).join('');
       const actualItems = prof.actual.map(a => `<li>${a}</li>`).join('');
       const committeeItems = prof.committees ? prof.committees.map(c => `<li>${c}</li>`).join('') : '';
@@ -1602,6 +1601,7 @@ function sortTbl(tbl, col) {
 }
 
 // ═══ TABS ════════════════════════════════════════════════════════════════════
+function isMobile() { return window.innerWidth <= 768; }
 function showTab(name) {
   const tabs = ['map','senate','house','legislature','officials','resources','lookup'];
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', tabs[i]===name));
@@ -1613,6 +1613,7 @@ function showTab(name) {
   if (name==='map') setTimeout(()=>{ if (map) map.invalidateSize(); },50);
   if (name==='lookup') setTimeout(()=>document.getElementById('lookup-addr').focus(),100);
   if (name==='officials') renderOfficials();
+  if (name==='senate' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderSenateCards(),50);
 }
 
 // ═══ FIND MY REPS ════════════════════════════════════════════════════════════
@@ -1626,36 +1627,30 @@ function getRepByDistrict(dist) { return HOUSE.find(r => r[0] === dist); }
 
 function repCard(member, chamber) {
   const [d, name, party] = member;
-  const isR = party === 'R';
   const slug = nameToSlug(name);
   const officialUrl = chamber === 'senate'
     ? `https://www.ohiosenate.gov/members/${slug}`
     : `https://www.ohiohouse.gov/members/${slug}`;
-  const tuUrl = `https://www.transparencyusa.org/oh/legislator/${slug}`;
-  const chamberLabel = chamber === 'senate' ? 'Ohio Senate' : 'Ohio House';
-  const distLabel = chamber === 'senate' ? `Senate District ${d}` : `House District ${d}`;
-
-  const photoFile = chamber === 'senate' ? `photos/senate_${d}.png` : `photos/house_${d}.png`;
-  const photoHtml = `<img class="rep-photo" src="${photoFile}" alt="${name}" onerror="this.outerHTML='<div class=\\"rep-photo-placeholder\\">👤</div>'">`;
-
+  const tuUrl = `https://www.transparencyusa.org/oh/candidate/${slug}`;
+  const distLabel = chamber === 'senate' ? `SD-${String(d).padStart(2,'0')}` : `HD-${String(d).padStart(2,'0')}`;
+  const prof = chamber === 'senate' ? SENATOR_PROFILES[d] : null;
+  const phoneChip = prof && prof.phone
+    ? `<a class="sen-action phone" href="tel:${prof.phone}">📞 ${prof.phone}</a>` : '';
+  const twitterChip = prof && prof.twitter
+    ? `<a class="sen-action twitter" href="https://twitter.com/${prof.twitter.replace('@','')}" target="_blank" rel="noopener">𝕏 ${prof.twitter}</a>` : '';
   return `
-  <a class="rep-card" href="${officialUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-    <div class="rep-card-top">
-      ${photoHtml}
-      <div class="rep-info">
-        <div class="rep-name">${name}</div>
-        <div class="rep-district">${distLabel}</div>
-        <span class="rep-badge ${party}">${isR ? 'Republican' : 'Democrat'}</span>
-      </div>
+  <div class="sen-card" style="margin-bottom:10px">
+    <div class="sen-card-header" style="cursor:default">
+      <div><div class="sen-card-dist">${distLabel}</div></div>
+      <div style="flex:1;min-width:0"><div class="sen-card-name">${name}</div></div>
+      <span class="sen-card-party ${party}">${party}</span>
     </div>
-    <div class="rep-card-footer">
-      <span class="rep-footer-label">${chamberLabel}</span>
-      <div class="rep-footer-links" onclick="event.stopPropagation()">
-        <a class="rep-link primary" href="${officialUrl}" target="_blank" rel="noopener">OFFICIAL SITE</a>
-        <a class="rep-link" href="${tuUrl}" target="_blank" rel="noopener">DONORS</a>
-      </div>
+    <div class="sen-card-actions" style="display:flex">
+      ${phoneChip}${twitterChip}
+      <a class="sen-action official" href="${officialUrl}" target="_blank" rel="noopener">Official →</a>
+      <a class="sen-action donors" href="${tuUrl}" target="_blank" rel="noopener">Donors →</a>
     </div>
-  </a>`;
+  </div>`;
 }
 
 // ═══ ZIP → DISTRICT LOOKUP (static, no API needed) ═══════════════════════
@@ -2184,35 +2179,63 @@ function doLookup() {
   if (!raw) return;
   const out = document.getElementById('lookup-output');
 
-  const isZipOnly = /^\d{5}$/.test(raw);
-  const zip = isZipOnly ? raw : (raw.match(/\b(\d{5})\b/) || [])[1];
-
-  if (!zip) {
-    out.innerHTML = `<div class="lookup-error">⚠ Please enter a 5-digit Ohio zip code (e.g. 44094). Full address lookup coming soon.</div>`;
+  // Try to extract zip first
+  const zipMatch = raw.match(/\b(\d{5})\b/);
+  if (zipMatch) {
+    const zip = zipMatch[1];
+    const districts = ZIP_DISTRICTS[zip];
+    if (districts) {
+      showLookupResults(zip, districts, out);
+      return;
+    }
+    out.innerHTML = `<div class="lookup-error">⚠ Zip code ${zip} not found in Ohio zip database.</div>`;
     return;
   }
 
-  const districts = ZIP_DISTRICTS[zip];
-  if (!districts) {
-    out.innerHTML = `<div class="lookup-error">⚠ Zip code ${zip} not found. Make sure it's an Ohio zip code.</div>`;
-    return;
-  }
+  // No zip — geocode the address via Nominatim
+  out.innerHTML = `<div class="lookup-error" style="color:var(--accent)">🔍 Looking up address…</div>`;
+  const query = encodeURIComponent(raw + ', Ohio, USA');
+  fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1&limit=1`)
+    .then(r => r.json())
+    .then(results => {
+      if (!results || results.length === 0) {
+        out.innerHTML = `<div class="lookup-error">⚠ Address not found. Try adding your city or zip code.</div>`;
+        return;
+      }
+      const addr = results[0].address;
+      const zip = addr.postcode ? addr.postcode.substring(0,5) : null;
+      if (!zip) {
+        out.innerHTML = `<div class="lookup-error">⚠ Could not determine zip code from address. Try entering your zip directly.</div>`;
+        return;
+      }
+      const districts = ZIP_DISTRICTS[zip];
+      if (!districts) {
+        out.innerHTML = `<div class="lookup-error">⚠ Zip ${zip} not found in Ohio zip database. Make sure it's an Ohio address.</div>`;
+        return;
+      }
+      showLookupResults(zip, districts, out);
+    })
+    .catch(() => {
+      out.innerHTML = `<div class="lookup-error">⚠ Address lookup failed. Please enter your zip code directly.</div>`;
+    });
+}
 
+function showLookupResults(zip, districts, out) {
   const [houseDist, senateDist] = districts;
   const houseRep = getRepByDistrict(houseDist);
   const senator  = getSenatorByDistrict(senateDist);
 
   let html = `<div class="rep-results">
     <div class="rep-results-title">Results for zip: <span>${zip}</span></div>
-    <div class="rep-grid">`;
+    <div style="display:flex;flex-direction:column;gap:0">`;
 
   if (senator)  html += repCard(senator,  'senate');
   if (houseRep) html += repCard(houseRep, 'house');
 
   html += `</div>
-    <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-      <button class="also-on-map" onclick="goToDistrict(${senateDist},'senate')">🗺 View Senate District ${senateDist} on map</button>
-      <button class="also-on-map" onclick="goToDistrict(${houseDist},'house')">🗺 View House District ${houseDist} on map</button>
+    <div style="margin-top:14px;display:flex;gap:8px">
+      <button class="also-on-map" style="flex:1;justify-content:center" onclick="goToDistrict(${senateDist},'senate')">🗺 Senate D-${senateDist}</button>
+      <button class="also-on-map" style="flex:1;justify-content:center" onclick="goToDistrict(${houseDist},'house')">🗺 House D-${houseDist}</button>
     </div>
   </div>`;
 
@@ -2297,7 +2320,7 @@ const OFFICIALS = [
     record: ["Led SB 2 — major energy overhaul favoring utility/fossil fuel interests", "Defended gerrymandered legislative maps through years of court challenges", "Co-sponsored Heartbeat Bill SB 23 (2019)", "Chaired redistricting commission that drew maps courts rejected 7 times"],
     links: [
       { label: "Ohio Senate Bio", url: "https://www.ohiosenate.gov", primary: true },
-      { label: "Transparency USA", url: "https://www.transparencyusa.org/oh/legislator/rob-mccolleys" }
+      { label: "Transparency USA", url: "https://www.transparencyusa.org/oh/candidate/rob-mccolley" }
     ]
   },
   {
@@ -2399,8 +2422,6 @@ function closeMoreDrawer() {
 }
 
 // ═══ SENATOR MOBILE CARDS ════════════════════════════════════════════════════
-function isMobile() { return window.innerWidth <= 768; }
-
 function renderSenateCards() {
   if (!isMobile()) return;
   const q = (document.getElementById('s-search').value || '').toLowerCase();
@@ -2416,7 +2437,7 @@ function renderSenateCards() {
     const [dist, name, party, region] = r;
     const prof = SENATOR_PROFILES[dist];
     const slug = name.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
-    const tuUrl = `https://www.transparencyusa.org/oh/legislator/${slug}`;
+    const tuUrl = `https://www.transparencyusa.org/oh/candidate/${slug}`;
     const phoneChip = prof && prof.phone
       ? `<a class="sen-action phone" href="tel:${prof.phone}">📞 ${prof.phone}</a>` : '';
     const twitterChip = prof && prof.twitter
