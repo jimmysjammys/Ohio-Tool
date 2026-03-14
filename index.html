@@ -48,6 +48,15 @@
 
 .also-on-map { display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; cursor: pointer; transition: all 0.15s; text-decoration: none; }
 .also-on-map:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── RACE CARDS (Midterms tab) ─────────────────────────────────── */
+.race-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
+.race-candidate-name { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
+.race-candidate-note { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+.race-poll { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--accent); margin-bottom: 6px; padding: 4px 8px; background: #1a1400; border-radius: 4px; border-left: 2px solid var(--accent); }
+.race-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.race-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
+.race-link:hover { border-color: var(--accent); color: var(--accent); }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
@@ -458,6 +467,12 @@ tr:hover td { background: var(--surface2); }
   #pane-senate .tbl-scroll { display: none; }
   #pane-senate .senator-cards { display: flex; }
 
+  /* HIDE desktop table, SHOW mobile cards for house */
+  #pane-house .tbl-scroll,
+  #pane-house table,
+  #pane-house .tbl-scroll { display: none; }
+  #pane-house .senator-cards { display: flex; }
+
   /* HOUSE TABLE — keep table but make it scroll */
   .table-pane { padding: 12px 10px; }
   .controls { gap: 6px; }
@@ -585,6 +600,14 @@ tr:hover td { background: var(--surface2); }
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
       <span>District Map</span>
     </div>
+    <div class="more-item" onclick="closeMoreDrawer();showTab('federal');setBottomNav('federal')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M4 21V10M20 21V10M12 3L2 10h20L12 3z"/><rect x="9" y="14" width="6" height="7"/></svg>
+      <span>Federal</span>
+    </div>
+    <div class="more-item" onclick="closeMoreDrawer();showTab('midterms');setBottomNav('midterms')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="12" y1="14" x2="16" y2="14"/></svg>
+      <span>2026 Midterms</span>
+    </div>
     <div class="more-item" onclick="closeMoreDrawer();showTab('legislature');setBottomNav('legislature')">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
       <span>Legislature</span>
@@ -664,6 +687,193 @@ tr:hover td { background: var(--surface2); }
       <th onclick="sortTbl('h',1)">Representative</th>
       <th onclick="sortTbl('h',2)">Party</th>
     </tr></thead><tbody id="h-body"></tbody></table>
+    </div>
+    <!-- MOBILE CARDS -->
+    <div class="senator-cards" id="house-cards"></div>
+  </div>
+</div>
+
+<!-- FEDERAL OFFICIALS TAB -->
+<div id="pane-federal" class="pane" style="display:none;overflow-y:auto;">
+  <div class="leg-pane">
+    <div class="leg-section">
+      <div class="leg-section-title" style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--accent);letter-spacing:2px;margin-bottom:6px;">Federal Delegation</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:24px;">119th Congress · Ohio: 10R / 5D in House · 2R in Senate</div>
+
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
+      <div class="officials-grid" style="margin-bottom:28px;">
+        <div class="official-card">
+          <div class="official-card-top">
+            <div class="official-title">U.S. Senator (Class III)</div>
+            <div class="official-name">Jon Husted</div>
+            <span class="official-party R">Republican</span>
+            <div class="official-bio">Appointed Jan 2025 · Replacing JD Vance (elected VP) · Former Lt. Governor 2019–2025 · Running for full term Nov 2026</div>
+            <div class="official-bio" style="margin-top:6px">Former Ohio House Speaker Pro Tem and SoS candidate. Appointed by DeWine when Vance resigned. Faces Sherrod Brown in 2026 special election — currently polling within margin of error.</div>
+          </div>
+          <div class="official-card-body">
+            <div class="official-section"><div class="official-section-hdr">📋 Stated Priorities</div>
+              <div class="official-item">→ Economic development & workforce</div>
+              <div class="official-item">→ Border security & immigration enforcement</div>
+              <div class="official-item">→ Deregulation & fiscal conservatism</div>
+              <div class="official-item">→ Anti-abortion legislation</div>
+            </div>
+            <div class="official-section"><div class="official-section-hdr">📌 Actual Record</div>
+              <div class="official-item">→ Voted for H.R. 1 "One Big Beautiful Bill" — defense spending & SNAP cuts</div>
+              <div class="official-item">→ Voted against Medicaid expansion provisions</div>
+              <div class="official-item">→ Endorsed Ramaswamy for governor (running for full Senate seat himself)</div>
+              <div class="official-item">→ Supported Trump tariff agenda</div>
+            </div>
+          </div>
+          <div class="official-links">
+            <a class="official-link primary" href="https://www.husted.senate.gov" target="_blank" rel="noopener">Official Site →</a>
+            <a class="official-link" href="https://ballotpedia.org/Jon_Husted" target="_blank" rel="noopener">Ballotpedia →</a>
+          </div>
+        </div>
+        <div class="official-card">
+          <div class="official-card-top">
+            <div class="official-title">U.S. Senator (Class I)</div>
+            <div class="official-name">Bernie Moreno</div>
+            <span class="official-party R">Republican</span>
+            <div class="official-bio">Elected Nov 2024 · Defeated incumbent Sherrod Brown · Auto dealer, Trump-endorsed · Term ends 2031</div>
+            <div class="official-bio" style="margin-top:6px">Car dealership executive with no prior political office. Ran as Trump's handpicked candidate. Defeated 3-term Senator Sherrod Brown by ~3 points in a race that broke Ohio's swing state status.</div>
+          </div>
+          <div class="official-card-body">
+            <div class="official-section"><div class="official-section-hdr">📋 Stated Priorities</div>
+              <div class="official-item">→ Border security & immigration enforcement</div>
+              <div class="official-item">→ Deregulation & anti-ESG</div>
+              <div class="official-item">→ "America First" trade policy</div>
+              <div class="official-item">→ Anti-abortion legislation</div>
+            </div>
+            <div class="official-section"><div class="official-section-hdr">📌 Actual Record</div>
+              <div class="official-item">→ Voted for H.R. 1 — supported $150B+ defense increase, SNAP & Medicaid cuts</div>
+              <div class="official-item">→ Voted to confirm all Trump cabinet nominees including Hegseth (Defense)</div>
+              <div class="official-item">→ 100% Trump alignment on Senate votes through first session</div>
+              <div class="official-item">→ No independent legislation passed — first-term newcomer</div>
+            </div>
+          </div>
+          <div class="official-links">
+            <a class="official-link primary" href="https://www.moreno.senate.gov" target="_blank" rel="noopener">Official Site →</a>
+            <a class="official-link" href="https://ballotpedia.org/Bernie_Moreno" target="_blank" rel="noopener">Ballotpedia →</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House — Ohio Delegation (119th Congress)</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections — current districts below are 118th/119th Congress boundaries.</div>
+      <div id="federal-house-grid" class="officials-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MIDTERMS TAB -->
+<div id="pane-midterms" class="pane" style="display:none;overflow-y:auto;">
+  <div class="leg-pane">
+    <div class="leg-section">
+      <div class="leg-section-title" style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--accent);letter-spacing:2px;margin-bottom:6px;">2026 Ohio Midterms</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:6px;">Primary: May 5, 2026 · General: November 3, 2026</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:#666;margin-bottom:24px;">Filing deadline: Feb 4, 2026 · Polls updated as available</div>
+
+      <!-- GOVERNOR -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Governor (Open Seat — DeWine Term-Limited)</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican Primary</div>
+          <div class="race-card">
+            <div class="race-candidate-name">Vivek Ramaswamy</div>
+            <div class="race-candidate-note">FRONTRUNNER · Former biotech CEO, 2024 presidential candidate · Running mate: Rob McColley (Senate Pres)</div>
+            <div class="race-poll">Polls: +10 over Acton (Aug 2025) → dead heat Dec 2025</div>
+            <div class="race-links"><a href="https://www.vivek2026.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Dave Yost</div>
+            <div class="race-candidate-note">Current AG · Exploring run · Strong name recognition statewide</div>
+            <div class="race-links"><a href="https://ballotpedia.org/Dave_Yost" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a></div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Jim Tressel</div>
+            <div class="race-candidate-note">Current Lt. Governor · Former OSU football coach · High public approval</div>
+            <div class="race-links"><a href="https://ballotpedia.org/Jim_Tressel" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a></div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Frank LaRose</div>
+            <div class="race-candidate-note">Current SoS · Running for Auditor instead (endorsed Ramaswamy)</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Primary</div>
+          <div class="race-card">
+            <div class="race-candidate-name">Amy Acton</div>
+            <div class="race-candidate-note">FRONTRUNNER · Former Ohio Health Director during COVID · Nationally recognized · Running mate: David Pepper</div>
+            <div class="race-poll">Polls: Ramaswamy +1 (dead heat, Dec 2025 Emerson)</div>
+            <div class="race-links"><a href="https://www.amyacton.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Tim Ryan</div>
+            <div class="race-candidate-note">Former US Rep (OH-13), 2022 Senate candidate · Has explored but not declared</div>
+            <div class="race-links"><a href="https://ballotpedia.org/Tim_Ryan" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a></div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Nan Whaley</div>
+            <div class="race-candidate-note">Former Dayton mayor · 2022 D nominee for governor · Lost to DeWine by 25pts</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- US SENATE SPECIAL -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. Senate Special Election (Vance Vacancy)</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:12px;">JD Vance resigned Jan 10, 2025 to become VP. DeWine appointed Jon Husted. Special election Nov 3, 2026 fills remainder of term.</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican Primary</div>
+          <div class="race-card">
+            <div class="race-candidate-name">Jon Husted</div>
+            <div class="race-candidate-note">INCUMBENT (appointed) · Running for full term · Former Lt. Governor</div>
+            <div class="race-poll">Polls: Husted +1 over Brown (48.5% vs 47.5%, RCP avg Mar 2026)</div>
+            <div class="race-links"><a href="https://www.hustedforohio.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Matt Dolan</div>
+            <div class="race-candidate-note">Former state senator · 2022 & 2024 Senate primary candidate · May primary challenge Husted</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Primary</div>
+          <div class="race-card">
+            <div class="race-candidate-name">Sherrod Brown</div>
+            <div class="race-candidate-note">FRONTRUNNER · Former 3-term US Senator (2007–2025) · Lost to Moreno in 2024 by ~3pts · Endorsed by IUPAT</div>
+            <div class="race-poll">Polls: Brown 47.5% vs Husted 48.5% — dead heat</div>
+            <div class="race-links"><a href="https://sherrrodbrown.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Tim Ryan</div>
+            <div class="race-candidate-note">Former US Rep · 2022 Senate candidate (lost to Vance) · Also exploring governor race</div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Emilia Sykes</div>
+            <div class="race-candidate-note">Current US Rep OH-13 · Confirmed candidate · Former Ohio House Minority Leader</div>
+            <div class="race-links"><a href="https://emiliasykes.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+          </div>
+          <div class="race-card" style="margin-top:8px">
+            <div class="race-candidate-name">Casey Weinstein</div>
+            <div class="race-candidate-note">State Senator SD-28 · Declared candidate · Akron-area Democrat</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KEY DATES -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;margin-top:8px;padding-bottom:4px;border-bottom:1px solid var(--border);">Key Dates</div>
+      <div class="leg-grid">
+        <div class="leg-card"><div class="leg-card-label">Filing Deadline</div><div class="leg-card-title">Feb 4, 2026</div><div class="leg-card-desc">Party candidate filing deadline for all offices</div></div>
+        <div class="leg-card"><div class="leg-card-label">Primary Election</div><div class="leg-card-title">May 5, 2026</div><div class="leg-card-desc">All party primaries — Governor, US Senate, US House, State legislature</div></div>
+        <div class="leg-card"><div class="leg-card-label">General Election</div><div class="leg-card-title">November 3, 2026</div><div class="leg-card-desc">General election — all offices on ballot. US Senate special election concurrent.</div></div>
+        <div class="leg-card"><div class="leg-card-label">Redistricting Note</div><div class="leg-card-title">New Maps in Effect</div><div class="leg-card-desc">Ohio redistricted congressional maps Oct 2025. All US House races run under new boundaries in 2026.</div></div>
+      </div>
+
+      <div style="margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:#555;line-height:1.7;">
+        Polling sources: Emerson College (Aug & Dec 2025), RealClearPolling average (Mar 2026). Phase 2 will add individual US House race data after May 5 primaries.
+      </div>
     </div>
   </div>
 </div>
@@ -1212,40 +1422,262 @@ const SENATE = [
 ];
 
 const HOUSE = [
-  [1,"Dontavius L. Jarrells","D"],[2,"Latyna M. Humphrey","D"],[3,"Ismail Mohamed","D"],
-  [4,"Beryl Brown Piccolantonio","D"],[5,"Meredith R. Lawson-Rowe","D"],[6,"Christine Cockley","D"],
-  [7,"C. Allison Russo","D"],[8,"Anita Somani","D"],[9,"Munira Abdullahi","D"],
-  [10,"Mark Sigrist","D"],[11,"Crystal Lett","D"],[12,"Brian Stewart","R"],
-  [13,"Tristan Rader","D"],[14,"Sean P. Brennan","D"],[15,"Chris Glassburn","D"],
-  [16,"Bride Rose Sweeney","D"],[17,"Michael D. Dovilla","R"],[18,"Juanita O. Brent","D"],
-  [19,"Phillip M. Robinson Jr.","D"],[20,"Terrence Upchurch","D"],[21,"Eric Synenberg","D"],
-  [22,"Darnell T. Brewer","D"],[23,"Daniel P. Troy","D"],[24,"Dani Isaacsohn","D"],
-  [25,"Cecil Thomas","D"],[26,"Ashley Bryant Bailey","D"],[27,"Rachel B. Baker","D"],
-  [28,"Karen Brownlee","D"],[29,"Cindy Abrams","R"],[30,"Mike Odioso","R"],
-  [31,"Bill Roemer","R"],[32,"Jack K. Daniels","R"],[33,"Veronica R. Sims","D"],
-  [34,"Derrick Hall","D"],[35,"Steve Demetriou","R"],[36,"Andrea White","R"],
-  [37,"Tom Young","R"],[38,"Desiree Tims","D"],[39,"Phil Plummer","R"],
-  [40,"Rodney Creech","R"],[41,"Erika White","D"],[42,"Elgin Rogers Jr.","D"],
-  [43,"Michele Grim","D"],[44,"Josh Williams","R"],[45,"Jennifer Gross","R"],
-  [46,"Thomas Hall","R"],[47,"Diane Mullins","R"],[48,"Scott Oelslager","R"],
-  [49,"Jim Thomas","R"],[50,"Matthew Kishman","R"],[51,"Jodi Salvo","R"],
-  [52,"Gayle Manning","R"],[53,"Joseph A. Miller III","D"],[54,"Kellie Deeter","R"],
-  [55,"Michelle Teska","R"],[56,"Adam Mathews","R"],[57,"Jamie Callender","R"],
-  [58,"Lauren McNally","D"],[59,"Tex Fischer","R"],[60,"Brian Lorenz","R"],
-  [61,"Beth Lear","R"],[62,"Jean Schmidt","R"],[63,"Adam C. Bird","R"],
-  [64,"Nick Santucci","R"],[65,"David Thomas","R"],[66,"Sharon A. Ray","R"],
-  [67,"Melanie Miller","R"],[68,"Thaddeus J. Claggett","R"],[69,"Kevin D. Miller","R"],
-  [70,"Brian Lampton","R"],[71,"Levi Dean","R"],[72,"Heidi Workman","R"],
-  [73,"Jeff LaRe","R"],[74,"Bernard Willis","R"],[75,"Haraz N. Ghanbari","R"],
-  [76,"Marilyn John","R"],[77,"Meredith Craig","R"],[78,"Matt Huffman","R"],
-  [79,"Monica Robb Blasdel","R"],[80,"Johnathan Newman","R"],[81,"James M. Hoops","R"],
-  [82,"Roy Klopfenstein","R"],[83,"Ty D. Mathews","R"],[84,"Angela N. King","R"],
-  [85,"Tim Barhorst","R"],[86,"Tracy M. Richardson","R"],[87,"Riordan McClain","R"],
-  [88,"Gary Click","R"],[89,"D.J. Swearingen","R"],[90,"Justin Pizzulli","R"],
-  [91,"Bob Peterson","R"],[92,"Mark Johnson","R"],[93,"Jason Stephens","R"],
-  [94,"Kevin Ritter","R"],[95,"Ty Moore","R"],[96,"Ron Ferguson","R"],
-  [97,"Adam Holmes","R"],[98,"Mark Hiner","R"],[99,"Sarah Fowler Arthur","R"],
+  // [dist, name, party, phone, email]
+  [1,"Dontavius L. Jarrells","D","(614) 466-5343","rep01@ohiohouse.gov"],
+  [2,"Latyna M. Humphrey","D","(614) 466-8010","rep02@ohiohouse.gov"],
+  [3,"Ismail Mohamed","D","(614) 466-1896","rep03@ohiohouse.gov"],
+  [4,"Beryl Brown Piccolantonio","D","(614) 466-4847","rep04@ohiohouse.gov"],
+  [5,"Meredith R. Lawson-Rowe","D","(614) 466-5802","rep05@ohiohouse.gov"],
+  [6,"Christine Cockley","D","(614) 644-6005","rep06@ohiohouse.gov"],
+  [7,"C. Allison Russo","D","(614) 466-8012","rep07@ohiohouse.gov"],
+  [8,"Anita Somani","D","(614) 466-5358","rep08@ohiohouse.gov"],
+  [9,"Munira Abdullahi","D","(614) 466-2473","rep09@ohiohouse.gov"],
+  [10,"Mark Sigrist","D","(614) 466-9690","rep10@ohiohouse.gov"],
+  [11,"Crystal Lett","D","(614) 644-6030","rep11@ohiohouse.gov"],
+  [12,"Brian Stewart","R","(614) 466-1464","rep12@ohiohouse.gov"],
+  [13,"Tristan Rader","D","(614) 466-5921","rep13@ohiohouse.gov"],
+  [14,"Sean P. Brennan","D","(614) 466-3485","rep14@ohiohouse.gov"],
+  [15,"Chris Glassburn","D","(614) 466-3100","rep15@ohiohouse.gov"],
+  [16,"Bride Rose Sweeney","D","(614) 466-3350","rep16@ohiohouse.gov"],
+  [17,"Michael D. Dovilla","R","(614) 466-4895","rep17@ohiohouse.gov"],
+  [18,"Juanita O. Brent","D","(614) 466-1408","rep18@ohiohouse.gov"],
+  [19,"Phillip M. Robinson Jr.","D","(614) 644-6041","rep19@ohiohouse.gov"],
+  [20,"Terrence Upchurch","D","(614) 466-7954","rep20@ohiohouse.gov"],
+  [21,"Eric Synenberg","D","(614) 644-5079","rep21@ohiohouse.gov"],
+  [22,"Darnell T. Brewer","D","(614) 466-1414","rep22@ohiohouse.gov"],
+  [23,"Daniel P. Troy","D","(614) 466-7251","rep23@ohiohouse.gov"],
+  [24,"Dani Isaacsohn","D","(614) 466-5786","rep24@ohiohouse.gov"],
+  [25,"Cecil Thomas","D","(614) 466-1645","rep25@ohiohouse.gov"],
+  [26,"Sedrick Denson","D","(614) 466-1308","rep26@ohiohouse.gov"],
+  [27,"Rachel B. Baker","D","(614) 644-6886","rep27@ohiohouse.gov"],
+  [28,"Karen Brownlee","D","(614) 466-8120","rep28@ohiohouse.gov"],
+  [29,"Cindy Abrams","R","(614) 466-9091","rep29@ohiohouse.gov"],
+  [30,"Mike Odioso","R","(614) 466-8258","rep30@ohiohouse.gov"],
+  [31,"Bill Roemer","R","(614) 644-5085","rep31@ohiohouse.gov"],
+  [32,"Jack K. Daniels","R","(614) 466-1790","rep32@ohiohouse.gov"],
+  [33,"Veronica R. Sims","D","(614) 644-6037","rep33@ohiohouse.gov"],
+  [34,"Derrick Hall","D","(614) 466-1177","rep34@ohiohouse.gov"],
+  [35,"Steve Demetriou","R","(614) 644-5088","rep35@ohiohouse.gov"],
+  [36,"Andrea White","R","(614) 644-6008","rep36@ohiohouse.gov"],
+  [37,"Tom Young","R","(614) 466-6504","rep37@ohiohouse.gov"],
+  [38,"Desiree Tims","D","(614) 466-1607","rep38@ohiohouse.gov"],
+  [39,"Phil Plummer","R","(614) 644-8051","rep39@ohiohouse.gov"],
+  [40,"Rodney Creech","R","(614) 466-2960","rep40@ohiohouse.gov"],
+  [41,"Erika White","D","(614) 466-1731","rep41@ohiohouse.gov"],
+  [42,"Elgin Rogers Jr.","D","(614) 466-1401","rep42@ohiohouse.gov"],
+  [43,"Michele Grim","D","(614) 644-6017","rep43@ohiohouse.gov"],
+  [44,"Josh Williams","R","(614) 466-1418","rep44@ohiohouse.gov"],
+  [45,"Jennifer Gross","R","(614) 466-8550","rep45@ohiohouse.gov"],
+  [46,"Thomas Hall","R","(614) 644-5094","rep46@ohiohouse.gov"],
+  [47,"Diane Mullins","R","(614) 644-6721","rep47@ohiohouse.gov"],
+  [48,"Scott Oelslager","R","(614) 752-2438","rep48@ohiohouse.gov"],
+  [49,"Jim Thomas","R","(614) 466-8030","rep49@ohiohouse.gov"],
+  [50,"Matthew Kishman","R","(614) 466-9078","rep50@ohiohouse.gov"],
+  [51,"Jodi Salvo","R","(614) 466-8035","rep51@ohiohouse.gov"],
+  [52,"Gayle Manning","R","(614) 644-5076","rep52@ohiohouse.gov"],
+  [53,"Joseph A. Miller III","D","(614) 466-5141","rep53@ohiohouse.gov"],
+  [54,"Kellie Deeter","R","(614) 466-9628","rep54@ohiohouse.gov"],
+  [55,"Michelle Teska","R","(614) 644-6023","rep55@ohiohouse.gov"],
+  [56,"Adam Mathews","R","(614) 644-6027","rep56@ohiohouse.gov"],
+  [57,"Jamie Callender","R","(614) 644-6074","rep57@ohiohouse.gov"],
+  [58,"Lauren McNally","D","(614) 466-9435","rep58@ohiohouse.gov"],
+  [59,"Tex Fischer","R","(614) 466-6107","rep59@ohiohouse.gov"],
+  [60,"Brian Lorenz","R","(614) 644-6711","rep60@ohiohouse.gov"],
+  [61,"Beth Lear","R","(614) 466-1431","rep61@ohiohouse.gov"],
+  [62,"Jean Schmidt","R","(614) 466-8134","rep62@ohiohouse.gov"],
+  [63,"Adam C. Bird","R","(614) 644-6034","rep63@ohiohouse.gov"],
+  [64,"Nick Santucci","R","(614) 466-5441","rep64@ohiohouse.gov"],
+  [65,"David Thomas","R","(614) 466-3488","rep65@ohiohouse.gov"],
+  [66,"Sharon A. Ray","R","(614) 466-8140","rep66@ohiohouse.gov"],
+  [67,"Melanie Miller","R","(614) 466-0961","rep67@ohiohouse.gov"],
+  [68,"Thaddeus J. Claggett","R","(614) 466-1482","rep68@ohiohouse.gov"],
+  [69,"Kevin D. Miller","R","(614) 466-2500","rep69@ohiohouse.gov"],
+  [70,"Brian Lampton","R","(614) 644-6020","rep70@ohiohouse.gov"],
+  [71,"Levi Dean","R","(614) 466-1470","rep71@ohiohouse.gov"],
+  [72,"Heidi Workman","R","(614) 466-2004","rep72@ohiohouse.gov"],
+  [73,"Jeff LaRe","R","(614) 466-8100","rep73@ohiohouse.gov"],
+  [74,"Bernard Willis","R","(614) 466-2038","rep74@ohiohouse.gov"],
+  [75,"Haraz N. Ghanbari","R","(614) 466-8104","rep75@ohiohouse.gov"],
+  [76,"Marilyn John","R","(614) 466-5802","rep76@ohiohouse.gov"],
+  [77,"Meredith Craig","R","(614) 466-1474","rep77@ohiohouse.gov"],
+  [78,"Matt Huffman","R","(614) 466-6344","rep78@ohiohouse.gov"],
+  [79,"Monica Robb Blasdel","R","(614) 466-8022","rep79@ohiohouse.gov"],
+  [80,"Johnathan Newman","R","(614) 466-8114","rep80@ohiohouse.gov"],
+  [81,"James M. Hoops","R","(614) 466-3760","rep81@ohiohouse.gov"],
+  [82,"Roy Klopfenstein","R","(614) 644-5091","rep82@ohiohouse.gov"],
+  [83,"Ty D. Mathews","R","(614) 466-3819","rep83@ohiohouse.gov"],
+  [84,"Angela N. King","R","(614) 466-9624","rep84@ohiohouse.gov"],
+  [85,"Tim Barhorst","R","(614) 466-1507","rep85@ohiohouse.gov"],
+  [86,"Tracy M. Richardson","R","(614) 466-8147","rep86@ohiohouse.gov"],
+  [87,"Riordan McClain","R","(614) 644-6265","rep87@ohiohouse.gov"],
+  [88,"Gary Click","R","(614) 466-1374","rep88@ohiohouse.gov"],
+  [89,"D.J. Swearingen","R","(614) 644-6011","rep89@ohiohouse.gov"],
+  [90,"Justin Pizzulli","R","(614) 466-2124","rep90@ohiohouse.gov"],
+  [91,"Bob Peterson","R","(614) 466-3506","rep91@ohiohouse.gov"],
+  [92,"Mark Johnson","R","(614) 644-7928","rep92@ohiohouse.gov"],
+  [93,"Jason Stephens","R","(614) 466-1366","rep93@ohiohouse.gov"],
+  [94,"Kevin Ritter","R","(614) 466-2158","rep94@ohiohouse.gov"],
+  [95,"Ty Moore","R","(614) 644-8728","rep95@ohiohouse.gov"],
+  [96,"Ron Ferguson","R","(614) 466-3735","rep96@ohiohouse.gov"],
+  [97,"Adam Holmes","R","(614) 644-6014","rep97@ohiohouse.gov"],
+  [98,"Mark Hiner","R","(614) 466-2994","rep98@ohiohouse.gov"],
+  [99,"Sarah Fowler Arthur","R","(614) 466-1405","rep99@ohiohouse.gov"],
 ];
+
+
+// ═══ HOUSE PROFILES (25 key members) ════════════════════════════════════════
+const HOUSE_PROFILES = {
+  78: {
+    role: "Speaker of the House · HD-78 (Lima/Allen Co.)",
+    tenure: "House 2007–2014, Senate President 2021–2022, Speaker 2025–present",
+    stated: ["School choice & voucher expansion", "Fiscal conservatism", "Anti-DEI policy", "Parental rights"],
+    actual: ["Expanded EdChoice vouchers to universal eligibility — siphons public school funding", "Appointed cousin Stephen Huffman to chair Health Committee despite racism controversy", "Architect of 7 rejected gerrymandered maps — courts ruled unconstitutional", "Pushed August 2023 special election to suppress abortion rights vote (failed)", "Led SB 1 anti-DEI legislation through Senate in prior session"]
+  },
+  79: {
+    role: "Speaker Pro Tempore · HD-79",
+    tenure: "House 2023–present",
+    stated: ["Fiscal conservatism", "Public safety", "Local government"],
+    actual: ["Elevated to Pro Tempore under Huffman's speakership", "Reliable Republican caucus vote", "Limited independent legislative record"]
+  },
+  29: {
+    role: "Assistant Majority Whip · HD-29 (Cincinnati/Hamilton Co.)",
+    tenure: "House 2021–present",
+    stated: ["Business growth", "Public safety", "Fiscal conservatism"],
+    actual: ["Voted for SB 1 anti-DEI legislation", "Consistent Republican caucus alignment", "Hamilton County suburban district"]
+  },
+  30: {
+    role: "Majority Floor Leader · HD-30",
+    tenure: "House 2023–present",
+    stated: ["Conservative values", "Fiscal responsibility"],
+    actual: ["Odioso represents a safe Republican district", "Voted with caucus on SB 1, budget, voucher expansion", "Limited independent bill sponsorships"]
+  },
+  87: {
+    role: "Assistant Majority Floor Leader · HD-87 (Ashland/Richland Co.)",
+    tenure: "House 2019–present",
+    stated: ["Workforce development", "Agriculture", "Fiscal conservatism"],
+    actual: ["HB 275 — named highway bill sponsor (2025)", "Consistent conservative vote on education, budget, anti-DEI bills", "North-central Ohio rural district focus"]
+  },
+  95: {
+    role: "Majority Whip · HD-95",
+    tenure: "House 2023–present",
+    stated: ["Fiscal conservatism", "Public safety", "Economic development"],
+    actual: ["Elevated to Majority Whip under Huffman", "Consistent Republican supermajority vote", "Warren County conservative district"]
+  },
+  7: {
+    role: "House Minority Leader · HD-7 (Columbus/Upper Arlington)",
+    tenure: "House 2017–present · Minority Leader 2025–present",
+    stated: ["Healthcare access", "Education funding", "Women's rights", "Working families"],
+    actual: ["Leads 34-member Democratic caucus vs 65-R supermajority", "Championed reproductive rights after Issue 1 passage", "Strong public education funding advocate — opposed EdChoice expansion", "Voted against SB 1 anti-DEI legislation"]
+  },
+  15: {
+    role: "Assistant Minority Leader · HD-15 (Cleveland area)",
+    tenure: "House 2023–present",
+    stated: ["Working families", "Education", "Community investment"],
+    actual: ["Reliable Democratic caucus vote", "Minority leadership team under Russo", "Cuyahoga County focus"]
+  },
+  4: {
+    role: "Minority Whip · HD-4 (Columbus area)",
+    tenure: "House 2019–present",
+    stated: ["Housing", "Working families", "Education equity"],
+    actual: ["Reliable Democratic vote on budget, education, reproductive rights", "Franklin County urban district", "Part of minority caucus under Republican supermajority"]
+  },
+  78: {
+    role: "Speaker of the House",
+    tenure: "House 2007–2014, Senate Pres 2021–2024, Speaker 2025–present",
+    stated: ["School choice", "Fiscal conservatism", "Anti-DEI", "Parental rights"],
+    actual: ["Universal EdChoice vouchers — defunding public schools", "Gerrymandering architect — 7 rejected maps", "August 2023 special election maneuver to block abortion amendment", "Cousin appointment controversy (Stephen Huffman)"]
+  },
+  45: {
+    role: "State Representative · HD-45 (Warren/Clinton Co.)",
+    tenure: "House 2021–present",
+    stated: ["Pro-life", "2nd Amendment", "Fiscal conservatism", "Parental rights"],
+    actual: ["Pro-Life Caucus member", "Voted for SB 1 anti-DEI", "Consistently anti-abortion votes", "Supported EdChoice expansion"]
+  },
+  88: {
+    role: "State Representative · HD-88 (Sandusky/Erie Co.)",
+    tenure: "House 2019–present",
+    stated: ["Pro-life", "Religious liberty", "Fiscal conservatism"],
+    actual: ["Pro-Life Caucus member", "Opposed COVID vaccine mandates", "Pastor background — religious liberty bills primary focus", "Voted against expanded Medicaid coverage"]
+  },
+  4: {
+    role: "State Representative · HD-4 (Columbus suburbs)",
+    tenure: "House 2019–present · Minority Whip",
+    stated: ["Housing", "Working families", "Education equity"],
+    actual: ["Democratic Minority Whip — leads floor strategy for 34-member caucus", "Reliable vote on reproductive rights, public education, Medicaid expansion", "Franklin County focus — housing affordability key issue"]
+  },
+  78: {
+    role: "Speaker of the House · HD-78",
+    tenure: "House 2025–present (prev. Senate Pres 2021–24)",
+    stated: ["School choice", "Fiscal conservatism", "Anti-DEI", "Parental rights"],
+    actual: ["Universal EdChoice — largest voucher expansion in Ohio history, defunds public schools", "Architect of 7 court-rejected gerrymandered maps", "Pushed August 2023 special election to reduce turnout on abortion amendment (failed)", "Led SB 1 anti-DEI through Senate"]
+  },
+  1: {
+    role: "State Representative · HD-1 (Columbus/Franklin Co.)",
+    tenure: "House 2023–present",
+    stated: ["Community reinvestment", "Education", "Public safety"],
+    actual: ["Represents Columbus urban core", "Reliable Democratic vote on education, housing, reproductive rights", "Minority caucus member under Republican supermajority"]
+  },
+  34: {
+    role: "State Representative · HD-34 (Akron area)",
+    tenure: "House 2025–present",
+    stated: ["Working families", "Education", "Community investment"],
+    actual: ["New member representing Summit County area", "Reliable Democratic caucus vote", "Part of expanded 34-seat Democratic minority"]
+  },
+  56: {
+    role: "State Representative · HD-56 · Lt. Governor candidate 2026",
+    tenure: "House 2023–present",
+    stated: ["Pro-life", "Economic development", "Conservative values"],
+    actual: ["Running for Lt. Governor 2026 alongside Ramaswamy", "Pro-Life Caucus member", "Voted for SB 1 anti-DEI", "Mahoning Valley focus — competitive area"]
+  },
+  93: {
+    role: "State Representative · HD-93 (Lawrence/Gallia Co.) · Former Speaker",
+    tenure: "House 2011–present · Speaker 2023–2024",
+    stated: ["Economic development", "Rural communities", "Bipartisan cooperation"],
+    actual: ["Was ousted as Speaker by Huffman in 2025 — Huffman defeated him for speakership", "Attempted to build bipartisan coalitions as Speaker", "Signed onto some Democratic priorities as Speaker — unusual for an R", "Lost speaker vote 54-43 to Huffman in Jan 2025"]
+  },
+  52: {
+    role: "Majority Floor Leader · HD-52 (Lorain/Cuyahoga Co.)",
+    tenure: "House 2013–present",
+    stated: ["Fiscal conservatism", "Pro-life", "2nd Amendment"],
+    actual: ["Majority Floor Leader — manages floor schedule and votes", "Voted for SB 1, EdChoice expansion, anti-abortion bills", "District covers suburban Lorain County — once competitive, now safe R"]
+  },
+  64: {
+    role: "State Representative · HD-64 (Trumbull Co.)",
+    tenure: "House 2023–present",
+    stated: ["Fiscal conservatism", "Economic development", "Public safety"],
+    actual: ["Represents Trumbull County — historically Dem territory gone Republican", "Voted with Republican caucus on SB 1, budget", "New member with limited independent bill record"]
+  },
+  39: {
+    role: "State Representative · HD-39 (Dayton/Montgomery Co.)",
+    tenure: "House 2017–present",
+    stated: ["Public safety", "Veterans", "Fiscal conservatism"],
+    actual: ["Former Dayton police officer background", "Consistent conservative vote", "Voted for permitless carry, opposed Medicaid expansion"]
+  },
+  67: {
+    role: "Pro-Life Caucus Chair · HD-67 (Ashland/Wayne Co.)",
+    tenure: "House 2023–present",
+    stated: ["Pro-life", "Faith-based values", "Women's health (anti-choice framing)"],
+    actual: ["Chair of 31-member Pro-Life Caucus", "Executive Director of pregnancy care center — policy reflects that background", "Voted for every anti-abortion bill in 136th GA", "Opposes Issue 1 reproductive rights amendment implementation"]
+  },
+  48: {
+    role: "State Representative · HD-48 (Stark/Canton area)",
+    tenure: "House 2009–present",
+    stated: ["Fiscal conservatism", "Economic development", "Workforce"],
+    actual: ["One of the longest-serving House members", "Former Speaker Pro Tempore", "Voted for EdChoice, SB 1, anti-abortion bills consistently", "Chairs key committees — budget-adjacent influence"]
+  },
+  38: {
+    role: "State Representative · HD-38 (Dayton/Montgomery Co.)",
+    tenure: "House 2023–present",
+    stated: ["Working families", "Education", "Community investment"],
+    actual: ["Represents Dayton urban core — competitive swing district that went D", "Reliable Democratic vote on reproductive rights, education, Medicaid", "Part of expanded Democratic minority from 2024 gains"]
+  },
+  13: {
+    role: "State Representative · HD-13 (Lakewood/Cleveland area)",
+    tenure: "House 2023–present",
+    stated: ["Working families", "Environment", "Education"],
+    actual: ["Lakewood/western Cuyahoga — reliably Democratic district", "Voted against SB 1, EdChoice expansion", "Supported Issue 1 reproductive rights amendment"]
+  }
+};
 
 // quick lookup maps
 const senateMap = {};  SENATE.forEach(r => senateMap[r[0]] = r);
@@ -1579,6 +2011,79 @@ function renderHouse() {
       <td>${r[1]}</td>
       <td><span class="pb ${r[2]}">${r[2]==='R'?'Republican':'Democrat'}</span></td>
     </tr>`).join('');
+  if (typeof isMobile === 'function' && isMobile()) renderHouseCards();
+}
+
+function renderHouseCards() {
+  const q = (document.getElementById('h-search').value || '').toLowerCase();
+  let rows = HOUSE.filter(r => {
+    if (hFilter !== 'all' && r[2] !== hFilter) return false;
+    return !q || r[0].toString().includes(q) || r[1].toLowerCase().includes(q);
+  }).sort((a,b) => (a[0]-b[0]));
+  document.getElementById('h-cnt').textContent = `${rows.length} / 99`;
+  const container = document.getElementById('house-cards');
+  if (!container) return;
+  container.innerHTML = rows.map(r => {
+    const [dist, name, party, phone, email] = r;
+    const prof = HOUSE_PROFILES[dist];
+    const slug = nameToSlug(name);
+    const officialUrl = `https://www.ohiohouse.gov/members/${slug}`;
+    const tuUrl = `https://www.transparencyusa.org/oh/candidate/${slug}`;
+    const phoneChip = phone ? `<a class="sen-action phone" href="tel:${phone}">📞 ${phone}</a>` : '';
+    const emailChip = email ? `<a class="sen-action" href="mailto:${email}" style="border-color:#3a5a6a;color:#7ab8cc">✉ Email</a>` : '';
+    let profileBody = '';
+    if (prof) {
+      const statedItems = prof.stated.map(s=>`<li>${s}</li>`).join('');
+      const actualItems = prof.actual.map(a=>`<li>${a}</li>`).join('');
+      profileBody = `
+        <div class="sen-card-profile">
+          <button class="sen-profile-toggle" onclick="toggleHouseCardProfile(${dist},this)">
+            ⬛ Stated vs Actual Record <span>▼</span>
+          </button>
+          <div class="sen-profile-body" id="house-profile-body-${dist}">
+            <div class="sen-profile-tenure">${prof.role} · ${prof.tenure}</div>
+            <div class="sen-profile-section stated">
+              <div class="sen-profile-section-hdr">📋 Stated Priorities</div>
+              <ul>${statedItems}</ul>
+            </div>
+            <div class="sen-profile-section actual">
+              <div class="sen-profile-section-hdr">📌 Actual Record</div>
+              <ul>${actualItems}</ul>
+            </div>
+          </div>
+        </div>`;
+    }
+    return `<div class="sen-card" id="house-card-${dist}">
+      <div class="sen-card-header" onclick="toggleHouseCard(${dist})">
+        <div><div class="sen-card-dist">HD-${String(dist).padStart(2,'0')}</div></div>
+        <div style="flex:1;min-width:0">
+          <div class="sen-card-name">${name}</div>
+          ${prof ? `<div class="sen-card-region" style="font-size:0.58rem">${prof.role}</div>` : ''}
+        </div>
+        <span class="sen-card-party ${party}">${party}</span>
+        <span class="sen-card-chevron">▼</span>
+      </div>
+      <div class="sen-card-actions">
+        ${phoneChip}${emailChip}
+        <a class="sen-action official" href="${officialUrl}" target="_blank" rel="noopener">Official →</a>
+        <a class="sen-action donors" href="${tuUrl}" target="_blank" rel="noopener">Donors →</a>
+      </div>
+      ${profileBody}
+    </div>`;
+  }).join('');
+}
+
+function toggleHouseCard(dist) {
+  const card = document.getElementById(`house-card-${dist}`);
+  if (!card) return;
+  card.classList.toggle('open');
+}
+function toggleHouseCardProfile(dist, btn) {
+  const body = document.getElementById(`house-profile-body-${dist}`);
+  if (!body) return;
+  const isOpen = body.classList.toggle('open');
+  btn.classList.toggle('active', isOpen);
+  btn.querySelector('span').textContent = isOpen ? '▲' : '▼';
 }
 
 function goToDistrict(distNum, chamber) {
@@ -1603,10 +2108,10 @@ function sortTbl(tbl, col) {
 // ═══ TABS ════════════════════════════════════════════════════════════════════
 function isMobile() { return window.innerWidth <= 768; }
 function showTab(name) {
-  const tabs = ['map','senate','house','legislature','officials','resources','lookup'];
+  const tabs = ['map','senate','house','legislature','officials','resources','lookup','federal','midterms'];
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', tabs[i]===name));
   document.getElementById('pane-map').classList.toggle('active', name==='map');
-  ['senate','house','lookup','officials','resources','legislature'].forEach(p => {
+  ['senate','house','lookup','officials','resources','legislature','federal','midterms'].forEach(p => {
     const el = document.getElementById(`pane-${p}`);
     if (el) el.style.display = (name===p) ? 'flex' : 'none';
   });
@@ -1614,6 +2119,7 @@ function showTab(name) {
   if (name==='lookup') setTimeout(()=>document.getElementById('lookup-addr').focus(),100);
   if (name==='officials') renderOfficials();
   if (name==='senate' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderSenateCards(),50);
+  if (name==='house' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderHouseCards(),50);
 }
 
 // ═══ FIND MY REPS ════════════════════════════════════════════════════════════
@@ -2522,11 +3028,68 @@ window.addEventListener('load', function() {
     });
     setBottomNav('lookup');
     renderSenateCards();
+    renderHouseCards();
     // Hook senate search input
     const si = document.getElementById('s-search');
     if (si) si.addEventListener('input', () => { if (isMobile()) renderSenateCards(); });
+    // Hook house search input
+    const hi = document.getElementById('h-search');
+    if (hi) hi.addEventListener('input', () => { if (isMobile()) renderHouseCards(); });
   }
 });
+
+// ═══ FEDERAL HOUSE DELEGATION ════════════════════════════════════════════════
+const OH_FEDERAL_HOUSE = [
+  {dist:1, name:"Greg Landsman", party:"D", since:2023, region:"Cincinnati/Hamilton Co.", committee:"Armed Services", url:"https://landsman.house.gov", ballotpedia:"https://ballotpedia.org/Greg_Landsman", stated:"Infrastructure, healthcare access, veterans", actual:"Voted against H.R. 1, supports Medicaid expansion, strong labor vote record"},
+  {dist:2, name:"David Taylor", party:"R", since:2025, region:"Southern OH / Scioto/Gallia", committee:"Judiciary", url:"https://davidtaylor.house.gov", ballotpedia:"https://ballotpedia.org/David_Taylor_(Ohio)", stated:"Border security, fiscal conservatism, 2nd Amendment", actual:"Voted for H.R. 1, Trump cabinet confirmations, anti-abortion legislation"},
+  {dist:3, name:"Joyce Beatty", party:"D", since:2013, region:"Columbus/Franklin Co.", committee:"Financial Services", url:"https://beatty.house.gov", ballotpedia:"https://ballotpedia.org/Joyce_Beatty", stated:"Civil rights, economic equity, financial inclusion", actual:"Voted against H.R. 1, Dodd-Frank protections advocate, voting rights focus"},
+  {dist:4, name:"Jim Jordan", party:"R", since:2007, region:"NW Ohio — Champaign/Mercer/Logan", committee:"Judiciary (Chair)", url:"https://jordan.house.gov", ballotpedia:"https://ballotpedia.org/Jim_Jordan", stated:"Constitutional conservatism, anti-oversight, fiscal cuts", actual:"House Judiciary Chair — led Biden impeachment inquiry, Jan 6 committee opponent, voted for H.R. 1, 100% Trump alignment"},
+  {dist:5, name:"Bob Latta", party:"R", since:2007, region:"NW Ohio — Wood/Hancock/Defiance", committee:"Energy & Commerce", url:"https://latta.house.gov", ballotpedia:"https://ballotpedia.org/Bob_Latta", stated:"Energy independence, rural broadband, fiscal conservatism", actual:"Voted for H.R. 1, consistent anti-regulation votes, opposed ACA expansion"},
+  {dist:6, name:"Michael Rulli", party:"R", since:2024, region:"NE Ohio — Mahoning/Trumbull/Columbiana", committee:"Armed Services", url:"https://rulli.house.gov", ballotpedia:"https://ballotpedia.org/Michael_Rulli", stated:"Workforce, manufacturing, border security", actual:"First-term member, voted for H.R. 1, Trump-aligned on all major votes, replaced Tim Ryan's old district"},
+  {dist:7, name:"Max Miller", party:"R", since:2023, region:"NE Ohio — Portage/Medina/Cuyahoga", committee:"Agriculture", url:"https://maxmiller.house.gov", ballotpedia:"https://ballotpedia.org/Max_Miller", stated:"Agriculture, fiscal conservatism, Israel support", actual:"Trump loyalist and former White House aide, voted for H.R. 1, anti-immigration bills"},
+  {dist:8, name:"Warren Davidson", party:"R", since:2016, region:"SW Ohio — Butler/Montgomery/Preble", committee:"Financial Services", url:"https://davidson.house.gov", ballotpedia:"https://ballotpedia.org/Warren_Davidson", stated:"Fiscal conservatism, cryptocurrency, 2nd Amendment", actual:"Freedom Caucus member — one of most conservative OH reps, voted for H.R. 1, crypto-friendly legislation"},
+  {dist:9, name:"Marcy Kaptur", party:"D", since:1983, region:"NW Ohio — Toledo/Lucas/Erie", committee:"Appropriations", url:"https://kaptur.house.gov", ballotpedia:"https://ballotpedia.org/Marcy_Kaptur", stated:"Manufacturing, workers rights, Social Security, veterans", actual:"Dean of OH delegation (40+ years), voted against H.R. 1, strong labor record, secured major Appropriations funding for NW Ohio"},
+  {dist:10, name:"Mike Turner", party:"R", since:2003, region:"Dayton/Montgomery Co.", committee:"Intelligence", url:"https://turner.house.gov", ballotpedia:"https://ballotpedia.org/Mike_Turner", stated:"National security, veterans, defense", actual:"Former Intel Committee Chair — warned of Russian influence, now Trump-aligned, voted for H.R. 1"},
+  {dist:11, name:"Shontel Brown", party:"D", since:2021, region:"NE Ohio — Cleveland East/Cuyahoga", committee:"Agriculture; Oversight", url:"https://shontelbrown.house.gov", ballotpedia:"https://ballotpedia.org/Shontel_Brown", stated:"Economic equity, healthcare, voting rights", actual:"Voted against H.R. 1, strong progressive record, succeeded Marcia Fudge"},
+  {dist:12, name:"Troy Balderson", party:"R", since:2018, region:"Central/SE Ohio — Licking/Muskingum", committee:"Energy & Commerce", url:"https://balderson.house.gov", ballotpedia:"https://ballotpedia.org/Troy_Balderson", stated:"Fiscal conservatism, energy, agriculture", actual:"Voted for H.R. 1, consistent conservative record, supports fossil fuel interests"},
+  {dist:13, name:"Emilia Sykes", party:"D", since:2023, region:"NE Ohio — Akron/Summit/Mahoning", committee:"Education & Workforce", url:"https://sykes.house.gov", ballotpedia:"https://ballotpedia.org/Emilia_Sykes", stated:"Education, healthcare, workers rights, LGBTQ+ equality", actual:"Voted against H.R. 1, strong progressive votes, former OH House Minority Leader — now also running for US Senate 2026"},
+  {dist:14, name:"David Joyce", party:"R", since:2013, region:"NE Ohio — Lake/Geauga/Ashtabula", committee:"Appropriations", url:"https://joyce.house.gov", ballotpedia:"https://ballotpedia.org/David_Joyce", stated:"Fiscal conservatism, rule of law, bipartisan Appropriations", actual:"More moderate OH Republican, supported some bipartisan funding deals, but voted for H.R. 1"},
+  {dist:15, name:"Mike Carey", party:"R", since:2021, region:"Central OH — Columbus suburbs/SE", committee:"Ways & Means", url:"https://carey.house.gov", ballotpedia:"https://ballotpedia.org/Mike_Carey", stated:"Tax cuts, energy, fiscal conservatism", actual:"Voted for H.R. 1, consistent conservative record, Ways & Means focus on tax policy"}
+];
+
+function renderFederalHouse() {
+  const grid = document.getElementById('federal-house-grid');
+  if (!grid || grid.dataset.rendered) return;
+  grid.dataset.rendered = '1';
+  grid.innerHTML = OH_FEDERAL_HOUSE.map(m => {
+    const partyFull = m.party === 'D' ? 'Democrat' : 'Republican';
+    const slug = m.name.toLowerCase().replace(/[^a-z0-9\s]/g,'').trim().replace(/\s+/g,'-');
+    return `<div class="official-card">
+      <div class="official-card-top">
+        <div class="official-title">OH-${m.dist} · ${m.region}</div>
+        <div class="official-name">${m.name}</div>
+        <span class="official-party ${m.party}">${partyFull}</span>
+        <div class="official-bio">Since ${m.since} · ${m.committee} Committee</div>
+      </div>
+      <div class="official-card-body">
+        <div class="official-section">
+          <div class="official-section-hdr">📋 Stated Priorities</div>
+          <div class="official-item">→ ${m.stated}</div>
+        </div>
+        <div class="official-section">
+          <div class="official-section-hdr">📌 Actual Record</div>
+          <div class="official-item">→ ${m.actual}</div>
+        </div>
+      </div>
+      <div class="official-links">
+        <a class="official-link primary" href="${m.url}" target="_blank" rel="noopener">Official Site →</a>
+        <a class="official-link" href="${m.ballotpedia}" target="_blank" rel="noopener">Ballotpedia →</a>
+        <a class="official-link" href="https://www.transparencyusa.org/oh/candidate/${slug}" target="_blank" rel="noopener">Donors →</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 if (window.location.protocol === 'file:') {
   document.getElementById('file-warning').style.display = 'block';
   // Also warn on the map tab
