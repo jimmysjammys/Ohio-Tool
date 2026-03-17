@@ -75,7 +75,8 @@ body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', 
 header { background: var(--surface); border-bottom: 2px solid var(--accent); padding: 14px 28px; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
 header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 2px; color: var(--accent); }
 header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
-.header-countdown { margin-left: auto; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; text-align: center; min-width: 120px; }
+.header-countdown { margin-left: auto; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; text-align: center; min-width: 120px; transition: border-color 0.15s; }
+.header-countdown:hover { border-color: var(--accent); }
 .countdown-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
 .countdown-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--accent); line-height: 1.1; letter-spacing: 1px; }
 .countdown-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--muted); }
@@ -507,7 +508,7 @@ tr:hover td { background: var(--surface2); }
 
 <header>
   <h1>Ohio Watch</h1>
-  <div class="header-countdown">
+  <div class="header-countdown" onclick="showTab('midterms');setBottomNav('midterms')" style="cursor:pointer" title="View 2026 Midterms">
     <div class="countdown-lbl">2026 Midterms</div>
     <div class="countdown-val" id="midterm-days"><script>document.write(Math.ceil((new Date('2026-11-03')-new Date())/(864e5)))</script></div>
     <div class="countdown-sub">days remaining</div>
@@ -516,8 +517,8 @@ tr:hover td { background: var(--surface2); }
 
 <div class="scoreboard">
   <div class="sc-group">
-    <div class="sc"><div class="lbl">Senate</div><div class="sc-split"><span class="val rep">24R</span><span class="val dem">9D</span></div></div>
-    <div class="sc"><div class="lbl">House</div><div class="sc-split"><span class="val rep">65R</span><span class="val dem">34D</span></div></div>
+    <div class="sc sc-link" onclick="showTab('senate');setBottomNav('senate')" style="cursor:pointer" title="View Senate tab"><div class="lbl">Senate</div><div class="sc-split"><span class="val rep">24R</span><span class="val dem">9D</span></div></div>
+    <div class="sc sc-link" onclick="showTab('house');setBottomNav('house')" style="cursor:pointer" title="View House tab"><div class="lbl">House</div><div class="sc-split"><span class="val rep">65R</span><span class="val dem">34D</span></div></div>
   </div>
   <div class="sc-group">
     <a class="sc sc-link" href="https://governor.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Gov</div><div class="val neu">DeWine</div></a>
@@ -942,19 +943,19 @@ tr:hover td { background: var(--surface2); }
       <div style="margin-bottom:24px;">
         <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🔄 Bills Currently in Committee</div>
         <div class="leg-grid">
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode[]=SB" target="_blank" rel="noopener">
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode%5B%5D=SB" target="_blank" rel="noopener">
             <div class="leg-card-label">Ohio Senate Bills</div>
             <div class="leg-card-title">Senate Bills in Committee</div>
             <div class="leg-card-desc">Live search — all active Senate bills currently assigned to committee in the 136th GA</div>
             <span class="leg-card-tag in-committee">In Committee</span>
           </a>
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode[]=HB" target="_blank" rel="noopener">
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode%5B%5D=HB" target="_blank" rel="noopener">
             <div class="leg-card-label">Ohio House Bills</div>
             <div class="leg-card-title">House Bills in Committee</div>
             <div class="leg-card-desc">Live search — all active House bills currently assigned to committee in the 136th GA</div>
             <span class="leg-card-tag in-committee">In Committee</span>
           </a>
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode[]=SB&committeeCode=SFIN" target="_blank" rel="noopener">
+          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode%5B%5D=SB&committeeCode=SFIN" target="_blank" rel="noopener">
             <div class="leg-card-label">Finance Committee</div>
             <div class="leg-card-title">Senate Finance — Active Bills</div>
             <div class="leg-card-desc">Bills in the Senate Finance Committee — controls the state budget and tax legislation</div>
@@ -1830,6 +1831,39 @@ function showDistrictInfo(distNum, chamber) {
     }
   }
 
+  // House: build action chips from HOUSE array data
+  let houseLinksHTML = '';
+  if (chamber === 'house') {
+    const houseData = HOUSE.find(r => r[0] === distNum);
+    if (houseData) {
+      const [,hName, hParty, hPhone, hEmail] = houseData;
+      const hSlug = hName.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
+      const hOfficialUrl = `https://www.ohiohouse.gov/members/${hSlug}`;
+      const hTuUrl = `https://www.transparencyusa.org/oh/candidate/${hSlug}`;
+      const hProf = HOUSE_PROFILES[distNum];
+      houseLinksHTML = `
+        <div class="profile-contact" style="margin-top:12px">
+          ${hPhone ? `<a class="contact-chip" href="tel:${hPhone}">📞 ${hPhone}</a>` : ''}
+          ${hEmail ? `<a class="contact-chip" href="mailto:${hEmail}" style="border-color:#3a5a6a;color:#7ab8cc">✉ ${hEmail}</a>` : ''}
+        </div>
+        <div class="profile-donors-row" style="margin-top:10px">
+          <a class="donor-btn" href="${hOfficialUrl}" target="_blank" rel="noopener" style="background:none;border-color:var(--accent);color:var(--accent)">Official Page →</a>
+          <a class="donor-btn" href="${hTuUrl}" target="_blank" rel="noopener">View Donors →</a>
+        </div>
+        ${hProf ? `
+        <button class="profile-toggle" id="hmap-btn-${distNum}" onclick="toggleHouseMapProfile(${distNum})" style="margin-top:10px">
+          ⬛ STATED VS ACTUAL RECORD <span class="pt-arrow">▼</span>
+        </button>
+        <div class="profile-panel" id="hmap-panel-${distNum}">
+          <div class="profile-tenure"><span>Role: </span>${hProf.role}</div>
+          <div class="profile-grid">
+            <div class="profile-col stated"><div class="profile-col-header">📋 Stated</div><ul>${hProf.stated.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+            <div class="profile-col actual"><div class="profile-col-header">📌 Actual</div><ul>${hProf.actual.map(a=>`<li>${a}</li>`).join('')}</ul></div>
+          </div>
+        </div>` : ''}`;
+    }
+  }
+
   el.innerHTML = `
     <div class="info-dist">${chamberLabel.split(' ')[0][0]}D-${String(distNum).padStart(2,'0')}</div>
     <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:6px">${chamberLabel}</div>
@@ -1837,8 +1871,19 @@ function showDistrictInfo(distNum, chamber) {
     <span class="info-party ${data[2]}">${partyFull}</span>
     <div class="info-row">${roleLabel}</div>
     ${countyHTML}
+    ${houseLinksHTML}
     ${profileHTML}
   `;
+}
+
+function toggleHouseMapProfile(distNum) {
+  const btn = document.getElementById(`hmap-btn-${distNum}`);
+  const panel = document.getElementById(`hmap-panel-${distNum}`);
+  if (!btn || !panel) return;
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
 }
 
 // Fetch from Census TIGERweb REST API
