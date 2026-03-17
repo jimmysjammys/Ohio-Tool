@@ -75,7 +75,7 @@ body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', 
 header { background: var(--surface); border-bottom: 2px solid var(--accent); padding: 14px 28px; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
 header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 2px; color: var(--accent); }
 header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
-.header-countdown { margin-left: auto; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; text-align: center; min-width: 120px; transition: border-color 0.15s; }
+.header-countdown { margin-left: auto; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; text-align: center; min-width: 120px; transition: border-color 0.15s; cursor: pointer; font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .header-countdown:hover { border-color: var(--accent); }
 .countdown-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
 .countdown-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--accent); line-height: 1.1; letter-spacing: 1px; }
@@ -86,7 +86,7 @@ header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color:
 .sc-group { display: flex; gap: 6px; align-items: center; }
 .sc { background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 5px 12px; }
 .sc-split { display: flex; gap: 8px; align-items: baseline; }
-.sc.sc-link { text-decoration: none; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.sc.sc-link { text-decoration: none; cursor: pointer; transition: border-color 0.15s, background 0.15s; font-family: inherit; text-align: left; -webkit-tap-highlight-color: transparent; }
 .sc.sc-link:hover { border-color: var(--accent); background: #1a1500; }
 .sc.sc-link:hover .lbl { color: var(--accent); }
 .sc .lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
@@ -508,17 +508,17 @@ tr:hover td { background: var(--surface2); }
 
 <header>
   <h1>Ohio Watch</h1>
-  <div class="header-countdown" onclick="showTab('midterms');setBottomNav('midterms')" style="cursor:pointer" title="View 2026 Midterms">
+  <button class="header-countdown" onclick="showTab('midterms');setBottomNav('midterms')" title="View 2026 Midterms">
     <div class="countdown-lbl">2026 Midterms</div>
     <div class="countdown-val" id="midterm-days"><script>document.write(Math.ceil((new Date('2026-11-03')-new Date())/(864e5)))</script></div>
     <div class="countdown-sub">days remaining</div>
-  </div>
+  </button>
 </header>
 
 <div class="scoreboard">
   <div class="sc-group">
-    <div class="sc sc-link" onclick="showTab('senate');setBottomNav('senate')" style="cursor:pointer" title="View Senate tab"><div class="lbl">Senate</div><div class="sc-split"><span class="val rep">24R</span><span class="val dem">9D</span></div></div>
-    <div class="sc sc-link" onclick="showTab('house');setBottomNav('house')" style="cursor:pointer" title="View House tab"><div class="lbl">House</div><div class="sc-split"><span class="val rep">65R</span><span class="val dem">34D</span></div></div>
+    <button class="sc sc-link" onclick="showTab('senate');setBottomNav('senate')" title="View Senate tab"><div class="lbl">Senate</div><div class="sc-split"><span class="val rep">24R</span><span class="val dem">9D</span></div></button>
+    <button class="sc sc-link" onclick="showTab('house');setBottomNav('house')" title="View House tab"><div class="lbl">House</div><div class="sc-split"><span class="val rep">65R</span><span class="val dem">34D</span></div></button>
   </div>
   <div class="sc-group">
     <a class="sc sc-link" href="https://governor.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Gov</div><div class="val neu">DeWine</div></a>
@@ -1953,10 +1953,14 @@ async function switchChamber(chamber) {
   loading.style.display = 'none';
 }
 
-// Initial load
-(async () => {
+// Initial load — defer until map container is visible
+let mapInitialized = false;
+async function initMap() {
+  if (mapInitialized) return;
+  mapInitialized = true;
   const loading = document.getElementById('loading');
   loading.textContent = 'Loading Senate district boundaries…';
+  map.invalidateSize();
   try {
     await loadSenate();
     loading.style.display = 'none';
@@ -1964,7 +1968,13 @@ async function switchChamber(chamber) {
     loading.textContent = '⚠ Could not load boundaries. Check network.';
     setTimeout(() => loading.style.display = 'none', 5000);
   }
-})();
+}
+
+// On desktop, map tab is active on load — init immediately
+// On mobile, map is hidden on load — init when user navigates to map tab
+if (!isMobile()) {
+  setTimeout(initMap, 100);
+}
 
 // ═══ GLOBAL SEARCH ═══════════════════════════════════════════════════════════
 function doGlobalSearch(q) {
@@ -2168,7 +2178,7 @@ function showTab(name) {
     const el = document.getElementById(`pane-${p}`);
     if (el) el.style.display = (name===p) ? 'flex' : 'none';
   });
-  if (name==='map') setTimeout(()=>{ if (map) map.invalidateSize(); },50);
+  if (name==='map') setTimeout(()=>{ if (map) { map.invalidateSize(); initMap(); } },100);
   if (name==='lookup') setTimeout(()=>document.getElementById('lookup-addr').focus(),100);
   if (name==='officials') renderOfficials();
   if (name==='senate' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderSenateCards(),50);
