@@ -1393,6 +1393,9 @@ tr:hover td { background: var(--surface2); }
 </div>
 
 <script>
+// ═══ UTILITIES (must be first) ════════════════════════════════════════════════
+function isMobile() { return window.innerWidth <= 768; }
+
 // ═══ DATA ════════════════════════════════════════════════════════════════════
 const SENATE = [
   [1,"Rob McColley","R","NW Ohio — Henry, Defiance, Fulton, Williams, Paulding, Putnam, Van Wert"],
@@ -2169,7 +2172,6 @@ function sortTbl(tbl, col) {
 }
 
 // ═══ TABS ════════════════════════════════════════════════════════════════════
-function isMobile() { return window.innerWidth <= 768; }
 function showTab(name) {
   const tabs = ['map','senate','house','legislature','officials','resources','lookup','federal','midterms'];
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', tabs[i]===name));
