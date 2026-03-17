@@ -565,6 +565,14 @@ tr:hover td { background: var(--surface2); }
     <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     Find My Reps
   </div>
+  <div class="tab" onclick="showTab('federal')">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M4 21V10M20 21V10M12 3L2 10h20L12 3z"/><rect x="9" y="14" width="6" height="7"/></svg>
+    Federal
+  </div>
+  <div class="tab" onclick="showTab('midterms')" style="color:#e08040">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    2026 Midterms
+  </div>
 </div>
 
 <!-- BOTTOM NAVIGATION (mobile only) -->
@@ -2165,6 +2173,7 @@ function showTab(name) {
   if (name==='officials') renderOfficials();
   if (name==='senate' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderSenateCards(),50);
   if (name==='house' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderHouseCards(),50);
+  if (name==='federal') renderFederalHouse();
 }
 
 // ═══ FIND MY REPS ════════════════════════════════════════════════════════════
