@@ -57,6 +57,122 @@
 .race-links { display: flex; gap: 8px; flex-wrap: wrap; }
 .race-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
 .race-link:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── CANDIDATE MODAL ──────────────────────────────────────────────────────── */
+.candidate-modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.78); z-index: 2000;
+  align-items: center; justify-content: center; padding: 20px;
+}
+.candidate-modal-overlay.open { display: flex; }
+.candidate-modal {
+  background: var(--surface); border: 1px solid var(--accent);
+  border-radius: 12px; max-width: 520px; width: 100%;
+  max-height: 88vh; overflow-y: auto; position: relative;
+  box-shadow: 0 0 48px rgba(240,192,64,0.18);
+  animation: modalIn 0.18s ease;
+}
+@keyframes modalIn {
+  from { opacity:0; transform: translateY(14px) scale(0.97); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+.modal-header {
+  padding: 20px 48px 14px 20px; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: var(--surface); z-index: 1;
+}
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--muted); font-size: 1rem; cursor: pointer;
+  padding: 4px 9px; border-radius: 4px; transition: all 0.15s; line-height: 1.4;
+}
+.modal-close:hover { border-color: var(--accent); color: var(--accent); }
+.modal-race-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--muted); margin-bottom: 4px;
+}
+.modal-name {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem;
+  letter-spacing: 1px; color: var(--text); line-height: 1.1; margin-bottom: 6px;
+}
+.modal-tagline {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
+  color: var(--muted); margin-bottom: 8px; line-height: 1.5;
+}
+.modal-party-badge {
+  display: inline-block; padding: 2px 10px; border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600;
+}
+.modal-party-badge.R { background: #3d1010; color: #ff9090; }
+.modal-party-badge.D { background: #0d1e35; color: #90bbff; }
+.modal-body { padding: 16px 20px 20px; }
+.modal-section { margin-bottom: 16px; }
+.modal-section-hdr {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
+  margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border);
+}
+.modal-fact {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem;
+  color: var(--muted); padding: 5px 0; line-height: 1.55;
+  border-bottom: 1px solid #191919;
+}
+.modal-fact:last-child { border-bottom: none; }
+.modal-fact::before { content: '→ '; color: var(--accent); }
+.modal-poll-bar {
+  margin: 10px 0 0; padding: 8px 10px; background: #1a1400;
+  border: 1px solid var(--border); border-left: 3px solid var(--accent);
+  border-radius: 4px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem; color: var(--accent); line-height: 1.6;
+}
+.modal-links {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
+}
+.modal-link {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem;
+  padding: 5px 12px; border: 1px solid var(--border); border-radius: 4px;
+  color: var(--muted); text-decoration: none; transition: all 0.15s;
+}
+.modal-link:hover { border-color: var(--accent); color: var(--accent); }
+.modal-link.primary { border-color: var(--accent); color: var(--accent); }
+.race-card { cursor: pointer; transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s; }
+.race-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 18px rgba(240,192,64,0.12); }
+.race-card-hint { font-family: 'IBM Plex Mono', monospace; font-size: 0.57rem; color: #4a4a4a; margin-top: 6px; }
+
+/* ── PARTY LEADERSHIP BAR ───────────────────────────────────────────────── */
+.leadership-bar {
+  display: flex; gap: 0; flex-wrap: wrap;
+  margin-bottom: 14px;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.leader-card {
+  flex: 1; min-width: 200px;
+  padding: 10px 14px;
+  background: var(--surface2);
+  border-right: 1px solid var(--border);
+}
+.leader-card:last-child { border-right: none; }
+.leader-role {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--muted); margin-bottom: 3px;
+}
+.leader-name {
+  font-size: 0.88rem; font-weight: 600; margin-bottom: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.leader-district {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem;
+  color: var(--muted);
+}
+.leader-card.R { border-top: 2px solid var(--rep); }
+.leader-card.D { border-top: 2px solid var(--dem); }
+@media (max-width: 768px) {
+  .leader-card { min-width: 140px; padding: 8px 10px; }
+  .leader-name { font-size: 0.78rem; }
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
@@ -667,6 +783,35 @@ tr:hover td { background: var(--surface2); }
       <button class="fbtn dem" id="s-dem" onclick="setFilter('s','D')">DEMOCRAT</button>
       <span class="cnt" id="s-cnt"></span>
     </div>
+
+    <!-- Senate Party Leadership -->
+    <div class="leadership-bar">
+      <div class="leader-card R">
+        <div class="leader-role">Senate President</div>
+        <div class="leader-name">Rob McColley</div>
+        <div class="leader-district">SD-1 · NW Ohio</div>
+      </div>
+      <div class="leader-card R">
+        <div class="leader-role">President Pro Tempore</div>
+        <div class="leader-name">Bill Reineke</div>
+        <div class="leader-district">SD-26 · N Ohio</div>
+      </div>
+      <div class="leader-card R">
+        <div class="leader-role">Majority Floor Leader</div>
+        <div class="leader-name">Theresa Gavarone</div>
+        <div class="leader-district">SD-2 · NW Ohio</div>
+      </div>
+      <div class="leader-card R">
+        <div class="leader-role">Majority Whip</div>
+        <div class="leader-name">George Lang</div>
+        <div class="leader-district">SD-4 · SW Ohio</div>
+      </div>
+      <div class="leader-card D">
+        <div class="leader-role">Minority Leader</div>
+        <div class="leader-name">Nickie Antonio</div>
+        <div class="leader-district">SD-23 · NE Ohio</div>
+      </div>
+    </div>
     <div class="tbl-scroll">
     <table><thead><tr>
       <th onclick="sortTbl('s',0)">Dist</th>
@@ -689,6 +834,40 @@ tr:hover td { background: var(--surface2); }
       <button class="fbtn rep" id="h-rep" onclick="setFilter('h','R')">REPUBLICAN</button>
       <button class="fbtn dem" id="h-dem" onclick="setFilter('h','D')">DEMOCRAT</button>
       <span class="cnt" id="h-cnt"></span>
+    </div>
+
+    <!-- House Party Leadership -->
+    <div class="leadership-bar">
+      <div class="leader-card R">
+        <div class="leader-role">Speaker of the House</div>
+        <div class="leader-name">Matt Huffman</div>
+        <div class="leader-district">HD-78 · Lima/Allen Co.</div>
+      </div>
+      <div class="leader-card R">
+        <div class="leader-role">Speaker Pro Tempore</div>
+        <div class="leader-name">Monica Robb Blasdel</div>
+        <div class="leader-district">HD-79</div>
+      </div>
+      <div class="leader-card R">
+        <div class="leader-role">Majority Floor Leader</div>
+        <div class="leader-name">Gayle Manning</div>
+        <div class="leader-district">HD-52 · Lorain/Cuyahoga</div>
+      </div>
+      <div class="leader-card R">
+        <div class="leader-role">Majority Whip</div>
+        <div class="leader-name">Ty Moore</div>
+        <div class="leader-district">HD-95 · Warren Co.</div>
+      </div>
+      <div class="leader-card D">
+        <div class="leader-role">Minority Leader</div>
+        <div class="leader-name">Allison Russo</div>
+        <div class="leader-district">HD-7 · Columbus</div>
+      </div>
+      <div class="leader-card D">
+        <div class="leader-role">Minority Whip</div>
+        <div class="leader-name">Beryl Brown Piccolantonio</div>
+        <div class="leader-district">HD-4 · Columbus</div>
+      </div>
     </div>
     <div class="tbl-scroll">
     <table><thead><tr>
@@ -788,41 +967,41 @@ tr:hover td { background: var(--surface2); }
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div>
           <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican Primary</div>
-          <div class="race-card">
+          <div class="race-card" onclick="openCandidateModal('Vivek Ramaswamy')" title="Click for quick facts">
             <div class="race-candidate-name">Vivek Ramaswamy</div>
             <div class="race-candidate-note">FRONTRUNNER · Former biotech CEO, 2024 presidential candidate · Running mate: Rob McColley (Senate Pres)</div>
-            <div class="race-poll">Polls: +10 over Acton (Aug 2025) → dead heat Dec 2025</div>
-            <div class="race-links"><a href="https://www.vivek2026.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+            <div class="race-poll">RCP avg: Ramaswamy +1 (47.5% vs 46.5%) · Emerson Dec 2025: Acton 46, Vivek 45 · EMC Feb 2026 (D-commissioned): Acton +10</div>
+            <div class="race-links"><a href="https://vivekforohio.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('Dave Yost')" title="Click for quick facts">
             <div class="race-candidate-name">Dave Yost</div>
             <div class="race-candidate-note">Current AG · Exploring run · Strong name recognition statewide</div>
             <div class="race-links"><a href="https://ballotpedia.org/Dave_Yost" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a></div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('Jim Tressel')" title="Click for quick facts">
             <div class="race-candidate-name">Jim Tressel</div>
             <div class="race-candidate-note">Current Lt. Governor · Former OSU football coach · High public approval</div>
             <div class="race-links"><a href="https://ballotpedia.org/Jim_Tressel" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a></div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('Frank LaRose')" title="Click for quick facts">
             <div class="race-candidate-name">Frank LaRose</div>
             <div class="race-candidate-note">Current SoS · Running for Auditor instead (endorsed Ramaswamy)</div>
           </div>
         </div>
         <div>
           <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Primary</div>
-          <div class="race-card">
+          <div class="race-card" onclick="openCandidateModal('Amy Acton')" title="Click for quick facts">
             <div class="race-candidate-name">Amy Acton</div>
             <div class="race-candidate-note">FRONTRUNNER · Former Ohio Health Director during COVID · Nationally recognized · Running mate: David Pepper</div>
-            <div class="race-poll">Polls: Ramaswamy +1 (dead heat, Dec 2025 Emerson)</div>
-            <div class="race-links"><a href="https://www.amyacton.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+            <div class="race-poll">RCP avg: Ramaswamy +1 (47.5% vs 46.5%) · Emerson Dec 2025: Acton 46, Vivek 45 · EMC Feb 2026 (D-commissioned): Acton +10</div>
+            <div class="race-links"><a href="https://actonforgovernor.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('Tim Ryan')" title="Click for quick facts">
             <div class="race-candidate-name">Tim Ryan</div>
             <div class="race-candidate-note">Former US Rep (OH-13), 2022 Senate candidate · Has explored but not declared</div>
             <div class="race-links"><a href="https://ballotpedia.org/Tim_Ryan" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a></div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('Nan Whaley')" title="Click for quick facts">
             <div class="race-candidate-name">Nan Whaley</div>
             <div class="race-candidate-note">Former Dayton mayor · 2022 D nominee for governor · Lost to DeWine by 25pts</div>
           </div>
@@ -836,35 +1015,35 @@ tr:hover td { background: var(--surface2); }
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div>
           <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican Primary</div>
-          <div class="race-card">
+          <div class="race-card" onclick="openCandidateModal('Jon Husted')" title="Click for quick facts">
             <div class="race-candidate-name">Jon Husted</div>
             <div class="race-candidate-note">INCUMBENT (appointed) · Running for full term · Former Lt. Governor</div>
-            <div class="race-poll">Polls: Husted +1 over Brown (48.5% vs 47.5%, RCP avg Mar 2026)</div>
-            <div class="race-links"><a href="https://www.hustedforohio.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+            <div class="race-poll">RCP avg: Husted +1 (48.5% vs 47.5%) · OnMessage Mar 3-8: Brown +2 (47-45) · Emerson Dec 2025: Husted 49, Brown 46</div>
+            <div class="race-links"><a href="https://www.jonhustedforsenate.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('Matt Dolan')" title="Click for quick facts">
             <div class="race-candidate-name">Matt Dolan</div>
             <div class="race-candidate-note">Former state senator · 2022 & 2024 Senate primary candidate · May primary challenge Husted</div>
           </div>
         </div>
         <div>
           <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Primary</div>
-          <div class="race-card">
+          <div class="race-card" onclick="openCandidateModal('Sherrod Brown')" title="Click for quick facts">
             <div class="race-candidate-name">Sherrod Brown</div>
             <div class="race-candidate-note">FRONTRUNNER · Former 3-term US Senator (2007–2025) · Lost to Moreno in 2024 by ~3pts · Endorsed by IUPAT</div>
-            <div class="race-poll">Polls: Brown 47.5% vs Husted 48.5% — dead heat</div>
-            <div class="race-links"><a href="https://sherrrodbrown.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+            <div class="race-poll">RCP avg: Husted +1 (48.5% vs 47.5%) · OnMessage Mar 3-8: Brown +2 (47-45) · Emerson Dec 2025: Husted 49, Brown 46</div>
+            <div class="race-links"><a href="https://www.sherrodbrown.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('ryan_sen')" title="Click for quick facts">
             <div class="race-candidate-name">Tim Ryan</div>
             <div class="race-candidate-note">Former US Rep · 2022 Senate candidate (lost to Vance) · Also exploring governor race</div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('Emilia Sykes')" title="Click for quick facts">
             <div class="race-candidate-name">Emilia Sykes</div>
             <div class="race-candidate-note">Current US Rep OH-13 · Confirmed candidate · Former Ohio House Minority Leader</div>
             <div class="race-links"><a href="https://emiliasykes.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
-          <div class="race-card" style="margin-top:8px">
+          <div class="race-card" style="margin-top:8px" onclick="openCandidateModal('Casey Weinstein')" title="Click for quick facts">
             <div class="race-candidate-name">Casey Weinstein</div>
             <div class="race-candidate-note">State Senator SD-28 · Declared candidate · Akron-area Democrat</div>
           </div>
@@ -918,198 +1097,67 @@ tr:hover td { background: var(--surface2); }
       <div class="leg-section-title">Ohio State Legislature</div>
       <div class="leg-section-sub">136th General Assembly · 2025–2026 session · Links open official Ohio Legislature records</div>
 
-      <div style="margin-bottom:24px;">
-        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">📅 Session Calendar</div>
-        <div class="leg-grid">
-          <a class="leg-card" href="https://www.ohiosenate.gov/session/calendar" target="_blank" rel="noopener">
-            <div class="leg-card-label">Ohio Senate</div>
-            <div class="leg-card-title">Senate Session Schedule</div>
-            <div class="leg-card-desc">Upcoming floor sessions, committee hearings, and recess periods for the Ohio Senate</div>
-            <span class="leg-card-tag calendar">Calendar</span>
-          </a>
-          <a class="leg-card" href="https://www.ohiohouse.gov/session/calendar" target="_blank" rel="noopener">
-            <div class="leg-card-label">Ohio House</div>
-            <div class="leg-card-title">House Session Schedule</div>
-            <div class="leg-card-desc">Upcoming floor sessions, committee hearings, and recess periods for the Ohio House</div>
-            <span class="leg-card-tag calendar">Calendar</span>
-          </a>
-          <a class="leg-card" href="https://www.legislature.ohio.gov/committees/senate-committees" target="_blank" rel="noopener">
-            <div class="leg-card-label">Senate Committees</div>
-            <div class="leg-card-title">Senate Committee Directory</div>
-            <div class="leg-card-desc">All standing committees, membership rosters, and upcoming hearing schedules</div>
-            <span class="leg-card-tag calendar">Calendar</span>
-          </a>
-          <a class="leg-card" href="https://www.legislature.ohio.gov/committees/house-committees" target="_blank" rel="noopener">
-            <div class="leg-card-label">House Committees</div>
-            <div class="leg-card-title">House Committee Directory</div>
-            <div class="leg-card-desc">All standing committees, membership rosters, and upcoming hearing schedules</div>
-            <span class="leg-card-tag calendar">Calendar</span>
-          </a>
-        </div>
-      </div>
-
-      <div style="margin-bottom:24px;">
-        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🔄 Bills Currently in Committee</div>
-        <div class="leg-grid">
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode%5B%5D=SB" target="_blank" rel="noopener">
-            <div class="leg-card-label">Ohio Senate Bills</div>
-            <div class="leg-card-title">Senate Bills in Committee</div>
-            <div class="leg-card-desc">Live search — all active Senate bills currently assigned to committee in the 136th GA</div>
-            <span class="leg-card-tag in-committee">In Committee</span>
-          </a>
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode%5B%5D=HB" target="_blank" rel="noopener">
-            <div class="leg-card-label">Ohio House Bills</div>
-            <div class="leg-card-title">House Bills in Committee</div>
-            <div class="leg-card-desc">Live search — all active House bills currently assigned to committee in the 136th GA</div>
-            <span class="leg-card-tag in-committee">In Committee</span>
-          </a>
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=in-committee&legislationTypeCode%5B%5D=SB&committeeCode=SFIN" target="_blank" rel="noopener">
-            <div class="leg-card-label">Finance Committee</div>
-            <div class="leg-card-title">Senate Finance — Active Bills</div>
-            <div class="leg-card-desc">Bills in the Senate Finance Committee — controls the state budget and tax legislation</div>
-            <span class="leg-card-tag in-committee">In Committee</span>
-          </a>
-          <a class="leg-card" href="https://www.legislature.ohio.gov/legislation/search" target="_blank" rel="noopener">
-            <div class="leg-card-label">LSC Fiscal Notes</div>
-            <div class="leg-card-title">Bill Analyses &amp; Fiscal Notes</div>
-            <div class="leg-card-desc">Search any bill — each entry includes the LSC nonpartisan fiscal note and bill analysis. Essential for calling out budget hypocrisy.</div>
-            <span class="leg-card-tag in-committee">In Committee</span>
-          </a>
-        </div>
-      </div>
-
-      <div style="margin-bottom:24px;">
-        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🗳️ Recent Floor Votes</div>
-        <div class="leg-grid">
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=passed-one-chamber" target="_blank" rel="noopener">
-            <div class="leg-card-label">Floor Votes</div>
-            <div class="leg-card-title">Bills That Passed One Chamber</div>
-            <div class="leg-card-desc">Bills that passed the Senate or House — includes vote tallies and roll call records</div>
-            <span class="leg-card-tag vote">Floor Vote</span>
-          </a>
-          <a class="leg-card" href="https://www.legislature.ohio.gov/schedules/session-schedule" target="_blank" rel="noopener">
-            <div class="leg-card-label">Session Schedule</div>
-            <div class="leg-card-title">Ohio Legislature Session Calendar</div>
-            <div class="leg-card-desc">Official combined session schedule for Senate and House — floor dates, committee weeks, and recess periods</div>
-            <span class="leg-card-tag vote">Floor Vote</span>
-          </a>
-          <a class="leg-card" href="https://www.ohiohouse.gov/session/session-dates" target="_blank" rel="noopener">
-            <div class="leg-card-label">House Session Dates</div>
-            <div class="leg-card-title">Ohio House Session Dates &amp; Journals</div>
-            <div class="leg-card-desc">Official House session date calendar and links to session journals with roll call votes and floor minutes</div>
-            <span class="leg-card-tag vote">Floor Vote</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">✅ Passed &amp; Signed into Law</div>
-        <div class="leg-grid">
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=passed-both-chambers" target="_blank" rel="noopener">
-            <div class="leg-card-label">136th GA</div>
-            <div class="leg-card-title">Bills Passed Both Chambers</div>
-            <div class="leg-card-desc">All legislation that cleared both Senate and House — awaiting or received Governor signature</div>
-            <span class="leg-card-tag passed">Passed</span>
-          </a>
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=signed-by-governor" target="_blank" rel="noopener">
-            <div class="leg-card-label">136th GA — Signed Law</div>
-            <div class="leg-card-title">Signed by Governor DeWine</div>
-            <div class="leg-card-desc">All bills signed into law this session — the full record of what Republicans have actually done</div>
-            <span class="leg-card-tag passed">Signed</span>
-          </a>
-          <a class="leg-card" href="https://codes.ohio.gov/ohio-revised-code" target="_blank" rel="noopener">
-            <div class="leg-card-label">Ohio Law</div>
-            <div class="leg-card-title">Ohio Revised Code</div>
-            <div class="leg-card-desc">Permanent statutory law — searchable by section with amendment history per provision</div>
-            <span class="leg-card-tag passed">Law</span>
-          </a>
-          <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssemblyNumber=136&legislationStatus=vetoed-by-governor" target="_blank" rel="noopener">
-            <div class="leg-card-label">136th GA — Vetoed</div>
-            <div class="leg-card-title">Vetoed by Governor</div>
-            <div class="leg-card-desc">Bills the legislature passed that DeWine vetoed — reveals fault lines within the Republican coalition</div>
-            <span class="leg-card-tag vote">Vetoed</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <hr class="leg-divider">
-
-    <!-- FEDERAL DELEGATION -->
-    <div class="leg-section">
-      <div class="leg-section-title">Ohio Federal Delegation <span class="leg-federal-badge">Federal</span></div>
-      <div class="leg-section-sub">Ohio's two U.S. Senators and 15 House members in the 119th Congress (2025–2026) · Republican-controlled House and Senate · Links open congress.gov records</div>
-
-      <div style="margin-bottom:24px;">
-        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🏛 Ohio U.S. Senators</div>
-        <div class="leg-grid">
-          <a class="leg-card" href="https://www.congress.gov/member/bernie-moreno/M001224" target="_blank" rel="noopener">
-            <div class="leg-card-label">U.S. Senator · Republican</div>
-            <div class="leg-card-title">Bernie Moreno</div>
-            <div class="leg-card-desc">Elected Nov 2024. Car dealership businessman. Trump-endorsed. Defeated incumbent Sherrod Brown. Full MAGA alignment — immigration, tariffs, anti-DEI.</div>
-            <span class="leg-card-tag in-committee">119th Congress</span>
-          </a>
-          <a class="leg-card" href="https://www.congress.gov/member/jon-husted/H001100" target="_blank" rel="noopener">
-            <div class="leg-card-label">U.S. Senator · Republican</div>
-            <div class="leg-card-title">Jon Husted</div>
-            <div class="leg-card-desc">Appointed Jan 2025 after Trump nominated former Gov. Mike DeWine's Lt. Gov. to fill vacancy. Former Ohio SoS and Lt. Governor. Innovation/tech focus.</div>
-            <span class="leg-card-tag in-committee">119th Congress</span>
-          </a>
-        </div>
-      </div>
-
-      <div style="margin-bottom:24px;">
-        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">📋 Ohio House Delegation</div>
-        <div class="leg-grid">
-          <a class="leg-card" href="https://www.congress.gov/members?q=%7B%22congress%22%3A%22119%22%2C%22state%22%3A%22Ohio%22%2C%22chamber%22%3A%22house%22%7D" target="_blank" rel="noopener">
-            <div class="leg-card-label">All 15 Ohio House Members</div>
-            <div class="leg-card-title">Ohio U.S. House Delegation</div>
-            <div class="leg-card-desc">Full list of Ohio's 15 House members — 10 Republican, 5 Democrat. Click any name for voting record, sponsored bills, and committee assignments.</div>
-            <span class="leg-card-tag in-committee">119th Congress</span>
-          </a>
-          <a class="leg-card" href="https://www.congress.gov/member/marcy-kaptur/K000009" target="_blank" rel="noopener">
-            <div class="leg-card-label">OH-9 · Democrat</div>
-            <div class="leg-card-title">Marcy Kaptur</div>
-            <div class="leg-card-desc">Longest-serving woman in Congress. Toledo/Northwest Ohio. Appropriations Committee. Labor hawk, Ukraine aid supporter, progressive on domestic spending.</div>
-            <span class="leg-card-tag passed">Senior Member</span>
-          </a>
-          <a class="leg-card" href="https://www.congress.gov/member/jim-jordan/J000289" target="_blank" rel="noopener">
-            <div class="leg-card-label">OH-4 · Republican</div>
-            <div class="leg-card-title">Jim Jordan</div>
-            <div class="leg-card-desc">House Judiciary Committee Chair. North-central Ohio. Freedom Caucus founder. Central figure in MAGA legislative strategy and oversight investigations.</div>
-            <span class="leg-card-tag vote">Committee Chair</span>
-          </a>
-          <a class="leg-card" href="https://www.congress.gov/member/greg-landsman/L000601" target="_blank" rel="noopener">
-            <div class="leg-card-label">OH-1 · Democrat</div>
-            <div class="leg-card-title">Greg Landsman</div>
-            <div class="leg-card-desc">Cincinnati. Flipped seat in 2022. Former Cincinnati City Councilmember. Education, healthcare, and working families focus. Competitive district.</div>
-            <span class="leg-card-tag passed">Swing District</span>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <div class="leg-section-title" style="font-size:1rem;border-bottom:1px solid var(--border);margin-bottom:12px;">🗳️ Federal Votes &amp; Activity</div>
-        <div class="leg-grid">
-          <a class="leg-card" href="https://www.congress.gov/roll-call-votes?q=%7B%22congress%22%3A%22119%22%7D" target="_blank" rel="noopener">
-            <div class="leg-card-label">119th Congress</div>
-            <div class="leg-card-title">Federal Roll Call Votes</div>
-            <div class="leg-card-desc">All House and Senate roll call votes — searchable by bill, date, and member. Cross-reference Ohio delegation votes.</div>
-            <span class="leg-card-tag vote">Roll Call</span>
-          </a>
-          <a class="leg-card" href="https://www.congress.gov/legislation?q=%7B%22congress%22%3A%22119%22%2C%22search%22%3A%22Ohio%22%7D" target="_blank" rel="noopener">
-            <div class="leg-card-label">Federal Bills</div>
-            <div class="leg-card-title">Federal Legislation Mentioning Ohio</div>
-            <div class="leg-card-desc">Search congress.gov for bills referencing Ohio — useful for tracking federal policy with direct state impact</div>
-            <span class="leg-card-tag in-committee">Search</span>
-          </a>
-          <a class="leg-card" href="https://projects.propublica.org/represent/#states/OH" target="_blank" rel="noopener">
-            <div class="leg-card-label">ProPublica Congress API</div>
-            <div class="leg-card-title">Ohio Delegation Voting Records</div>
-            <div class="leg-card-desc">ProPublica Represent — full voting records, missed votes, party-line percentages, and bill sponsorship for every Ohio federal member</div>
-            <span class="leg-card-tag vote">Voting Record</span>
-          </a>
-        </div>
+      <div class="leg-grid">
+        <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssembly=136" target="_blank" rel="noopener">
+          <div class="leg-card-label">136th GA · All Types</div>
+          <div class="leg-card-title">Legislation Search</div>
+          <div class="leg-card-desc">Search all bills, resolutions, and legislation from the current General Assembly session</div>
+          <span class="leg-card-tag in-committee">Search</span>
+        </a>
+        <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssembly=136&start=1&pageSize=25&sort=Number&extendedLegislationTypes=House%20Bill" target="_blank" rel="noopener">
+          <div class="leg-card-label">136th GA · House</div>
+          <div class="leg-card-title">House Bills</div>
+          <div class="leg-card-desc">All House Bills introduced in the 136th General Assembly, sorted by bill number</div>
+          <span class="leg-card-tag in-committee">HB</span>
+        </a>
+        <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssembly=136&start=1&pageSize=25&sort=Number&extendedLegislationTypes=Senate%20Bill" target="_blank" rel="noopener">
+          <div class="leg-card-label">136th GA · Senate</div>
+          <div class="leg-card-title">Senate Bills</div>
+          <div class="leg-card-desc">All Senate Bills introduced in the 136th General Assembly, sorted by bill number</div>
+          <span class="leg-card-tag in-committee">SB</span>
+        </a>
+        <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssembly=136&start=1&pageSize=25&sort=Number&extendedLegislationTypes=House%20Resolution" target="_blank" rel="noopener">
+          <div class="leg-card-label">136th GA · House</div>
+          <div class="leg-card-title">House Resolutions</div>
+          <div class="leg-card-desc">All House Resolutions from the 136th GA — ceremonial, concurrent, and policy resolutions</div>
+          <span class="leg-card-tag calendar">HR</span>
+        </a>
+        <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssembly=136&start=1&pageSize=25&sort=Number&extendedLegislationTypes=Senate%20Resolution" target="_blank" rel="noopener">
+          <div class="leg-card-label">136th GA · Senate</div>
+          <div class="leg-card-title">Senate Resolutions</div>
+          <div class="leg-card-desc">All Senate Resolutions from the 136th GA — ceremonial, concurrent, and policy resolutions</div>
+          <span class="leg-card-tag calendar">SR</span>
+        </a>
+        <a class="leg-card" href="https://www.legislature.ohio.gov/schedules/session-schedule" target="_blank" rel="noopener">
+          <div class="leg-card-label">Session Schedule</div>
+          <div class="leg-card-title">Ohio Legislature Session Calendar</div>
+          <div class="leg-card-desc">Official combined session schedule — floor dates, committee weeks, and recess periods</div>
+          <span class="leg-card-tag calendar">Calendar</span>
+        </a>
+        <a class="leg-card" href="https://www.legislature.ohio.gov/committees/senate-committees" target="_blank" rel="noopener">
+          <div class="leg-card-label">Senate Committees</div>
+          <div class="leg-card-title">Senate Committee Directory</div>
+          <div class="leg-card-desc">All standing committees, membership rosters, and upcoming hearing schedules</div>
+          <span class="leg-card-tag calendar">Senate</span>
+        </a>
+        <a class="leg-card" href="https://www.legislature.ohio.gov/committees/house-committees" target="_blank" rel="noopener">
+          <div class="leg-card-label">House Committees</div>
+          <div class="leg-card-title">House Committee Directory</div>
+          <div class="leg-card-desc">All standing committees, membership rosters, and upcoming hearing schedules</div>
+          <span class="leg-card-tag calendar">House</span>
+        </a>
+        <a class="leg-card" href="https://www.lsc.ohio.gov" target="_blank" rel="noopener">
+          <div class="leg-card-label">Nonpartisan Research</div>
+          <div class="leg-card-title">LSC Fiscal Notes &amp; Bill Analyses</div>
+          <div class="leg-card-desc">Legislative Service Commission — nonpartisan fiscal notes and bill analyses for all Ohio legislation</div>
+          <span class="leg-card-tag passed">LSC</span>
+        </a>
+        <a class="leg-card" href="https://codes.ohio.gov/ohio-revised-code" target="_blank" rel="noopener">
+          <div class="leg-card-label">Ohio Law</div>
+          <div class="leg-card-title">Ohio Revised Code</div>
+          <div class="leg-card-desc">Permanent statutory law — searchable by section with amendment history per provision</div>
+          <span class="leg-card-tag passed">Law</span>
+        </a>
       </div>
     </div>
 
@@ -1124,6 +1172,71 @@ tr:hover td { background: var(--surface2); }
       <div style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--muted);line-height:1.7;">All officers elected statewide for 4-year terms. Current term: 2023–2027.</div>
     </div>
     <div class="officials-grid" id="officials-grid"></div>
+
+    <div style="margin-top:36px;max-width:1100px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--accent);letter-spacing:2px;margin-bottom:6px;">Federal Delegation</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:24px;">119th Congress · Ohio: 10R / 5D in House · 2R in Senate</div>
+
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
+      <div class="officials-grid" style="margin-bottom:28px;">
+        <div class="official-card">
+          <div class="official-card-top">
+            <div class="official-title">U.S. Senator (Class III)</div>
+            <div class="official-name">Jon Husted</div>
+            <span class="official-party R">Republican</span>
+            <div class="official-bio">Appointed Jan 2025 · Replacing JD Vance (elected VP) · Former Lt. Governor 2019–2025 · Running for full term Nov 2026</div>
+          </div>
+          <div class="official-card-body">
+            <div class="official-section"><div class="official-section-hdr">📋 Stated Priorities</div>
+              <div class="official-item">→ Economic development &amp; workforce</div>
+              <div class="official-item">→ Border security &amp; immigration enforcement</div>
+              <div class="official-item">→ Deregulation &amp; fiscal conservatism</div>
+              <div class="official-item">→ Anti-abortion legislation</div>
+            </div>
+            <div class="official-section"><div class="official-section-hdr">📌 Actual Record</div>
+              <div class="official-item">→ Voted for H.R. 1 — defense spending &amp; SNAP cuts</div>
+              <div class="official-item">→ Voted against Medicaid expansion provisions</div>
+              <div class="official-item">→ Endorsed Ramaswamy for governor while running for full Senate seat himself</div>
+              <div class="official-item">→ Supported Trump tariff agenda; voted against ACA subsidy extension</div>
+            </div>
+          </div>
+          <div class="official-links">
+            <a class="official-link primary" href="https://www.jonhustedforsenate.com/" target="_blank" rel="noopener">Campaign →</a>
+            <a class="official-link" href="https://www.husted.senate.gov" target="_blank" rel="noopener">Official Site →</a>
+            <a class="official-link" href="https://ballotpedia.org/Jon_Husted" target="_blank" rel="noopener">Ballotpedia →</a>
+          </div>
+        </div>
+        <div class="official-card">
+          <div class="official-card-top">
+            <div class="official-title">U.S. Senator (Class I)</div>
+            <div class="official-name">Bernie Moreno</div>
+            <span class="official-party R">Republican</span>
+            <div class="official-bio">Elected Nov 2024 · Defeated incumbent Sherrod Brown · Auto dealer, Trump-endorsed · Term ends 2031</div>
+          </div>
+          <div class="official-card-body">
+            <div class="official-section"><div class="official-section-hdr">📋 Stated Priorities</div>
+              <div class="official-item">→ Border security &amp; immigration enforcement</div>
+              <div class="official-item">→ Deregulation &amp; anti-ESG</div>
+              <div class="official-item">→ "America First" trade policy</div>
+              <div class="official-item">→ Anti-abortion legislation</div>
+            </div>
+            <div class="official-section"><div class="official-section-hdr">📌 Actual Record</div>
+              <div class="official-item">→ Voted for H.R. 1 — $150B+ defense increase, SNAP &amp; Medicaid cuts</div>
+              <div class="official-item">→ Voted to confirm all Trump cabinet nominees including Hegseth</div>
+              <div class="official-item">→ 100% Trump alignment on Senate votes through first session</div>
+            </div>
+          </div>
+          <div class="official-links">
+            <a class="official-link primary" href="https://www.moreno.senate.gov" target="_blank" rel="noopener">Official Site →</a>
+            <a class="official-link" href="https://ballotpedia.org/Bernie_Moreno" target="_blank" rel="noopener">Ballotpedia →</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House — Ohio Delegation (119th Congress)</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections — current districts below are 118th/119th Congress boundaries.</div>
+      <div id="federal-house-grid-officials" class="officials-grid"></div>
+    </div>
   </div>
 </div>
 
@@ -1132,7 +1245,6 @@ tr:hover td { background: var(--surface2); }
   <div class="resources-pane">
     <div class="resources-hero">
       <h2>Research &amp; Resources</h2>
-      <p>Curated links for tracking Ohio legislation, campaign finance, voting records, and political context. Primary sources first — always verify before publishing.</p>
     </div>
 
     <div class="resources-section">
@@ -2181,7 +2293,7 @@ function showTab(name) {
   });
   if (name==='map') setTimeout(()=>{ if (map) { map.invalidateSize(); initMap(); } },100);
   if (name==='lookup') setTimeout(()=>document.getElementById('lookup-addr').focus(),100);
-  if (name==='officials') renderOfficials();
+  if (name==='officials') { renderOfficials(); renderFederalHouse(); }
   if (name==='senate' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderSenateCards(),50);
   if (name==='house' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderHouseCards(),50);
   if (name==='federal') renderFederalHouse();
@@ -3123,13 +3235,14 @@ const OH_FEDERAL_HOUSE = [
 ];
 
 function renderFederalHouse() {
-  const grid = document.getElementById('federal-house-grid');
-  if (!grid || grid.dataset.rendered) return;
-  grid.dataset.rendered = '1';
-  grid.innerHTML = OH_FEDERAL_HOUSE.map(m => {
-    const partyFull = m.party === 'D' ? 'Democrat' : 'Republican';
-    const slug = m.name.toLowerCase().replace(/[^a-z0-9\s]/g,'').trim().replace(/\s+/g,'-');
-    return `<div class="official-card">
+  ['federal-house-grid', 'federal-house-grid-officials'].forEach(gridId => {
+    const grid = document.getElementById(gridId);
+    if (!grid || grid.dataset.rendered) return;
+    grid.dataset.rendered = '1';
+    grid.innerHTML = OH_FEDERAL_HOUSE.map(m => {
+      const partyFull = m.party === 'D' ? 'Democrat' : 'Republican';
+      const slug = m.name.toLowerCase().replace(/[^a-z0-9\s]/g,'').trim().replace(/\s+/g,'-');
+      return `<div class="official-card">
       <div class="official-card-top">
         <div class="official-title">OH-${m.dist} · ${m.region}</div>
         <div class="official-name">${m.name}</div>
@@ -3152,8 +3265,333 @@ function renderFederalHouse() {
         <a class="official-link" href="https://www.transparencyusa.org/oh/candidate/${slug}" target="_blank" rel="noopener">Donors →</a>
       </div>
     </div>`;
-  }).join('');
+    }).join('');
+  });
 }
+
+// ═══ CANDIDATE MODAL ════════════════════════════════════════════════════════
+const CANDIDATE_DATA = {
+  acton: {
+    name: 'Amy Acton', party: 'D',
+    race: 'Governor · Democratic Primary Frontrunner',
+    tagline: 'Physician · Former Ohio Health Director · Youngstown native',
+    facts: [
+      'Former Director, Ohio Dept of Health under Gov. DeWine (2019–2020)',
+      'Led Ohio COVID-19 response — DeWine made final policy calls but Acton was public face',
+      'MD from Northeast Ohio Medical University; practiced in underserved Youngstown communities',
+      'Running mate: David Pepper (former Ohio Democratic Party Chair)',
+      'Has not held elected office — positioning as outsider vs. career politicians',
+      'Key strength: women voters (+14 net fav), independents (+21 net fav, OFT/Hart poll)',
+      'Key vulnerability: 36% of Ohio voters had never heard of her as of Dec 2025 vs 18% for Ramaswamy',
+      'Democrats have not won an Ohio governor race since Ted Strickland in 2006',
+      'Ramaswamy attacking her over COVID school closures — ignores DeWine ordered them'
+    ],
+    poll: 'RCP avg: Ramaswamy +1.0 (47.5% vs 46.5%) · Emerson Dec 2025: Acton 46, Vivek 45 · EMC Feb 2026 (D-commissioned): Acton +10 (53-43)',
+    links: [
+      { label: 'Campaign Site', url: 'https://actonforgovernor.com/', primary: true },
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Amy_Acton' }
+    ]
+  },
+  ramaswamy: {
+    name: 'Vivek Ramaswamy', party: 'R',
+    race: 'Governor · Republican Primary Frontrunner',
+    tagline: 'Biotech CEO · 2024 Presidential candidate · Trump-endorsed',
+    facts: [
+      'Founded Roivant Sciences (biotech) 2014; stepped back 2023 after selling stake',
+      'Dropped 2024 presidential primary and endorsed Trump; briefly co-led DOGE',
+      'Running mate: Rob McColley (Ohio Senate President, SD-1)',
+      'Signature policy: eliminate Ohio personal income tax (~$8-10B annual revenue)',
+      'Innovation Ohio analysis: plan creates ~$10B budget hole — requires 20% property tax hike or 65% sales tax increase',
+      'Endorsed by DeWine, Husted, LaRose, and Sprague',
+      'Launched $10M TV ad blitz in March 2026 — first major media buy of campaign',
+      'Drawing only 65% of Republicans in Feb 2026 EMC poll — consolidation problem',
+      'Net favorability: +8 (Emerson Dec 2025) vs Acton +14 among Ohio voters'
+    ],
+    poll: 'RCP avg: Ramaswamy +1.0 (47.5% vs 46.5%) · Emerson Dec 2025: Vivek 45, Acton 46 · EMC Feb 2026 (D-commissioned): Vivek 43',
+    links: [
+      { label: 'Campaign Site', url: 'https://vivekforohio.com/', primary: true },
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Vivek_Ramaswamy' }
+    ]
+  },
+  yost: {
+    name: 'Dave Yost', party: 'R',
+    race: 'Governor · Republican Primary (exploring)',
+    tagline: 'Ohio Attorney General · Strong name recognition statewide',
+    facts: [
+      'Current Ohio AG since Jan 2019; former Ohio Auditor 2011–2018',
+      'Led $26 billion national opioid settlement negotiations (2021)',
+      'Filed dozens of lawsuits against Biden admin (vaccine mandates, Title IX, student debt)',
+      'Joined Texas Supreme Court suit challenging 2020 election results',
+      'Has not formally declared — still "exploring" as of March 2026',
+      'Considered more traditional conservative than Ramaswamy',
+      'Would face an uphill primary against Ramaswamy who has near-full establishment backing',
+      'ECOT charter school fraud recovery: $80M+ under his oversight as Auditor'
+    ],
+    poll: 'No head-to-head general election polling yet — exploratory phase only',
+    links: [
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Dave_Yost', primary: true }
+    ]
+  },
+  tressel: {
+    name: 'Jim Tressel', party: 'R',
+    race: 'Governor · Republican Primary (potential)',
+    tagline: 'Lt. Governor · Former OSU Football Coach · High statewide approval',
+    facts: [
+      'Current Ohio Lt. Governor (2025–present) under Gov. DeWine',
+      'Former Ohio State head football coach 2001–2010 — won 2002 BCS national championship',
+      'Resigned from OSU in 2010 amid NCAA violations (player benefits/tattoo scandal)',
+      'Later served as president of Youngstown State University 2014–2023',
+      'Has high public approval statewide due to football legacy — especially in SE and NE Ohio',
+      'Has not formally declared for governor race as of March 2026',
+      'Would face primary against Ramaswamy who already has DeWine endorsement',
+      'Running for governor would require resigning as Lt. Governor'
+    ],
+    poll: 'No head-to-head general election polling yet',
+    links: [
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Jim_Tressel', primary: true }
+    ]
+  },
+  larose: {
+    name: 'Frank LaRose', party: 'R',
+    race: 'Governor · Not running — endorsed Ramaswamy, running for Auditor',
+    tagline: 'Current SoS · Running for Auditor instead · Endorsed Ramaswamy',
+    facts: [
+      'Will NOT run for governor — announced candidacy for Ohio Auditor of State instead',
+      'Endorsed Vivek Ramaswamy for governor',
+      'Current Ohio Secretary of State since Jan 2019',
+      'Failed 2024 US Senate primary candidate — lost to Bernie Moreno by wide margin',
+      'Known for: proposing 60% supermajority to block 2023 abortion amendment (failed)',
+      'Moved 2023 special election to August to depress turnout — cost $20M, broadly condemned',
+      'Attempted to add partisan labels to Ohio Supreme Court ballots',
+      '2024 Senate primary loss significantly diminished his political standing'
+    ],
+    poll: 'Not running for governor',
+    links: [
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Frank_LaRose', primary: true }
+    ]
+  },
+  ryan_gov: {
+    name: 'Tim Ryan', party: 'D',
+    race: 'Governor · Democratic Primary (not declared)',
+    tagline: 'Former US Rep OH-13 · 2022 Senate candidate · Has not declared',
+    facts: [
+      'Former US Representative for Ohio\'s 13th district (Youngstown area) 2003–2023',
+      'Lost 2022 US Senate race to JD Vance by 6.1 points — significantly outperformed top of ticket',
+      'Has explored both governor and Senate 2026 races without committing to either',
+      'Strong union credibility and working-class brand in northeast Ohio',
+      'Moderate Democrat — opposed Medicare for All, positioned as pragmatist on trade',
+      'Would face Acton in Democratic primary if he declared — she is considered the frontrunner',
+      'His indecision has frustrated Ohio Democrats who need early field clarity',
+      'Also being tracked as potential Senate candidate'
+    ],
+    poll: 'Not declared — no head-to-head general election polling',
+    links: [
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Tim_Ryan', primary: true }
+    ]
+  },
+  whaley: {
+    name: 'Nan Whaley', party: 'D',
+    race: 'Governor · Democratic Primary',
+    tagline: 'Former Dayton Mayor · 2022 Dem nominee · Lost to DeWine by 25pts',
+    facts: [
+      'Former Mayor of Dayton, Ohio 2014–2021',
+      '2022 Democratic nominee for governor — lost to Mike DeWine 62% to 38% (25 points)',
+      'First woman nominated by Ohio Democrats for governor',
+      'Dayton focus: national attention after August 2019 mass shooting response',
+      'Won 2022 Democratic primary over John Cranley — became first woman nominated by Ohio Dems for governor',
+      'Her 2022 loss margin raises questions about electability for 2026 cycle',
+      'Would need to overcome significant deficit in name recognition vs Acton nationally'
+    ],
+    poll: 'No head-to-head polling for this cycle',
+    links: [
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Nan_Whaley', primary: true }
+    ]
+  },
+  husted: {
+    name: 'Jon Husted', party: 'R',
+    race: 'US Senate Special Election · Republican (Incumbent — appointed)',
+    tagline: 'Appointed Jan 2025 · Former Lt. Governor · Running for full term',
+    facts: [
+      'Appointed to US Senate by Gov. DeWine in Jan 2025 to fill JD Vance vacancy',
+      'Former Ohio Lt. Governor 2019–2025 under DeWine',
+      'Former Ohio Secretary of State 2011–2018; Ohio House Speaker Pro Tem before that',
+      'Running for full term in Nov 2026 special election — winner serves through 2028, must run again',
+      'Has Trump endorsement for the 2026 race',
+      'Voted for H.R. 1 (One Big Beautiful Bill) — $150B+ defense increase, SNAP and Medicaid cuts',
+      'Voted against extending ACA premium subsidies — then proposed a partial two-year freeze',
+      'Fundraising: raised $3.7M in Q3 2025 alone — record for OH Republican Senate candidate at that stage',
+      'Net favorability: -3 (21% fav, 24% unfav, 40% never heard of him) per Emerson Dec 2025'
+    ],
+    poll: 'RCP avg: Husted +1.0 (48.5% vs 47.5%) · OnMessage Mar 3-8 2026: Brown +2 (47-45) · Emerson Dec 2025: Husted 49, Brown 46',
+    links: [
+      { label: 'Campaign Site', url: 'https://www.jonhustedforsenate.com/', primary: true },
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Jon_Husted' },
+      { label: 'Senate Record', url: 'https://www.congress.gov/member/jon-husted/H001100' }
+    ]
+  },
+  brown: {
+    name: 'Sherrod Brown', party: 'D',
+    race: 'US Senate Special Election · Democratic Frontrunner',
+    tagline: 'Former 3-term US Senator · Lost 2024 by 3.5pts · IUPAT endorsed',
+    facts: [
+      'Former US Senator for Ohio 2007–2025 — served 3 terms, won in cycles that went heavily Republican',
+      'Lost 2024 Senate re-election to Bernie Moreno by 3.5 points despite Trump winning Ohio by 11',
+      'Endorsed by IUPAT (International Union of Painters and Allied Trades)',
+      'Raised $8 million in early campaign fundraising largely from small-dollar donors',
+      'Senate record: Appropriations Committee, Finance Committee, Banking Committee (chair)',
+      'Known for: China trade legislation, Buy American provisions, steel/manufacturing advocacy',
+      'Net favorability: +7 (42% fav, 35% unfav) per Emerson Dec 2025 — well above Husted',
+      'Leads independents, suburban voters, and women in multiple polls',
+      'Winner of Nov 2026 special election must run AGAIN in 2028 for a full 6-year term',
+      'Key vulnerability: Ohio\'s growing Republican lean at federal level (Trump +11 in 2024)'
+    ],
+    poll: 'RCP avg: Husted +1.0 (48.5% vs 47.5%) · OnMessage Mar 3-8 2026: Brown +2 (47-45) · Emerson Dec 2025: Brown 46, Husted 49',
+    links: [
+      { label: 'Campaign Site', url: 'https://www.sherrodbrown.com/', primary: true },
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Sherrod_Brown' }
+    ]
+  },
+  dolan: {
+    name: 'Matt Dolan', party: 'R',
+    race: 'US Senate Special Election · Republican Primary (potential)',
+    tagline: 'Former State Senator · 2022 and 2024 Senate primary candidate',
+    facts: [
+      'Former Ohio State Senator, Senate District 24',
+      'Lost 2022 Republican Senate primary to JD Vance',
+      'Lost 2024 Republican Senate primary to Bernie Moreno',
+      'Considered a more moderate Republican — opposed Trump\'s 2020 election claims',
+      'Cleveland Indians/Guardians ownership family connection (Cleveland Guardians minority owner)',
+      'May challenge Husted in 2026 primary — has not formally declared',
+      'Would face significant headwinds against Husted who has Trump endorsement'
+    ],
+    poll: 'No head-to-head polling vs Brown yet',
+    links: [
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Matt_Dolan', primary: true }
+    ]
+  },
+  ryan_sen: {
+    name: 'Tim Ryan', party: 'D',
+    race: 'US Senate Special Election · Democratic Primary (potential)',
+    tagline: 'Former US Rep · 2022 Senate candidate · Also exploring governor',
+    facts: [
+      'Former US Rep for Ohio\'s 13th district (Youngstown/Mahoning Valley) 2003–2023',
+      'Lost 2022 US Senate race to JD Vance by 6.1 points',
+      'Has explored both governor and Senate 2026 races — has not declared either',
+      'Strong labor credibility — Mahoning Valley union households',
+      'If he enters Senate race, would face Sherrod Brown in primary — Brown is frontrunner',
+      'Moderate positioning on trade (pro-tariff) could complicate Democratic primary',
+      'His 2022 campaign raised record amounts and came closer than any Ohio Dem in years'
+    ],
+    poll: 'Not declared — no polling',
+    links: [
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Tim_Ryan', primary: true }
+    ]
+  },
+  sykes: {
+    name: 'Emilia Sykes', party: 'D',
+    race: 'US Senate Special Election · Democratic Primary',
+    tagline: 'US Rep OH-13 · Former OH House Minority Leader · Confirmed candidate',
+    facts: [
+      'Current US Representative for Ohio\'s 13th congressional district (Akron/Summit/Mahoning)',
+      'Former Ohio House Minority Leader',
+      'Formally declared Senate candidacy',
+      'Running for Senate means she would vacate her House seat if she wins',
+      'Strong progressive record — education, healthcare, workers rights, LGBTQ+ equality',
+      'Would face Sherrod Brown in Democratic primary — Brown is considered overwhelming frontrunner',
+      'Daughter of Vernon Sykes (Ohio state senator) and Barbara Sykes (former state rep)'
+    ],
+    poll: 'Head-to-head general polling not yet available for this matchup',
+    links: [
+      { label: 'Campaign Site', url: 'https://emiliasykes.com', primary: true },
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Emilia_Sykes' }
+    ]
+  },
+  weinstein: {
+    name: 'Casey Weinstein', party: 'D',
+    race: 'US Senate Special Election · Democratic Primary',
+    tagline: 'State Senator SD-28 · Akron-area Democrat · Declared candidate',
+    facts: [
+      'Ohio State Senator from Senate District 28 (Akron/Summit County western area)',
+      'Formally declared Senate candidacy',
+      'Air Force veteran',
+      'Co-sponsored SB 98 — domestic violence conviction triggers firearm prohibition',
+      'Co-sponsored SB on data center regulation — water use, reliability, local control',
+      'Dog breeder regulation bill (Nov 2025) — high-volume breeder standards',
+      'Would face Sherrod Brown in Democratic primary — Brown is overwhelming frontrunner',
+      'Running for Senate means he would vacate SD-28 if he wins'
+    ],
+    poll: 'No head-to-head general election polling yet',
+    links: [
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Casey_Weinstein', primary: true }
+    ]
+  }
+};
+
+// Map candidate names to data keys
+const CANDIDATE_KEY_MAP = {
+  'Amy Acton': 'acton',
+  'Vivek Ramaswamy': 'ramaswamy',
+  'Dave Yost': 'yost',
+  'Jim Tressel': 'tressel',
+  'Frank LaRose': 'larose',
+  'Tim Ryan': 'ryan_gov',
+  'Nan Whaley': 'whaley',
+  'Jon Husted': 'husted',
+  'Sherrod Brown': 'brown',
+  'Matt Dolan': 'dolan',
+  'Emilia Sykes': 'sykes',
+  'Casey Weinstein': 'weinstein',
+  'ryan_sen': 'ryan_sen'
+};
+
+function openCandidateModal(nameOrKey) {
+  const key = CANDIDATE_KEY_MAP[nameOrKey] || nameOrKey;
+  const d = CANDIDATE_DATA[key];
+  if (!d) return;
+
+  document.getElementById('modal-race-label').textContent = d.race;
+  document.getElementById('modal-name').textContent = d.name;
+  document.getElementById('modal-tagline').textContent = d.tagline;
+  const badge = document.getElementById('modal-party-badge');
+  badge.textContent = d.party === 'R' ? 'Republican' : 'Democrat';
+  badge.className = 'modal-party-badge ' + d.party;
+
+  const factsHTML = d.facts.map(f => `<div class="modal-fact">${f}</div>`).join('');
+  const linksHTML = d.links.map(l =>
+    `<a class="modal-link${l.primary?' primary':''}" href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`
+  ).join('');
+
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-section">
+      <div class="modal-section-hdr">Quick Facts</div>
+      ${factsHTML}
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-hdr">📊 Current Polling</div>
+      <div class="modal-poll-bar">${d.poll}</div>
+    </div>
+    <div class="modal-links">${linksHTML}</div>
+  `;
+
+  document.getElementById('candidate-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCandidateModal() {
+  document.getElementById('candidate-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleModalOverlayClick(e) {
+  if (e.target === document.getElementById('candidate-modal-overlay')) {
+    closeCandidateModal();
+  }
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeCandidateModal();
+});
 
 if (window.location.protocol === 'file:') {
   document.getElementById('file-warning').style.display = 'block';
@@ -3166,5 +3604,19 @@ if (window.location.protocol === 'file:') {
   }
 }
 </script>
+
+<!-- CANDIDATE MODAL -->
+<div class="candidate-modal-overlay" id="candidate-modal-overlay" onclick="handleModalOverlayClick(event)">
+  <div class="candidate-modal" id="candidate-modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeCandidateModal()">✕</button>
+      <div class="modal-race-label" id="modal-race-label"></div>
+      <div class="modal-name" id="modal-name"></div>
+      <div class="modal-tagline" id="modal-tagline"></div>
+      <span class="modal-party-badge" id="modal-party-badge"></span>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
 </body>
 </html>
