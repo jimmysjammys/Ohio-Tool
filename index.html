@@ -632,13 +632,26 @@ tr:hover td { background: var(--surface2); }
 </header>
 
 <div class="scoreboard">
-  <div class="sc-group">
-    <button class="sc sc-link" onclick="showTab('senate');setBottomNav('senate')" title="View Senate tab"><div class="lbl">Senate</div><div class="sc-split"><span class="val rep">24R</span><span class="val dem">9D</span></div></button>
-    <button class="sc sc-link" onclick="showTab('house');setBottomNav('house')" title="View House tab"><div class="lbl">House</div><div class="sc-split"><span class="val rep">65R</span><span class="val dem">34D</span></div></button>
+  <div class="sc-group" style="flex-direction:column;align-items:flex-start;gap:2px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">State</div>
+    <div style="display:flex;gap:8px;">
+      <button class="sc sc-link" onclick="showTab('senate');setBottomNav('senate')" title="View Senate tab"><div class="lbl">Senate</div><div class="sc-split"><span class="val rep">24R</span><span class="val dem">9D</span></div></button>
+      <button class="sc sc-link" onclick="showTab('house');setBottomNav('house')" title="View House tab"><div class="lbl">House</div><div class="sc-split"><span class="val rep">65R</span><span class="val dem">34D</span></div></button>
+    </div>
   </div>
-  <div class="sc-group">
-    <a class="sc sc-link" href="https://governor.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Gov</div><div class="val neu">DeWine</div></a>
-    <a class="sc sc-link" href="https://www.sos.state.oh.us" target="_blank" rel="noopener"><div class="lbl">SoS</div><div class="val neu">LaRose</div></a>
+  <div class="sc-group" style="flex-direction:column;align-items:flex-start;gap:2px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">Federal</div>
+    <div style="display:flex;gap:8px;">
+      <button class="sc sc-link" onclick="showTab('federal');setBottomNav('federal')" title="View Federal tab"><div class="lbl">US Senate</div><div class="sc-split"><span class="val rep">2R</span><span class="val dem">0D</span></div></button>
+      <button class="sc sc-link" onclick="showTab('federal');setBottomNav('federal')" title="View Federal tab"><div class="lbl">US House</div><div class="sc-split"><span class="val rep">10R</span><span class="val dem">5D</span></div></button>
+    </div>
+  </div>
+  <div class="sc-group" style="flex-direction:column;align-items:flex-start;gap:2px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">Exec</div>
+    <div style="display:flex;gap:8px;">
+      <a class="sc sc-link" href="https://governor.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Gov</div><div class="val neu">DeWine</div></a>
+      <a class="sc sc-link" href="https://www.sos.state.oh.us" target="_blank" rel="noopener"><div class="lbl">SoS</div><div class="val neu">LaRose</div></a>
+    </div>
   </div>
 </div>
 
@@ -653,6 +666,10 @@ tr:hover td { background: var(--surface2); }
 </div>
 
 <div class="tabs">
+  <div class="tab" onclick="showTab('lookup')" style="color:var(--accent)">
+    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Find My Reps
+  </div>
   <div class="tab active" onclick="showTab('map')">
     <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
     District Map
@@ -676,10 +693,6 @@ tr:hover td { background: var(--surface2); }
   <div class="tab" onclick="showTab('resources')">
     <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
     Resources
-  </div>
-  <div class="tab" onclick="showTab('lookup')" style="color:var(--accent)">
-    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    Find My Reps
   </div>
   <div class="tab" onclick="showTab('federal')">
     <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M4 21V10M20 21V10M12 3L2 10h20L12 3z"/><rect x="9" y="14" width="6" height="7"/></svg>
@@ -760,6 +773,7 @@ tr:hover td { background: var(--surface2); }
       <div class="chamber-toggle">
         <button class="ch-btn active" id="btn-senate" onclick="switchChamber('senate')">Senate</button>
         <button class="ch-btn" id="btn-house" onclick="switchChamber('house')">House</button>
+        <button class="ch-btn" id="btn-federal" onclick="switchChamber('federal')">Federal</button>
       </div>
     </div>
     <div class="district-info" id="district-info">
@@ -768,7 +782,7 @@ tr:hover td { background: var(--surface2); }
     <div class="map-legend">
       <div class="legend-row"><div class="legend-swatch" style="background:rgba(192,57,43,0.75)"></div>Republican</div>
       <div class="legend-row"><div class="legend-swatch" style="background:rgba(36,113,163,0.75)"></div>Democrat</div>
-      <div class="legend-row" style="margin-top:6px;font-size:0.65rem;color:#555">Census TIGER boundaries (2024)</div>
+      <div class="legend-row" style="margin-top:6px;font-size:0.65rem;color:#555" id="map-legend-note">Census TIGER boundaries (2024)</div>
     </div>
   </div>
 </div>
@@ -1801,17 +1815,22 @@ L.control.attribution({ prefix: false })
   .addTo(map);
 
 let currentChamber = 'senate';
-let senateLayer = null, houseLayer = null;
+let senateLayer = null, houseLayer = null, federalLayer = null;
 let selectedLayer = null;
 
 function districtColor(distNum, chamber) {
+  if (chamber === 'federal') {
+    const m = OH_FEDERAL_HOUSE.find(d => d.dist === distNum);
+    if (!m) return 'rgba(100,100,100,0.4)';
+    return m.party === 'R' ? 'rgba(192,57,43,0.72)' : 'rgba(36,113,163,0.72)';
+  }
   const data = chamber === 'senate' ? senateMap[distNum] : houseMap[distNum];
   if (!data) return 'rgba(100,100,100,0.4)';
   return data[2] === 'R' ? 'rgba(192,57,43,0.72)' : 'rgba(36,113,163,0.72)';
 }
 
 function styleFeature(feature, chamber) {
-  const raw = feature.properties.SLDUST || feature.properties.SLDLST || feature.properties.BASENAME || '';
+  const raw = feature.properties.SLDUST || feature.properties.SLDLST || feature.properties.BASENAME || feature.properties.CD119FP || feature.properties.GEOID || '';
   const distNum = parseInt(raw, 10);
   return {
     fillColor: districtColor(distNum, chamber),
@@ -1831,16 +1850,18 @@ function onEachFeature(feature, layer, chamber) {
     },
     mouseout(e) {
       if (selectedLayer !== layer) {
-        (chamber === 'senate' ? senateLayer : houseLayer).resetStyle(e.target);
+        const activeLayer = chamber === 'senate' ? senateLayer : chamber === 'house' ? houseLayer : federalLayer;
+        if (activeLayer) activeLayer.resetStyle(e.target);
       }
     },
     click(e) {
+      const activeLayer = chamber === 'senate' ? senateLayer : chamber === 'house' ? houseLayer : federalLayer;
       if (selectedLayer && selectedLayer !== layer) {
-        (chamber === 'senate' ? senateLayer : houseLayer).resetStyle(selectedLayer);
+        if (activeLayer) activeLayer.resetStyle(selectedLayer);
       }
       selectedLayer = layer;
       layer.setStyle({ weight: 3, color: '#f0c040', fillOpacity: 0.92 });
-      const raw = feature.properties.SLDUST || feature.properties.SLDLST || feature.properties.BASENAME || '';
+      const raw = feature.properties.SLDUST || feature.properties.SLDLST || feature.properties.BASENAME || feature.properties.CD119FP || feature.properties.GEOID || '';
       const distNum = parseInt(raw, 10);
       showDistrictInfo(distNum, chamber);
       map.fitBounds(layer.getBounds(), { padding: [30, 30] });
@@ -1849,8 +1870,29 @@ function onEachFeature(feature, layer, chamber) {
 }
 
 function showDistrictInfo(distNum, chamber) {
-  const data = chamber === 'senate' ? senateMap[distNum] : houseMap[distNum];
   const el = document.getElementById('district-info');
+
+  if (chamber === 'federal') {
+    const m = OH_FEDERAL_HOUSE.find(d => d.dist === distNum);
+    if (!m) { el.innerHTML = `<div class="no-sel">No data for OH-${distNum}</div>`; return; }
+    const partyFull = m.party === 'R' ? 'Republican' : 'Democrat';
+    const partyColor = m.party === 'R' ? '#c0392b' : '#2471a3';
+    el.innerHTML = `
+      <div class="info-title">OH-${m.dist} · US House</div>
+      <div class="info-name">${m.name}</div>
+      <div class="info-party" style="color:${partyColor};font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;margin:4px 0;">${partyFull}</div>
+      <div class="info-row"><span class="info-label">Region</span><span>${m.region}</span></div>
+      <div class="info-row"><span class="info-label">Committee</span><span>${m.committee}</span></div>
+      <div class="info-row" style="margin-top:8px"><span class="info-label">Stated</span><span>${m.stated}</span></div>
+      <div class="info-row" style="margin-top:4px"><span class="info-label">Record</span><span>${m.actual}</span></div>
+      <div class="info-links" style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
+        <a class="donor-btn" href="${m.url}" target="_blank" rel="noopener" style="font-size:0.7rem;padding:4px 8px;">Official →</a>
+        <a class="donor-btn" href="${m.ballotpedia}" target="_blank" rel="noopener" style="font-size:0.7rem;padding:4px 8px;background:none;border-color:#555;color:#aaa;">Ballotpedia →</a>
+      </div>`;
+    return;
+  }
+
+  const data = chamber === 'senate' ? senateMap[distNum] : houseMap[distNum];
   if (!data) { el.innerHTML = `<div class="no-sel">No data for district ${distNum}</div>`; return; }
   const chamberLabel = chamber === 'senate' ? 'Senate District' : 'House District';
   const roleLabel = chamber === 'senate' ? 'State Senator' : 'State Representative';
@@ -1997,25 +2039,56 @@ async function loadHouse() {
   // don't auto-add; only shown when chamber switched
 }
 
+async function loadFederal() {
+  if (federalLayer) { federalLayer.addTo(map); return; }
+  // Census TIGERweb — 119th Congress Congressional Districts, Ohio (STATE=39)
+  const base = 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer';
+  const url = `${base}/54/query?where=STATE%3D%2739%27&outFields=*&f=geojson&outSR=4326`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const geojson = await res.json();
+  federalLayer = L.geoJSON(geojson, {
+    style: f => {
+      const raw = f.properties.CD119FP || f.properties.BASENAME || f.properties.GEOID || '';
+      const distNum = parseInt(raw, 10);
+      return {
+        fillColor: districtColor(distNum, 'federal'),
+        weight: 1.5,
+        opacity: 0.9,
+        color: '#0d0d0d',
+        fillOpacity: 0.75
+      };
+    },
+    onEachFeature: (f, l) => onEachFeature(f, l, 'federal')
+  });
+}
+
 async function switchChamber(chamber) {
   currentChamber = chamber;
   selectedLayer = null;
   document.getElementById('district-info').innerHTML = '<div class="no-sel">← Click a district to see legislator details.</div>';
   document.getElementById('btn-senate').classList.toggle('active', chamber === 'senate');
   document.getElementById('btn-house').classList.toggle('active', chamber === 'house');
+  document.getElementById('btn-federal').classList.toggle('active', chamber === 'federal');
 
   const loading = document.getElementById('loading');
   loading.style.display = 'block';
-  loading.textContent = `Loading ${chamber === 'senate' ? 'Senate' : 'House'} district boundaries…`;
+  loading.textContent = `Loading ${chamber === 'senate' ? 'Senate' : chamber === 'house' ? 'House' : 'Federal Congressional'} district boundaries…`;
   try {
+    if (senateLayer) map.removeLayer(senateLayer);
+    if (houseLayer) map.removeLayer(houseLayer);
+    if (federalLayer) map.removeLayer(federalLayer);
+
     if (chamber === 'senate') {
-      if (houseLayer) map.removeLayer(houseLayer);
       await loadSenate();
-    } else {
-      if (senateLayer) map.removeLayer(senateLayer);
+    } else if (chamber === 'house') {
       await loadHouse();
       houseLayer.addTo(map);
       map.fitBounds(houseLayer.getBounds());
+    } else {
+      await loadFederal();
+      federalLayer.addTo(map);
+      map.fitBounds(federalLayer.getBounds());
     }
   } catch(e) {
     loading.textContent = '⚠ Failed to load boundaries. Check network connection.';
@@ -2023,6 +2096,12 @@ async function switchChamber(chamber) {
     return;
   }
   loading.style.display = 'none';
+  const noteEl = document.getElementById('map-legend-note');
+  if (noteEl) {
+    noteEl.textContent = chamber === 'federal'
+      ? 'US Congressional Districts 2026–2032 (adopted 10/31/2025)'
+      : 'Census TIGER boundaries (2024)';
+  }
 }
 
 // Initial load — defer until map container is visible
@@ -3179,15 +3258,15 @@ const OH_FEDERAL_HOUSE = [
   {dist:2, name:"David Taylor", party:"R", since:2025, region:"Southern OH / Scioto/Gallia", committee:"Judiciary", url:"https://davidtaylor.house.gov", ballotpedia:"https://ballotpedia.org/David_Taylor_(Ohio)", stated:"Border security, fiscal conservatism, 2nd Amendment", actual:"Voted for H.R. 1, Trump cabinet confirmations, anti-abortion legislation"},
   {dist:3, name:"Joyce Beatty", party:"D", since:2013, region:"Columbus/Franklin Co.", committee:"Financial Services", url:"https://beatty.house.gov", ballotpedia:"https://ballotpedia.org/Joyce_Beatty", stated:"Civil rights, economic equity, financial inclusion", actual:"Voted against H.R. 1, Dodd-Frank protections advocate, voting rights focus"},
   {dist:4, name:"Jim Jordan", party:"R", since:2007, region:"NW Ohio — Champaign/Mercer/Logan", committee:"Judiciary (Chair)", url:"https://jordan.house.gov", ballotpedia:"https://ballotpedia.org/Jim_Jordan", stated:"Constitutional conservatism, anti-oversight, fiscal cuts", actual:"House Judiciary Chair — led Biden impeachment inquiry, Jan 6 committee opponent, voted for H.R. 1, 100% Trump alignment"},
-  {dist:5, name:"Bob Latta", party:"R", since:2007, region:"NW Ohio — Wood/Hancock/Defiance", committee:"Energy & Commerce", url:"https://latta.house.gov", ballotpedia:"https://ballotpedia.org/Bob_Latta", stated:"Energy independence, rural broadband, fiscal conservatism", actual:"Voted for H.R. 1, consistent anti-regulation votes, opposed ACA expansion"},
+  {dist:5, name:"Bob Latta", party:"R", since:2007, region:"NW Ohio — Wood/Hancock/Lorain/Crawford", committee:"Energy & Commerce", url:"https://latta.house.gov", ballotpedia:"https://ballotpedia.org/Bob_Latta", stated:"Energy independence, rural broadband, fiscal conservatism", actual:"Voted for H.R. 1, consistent anti-regulation votes, opposed ACA expansion · New map adds Lorain County from old OH-9"},
   {dist:6, name:"Michael Rulli", party:"R", since:2024, region:"NE Ohio — Mahoning/Trumbull/Columbiana", committee:"Armed Services", url:"https://rulli.house.gov", ballotpedia:"https://ballotpedia.org/Michael_Rulli", stated:"Workforce, manufacturing, border security", actual:"First-term member, voted for H.R. 1, Trump-aligned on all major votes, replaced Tim Ryan's old district"},
   {dist:7, name:"Max Miller", party:"R", since:2023, region:"NE Ohio — Portage/Medina/Cuyahoga", committee:"Agriculture", url:"https://maxmiller.house.gov", ballotpedia:"https://ballotpedia.org/Max_Miller", stated:"Agriculture, fiscal conservatism, Israel support", actual:"Trump loyalist and former White House aide, voted for H.R. 1, anti-immigration bills"},
   {dist:8, name:"Warren Davidson", party:"R", since:2016, region:"SW Ohio — Butler/Montgomery/Preble", committee:"Financial Services", url:"https://davidson.house.gov", ballotpedia:"https://ballotpedia.org/Warren_Davidson", stated:"Fiscal conservatism, cryptocurrency, 2nd Amendment", actual:"Freedom Caucus member — one of most conservative OH reps, voted for H.R. 1, crypto-friendly legislation"},
-  {dist:9, name:"Marcy Kaptur", party:"D", since:1983, region:"NW Ohio — Toledo/Lucas/Erie", committee:"Appropriations", url:"https://kaptur.house.gov", ballotpedia:"https://ballotpedia.org/Marcy_Kaptur", stated:"Manufacturing, workers rights, Social Security, veterans", actual:"Dean of OH delegation (40+ years), voted against H.R. 1, strong labor record, secured major Appropriations funding for NW Ohio"},
+  {dist:9, name:"Marcy Kaptur", party:"D", since:1983, region:"NW Ohio — Toledo/Lucas/Erie/Defiance/Williams", committee:"Appropriations", url:"https://kaptur.house.gov", ballotpedia:"https://ballotpedia.org/Marcy_Kaptur", stated:"Manufacturing, workers rights, Social Security, veterans", actual:"Dean of OH delegation (40+ years), voted against H.R. 1, strong labor record · New map adds deep-red rural NW Ohio counties — district now projected R+11 · Kaptur announced re-election bid despite unfavorable lines"},
   {dist:10, name:"Mike Turner", party:"R", since:2003, region:"Dayton/Montgomery Co.", committee:"Intelligence", url:"https://turner.house.gov", ballotpedia:"https://ballotpedia.org/Mike_Turner", stated:"National security, veterans, defense", actual:"Former Intel Committee Chair — warned of Russian influence, now Trump-aligned, voted for H.R. 1"},
   {dist:11, name:"Shontel Brown", party:"D", since:2021, region:"NE Ohio — Cleveland East/Cuyahoga", committee:"Agriculture; Oversight", url:"https://shontelbrown.house.gov", ballotpedia:"https://ballotpedia.org/Shontel_Brown", stated:"Economic equity, healthcare, voting rights", actual:"Voted against H.R. 1, strong progressive record, succeeded Marcia Fudge"},
   {dist:12, name:"Troy Balderson", party:"R", since:2018, region:"Central/SE Ohio — Licking/Muskingum", committee:"Energy & Commerce", url:"https://balderson.house.gov", ballotpedia:"https://ballotpedia.org/Troy_Balderson", stated:"Fiscal conservatism, energy, agriculture", actual:"Voted for H.R. 1, consistent conservative record, supports fossil fuel interests"},
-  {dist:13, name:"Emilia Sykes", party:"D", since:2023, region:"NE Ohio — Akron/Summit/Mahoning", committee:"Education & Workforce", url:"https://sykes.house.gov", ballotpedia:"https://ballotpedia.org/Emilia_Sykes", stated:"Education, healthcare, workers rights, LGBTQ+ equality", actual:"Voted against H.R. 1, strong progressive votes, former OH House Minority Leader — now also running for US Senate 2026"},
+  {dist:13, name:"Emilia Sykes", party:"D", since:2023, region:"NE Ohio — Akron/Summit/Stark", committee:"Education & Workforce", url:"https://sykes.house.gov", ballotpedia:"https://ballotpedia.org/Emilia_Sykes", stated:"Education, healthcare, workers rights, LGBTQ+ equality", actual:"Voted against H.R. 1, strong progressive votes, former OH House Minority Leader · Ran for US Senate 2026 but lost primary to Sherrod Brown · Returning to run for re-election in OH-13 under new lines (slightly more D-friendly after redistricting)"},
   {dist:14, name:"David Joyce", party:"R", since:2013, region:"NE Ohio — Lake/Geauga/Ashtabula", committee:"Appropriations", url:"https://joyce.house.gov", ballotpedia:"https://ballotpedia.org/David_Joyce", stated:"Fiscal conservatism, rule of law, bipartisan Appropriations", actual:"More moderate OH Republican, supported some bipartisan funding deals, but voted for H.R. 1"},
   {dist:15, name:"Mike Carey", party:"R", since:2021, region:"Central OH — Columbus suburbs/SE", committee:"Ways & Means", url:"https://carey.house.gov", ballotpedia:"https://ballotpedia.org/Mike_Carey", stated:"Tax cuts, energy, fiscal conservatism", actual:"Voted for H.R. 1, consistent conservative record, Ways & Means focus on tax policy"}
 ];
