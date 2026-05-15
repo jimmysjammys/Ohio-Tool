@@ -1811,7 +1811,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.p
 }).addTo(map);
 
 L.control.attribution({ prefix: false })
-  .addAttribution('© <a href="https://carto.com" style="color:#888">CartoDB</a> · Boundaries: U.S. Census TIGER')
+  .addAttribution('© <a href="https://carto.com" style="color:#888">CartoDB</a> · <span id="map-attr-note">Boundaries: U.S. Census TIGER</span>')
   .addTo(map);
 
 let currentChamber = 'senate';
@@ -1830,8 +1830,7 @@ function districtColor(distNum, chamber) {
 }
 
 function styleFeature(feature, chamber) {
-  const raw = feature.properties.CD119FP || feature.properties.SLDUST || feature.properties.SLDLST || feature.properties.BASENAME || '';
-  const distNum = parseInt(raw, 10);
+  const distNum = feature.properties.dist || parseInt(feature.properties.CD119FP || feature.properties.SLDUST || feature.properties.SLDLST || feature.properties.BASENAME || '0', 10);
   return {
     fillColor: districtColor(distNum, chamber),
     weight: 1,
@@ -2060,6 +2059,7 @@ async function loadFederal() {
 
 async function switchChamber(chamber) {
   currentChamber = chamber;
+  // Clear any selected layer styling before removing layers
   selectedLayer = null;
   document.getElementById('district-info').innerHTML = '<div class="no-sel">← Click a district to see legislator details.</div>';
   document.getElementById('btn-senate').classList.toggle('active', chamber === 'senate');
@@ -2091,12 +2091,12 @@ async function switchChamber(chamber) {
     return;
   }
   loading.style.display = 'none';
-  const noteEl = document.getElementById('map-legend-note');
-  if (noteEl) {
-    noteEl.textContent = chamber === 'federal'
-      ? 'US Congressional Districts 2026–2032 (adopted 10/31/2025)'
-      : 'Census TIGER boundaries (2024)';
-  }
+  const legendNote = document.getElementById('map-legend-note');
+  const attrNote = document.getElementById('map-attr-note');
+  const isFederal = chamber === 'federal';
+  const noteText = isFederal ? 'US Congressional Districts 2026–2032 (adopted 10/31/2025)' : 'Boundaries: U.S. Census TIGER';
+  if (legendNote) legendNote.textContent = isFederal ? 'US Congressional Districts 2026–2032 (adopted 10/31/2025)' : 'Census TIGER boundaries (2024)';
+  if (attrNote) attrNote.textContent = noteText;
 }
 
 // Initial load — defer until map container is visible
