@@ -3052,10 +3052,11 @@ function doLookup() {
   if (!raw) return;
   const out = document.getElementById('lookup-output');
 
-  // Try to extract zip first
-  const zipMatch = raw.match(/\b(\d{5})\b/);
-  if (zipMatch) {
-    const zip = zipMatch[1];
+  // Only treat as a bare zip if the input is JUST digits (optionally with spaces/dashes)
+  // This prevents street numbers like "36575 Starboard Dr" being read as zip codes
+  const bareZip = raw.match(/^(\d{5})(\s*-?\d{4})?$/);
+  if (bareZip) {
+    const zip = bareZip[1];
     const districts = ZIP_DISTRICTS[zip];
     if (districts) {
       showLookupResults(zip, districts, out);
@@ -3065,7 +3066,19 @@ function doLookup() {
     return;
   }
 
-  // No zip — geocode the address via Nominatim
+  // Check if a zip code appears at the END of the address (e.g. "123 Main St, Columbus, OH 44094")
+  const trailingZip = raw.match(/\b(\d{5})(?:\s*-\d{4})?\s*$/);
+  if (trailingZip) {
+    const zip = trailingZip[1];
+    const districts = ZIP_DISTRICTS[zip];
+    if (districts) {
+      showLookupResults(zip, districts, out);
+      return;
+    }
+    // Zip found but not in Ohio — fall through to geocoder
+  }
+
+  // Geocode the address via Nominatim
   out.innerHTML = `<div class="lookup-error" style="color:var(--accent)">🔍 Looking up address…</div>`;
   const query = encodeURIComponent(raw + ', Ohio, USA');
   fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1&limit=1`)
