@@ -6,17 +6,17 @@
 <title>Ohio Watch</title>
 <style>
 /* ── FIND MY REPS ─────────────────────────────────────────────────────── */
-.lookup-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
+.lookup-pane { padding: 28px 32px; flex: 1; overflow-y: auto; background: var(--bg); }
 .lookup-hero { max-width: 640px; margin: 0 auto 32px; text-align: center; }
 .lookup-hero h2 { font-family: 'Inter', sans-serif; font-size: 2.0rem; font-weight: 700; color: var(--accent); letter-spacing: -0.3px; margin-bottom: 8px; }
-.lookup-hero p { color: var(--muted); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
+.lookup-hero p { color: var(--muted); font-size: 0.88rem; font-family: 'Inter', sans-serif; line-height: 1.6; }
 .lookup-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
 .lookup-input { background: var(--surface); border: 2px solid var(--border); color: var(--text); padding: 12px 18px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; width: 320px; outline: none; transition: border-color 0.2s; }
 .lookup-input:focus { border-color: var(--accent); }
 .lookup-btn { padding: 12px 28px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.1rem; letter-spacing: 2px; cursor: pointer; transition: opacity 0.15s; }
 .lookup-btn:hover { opacity: 0.85; }
 .lookup-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.lookup-note { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 8px; text-align: center; }
+.lookup-note { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); margin-top: 8px; text-align: center; }
 
 .rep-results { max-width: 900px; margin: 0 auto; }
 .rep-results-title { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
@@ -41,8 +41,8 @@
 .rep-link:hover { border-color: var(--accent); color: var(--accent); }
 .rep-link.primary { border-color: var(--accent); color: var(--accent); }
 
-.lookup-error { text-align: center; color: #dc2626; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-top: 20px; padding: 16px; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; max-width: 500px; margin: 20px auto; }
-.lookup-spinner { text-align: center; padding: 30px; color: var(--muted); font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; letter-spacing: 2px; }
+.lookup-error { text-align: center; color: #dc2626; font-family: 'Inter', sans-serif; font-size: 0.85rem; margin-top: 20px; padding: 16px; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; max-width: 500px; margin: 20px auto; }
+.lookup-spinner { text-align: center; padding: 30px; color: var(--muted); font-weight: 500; font-family: 'Inter', sans-serif; font-size: 0.85rem; }
 .lookup-spinner::after { content: ''; display: inline-block; animation: dots 1.2s infinite; }
 @keyframes dots { 0%{content:'.'} 33%{content:'..'} 66%{content:'...'} }
 
@@ -52,7 +52,7 @@
 /* ── RACE CARDS (Midterms tab) ─────────────────────────────────── */
 .race-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
 .race-candidate-name { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
-.race-candidate-note { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+.race-candidate-note { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
 .race-poll { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--accent); margin-bottom: 6px; padding: 4px 8px; background: #eef1f8; border-radius: 4px; border-left: 2px solid var(--accent); }
 .race-links { display: flex; gap: 8px; flex-wrap: wrap; }
 .race-link { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
@@ -97,7 +97,7 @@
   letter-spacing: 1px; color: var(--text); line-height: 1.1; margin-bottom: 6px;
 }
 .modal-tagline {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+  font-family: 'Inter', sans-serif; font-size: 0.82rem;
   color: var(--muted); margin-bottom: 8px; line-height: 1.5;
 }
 .modal-party-badge {
@@ -115,17 +115,17 @@
   margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border);
 }
 .modal-fact {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-  color: var(--muted); padding: 5px 0; line-height: 1.55;
-  border-bottom: 1px solid #191919;
+  font-family: 'Inter', sans-serif; font-size: 0.82rem;
+  color: var(--muted); padding: 5px 0; line-height: 1.6;
+  border-bottom: 1px solid var(--border);
 }
 .modal-fact:last-child { border-bottom: none; }
 .modal-fact::before { content: '→ '; color: var(--accent); }
 .modal-poll-bar { background: #eef1f8 !important;
   margin: 10px 0 0; padding: 8px 10px; background: #eef1f8;
   border: 1px solid var(--border); border-left: 3px solid var(--accent);
-  border-radius: 4px; font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem; color: var(--accent); line-height: 1.6;
+  border-radius: 4px; font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; color: var(--text); line-height: 1.6;
 }
 .modal-links {
   display: flex; gap: 8px; flex-wrap: wrap;
@@ -240,12 +240,12 @@ header span { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color
 .info-party { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; margin: 4px 0 12px; }
 .info-party.R { background: #fee2e2; color: #991b1b; }
 .info-party.D { background: #dbeafe; color: #1e40af; }
-.info-row { font-size: 0.8rem; color: var(--muted); margin: 4px 0; font-family: 'JetBrains Mono', monospace; }
+.info-row { font-size: 0.82rem; color: var(--muted); margin: 4px 0; font-family: 'Inter', sans-serif; }
 .info-row span { color: var(--text); }
 .map-legend { padding: 12px 16px; border-top: 1px solid var(--border); }
 .legend-row { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; color: var(--muted); margin: 3px 0; font-family: 'JetBrains Mono', monospace; }
 .legend-swatch { width: 14px; height: 14px; border-radius: 2px; }
-.loading-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.85); color: var(--accent); padding: 20px 32px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; z-index: 1000; letter-spacing: 1px; text-align: center; pointer-events: none; }
+.loading-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(255,255,255,0.95); color: var(--accent); padding: 20px 32px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; z-index: 1000; letter-spacing: 1px; text-align: center; pointer-events: none; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
 
 /* TABLE PANE */
 .table-pane { padding: 20px 28px; flex: 1; overflow-y: auto; }
@@ -290,7 +290,7 @@ tr:hover td { background: var(--surface2); }
 .leaflet-container { background: #f8f7f4; }
 
 /* LEGISLATURE TAB */
-.leg-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
+.leg-pane { padding: 28px 32px; flex: 1; overflow-y: auto; background: var(--bg); }
 .leg-section { margin-bottom: 36px; max-width: 1100px; }
 .leg-section-title { font-family: 'Inter', sans-serif; font-size: 1.4rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 4px; padding-bottom: 6px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; }
 .leg-section-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
@@ -309,7 +309,7 @@ tr:hover td { background: var(--surface2); }
 .leg-federal-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; padding: 2px 8px; border-radius: 3px; background: #1a1000; border: 1px solid var(--accent); color: var(--accent); margin-left: 10px; vertical-align: middle; letter-spacing: 1px; }
 
 /* OFFICIALS TAB */
-.officials-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
+.officials-pane { padding: 28px 32px; flex: 1; overflow-y: auto; background: var(--bg); }
 .officials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; max-width: 1100px; }
 .official-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .official-card-top { padding: 16px 20px; border-bottom: 1px solid var(--border); }
@@ -330,7 +330,7 @@ tr:hover td { background: var(--surface2); }
 .official-link.primary { border-color: var(--accent); color: var(--accent); }
 
 /* RESOURCES TAB */
-.resources-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
+.resources-pane { padding: 28px 32px; flex: 1; overflow-y: auto; background: var(--bg); }
 .resources-hero { max-width: 700px; margin-bottom: 32px; }
 .resources-hero h2 { font-family: 'Inter', sans-serif; font-size: 2rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
 .resources-hero p { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
@@ -477,16 +477,16 @@ tr:hover td { background: var(--surface2); }
 .sen-profile-toggle.active { color: var(--accent); background: #f8f7f4; }
 .sen-profile-body { display: none; padding: 12px 14px; }
 .sen-profile-body.open { display: block; }
-.sen-profile-tenure { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; color: var(--muted); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); line-height: 1.6; }
+.sen-profile-tenure { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); line-height: 1.6; }
 .sen-profile-section { margin-bottom: 12px; }
 .sen-profile-section-hdr { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--border); }
 .sen-profile-section.stated .sen-profile-section-hdr { color: #1d4ed8; }
 .sen-profile-section.actual .sen-profile-section-hdr { color: #b91c1c; }
 .sen-profile-section ul { margin: 0; padding-left: 14px; }
-.sen-profile-section li { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); padding: 4px 0; line-height: 1.6; }
+.sen-profile-section li { font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--muted); padding: 4px 0; line-height: 1.6; }
 .sen-committees-hdr { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; margin-top: 4px; }
 .sen-committees-list { margin: 0; padding-left: 14px; }
-.sen-committees-list li { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); padding: 2px 0; }
+.sen-committees-list li { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--muted); padding: 2px 0; }
 .sen-committees-list li::before { content: '▸ '; color: var(--accent); }
 
 /* ═══ BOTTOM NAV ═════════════════════════════════════════════════════════════ */
@@ -800,7 +800,7 @@ tr:hover td { background: var(--surface2); }
     </div>
 
     <!-- Senate Party Leadership -->
-    <div class="leadership-bar">
+    <div class="leadership-bar" id="senate-leadership">
       <div class="leader-card R">
         <div class="leader-role">Senate President</div>
         <div class="leader-name">Rob McColley</div>
@@ -852,7 +852,7 @@ tr:hover td { background: var(--surface2); }
     </div>
 
     <!-- House Party Leadership -->
-    <div class="leadership-bar">
+    <div class="leadership-bar" id="house-leadership">
       <div class="leader-card R">
         <div class="leader-role">Speaker of the House</div>
         <div class="leader-name">Matt Huffman</div>
@@ -2445,8 +2445,24 @@ function goToDistrict(distNum, chamber) {
 }
 
 function setFilter(tbl, val) {
-  if (tbl==='s') { sFilter=val; ['all','rep','dem'].forEach(x=>document.getElementById(`s-${x}`).classList.remove('active')); document.getElementById(`s-${val==='all'?'all':val==='R'?'rep':'dem'}`).classList.add('active'); renderSenate(); if (isMobile()) renderSenateCards(); }
-  else { hFilter=val; ['all','rep','dem'].forEach(x=>document.getElementById(`h-${x}`).classList.remove('active')); document.getElementById(`h-${val==='all'?'all':val==='R'?'rep':'dem'}`).classList.add('active'); renderHouse(); }
+  if (tbl==='s') {
+    sFilter=val;
+    ['all','rep','dem'].forEach(x=>document.getElementById(`s-${x}`).classList.remove('active'));
+    document.getElementById(`s-${val==='all'?'all':val==='R'?'rep':'dem'}`).classList.add('active');
+    renderSenate();
+    if (isMobile()) renderSenateCards();
+    document.querySelectorAll('#senate-leadership .leader-card').forEach(card => {
+      card.style.display = (val === 'all' || card.classList.contains(val)) ? '' : 'none';
+    });
+  } else {
+    hFilter=val;
+    ['all','rep','dem'].forEach(x=>document.getElementById(`h-${x}`).classList.remove('active'));
+    document.getElementById(`h-${val==='all'?'all':val==='R'?'rep':'dem'}`).classList.add('active');
+    renderHouse();
+    document.querySelectorAll('#house-leadership .leader-card').forEach(card => {
+      card.style.display = (val === 'all' || card.classList.contains(val)) ? '' : 'none';
+    });
+  }
 }
 
 function sortTbl(tbl, col) {
