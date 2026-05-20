@@ -288,6 +288,8 @@ tr:hover td { background: var(--surface2); }
 
 /* Leaflet overrides */
 .leaflet-container { background: #f8f7f4; }
+.leaflet-bottom { z-index: 400 !important; }
+.leaflet-control-attribution { font-size: 10px; opacity: 0.7; }
 
 /* LEGISLATURE TAB */
 .leg-pane { padding: 28px 32px; flex: 1; overflow-y: auto; background: var(--bg); }
@@ -732,7 +734,7 @@ tr:hover td { background: var(--surface2); }
 <!-- MORE DRAWER (mobile only) -->
 <div class="more-overlay" id="more-overlay" onclick="closeMoreDrawer()"></div>
 <div class="more-drawer" id="more-drawer">
-  <div class="more-drawer-handle"></div>
+  <div class="more-drawer-handle" onclick="closeMoreDrawer()" style="cursor:pointer;"></div>
   <div class="more-drawer-title">More sections</div>
   <div class="more-drawer-items">
     <div class="more-item" onclick="closeMoreDrawer();showTab('map');setBottomNav('map')">
@@ -3284,8 +3286,13 @@ function setBottomNav(name) {
 }
 
 function openMoreDrawer() {
-  document.getElementById('more-overlay').classList.add('open');
-  document.getElementById('more-drawer').classList.add('open');
+  const drawer = document.getElementById('more-drawer');
+  if (drawer.classList.contains('open')) {
+    closeMoreDrawer();
+  } else {
+    document.getElementById('more-overlay').classList.add('open');
+    drawer.classList.add('open');
+  }
 }
 function closeMoreDrawer() {
   document.getElementById('more-overlay').classList.remove('open');
