@@ -8,18 +8,18 @@
 /* ── FIND MY REPS ─────────────────────────────────────────────────────── */
 .lookup-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
 .lookup-hero { max-width: 640px; margin: 0 auto 32px; text-align: center; }
-.lookup-hero h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
-.lookup-hero p { color: var(--muted); font-size: 0.85rem; font-family: 'IBM Plex Mono', monospace; line-height: 1.6; }
+.lookup-hero h2 { font-family: 'Inter', sans-serif; font-size: 2.0rem; font-weight: 700; color: var(--accent); letter-spacing: -0.3px; margin-bottom: 8px; }
+.lookup-hero p { color: var(--muted); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
 .lookup-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
-.lookup-input { background: var(--surface); border: 2px solid var(--border); color: var(--text); padding: 12px 18px; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; width: 320px; outline: none; transition: border-color 0.2s; }
+.lookup-input { background: var(--surface); border: 2px solid var(--border); color: var(--text); padding: 12px 18px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; width: 320px; outline: none; transition: border-color 0.2s; }
 .lookup-input:focus { border-color: var(--accent); }
-.lookup-btn { padding: 12px 28px; background: var(--accent); color: #000; border: none; border-radius: 8px; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 2px; cursor: pointer; transition: opacity 0.15s; }
+.lookup-btn { padding: 12px 28px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.1rem; letter-spacing: 2px; cursor: pointer; transition: opacity 0.15s; }
 .lookup-btn:hover { opacity: 0.85; }
 .lookup-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.lookup-note { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 8px; text-align: center; }
+.lookup-note { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 8px; text-align: center; }
 
 .rep-results { max-width: 900px; margin: 0 auto; }
-.rep-results-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.rep-results-title { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
 .rep-results-title span { color: var(--accent); }
 .rep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 
@@ -30,38 +30,38 @@
 .rep-photo-placeholder { width: 64px; height: 64px; border-radius: 50%; background: var(--surface2); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; color: var(--muted); }
 .rep-info { flex: 1; min-width: 0; }
 .rep-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
-.rep-district { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); margin-bottom: 4px; }
-.rep-badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600; }
-.rep-badge.R { background: #3d1010; color: #ff9090; }
-.rep-badge.D { background: #0d1e35; color: #90bbff; }
+.rep-district { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); margin-bottom: 4px; }
+.rep-badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; }
+.rep-badge.R { background: #fee2e2; color: #991b1b; }
+.rep-badge.D { background: #dbeafe; color: #1e40af; }
 .rep-card-footer { border-top: 1px solid var(--border); padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
-.rep-footer-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--muted); }
+.rep-footer-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--muted); }
 .rep-footer-links { display: flex; gap: 8px; }
-.rep-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; padding: 3px 8px; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
+.rep-link { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 3px 8px; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
 .rep-link:hover { border-color: var(--accent); color: var(--accent); }
 .rep-link.primary { border-color: var(--accent); color: var(--accent); }
 
-.lookup-error { text-align: center; color: #ff6b6b; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; margin-top: 20px; padding: 16px; background: #1a0808; border: 1px solid #3d1010; border-radius: 8px; max-width: 500px; margin: 20px auto; }
-.lookup-spinner { text-align: center; padding: 30px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; letter-spacing: 2px; }
+.lookup-error { text-align: center; color: #dc2626; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-top: 20px; padding: 16px; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; max-width: 500px; margin: 20px auto; }
+.lookup-spinner { text-align: center; padding: 30px; color: var(--muted); font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; letter-spacing: 2px; }
 .lookup-spinner::after { content: ''; display: inline-block; animation: dots 1.2s infinite; }
 @keyframes dots { 0%{content:'.'} 33%{content:'..'} 66%{content:'...'} }
 
-.also-on-map { display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; cursor: pointer; transition: all 0.15s; text-decoration: none; }
+.also-on-map { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; cursor: pointer; transition: all 0.15s; text-decoration: none; }
 .also-on-map:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ── RACE CARDS (Midterms tab) ─────────────────────────────────── */
 .race-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
 .race-candidate-name { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
-.race-candidate-note { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
-.race-poll { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--accent); margin-bottom: 6px; padding: 4px 8px; background: #1a1400; border-radius: 4px; border-left: 2px solid var(--accent); }
+.race-candidate-note { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+.race-poll { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--accent); margin-bottom: 6px; padding: 4px 8px; background: #eef1f8; border-radius: 4px; border-left: 2px solid var(--accent); }
 .race-links { display: flex; gap: 8px; flex-wrap: wrap; }
-.race-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
+.race-link { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
 .race-link:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ── CANDIDATE MODAL ──────────────────────────────────────────────────────── */
 .candidate-modal-overlay {
   display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.78); z-index: 2000;
+  background: rgba(0,0,0,0.5); z-index: 2000;
   align-items: center; justify-content: center; padding: 20px;
 }
 .candidate-modal-overlay.open { display: flex; }
@@ -69,7 +69,7 @@
   background: var(--surface); border: 1px solid var(--accent);
   border-radius: 12px; max-width: 520px; width: 100%;
   max-height: 88vh; overflow-y: auto; position: relative;
-  box-shadow: 0 0 48px rgba(240,192,64,0.18);
+  box-shadow: 0 8px 32px rgba(26,39,68,0.14);
   animation: modalIn 0.18s ease;
 }
 @keyframes modalIn {
@@ -88,43 +88,43 @@
 }
 .modal-close:hover { border-color: var(--accent); color: var(--accent); }
 .modal-race-label {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
   text-transform: uppercase; letter-spacing: 1.5px;
   color: var(--muted); margin-bottom: 4px;
 }
-.modal-name {
-  font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem;
+.modal-name { font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 1.9rem;
   letter-spacing: 1px; color: var(--text); line-height: 1.1; margin-bottom: 6px;
 }
 .modal-tagline {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
   color: var(--muted); margin-bottom: 8px; line-height: 1.5;
 }
 .modal-party-badge {
   display: inline-block; padding: 2px 10px; border-radius: 3px;
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600;
 }
-.modal-party-badge.R { background: #3d1010; color: #ff9090; }
-.modal-party-badge.D { background: #0d1e35; color: #90bbff; }
-.modal-party-badge.I { background: #1a1a00; color: #d4c060; }
+.modal-party-badge.R { background: #fee2e2; color: #991b1b; }
+.modal-party-badge.D { background: #dbeafe; color: #1e40af; }
+.modal-party-badge.I { background: #fef9c3; color: #713f12; }
 .modal-body { padding: 16px 20px 20px; }
 .modal-section { margin-bottom: 16px; }
 .modal-section-hdr {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
   text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
   margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border);
 }
 .modal-fact {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
   color: var(--muted); padding: 5px 0; line-height: 1.55;
   border-bottom: 1px solid #191919;
 }
 .modal-fact:last-child { border-bottom: none; }
 .modal-fact::before { content: '→ '; color: var(--accent); }
-.modal-poll-bar {
-  margin: 10px 0 0; padding: 8px 10px; background: #1a1400;
+.modal-poll-bar { background: #eef1f8 !important;
+  margin: 10px 0 0; padding: 8px 10px; background: #eef1f8;
   border: 1px solid var(--border); border-left: 3px solid var(--accent);
-  border-radius: 4px; font-family: 'IBM Plex Mono', monospace;
+  border-radius: 4px; font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem; color: var(--accent); line-height: 1.6;
 }
 .modal-links {
@@ -132,7 +132,7 @@
   margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
 }
 .modal-link {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
   padding: 5px 12px; border: 1px solid var(--border); border-radius: 4px;
   color: var(--muted); text-decoration: none; transition: all 0.15s;
 }
@@ -140,7 +140,7 @@
 .modal-link.primary { border-color: var(--accent); color: var(--accent); }
 .race-card { cursor: pointer; transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s; }
 .race-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 18px rgba(240,192,64,0.12); }
-.race-card-hint { font-family: 'IBM Plex Mono', monospace; font-size: 0.57rem; color: #4a4a4a; margin-top: 6px; }
+.race-card-hint { font-family: 'JetBrains Mono', monospace; font-size: 0.57rem; color: #4a4a4a; margin-top: 6px; }
 
 /* ── PARTY LEADERSHIP BAR ───────────────────────────────────────────────── */
 .leadership-bar {
@@ -156,7 +156,7 @@
 }
 .leader-card:last-child { border-right: none; }
 .leader-role {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
   text-transform: uppercase; letter-spacing: 1.5px;
   color: var(--muted); margin-bottom: 3px;
 }
@@ -165,38 +165,38 @@
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .leader-district {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
   color: var(--muted);
 }
-.leader-card.R { border-top: 2px solid var(--rep); }
-.leader-card.D { border-top: 2px solid var(--dem); }
+.leader-card.R { border-top: 3px solid var(--rep); background: #fff; }
+.leader-card.D { border-top: 3px solid var(--dem); background: #fff; }
 @media (max-width: 768px) {
   .leader-card { min-width: 140px; padding: 8px 10px; }
   .leader-name { font-size: 0.78rem; }
 }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
 :root {
-  --rep: #c0392b; --dem: #2471a3;
-  --bg: #0d0d0d; --surface: #161616; --surface2: #1e1e1e;
-  --border: #2a2a2a; --text: #e8e8e8; --muted: #aaa; --accent: #f0c040;
+  --rep: #b91c1c; --dem: #1d4ed8;
+  --bg: #f8f7f4; --surface: #ffffff; --surface2: #f1f0ed;
+  --border: #e2e0db; --text: #111827; --muted: #6b7280; --accent: #1a2744;
   font-size: 17px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
 
 /* HEADER */
 header { background: var(--surface); border-bottom: 2px solid var(--accent); padding: 14px 28px; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 2px; color: var(--accent); }
-header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
+header h1 { font-family: 'Inter', sans-serif; font-size: 2.0rem; font-weight: 700; letter-spacing: -0.5px; color: var(--accent); }
+header span { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
 .header-countdown { margin-left: auto; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; text-align: center; min-width: 120px; transition: border-color 0.15s; cursor: pointer; font-family: inherit; -webkit-tap-highlight-color: transparent; }
 .header-countdown:hover { border-color: var(--accent); }
-.countdown-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
-.countdown-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--accent); line-height: 1.1; letter-spacing: 1px; }
-.countdown-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--muted); }
+.countdown-lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+.countdown-val { font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
+.countdown-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--muted); }
 
 /* SCOREBOARD */
 .scoreboard { display: flex; gap: 8px; padding: 8px 28px; background: var(--surface2); border-bottom: 1px solid var(--border); align-items: center; flex-wrap: wrap; }
@@ -204,15 +204,15 @@ header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color:
 .sc { background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 5px 12px; }
 .sc-split { display: flex; gap: 8px; align-items: baseline; }
 .sc.sc-link { text-decoration: none; cursor: pointer; transition: border-color 0.15s, background 0.15s; font-family: inherit; text-align: left; -webkit-tap-highlight-color: transparent; }
-.sc.sc-link:hover { border-color: var(--accent); background: #1a1500; }
+.sc.sc-link:hover { border-color: var(--accent); background: #eef1f8; }
 .sc.sc-link:hover .lbl { color: var(--accent); }
-.sc .lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-.sc .val { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; line-height: 1.1; }
+.sc .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.sc .val { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 700; line-height: 1.1; }
 .val.rep { color: var(--rep); } .val.dem { color: var(--dem); } .val.neu { color: var(--accent); font-size: 0.85rem; padding-top: 2px; }
 
 /* TABS */
 .tabs { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; }
-.tab { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 18px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 3px solid transparent; color: var(--muted); transition: all 0.15s; white-space: nowrap; }
+.tab { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 18px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 3px solid transparent; color: var(--muted); transition: all 0.15s; white-space: nowrap; }
 .tab:hover { color: var(--text); }
 .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 .tab-icon { width: 18px; height: 18px; flex-shrink: 0; }
@@ -224,28 +224,28 @@ header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color:
 /* MAP PANE */
 .map-pane { display: none; flex-direction: row; flex: 1; min-height: 0; }
 .map-pane.active { display: flex; }
-#map { flex: 1; min-height: 500px; background: #111; }
+#map { flex: 1; min-height: 500px; background: #f8f7f4; }
 .map-sidebar { width: 380px; background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
 .sidebar-header { padding: 14px 16px; border-bottom: 1px solid var(--border); }
-.sidebar-header h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--accent); margin-bottom: 8px; }
+.sidebar-header h3 { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
 .chamber-toggle { display: flex; gap: 0; }
-.ch-btn { flex: 1; padding: 6px 10px; border: 1px solid var(--border); cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; background: var(--surface2); color: var(--muted); transition: all 0.15s; }
+.ch-btn { flex: 1; padding: 6px 10px; border: 1px solid var(--border); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; background: var(--surface2); color: var(--muted); transition: all 0.15s; }
 .ch-btn:first-child { border-radius: 4px 0 0 4px; }
 .ch-btn:last-child { border-radius: 0 4px 4px 0; border-left: 0; }
-.ch-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+.ch-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
 .district-info { padding: 16px; flex: 1; overflow-y: auto; }
-.district-info .no-sel { color: var(--muted); font-size: 0.8rem; font-family: 'IBM Plex Mono', monospace; line-height: 1.6; }
-.info-dist { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
+.district-info .no-sel { color: var(--muted); font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
+.info-dist { font-family: 'Inter', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; }
 .info-name { font-size: 1.1rem; font-weight: 600; margin: 4px 0; }
-.info-party { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 600; margin: 4px 0 12px; }
-.info-party.R { background: #3d1010; color: #ff9090; }
-.info-party.D { background: #0d1e35; color: #90bbff; }
-.info-row { font-size: 0.8rem; color: var(--muted); margin: 4px 0; font-family: 'IBM Plex Mono', monospace; }
+.info-party { display: inline-block; padding: 3px 10px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; margin: 4px 0 12px; }
+.info-party.R { background: #fee2e2; color: #991b1b; }
+.info-party.D { background: #dbeafe; color: #1e40af; }
+.info-row { font-size: 0.8rem; color: var(--muted); margin: 4px 0; font-family: 'JetBrains Mono', monospace; }
 .info-row span { color: var(--text); }
 .map-legend { padding: 12px 16px; border-top: 1px solid var(--border); }
-.legend-row { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; color: var(--muted); margin: 3px 0; font-family: 'IBM Plex Mono', monospace; }
+.legend-row { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; color: var(--muted); margin: 3px 0; font-family: 'JetBrains Mono', monospace; }
 .legend-swatch { width: 14px; height: 14px; border-radius: 2px; }
-.loading-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.85); color: var(--accent); padding: 20px 32px; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; z-index: 1000; letter-spacing: 1px; text-align: center; pointer-events: none; }
+.loading-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.85); color: var(--accent); padding: 20px 32px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; z-index: 1000; letter-spacing: 1px; text-align: center; pointer-events: none; }
 
 /* TABLE PANE */
 .table-pane { padding: 20px 28px; flex: 1; overflow-y: auto; }
@@ -253,106 +253,106 @@ header span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color:
 /* GLOBAL SEARCH */
 .search-bar-wrap { padding: 14px 28px; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .global-search { position: relative; }
-.global-search input { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 12px 8px 36px; border-radius: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; width: 320px; outline: none; }
+.global-search input { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 12px 8px 36px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; width: 320px; outline: none; }
 .global-search input:focus { border-color: var(--accent); }
 .global-search .icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.9rem; pointer-events: none; }
 .search-results-drop { position: absolute; top: 100%; left: 0; width: 100%; background: var(--surface); border: 1px solid var(--accent); border-top: 0; border-radius: 0 0 6px 6px; z-index: 9999; max-height: 280px; overflow-y: auto; display: none; }
 .search-results-drop.open { display: block; }
-.sr-item { padding: 9px 14px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; border-bottom: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
-.sr-item:hover { background: var(--surface2); }
+.sr-item { padding: 9px 14px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border-bottom: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
+.sr-item:hover { background: #f1f0ed; }
 .sr-item .sr-dist { color: var(--muted); min-width: 60px; }
 .sr-item .sr-name { color: var(--text); flex: 1; }
 .sr-item .sr-badge { font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; }
-.sr-item .sr-badge.R { background: #3d1010; color: #ff9090; }
-.sr-item .sr-badge.D { background: #0d1e35; color: #90bbff; }
+.sr-item .sr-badge.R { background: #fee2e2; color: #991b1b; }
+.sr-item .sr-badge.D { background: #dbeafe; color: #1e40af; }
 .sr-item .sr-chamber { color: var(--muted); font-size: 0.65rem; }
 
 .controls { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
-.tbl-search { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; width: 240px; outline: none; }
+.tbl-search { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; width: 240px; outline: none; }
 .tbl-search:focus { border-color: var(--accent); }
-.fbtn { padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; background: var(--surface); color: var(--muted); transition: all 0.15s; }
+.fbtn { padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; background: var(--surface); color: var(--muted); transition: all 0.15s; }
 .fbtn:hover, .fbtn.active { border-color: var(--accent); color: var(--accent); }
 .fbtn.rep.active { border-color: var(--rep); color: var(--rep); }
 .fbtn.dem.active { border-color: var(--dem); color: var(--dem); }
-.cnt { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-left: auto; }
+.cnt { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-left: auto; }
 
 table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
-th { background: var(--surface2); color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+th { background: var(--surface2); color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
 th:hover { color: var(--accent); }
 td { padding: 8px 12px; border-bottom: 1px solid #191919; vertical-align: middle; }
 tr:hover td { background: var(--surface2); }
-.pb { display: inline-block; padding: 2px 7px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; font-weight: 600; }
-.pb.R { background: #3d1010; color: #ff9090; }
-.pb.D { background: #0d1e35; color: #90bbff; }
-.dn { font-family: 'IBM Plex Mono', monospace; color: var(--muted); font-size: 0.78rem; }
+.pb { display: inline-block; padding: 2px 7px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 600; }
+.pb.R { background: #fee2e2; color: #991b1b; }
+.pb.D { background: #dbeafe; color: #1e40af; }
+.dn { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.78rem; }
 
 /* Leaflet overrides */
-.leaflet-container { background: #0d0d0d; }
+.leaflet-container { background: #f8f7f4; }
 
 /* LEGISLATURE TAB */
 .leg-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
 .leg-section { margin-bottom: 36px; max-width: 1100px; }
-.leg-section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 4px; padding-bottom: 6px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; }
-.leg-section-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
+.leg-section-title { font-family: 'Inter', sans-serif; font-size: 1.4rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 4px; padding-bottom: 6px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.leg-section-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
 .leg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
 .leg-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-decoration: none; display: block; transition: border-color 0.15s, transform 0.1s; }
 .leg-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-.leg-card-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
+.leg-card-label { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
 .leg-card-title { font-weight: 600; font-size: 0.85rem; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
-.leg-card-desc { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
-.leg-card-tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; border: 1px solid var(--border); background: var(--surface2); color: var(--muted); }
-.leg-card-tag.in-committee { border-color: #7bafd4; color: #7bafd4; }
+.leg-card-desc { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+.leg-card-tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; border: 1px solid var(--border); background: var(--surface2); color: var(--muted); }
+.leg-card-tag.in-committee { border-color: #1d4ed8; color: #1d4ed8; }
 .leg-card-tag.passed { border-color: #7dbf7d; color: #7dbf7d; }
 .leg-card-tag.vote { border-color: var(--accent); color: var(--accent); }
 .leg-card-tag.calendar { border-color: #c9a0dc; color: #c9a0dc; }
 .leg-divider { border: none; border-top: 2px solid var(--border); margin: 32px 0; max-width: 1100px; }
-.leg-federal-badge { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; padding: 2px 8px; border-radius: 3px; background: #1a1000; border: 1px solid var(--accent); color: var(--accent); margin-left: 10px; vertical-align: middle; letter-spacing: 1px; }
+.leg-federal-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; padding: 2px 8px; border-radius: 3px; background: #1a1000; border: 1px solid var(--accent); color: var(--accent); margin-left: 10px; vertical-align: middle; letter-spacing: 1px; }
 
 /* OFFICIALS TAB */
 .officials-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
 .officials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; max-width: 1100px; }
 .official-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .official-card-top { padding: 16px 20px; border-bottom: 1px solid var(--border); }
-.official-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
+.official-title { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
 .official-name { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
-.official-party { display: inline-block; padding: 2px 9px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 600; margin-bottom: 8px; }
-.official-party.R { background: #3d1010; color: #ff9090; }
-.official-party.D { background: #0d1e35; color: #90bbff; }
-.official-bio { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); line-height: 1.6; }
+.official-party { display: inline-block; padding: 2px 9px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; margin-bottom: 8px; }
+.official-party.R { background: #fee2e2; color: #991b1b; }
+.official-party.D { background: #dbeafe; color: #1e40af; }
+.official-bio { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); line-height: 1.6; }
 .official-card-body { padding: 14px 20px; }
 .official-section { margin-bottom: 12px; }
-.official-section-hdr { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--border); }
-.official-item { font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; color: var(--muted); padding: 3px 0; line-height: 1.45; }
+.official-section-hdr { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--border); }
+.official-item { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--muted); padding: 3px 0; line-height: 1.45; }
 .official-item::before { content: '→ '; color: var(--accent); }
 .official-links { padding: 10px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; }
-.official-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
+.official-link { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
 .official-link:hover { border-color: var(--accent); color: var(--accent); }
 .official-link.primary { border-color: var(--accent); color: var(--accent); }
 
 /* RESOURCES TAB */
 .resources-pane { padding: 28px 32px; flex: 1; overflow-y: auto; }
 .resources-hero { max-width: 700px; margin-bottom: 32px; }
-.resources-hero h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
-.resources-hero p { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
+.resources-hero h2 { font-family: 'Inter', sans-serif; font-size: 2rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+.resources-hero p { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
 .resources-section { margin-bottom: 32px; max-width: 1000px; }
-.resources-section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--text); letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.resources-section-title { font-family: 'Inter', sans-serif; font-size: 1.3rem; color: var(--text); letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
 .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
 .resource-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-decoration: none; display: block; transition: border-color 0.15s, transform 0.1s; }
 .resource-card:hover { border-color: var(--accent); transform: translateY(-1px); }
 .resource-card-title { font-weight: 600; font-size: 0.85rem; color: var(--accent); margin-bottom: 4px; }
-.resource-card-desc { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; }
-.resource-card-tag { display: inline-block; margin-top: 6px; padding: 1px 7px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+.resource-card-desc { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; }
+.resource-card-tag { display: inline-block; margin-top: 6px; padding: 1px 7px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
 
 /* ── SENATOR PROFILE EXPANSION PANEL ────────────────────────────────────── */
 .profile-toggle {
   display: flex; align-items: center; gap: 8px; width: 100%;
   margin-top: 14px; padding: 8px 10px;
   background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
-  cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
+  cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
   color: var(--accent); letter-spacing: 1px; text-transform: uppercase;
   transition: all 0.15s;
 }
-.profile-toggle:hover { border-color: var(--accent); background: #1a1500; }
+.profile-toggle:hover { border-color: var(--accent); background: #eef1f8; }
 .profile-toggle .pt-arrow { margin-left: auto; transition: transform 0.2s; font-size: 0.6rem; }
 .profile-toggle.open .pt-arrow { transform: rotate(180deg); }
 
@@ -367,7 +367,7 @@ tr:hover td { background: var(--surface2); }
 .profile-tenure {
   padding: 10px 12px 8px;
   border-bottom: 1px solid var(--border);
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted);
   line-height: 1.6;
 }
 .profile-tenure span { color: var(--text); }
@@ -381,23 +381,23 @@ tr:hover td { background: var(--surface2); }
 }
 .profile-col:first-child { border-right: 1px solid var(--border); }
 .profile-col-header {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
   text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
   padding-bottom: 4px; border-bottom: 1px solid var(--border);
 }
-.profile-col.stated .profile-col-header { color: #7bafd4; }
-.profile-col.actual .profile-col-header { color: #e08080; }
+.profile-col.stated .profile-col-header { color: #1d4ed8; }
+.profile-col.actual .profile-col-header { color: #b91c1c; }
 .profile-col ul {
   list-style: none; padding: 0; margin: 0;
 }
 .profile-col li {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
   color: var(--muted); padding: 4px 0; line-height: 1.55;
-  border-bottom: 1px solid #1e1e1e;
+  border-bottom: 1px solid var(--border);
 }
 .profile-col li:last-child { border-bottom: none; }
-.profile-col.stated li::before { content: '→ '; color: #7bafd4; }
-.profile-col.actual li::before { content: '→ '; color: #e08080; }
+.profile-col.stated li::before { content: '→ '; color: #1d4ed8; }
+.profile-col.actual li::before { content: '→ '; color: #b91c1c; }
 
 .profile-donors-row {
   padding: 8px 12px;
@@ -405,7 +405,7 @@ tr:hover td { background: var(--surface2); }
   display: flex; align-items: center; justify-content: flex-end;
 }
 .donor-btn {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
   padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
   color: var(--muted); text-decoration: none; transition: all 0.15s;
   letter-spacing: 0.5px;
@@ -418,7 +418,7 @@ tr:hover td { background: var(--surface2); }
   border-bottom: 1px solid var(--border);
 }
 .contact-chip {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
   padding: 4px 10px; border: 1px solid var(--border); border-radius: 20px;
   color: var(--muted); text-decoration: none; transition: all 0.15s;
   background: var(--bg);
@@ -430,17 +430,17 @@ tr:hover td { background: var(--surface2); }
   padding: 8px 12px; border-top: 1px solid var(--border);
 }
 .profile-committees-hdr {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
   text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
   margin-bottom: 6px;
 }
 .profile-committees-list { list-style: none; padding: 0; margin: 0; }
 .profile-committees-list li {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.67rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.67rem;
   color: var(--muted); padding: 2px 0; line-height: 1.5;
 }
 .profile-committees-list li::before { content: '▸ '; color: var(--accent); }
-.leaflet-popup-content-wrapper { background: var(--surface); color: var(--text); border: 1px solid var(--accent); border-radius: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
+.leaflet-popup-content-wrapper { background: var(--surface); color: var(--text); border: 1px solid var(--accent); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
 .leaflet-popup-tip { background: var(--surface); }
 .leaflet-popup-close-button { color: var(--muted) !important; }
 
@@ -453,19 +453,19 @@ tr:hover td { background: var(--surface2); }
 .senator-cards { display: none; padding: 12px; gap: 10px; flex-direction: column; }
 .sen-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color 0.15s; }
 .sen-card-header { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.sen-card-dist { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); min-width: 46px; }
+.sen-card-dist { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); min-width: 46px; }
 .sen-card-name { flex: 1; font-size: 0.95rem; font-weight: 600; line-height: 1.2; }
-.sen-card-region { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--muted); margin-top: 2px; }
-.sen-card-party { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 3px; flex-shrink: 0; }
-.sen-card-party.R { background: #3d1010; color: #ff9090; }
-.sen-card-party.D { background: #0d1e35; color: #90bbff; }
+.sen-card-region { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--muted); margin-top: 2px; }
+.sen-card-party { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 3px; flex-shrink: 0; }
+.sen-card-party.R { background: #fee2e2; color: #991b1b; }
+.sen-card-party.D { background: #dbeafe; color: #1e40af; }
 .sen-card-chevron { color: var(--muted); font-size: 0.7rem; transition: transform 0.2s; flex-shrink: 0; }
 .sen-card.open .sen-card-chevron { transform: rotate(180deg); }
 .sen-card.open { border-color: var(--accent); }
 
 .sen-card-actions { display: none; border-top: 1px solid var(--border); padding: 10px 14px; gap: 8px; flex-wrap: wrap; }
 .sen-card.open .sen-card-actions { display: flex; }
-.sen-action { display: inline-flex; align-items: center; gap: 5px; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; background: var(--surface2); -webkit-tap-highlight-color: transparent; }
+.sen-action { display: inline-flex; align-items: center; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; background: var(--surface2); -webkit-tap-highlight-color: transparent; }
 .sen-action.phone { border-color: #3a6b3a; color: #7ec87e; }
 .sen-action.twitter { border-color: #1a3a5c; color: #5ba3e0; }
 .sen-action.official { border-color: var(--accent); color: var(--accent); }
@@ -473,37 +473,37 @@ tr:hover td { background: var(--surface2); }
 
 .sen-card-profile { display: none; border-top: 1px solid var(--border); }
 .sen-card.open .sen-card-profile { display: block; }
-.sen-profile-toggle { width: 100%; background: #111; border: none; border-bottom: 1px solid var(--border); color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 1px; padding: 9px 14px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; -webkit-tap-highlight-color: transparent; }
-.sen-profile-toggle.active { color: var(--accent); background: #0d0d0d; }
+.sen-profile-toggle { width: 100%; background: #f8f7f4; border: none; border-bottom: 1px solid var(--border); color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 1px; padding: 9px 14px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; -webkit-tap-highlight-color: transparent; }
+.sen-profile-toggle.active { color: var(--accent); background: #f8f7f4; }
 .sen-profile-body { display: none; padding: 12px 14px; }
 .sen-profile-body.open { display: block; }
-.sen-profile-tenure { font-family: 'IBM Plex Mono', monospace; font-size: 0.64rem; color: var(--muted); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); line-height: 1.6; }
+.sen-profile-tenure { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; color: var(--muted); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); line-height: 1.6; }
 .sen-profile-section { margin-bottom: 12px; }
-.sen-profile-section-hdr { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--border); }
-.sen-profile-section.stated .sen-profile-section-hdr { color: #7bafd4; }
-.sen-profile-section.actual .sen-profile-section-hdr { color: #e08080; }
+.sen-profile-section-hdr { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--border); }
+.sen-profile-section.stated .sen-profile-section-hdr { color: #1d4ed8; }
+.sen-profile-section.actual .sen-profile-section-hdr { color: #b91c1c; }
 .sen-profile-section ul { margin: 0; padding-left: 14px; }
-.sen-profile-section li { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--muted); padding: 4px 0; line-height: 1.6; }
-.sen-committees-hdr { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; margin-top: 4px; }
+.sen-profile-section li { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); padding: 4px 0; line-height: 1.6; }
+.sen-committees-hdr { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; margin-top: 4px; }
 .sen-committees-list { margin: 0; padding-left: 14px; }
-.sen-committees-list li { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); padding: 2px 0; }
+.sen-committees-list li { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); padding: 2px 0; }
 .sen-committees-list li::before { content: '▸ '; color: var(--accent); }
 
 /* ═══ BOTTOM NAV ═════════════════════════════════════════════════════════════ */
 .bottom-nav { display: none; }
 
 /* ═══ MORE DRAWER ════════════════════════════════════════════════════════════ */
-.more-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.more-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .more-overlay.open { display: block; }
 .more-drawer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 2px solid var(--accent); border-radius: 18px 18px 0 0; z-index: 1000; padding: 0 0 env(safe-area-inset-bottom,16px); transform: translateY(100%); transition: transform 0.28s cubic-bezier(0.4,0,0.2,1); }
 .more-drawer.open { transform: translateY(0); }
 .more-drawer-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 12px auto 16px; }
-.more-drawer-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); padding: 0 20px 10px; }
+.more-drawer-title { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); padding: 0 20px 10px; }
 .more-drawer-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px 20px; }
 .more-item { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: border-color 0.15s; }
 .more-item:active { border-color: var(--accent); }
 .more-item svg { color: var(--accent); }
-.more-item span { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); text-align: center; }
+.more-item span { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); text-align: center; }
 
 /* ═══ MOBILE BREAKPOINTS ════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
@@ -556,7 +556,7 @@ tr:hover td { background: var(--surface2); }
     padding: 8px 4px 6px;
     cursor: pointer;
     color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.52rem;
     letter-spacing: 0.5px;
     -webkit-tap-highlight-color: transparent;
@@ -634,21 +634,21 @@ tr:hover td { background: var(--surface2); }
 
 <div class="scoreboard">
   <div class="sc-group" style="flex-direction:column;align-items:flex-start;gap:2px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">State</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">State</div>
     <div style="display:flex;gap:8px;">
       <button class="sc sc-link" onclick="showTab('senate');setBottomNav('senate')" title="View Senate tab"><div class="lbl">Senate</div><div class="sc-split"><span class="val rep">24R</span><span class="val dem">9D</span></div></button>
       <button class="sc sc-link" onclick="showTab('house');setBottomNav('house')" title="View House tab"><div class="lbl">House</div><div class="sc-split"><span class="val rep">65R</span><span class="val dem">34D</span></div></button>
     </div>
   </div>
   <div class="sc-group" style="flex-direction:column;align-items:flex-start;gap:2px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">Federal</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">Federal</div>
     <div style="display:flex;gap:8px;">
       <button class="sc sc-link" onclick="showTab('federal');setBottomNav('federal')" title="View Federal tab"><div class="lbl">US Senate</div><div class="sc-split"><span class="val rep">2R</span><span class="val dem">0D</span></div></button>
       <button class="sc sc-link" onclick="showTab('federal');setBottomNav('federal')" title="View Federal tab"><div class="lbl">US House</div><div class="sc-split"><span class="val rep">10R</span><span class="val dem">5D</span></div></button>
     </div>
   </div>
   <div class="sc-group" style="flex-direction:column;align-items:flex-start;gap:2px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">Exec</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">Exec</div>
     <div style="display:flex;gap:8px;">
       <a class="sc sc-link" href="https://governor.ohio.gov" target="_blank" rel="noopener"><div class="lbl">Gov</div><div class="val neu">DeWine</div></a>
       <a class="sc sc-link" href="https://www.sos.state.oh.us" target="_blank" rel="noopener"><div class="lbl">SoS</div><div class="val neu">LaRose</div></a>
@@ -663,7 +663,7 @@ tr:hover td { background: var(--surface2); }
     <input type="text" id="global-search" placeholder="Search any legislator, district, or county…" autocomplete="off" oninput="doGlobalSearch(this.value)" onblur="setTimeout(()=>closeSearch(),200)">
     <div class="search-results-drop" id="search-drop"></div>
   </div>
-  <span style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted)">Search Senate + House · Click a result to highlight on map</span>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted)">Search Senate + House · Click a result to highlight on map</span>
 </div>
 
 <div class="tabs">
@@ -900,10 +900,10 @@ tr:hover td { background: var(--surface2); }
 <div id="pane-federal" class="pane" style="display:none;overflow-y:auto;">
   <div class="leg-pane">
     <div class="leg-section">
-      <div class="leg-section-title" style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--accent);letter-spacing:2px;margin-bottom:6px;">Federal Delegation</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:24px;">119th Congress · Ohio: 10R / 5D in House · 2R in Senate</div>
+      <div class="leg-section-title" style="font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:-0.3px;margin-bottom:6px;">Federal Delegation</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:24px;">119th Congress · Ohio: 10R / 5D in House · 2R in Senate</div>
 
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
       <div class="officials-grid" style="margin-bottom:28px;">
         <div class="official-card">
           <div class="official-card-top">
@@ -961,8 +961,8 @@ tr:hover td { background: var(--surface2); }
         </div>
       </div>
 
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House — Ohio Delegation (119th Congress)</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections — current districts below are 118th/119th Congress boundaries.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House — Ohio Delegation (119th Congress)</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections — current districts below are 118th/119th Congress boundaries.</div>
       <div id="federal-house-grid" class="officials-grid"></div>
     </div>
   </div>
@@ -972,16 +972,16 @@ tr:hover td { background: var(--surface2); }
 <div id="pane-midterms" class="pane" style="display:none;overflow-y:auto;">
   <div class="leg-pane">
     <div class="leg-section">
-      <div class="leg-section-title" style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--accent);letter-spacing:2px;margin-bottom:6px;">2026 Ohio Midterms</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:6px;">Primary: May 5, 2026 · General: November 3, 2026</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:#666;margin-bottom:24px;">Filing deadline: Feb 4, 2026 · Polls updated as available</div>
+      <div class="leg-section-title" style="font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:-0.3px;margin-bottom:6px;">2026 Ohio Midterms</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:6px;">Primary: May 5, 2026 · General: November 3, 2026</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#666;margin-bottom:24px;">Filing deadline: Feb 4, 2026 · Polls updated as available</div>
 
       <!-- GOVERNOR -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Governor (Open Seat — DeWine Term-Limited) · Nominees Set May 5</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Governor (Open Seat — DeWine Term-Limited) · Nominees Set May 5</div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican Nominee ✓</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican Nominee ✓</div>
           <div class="race-card" onclick="openCandidateModal('Vivek Ramaswamy')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Vivek Ramaswamy</div>
             <div class="race-candidate-note">GOP NOMINEE · Won May 5 primary easily over Casey Putsch · Former biotech CEO, 2024 presidential candidate · Running mate: Rob McColley (Senate Pres)</div>
@@ -990,7 +990,7 @@ tr:hover td { background: var(--surface2); }
           </div>
         </div>
         <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Nominee ✓</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Nominee ✓</div>
           <div class="race-card" onclick="openCandidateModal('Amy Acton')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Amy Acton</div>
             <div class="race-candidate-note">DEM NOMINEE · Uncontested Democratic primary · Former Ohio Health Director during COVID · Running mate: David Pepper</div>
@@ -1001,12 +1001,12 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <!-- US SENATE SPECIAL -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. Senate Special Election (Vance Vacancy) · Nominees Set May 5</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:12px;">JD Vance resigned Jan 10, 2025 to become VP. DeWine appointed Jon Husted. Special election Nov 3, 2026 fills remainder of term. Winner must run again in 2028 for a full six-year term.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. Senate Special Election (Vance Vacancy) · Nominees Set May 5</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:12px;">JD Vance resigned Jan 10, 2025 to become VP. DeWine appointed Jon Husted. Special election Nov 3, 2026 fills remainder of term. Winner must run again in 2028 for a full six-year term.</div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican Nominee ✓</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican Nominee ✓</div>
           <div class="race-card" onclick="openCandidateModal('Jon Husted')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Jon Husted</div>
             <div class="race-candidate-note">GOP NOMINEE · Uncontested Republican primary · Incumbent (appointed) · Former Lt. Governor</div>
@@ -1015,7 +1015,7 @@ tr:hover td { background: var(--surface2); }
           </div>
         </div>
         <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Nominee ✓</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Nominee ✓</div>
           <div class="race-card" onclick="openCandidateModal('Sherrod Brown')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Sherrod Brown</div>
             <div class="race-candidate-note">DEM NOMINEE · Easily won May 5 primary over Ron Kincaid · Former 3-term US Senator (2007–2025) · Lost to Moreno in 2024 by ~3pts · Endorsed by IUPAT</div>
@@ -1026,7 +1026,7 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <!-- US SENATE OTHER CANDIDATES -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:10px;margin-top:4px;padding-bottom:4px;border-bottom:1px solid var(--border);">Also on the Ballot — US Senate Special Election</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:10px;margin-top:4px;padding-bottom:4px;border-bottom:1px solid var(--border);">Also on the Ballot — US Senate Special Election</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:24px;">
         <div class="race-card" onclick="openCandidateModal('Greg Levy')" title="Click for quick facts">
           <div class="race-candidate-name">Greg Levy</div>
@@ -1037,26 +1037,26 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <!-- US HOUSE RACES -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:6px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. House Races · All 15 Ohio Districts · General: Nov 3, 2026</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">New redistricted maps in effect for 2026. Nominees confirmed May 5 primary. Incumbents: 10R / 5D. Competitive targets: OH-1, OH-9, OH-13, OH-15.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:6px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. House Races · All 15 Ohio Districts · General: Nov 3, 2026</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">New redistricted maps in effect for 2026. Nominees confirmed May 5 primary. Incumbents: 10R / 5D. Competitive targets: OH-1, OH-9, OH-13, OH-15.</div>
 
       <!-- Competitive races header -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#f0c040;margin-bottom:10px;">★ Key Competitive Races</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:10px;">★ Key Competitive Races</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:24px;">
 
         <!-- OH-9 -->
-        <div class="race-card" style="border-color:#3a2a00;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">OH-9 · Toledo / NW Ohio · TOSS UP</div>
+        <div class="race-card" style="border-color:#fde68a;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">OH-9 · Toledo / NW Ohio · TOSS UP</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:#ff9090;text-transform:uppercase;margin-bottom:3px;">Republican</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
               <div style="font-size:0.82rem;font-weight:600;">Derek Merrin</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--muted);">Fmr state rep · Toledo-area · Lost to Kaptur by &lt;1% in 2024</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Fmr state rep · Toledo-area · Lost to Kaptur by &lt;1% in 2024</div>
             </div>
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:#90bbff;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Marcy Kaptur</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--muted);">Longest-serving woman in Congress · In office since 1983 · Barely survived 2024</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Longest-serving woman in Congress · In office since 1983 · Barely survived 2024</div>
             </div>
           </div>
           <div class="race-poll">Cook PVI: R+3 after redistricting · District redrawn to favor R · NRCC targeting — called a national toss-up. Merrin came within 2,400 votes in 2024.</div>
@@ -1066,18 +1066,18 @@ tr:hover td { background: var(--surface2); }
         </div>
 
         <!-- OH-1 -->
-        <div class="race-card" style="border-color:#3a2a00;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">OH-1 · Cincinnati / SW Ohio · COMPETITIVE</div>
+        <div class="race-card" style="border-color:#fde68a;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">OH-1 · Cincinnati / SW Ohio · COMPETITIVE</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:#ff9090;text-transform:uppercase;margin-bottom:3px;">Republican</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
               <div style="font-size:0.82rem;font-weight:600;">Eric Conroy</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--muted);">Won May 5 R primary · District redrawn to expand R-friendly territory north to Warren/Clinton Co.</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won May 5 R primary · District redrawn to expand R-friendly territory north to Warren/Clinton Co.</div>
             </div>
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:#90bbff;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Greg Landsman</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--muted);">Won with 54.6% in 2024 · Former Cincinnati City Council · District now R-leaning after remap</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won with 54.6% in 2024 · Former Cincinnati City Council · District now R-leaning after remap</div>
             </div>
           </div>
           <div class="race-poll">Cook PVI: D+3 pre-remap, now R-leaning under new boundaries. Trump won the 2024 version of this district by ~3 pts. National Ds defending.</div>
@@ -1087,18 +1087,18 @@ tr:hover td { background: var(--surface2); }
         </div>
 
         <!-- OH-13 -->
-        <div class="race-card" style="border-color:#3a2a00;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">OH-13 · Akron / Summit-Stark · LIKELY D</div>
+        <div class="race-card" style="border-color:#fde68a;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">OH-13 · Akron / Summit-Stark · LIKELY D</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:#ff9090;text-transform:uppercase;margin-bottom:3px;">Republican</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
               <div style="font-size:0.82rem;font-weight:600;">TBD</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--muted);">Republican nominee TBD · District redrawn slightly more D per compromise map</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Republican nominee TBD · District redrawn slightly more D per compromise map</div>
             </div>
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:#90bbff;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Emilia Sykes</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--muted);">Won 51.1% in 2024 · Running for US Senate — if she wins Senate primary, seat becomes open</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won 51.1% in 2024 · Running for US Senate — if she wins Senate primary, seat becomes open</div>
             </div>
           </div>
           <div class="race-poll">Sykes confirmed Senate candidacy — if she wins the Senate race, OH-13 becomes an open seat. District protected as D-leaning in redistricting deal. Watch this space.</div>
@@ -1108,18 +1108,18 @@ tr:hover td { background: var(--surface2); }
         </div>
 
         <!-- OH-15 -->
-        <div class="race-card" style="border-color:#3a2a00;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">OH-15 · SW Columbus Metro · WATCH</div>
+        <div class="race-card" style="border-color:#fde68a;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">OH-15 · SW Columbus Metro · WATCH</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:#ff9090;text-transform:uppercase;margin-bottom:3px;">Republican (Incumbent)</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Mike Carey</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--muted);">Incumbent · R+4 PVI · Survived 2024 · Former coal lobbyist</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Incumbent · R+4 PVI · Survived 2024 · Former coal lobbyist</div>
             </div>
             <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:#90bbff;text-transform:uppercase;margin-bottom:3px;">Democrat</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat</div>
               <div style="font-size:0.82rem;font-weight:600;">Don Leonard</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--muted);">Won D primary over fmr. State Rep. Adam Miller · Expected to gain national D attention</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won D primary over fmr. State Rep. Adam Miller · Expected to gain national D attention</div>
             </div>
           </div>
           <div class="race-poll">Cook PVI R+4. Vorys recap flagged this as a race "expected to gain national attention." D nominee Don Leonard bested Adam Miller in the primary.</div>
@@ -1131,9 +1131,9 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <!-- All districts table -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#888;margin-bottom:10px;">All 15 Districts — At a Glance</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#888;margin-bottom:10px;">All 15 Districts — At a Glance</div>
       <div style="overflow-x:auto;margin-bottom:24px;">
-        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;">
+        <table style="width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">
           <thead>
             <tr style="border-bottom:1px solid var(--accent);">
               <th style="text-align:left;padding:6px 10px;color:var(--accent);white-space:nowrap;">District</th>
@@ -1144,34 +1144,34 @@ tr:hover td { background: var(--surface2); }
             </tr>
           </thead>
           <tbody id="oh-house-districts-body">
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-1</td><td style="padding:5px 10px;color:var(--muted);">Cincinnati / SW Ohio</td><td style="padding:5px 10px;color:#ff9090;">Eric Conroy</td><td style="padding:5px 10px;color:#90bbff;">Greg Landsman (inc.)</td><td style="padding:5px 10px;color:var(--accent);">Competitive</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-2</td><td style="padding:5px 10px;color:var(--muted);">SE Ohio / Appalachia</td><td style="padding:5px 10px;color:#ff9090;">David Taylor (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD (D primary)</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-3</td><td style="padding:5px 10px;color:var(--muted);">Columbus / Franklin Co.</td><td style="padding:5px 10px;color:#ff9090;">TBD</td><td style="padding:5px 10px;color:#90bbff;">Joyce Beatty (inc.)</td><td style="padding:5px 10px;color:#555;">Solid D</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-4</td><td style="padding:5px 10px;color:var(--muted);">N-Central Ohio / Lima</td><td style="padding:5px 10px;color:#ff9090;">Jim Jordan (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-5</td><td style="padding:5px 10px;color:var(--muted);">NW Ohio / Findlay area</td><td style="padding:5px 10px;color:#ff9090;">Bob Latta (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-6</td><td style="padding:5px 10px;color:var(--muted);">NE Ohio / Mahoning Valley</td><td style="padding:5px 10px;color:#ff9090;">Michael Rulli (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD</td><td style="padding:5px 10px;color:#555;">Likely R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-7</td><td style="padding:5px 10px;color:var(--muted);">NE Ohio / Medina-Summit</td><td style="padding:5px 10px;color:#ff9090;">Max Miller (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD</td><td style="padding:5px 10px;color:#555;">Likely R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-8</td><td style="padding:5px 10px;color:var(--muted);">N Cincinnati suburbs / Butler Co.</td><td style="padding:5px 10px;color:#ff9090;">Warren Davidson (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;background:#1a1400;"><td style="padding:5px 10px;color:var(--accent);font-weight:600;white-space:nowrap;">OH-9 ★</td><td style="padding:5px 10px;color:var(--muted);">Toledo / NW Ohio</td><td style="padding:5px 10px;color:#ff9090;">Derek Merrin</td><td style="padding:5px 10px;color:#90bbff;">Marcy Kaptur (inc.)</td><td style="padding:5px 10px;color:var(--accent);font-weight:600;">Toss Up</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-10</td><td style="padding:5px 10px;color:var(--muted);">Dayton / Montgomery Co.</td><td style="padding:5px 10px;color:#ff9090;">Mike Turner (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD</td><td style="padding:5px 10px;color:#555;">Likely R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-11</td><td style="padding:5px 10px;color:var(--muted);">Cleveland / inner suburbs</td><td style="padding:5px 10px;color:#ff9090;">TBD</td><td style="padding:5px 10px;color:#90bbff;">Shontel Brown (inc.)</td><td style="padding:5px 10px;color:#555;">Solid D</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-12</td><td style="padding:5px 10px;color:var(--muted);">E Columbus exurbs / Zanesville</td><td style="padding:5px 10px;color:#ff9090;">Troy Balderson (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;background:#0a1a0a;"><td style="padding:5px 10px;color:#90bbff;font-weight:600;white-space:nowrap;">OH-13 ★</td><td style="padding:5px 10px;color:var(--muted);">Akron / Summit-Stark</td><td style="padding:5px 10px;color:#ff9090;">TBD</td><td style="padding:5px 10px;color:#90bbff;">Emilia Sykes (inc.)*</td><td style="padding:5px 10px;color:#7ab8cc;">Likely D*</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-14</td><td style="padding:5px 10px;color:var(--muted);">NE Ohio / E Cleveland suburbs</td><td style="padding:5px 10px;color:#ff9090;">David Joyce (inc.)</td><td style="padding:5px 10px;color:#90bbff;">TBD</td><td style="padding:5px 10px;color:#555;">Likely R</td></tr>
-            <tr style="border-bottom:1px solid #1e1e1e;background:#1a1400;"><td style="padding:5px 10px;color:var(--accent);font-weight:600;white-space:nowrap;">OH-15 ★</td><td style="padding:5px 10px;color:var(--muted);">SW Columbus Metro</td><td style="padding:5px 10px;color:#ff9090;">Mike Carey (inc.)</td><td style="padding:5px 10px;color:#90bbff;">Don Leonard</td><td style="padding:5px 10px;color:var(--accent);">Watch</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-1</td><td style="padding:5px 10px;color:var(--muted);">Cincinnati / SW Ohio</td><td style="padding:5px 10px;color:#991b1b;">Eric Conroy</td><td style="padding:5px 10px;color:#1e40af;">Greg Landsman (inc.)</td><td style="padding:5px 10px;color:var(--accent);">Competitive</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-2</td><td style="padding:5px 10px;color:var(--muted);">SE Ohio / Appalachia</td><td style="padding:5px 10px;color:#991b1b;">David Taylor (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD (D primary)</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-3</td><td style="padding:5px 10px;color:var(--muted);">Columbus / Franklin Co.</td><td style="padding:5px 10px;color:#991b1b;">TBD</td><td style="padding:5px 10px;color:#1e40af;">Joyce Beatty (inc.)</td><td style="padding:5px 10px;color:#555;">Solid D</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-4</td><td style="padding:5px 10px;color:var(--muted);">N-Central Ohio / Lima</td><td style="padding:5px 10px;color:#991b1b;">Jim Jordan (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-5</td><td style="padding:5px 10px;color:var(--muted);">NW Ohio / Findlay area</td><td style="padding:5px 10px;color:#991b1b;">Bob Latta (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-6</td><td style="padding:5px 10px;color:var(--muted);">NE Ohio / Mahoning Valley</td><td style="padding:5px 10px;color:#991b1b;">Michael Rulli (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD</td><td style="padding:5px 10px;color:#555;">Likely R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-7</td><td style="padding:5px 10px;color:var(--muted);">NE Ohio / Medina-Summit</td><td style="padding:5px 10px;color:#991b1b;">Max Miller (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD</td><td style="padding:5px 10px;color:#555;">Likely R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-8</td><td style="padding:5px 10px;color:var(--muted);">N Cincinnati suburbs / Butler Co.</td><td style="padding:5px 10px;color:#991b1b;">Warren Davidson (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;background:#fffbeb;"><td style="padding:5px 10px;color:var(--accent);font-weight:600;white-space:nowrap;">OH-9 ★</td><td style="padding:5px 10px;color:var(--muted);">Toledo / NW Ohio</td><td style="padding:5px 10px;color:#991b1b;">Derek Merrin</td><td style="padding:5px 10px;color:#1e40af;">Marcy Kaptur (inc.)</td><td style="padding:5px 10px;color:var(--accent);font-weight:600;">Toss Up</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-10</td><td style="padding:5px 10px;color:var(--muted);">Dayton / Montgomery Co.</td><td style="padding:5px 10px;color:#991b1b;">Mike Turner (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD</td><td style="padding:5px 10px;color:#555;">Likely R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-11</td><td style="padding:5px 10px;color:var(--muted);">Cleveland / inner suburbs</td><td style="padding:5px 10px;color:#991b1b;">TBD</td><td style="padding:5px 10px;color:#1e40af;">Shontel Brown (inc.)</td><td style="padding:5px 10px;color:#555;">Solid D</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-12</td><td style="padding:5px 10px;color:var(--muted);">E Columbus exurbs / Zanesville</td><td style="padding:5px 10px;color:#991b1b;">Troy Balderson (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD</td><td style="padding:5px 10px;color:#555;">Solid R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;background:#f0fdf4;"><td style="padding:5px 10px;color:#1e40af;font-weight:600;white-space:nowrap;">OH-13 ★</td><td style="padding:5px 10px;color:var(--muted);">Akron / Summit-Stark</td><td style="padding:5px 10px;color:#991b1b;">TBD</td><td style="padding:5px 10px;color:#1e40af;">Emilia Sykes (inc.)*</td><td style="padding:5px 10px;color:#7ab8cc;">Likely D*</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;"><td style="padding:5px 10px;color:var(--muted);white-space:nowrap;">OH-14</td><td style="padding:5px 10px;color:var(--muted);">NE Ohio / E Cleveland suburbs</td><td style="padding:5px 10px;color:#991b1b;">David Joyce (inc.)</td><td style="padding:5px 10px;color:#1e40af;">TBD</td><td style="padding:5px 10px;color:#555;">Likely R</td></tr>
+            <tr style="border-bottom:1px solid #e2e0db;background:#fffbeb;"><td style="padding:5px 10px;color:var(--accent);font-weight:600;white-space:nowrap;">OH-15 ★</td><td style="padding:5px 10px;color:var(--muted);">SW Columbus Metro</td><td style="padding:5px 10px;color:#991b1b;">Mike Carey (inc.)</td><td style="padding:5px 10px;color:#1e40af;">Don Leonard</td><td style="padding:5px 10px;color:var(--accent);">Watch</td></tr>
           </tbody>
         </table>
       </div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:#555;line-height:1.6;margin-bottom:20px;">* OH-13: Emilia Sykes has declared for US Senate. If she wins the Senate Democratic primary, OH-13 becomes an open seat. TBD nominees = primary winner not confirmed in this build. Ratings reflect Cook PVI and post-primary conditions as of May 2026.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:#555;line-height:1.6;margin-bottom:20px;">* OH-13: Emilia Sykes has declared for US Senate. If she wins the Senate Democratic primary, OH-13 becomes an open seat. TBD nominees = primary winner not confirmed in this build. Ratings reflect Cook PVI and post-primary conditions as of May 2026.</div>
 
       <!-- KEY DATES -->
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;margin-top:8px;padding-bottom:4px;border-bottom:1px solid var(--border);">Key Dates</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;margin-top:8px;padding-bottom:4px;border-bottom:1px solid var(--border);">Key Dates</div>
       <div class="leg-grid">
         <div class="leg-card"><div class="leg-card-label">General Election</div><div class="leg-card-title">November 3, 2026</div><div class="leg-card-desc">General election — all offices on ballot. US Senate special election concurrent.</div></div>
         <div class="leg-card"><div class="leg-card-label">Redistricting Note</div><div class="leg-card-title">New Maps in Effect</div><div class="leg-card-desc">Ohio redistricted congressional maps Oct 2025. All US House races run under new boundaries in 2026.</div></div>
       </div>
 
-      <div style="margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:#555;line-height:1.7;">
+      <div style="margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:#555;line-height:1.7;">
         Polling sources: Emerson College (Aug & Dec 2025), RealClearPolling average (Mar 2026). Nominees confirmed May 5, 2026. General election polling updates pending post-primary cycle.
       </div>
     </div>
@@ -1181,7 +1181,7 @@ tr:hover td { background: var(--surface2); }
 <!-- FIND MY REPS TAB -->
 <div id="pane-lookup" class="pane" style="display:none;overflow-y:auto;">
   <div class="lookup-pane">
-    <div id="file-warning" style="display:none;max-width:640px;margin:0 auto 20px;padding:12px 18px;background:#1a1200;border:1px solid var(--accent);border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--accent);line-height:1.7;text-align:center">
+    <div id="file-warning" style="display:none;max-width:640px;margin:0 auto 20px;padding:12px 18px;background:#eff6ff;border:1px solid #93c5fd;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);line-height:1.7;text-align:center">
       ⚠ This tool requires a web server to make API calls.<br>
       Open a terminal in the folder containing this file and run:<br>
       <strong>python3 -m http.server 8000</strong><br>
@@ -1280,16 +1280,16 @@ tr:hover td { background: var(--surface2); }
 <div id="pane-officials" class="pane" style="display:none;overflow-y:auto;">
   <div class="officials-pane">
     <div style="margin-bottom:24px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--accent);letter-spacing:2px;margin-bottom:6px;">Ohio Statewide Elected Officials</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--muted);line-height:1.7;">All officers elected statewide for 4-year terms. Current term: 2023–2027.</div>
+      <div style="font-family:'Inter',sans-serif;font-size:1.8rem;font-weight:700;color:var(--accent);letter-spacing:-0.3px;margin-bottom:6px;">Ohio Statewide Elected Officials</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);line-height:1.7;">All officers elected statewide for 4-year terms. Current term: 2023–2027.</div>
     </div>
     <div class="officials-grid" id="officials-grid"></div>
 
     <div style="margin-top:36px;max-width:1100px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--accent);letter-spacing:2px;margin-bottom:6px;">Federal Delegation</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:24px;">119th Congress · Ohio: 10R / 5D in House · 2R in Senate</div>
+      <div style="font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:-0.3px;margin-bottom:6px;">Federal Delegation</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:24px;">119th Congress · Ohio: 10R / 5D in House · 2R in Senate</div>
 
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
       <div class="officials-grid" style="margin-bottom:28px;">
         <div class="official-card">
           <div class="official-card-top">
@@ -1345,8 +1345,8 @@ tr:hover td { background: var(--surface2); }
         </div>
       </div>
 
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House — Ohio Delegation (119th Congress)</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections — current districts below are 118th/119th Congress boundaries.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House — Ohio Delegation (119th Congress)</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections — current districts below are 118th/119th Congress boundaries.</div>
       <div id="federal-house-grid-officials" class="officials-grid"></div>
     </div>
   </div>
@@ -1511,10 +1511,10 @@ tr:hover td { background: var(--surface2); }
 
     <div class="resources-section" id="marxist-lib">
       <div class="resources-section-title" style="color:#c9a0dc;border-color:#3a2a4a;">☭ Marxist Library — Theoretical Foundations</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:16px;line-height:1.7;max-width:700px;">Primary texts for materialist analysis of state power, capital, and class — directly applicable to Ohio legislative commentary. All links open Marxists Internet Archive (marxists.org), the largest free digital library of socialist literature.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:16px;line-height:1.7;max-width:700px;">Primary texts for materialist analysis of state power, capital, and class — directly applicable to Ohio legislative commentary. All links open Marxists Internet Archive (marxists.org), the largest free digital library of socialist literature.</div>
 
       <div style="margin-bottom:20px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Labor &amp; Class Struggle</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Labor &amp; Class Struggle</div>
         <div class="resources-grid">
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1867-c1/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
             <div class="resource-card-title" style="color:#c9a0dc;">Capital, Volume I — Marx</div>
@@ -1540,7 +1540,7 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <div style="margin-bottom:20px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">State Power &amp; Bourgeois Democracy</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">State Power &amp; Bourgeois Democracy</div>
         <div class="resources-grid">
           <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1917/staterev/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
             <div class="resource-card-title" style="color:#c9a0dc;">The State and Revolution — Lenin</div>
@@ -1566,7 +1566,7 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <div style="margin-bottom:20px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Imperialism &amp; Military Spending</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Imperialism &amp; Military Spending</div>
         <div class="resources-grid">
           <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1916/imp-hsc/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
             <div class="resource-card-title" style="color:#c9a0dc;">Imperialism, the Highest Stage of Capitalism — Lenin</div>
@@ -1587,7 +1587,7 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Party Organization &amp; Political Strategy</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Party Organization &amp; Political Strategy</div>
         <div class="resources-grid">
           <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1902/witbd/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
             <div class="resource-card-title" style="color:#c9a0dc;">What Is to Be Done? — Lenin</div>
@@ -1940,12 +1940,12 @@ const map = L.map('map', {
 map.fitBounds(OHIO_BOUNDS);
 
 // Dark tile layer
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   maxZoom: 19
 }).addTo(map);
 
 // City/town label overlay on top
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
   maxZoom: 19,
   pane: 'shadowPane'
 }).addTo(map);
@@ -1975,7 +1975,7 @@ function styleFeature(feature, chamber) {
     fillColor: districtColor(distNum, chamber),
     weight: 1,
     opacity: 0.9,
-    color: '#0d0d0d',
+    color: '#ffffff',
     fillOpacity: 0.75
   };
 }
@@ -2019,7 +2019,7 @@ function showDistrictInfo(distNum, chamber) {
     el.innerHTML = `
       <div class="info-title">OH-${m.dist} · US House</div>
       <div class="info-name">${m.name}</div>
-      <div class="info-party" style="color:${partyColor};font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;margin:4px 0;">${partyFull}</div>
+      <div class="info-party" style="color:${partyColor};font-family:'JetBrains Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;margin:4px 0;">${partyFull}</div>
       <div class="info-row"><span class="info-label">Region</span><span>${m.region}</span></div>
       <div class="info-row"><span class="info-label">Committee</span><span>${m.committee}</span></div>
       <div class="info-row" style="margin-top:8px"><span class="info-label">Stated</span><span>${m.stated}</span></div>
@@ -2106,7 +2106,7 @@ function showDistrictInfo(distNum, chamber) {
       houseLinksHTML = `
         <div class="profile-contact" style="margin-top:12px">
           ${hPhone ? `<a class="contact-chip" href="tel:${hPhone}">📞 ${hPhone}</a>` : ''}
-          ${hEmail ? `<a class="contact-chip" href="mailto:${hEmail}" style="border-color:#3a5a6a;color:#7ab8cc">✉ ${hEmail}</a>` : ''}
+          ${hEmail ? `<a class="contact-chip" href="mailto:${hEmail}" style="border-color:#6b9eb5;color:#1d6a8a">✉ ${hEmail}</a>` : ''}
         </div>
         <div class="profile-donors-row" style="margin-top:10px">
           <a class="donor-btn" href="${hOfficialUrl}" target="_blank" rel="noopener" style="background:none;border-color:var(--accent);color:var(--accent)">Official Page →</a>
@@ -2128,7 +2128,7 @@ function showDistrictInfo(distNum, chamber) {
 
   el.innerHTML = `
     <div class="info-dist">${chamberLabel.split(' ')[0][0]}D-${String(distNum).padStart(2,'0')}</div>
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:6px">${chamberLabel}</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:6px">${chamberLabel}</div>
     <div class="info-name">${data[1]}</div>
     <span class="info-party ${data[2]}">${partyFull}</span>
     <div class="info-row">${roleLabel}</div>
@@ -2189,7 +2189,7 @@ async function loadFederal() {
         fillColor: districtColor(distNum, 'federal'),
         weight: 1.5,
         opacity: 0.9,
-        color: '#0d0d0d',
+        color: '#ffffff',
         fillOpacity: 0.75
       };
     },
@@ -2379,7 +2379,7 @@ function renderHouseCards() {
     const officialUrl = `https://www.ohiohouse.gov/members/${slug}`;
     const tuUrl = `https://www.transparencyusa.org/oh/candidate/${slug}`;
     const phoneChip = phone ? `<a class="sen-action phone" href="tel:${phone}">📞 ${phone}</a>` : '';
-    const emailChip = email ? `<a class="sen-action" href="mailto:${email}" style="border-color:#3a5a6a;color:#7ab8cc">✉ Email</a>` : '';
+    const emailChip = email ? `<a class="sen-action" href="mailto:${email}" style="border-color:#6b9eb5;color:#1d6a8a">✉ Email</a>` : '';
     let profileBody = '';
     if (prof) {
       const statedItems = prof.stated.map(s=>`<li>${s}</li>`).join('');
