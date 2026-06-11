@@ -53,7 +53,7 @@
 .race-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
 .race-candidate-name { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
 .race-candidate-note { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
-.race-poll { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--accent); margin-bottom: 6px; padding: 4px 8px; background: #eef1f8; border-radius: 4px; border-left: 2px solid var(--accent); }
+.race-poll { font-family: 'Inter', sans-serif; font-size: 0.74rem; color: var(--text); line-height: 1.6; margin-bottom: 6px; padding: 6px 10px; background: #eef1f8; border-radius: 4px; border-left: 2px solid var(--accent); }
 .race-links { display: flex; gap: 8px; flex-wrap: wrap; }
 .race-link { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
 .race-link:hover { border-color: var(--accent); color: var(--accent); }
@@ -319,7 +319,7 @@ tr:hover td { background: var(--surface2); }
 .leg-card:hover { border-color: var(--accent); transform: translateY(-1px); }
 .leg-card-label { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
 .leg-card-title { font-weight: 600; font-size: 0.85rem; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
-.leg-card-desc { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+.leg-card-desc { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: var(--muted); line-height: 1.55; margin-bottom: 6px; }
 .leg-card-tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; border: 1px solid var(--border); background: var(--surface2); color: var(--muted); }
 .leg-card-tag.in-committee { border-color: #1d4ed8; color: #1d4ed8; }
 .leg-card-tag.passed { border-color: #7dbf7d; color: #7dbf7d; }
@@ -338,11 +338,11 @@ tr:hover td { background: var(--surface2); }
 .official-party { display: inline-block; padding: 2px 9px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; margin-bottom: 8px; }
 .official-party.R { background: #fee2e2; color: #991b1b; }
 .official-party.D { background: #dbeafe; color: #1e40af; }
-.official-bio { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); line-height: 1.6; }
+.official-bio { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
 .official-card-body { padding: 14px 20px; }
 .official-section { margin-bottom: 12px; }
 .official-section-hdr { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--border); }
-.official-item { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--muted); padding: 3px 0; line-height: 1.45; }
+.official-item { font-family: 'Inter', sans-serif; font-size: 0.77rem; color: var(--muted); padding: 3px 0; line-height: 1.55; }
 .official-item::before { content: '→ '; color: var(--accent); }
 .official-links { padding: 10px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; }
 .official-link { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); text-decoration: none; transition: all 0.15s; }
@@ -353,14 +353,14 @@ tr:hover td { background: var(--surface2); }
 .resources-pane { padding: 28px 32px; flex: 1; overflow-y: auto; background: var(--bg); }
 .resources-hero { max-width: 700px; margin-bottom: 32px; }
 .resources-hero h2 { font-family: 'Inter', sans-serif; font-size: 2rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
-.resources-hero p { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
+.resources-hero p { font-family: 'Inter', sans-serif; font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
 .resources-section { margin-bottom: 32px; max-width: 1000px; }
 .resources-section-title { font-family: 'Inter', sans-serif; font-size: 1.3rem; color: var(--text); letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
 .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
 .resource-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-decoration: none; display: block; transition: border-color 0.15s, transform 0.1s; }
 .resource-card:hover { border-color: var(--accent); transform: translateY(-1px); }
 .resource-card-title { font-weight: 600; font-size: 0.85rem; color: var(--accent); margin-bottom: 4px; }
-.resource-card-desc { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); line-height: 1.5; }
+.resource-card-desc { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: var(--muted); line-height: 1.55; }
 .resource-card-tag { display: inline-block; margin-top: 6px; padding: 1px 7px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
 
 /* ── SENATOR PROFILE EXPANSION PANEL ────────────────────────────────────── */
@@ -923,7 +923,7 @@ tr:hover td { background: var(--surface2); }
       <div class="leg-section-title" style="font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:-0.3px;margin-bottom:6px;">Federal Delegation</div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:24px;">119th Congress · Ohio: 10R / 5D in House · 2R in Senate</div>
 
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
       <div class="officials-grid" style="margin-bottom:28px;">
         <div class="official-card">
           <div class="official-card-top">
@@ -981,8 +981,8 @@ tr:hover td { background: var(--surface2); }
         </div>
       </div>
 
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House · Ohio Delegation (119th Congress)</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections · current districts below are 118th/119th Congress boundaries.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House · Ohio Delegation (119th Congress)</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections · current districts below are 118th/119th Congress boundaries.</div>
       <div id="federal-house-grid" class="officials-grid"></div>
     </div>
   </div>
@@ -993,11 +993,11 @@ tr:hover td { background: var(--surface2); }
   <div class="leg-pane">
     <div class="leg-section">
       <div class="leg-section-title" style="font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:-0.3px;margin-bottom:6px;">2026 Ohio Midterms</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:6px;">Primary: May 5, 2026 · General: November 3, 2026</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#666;margin-bottom:24px;">Filing deadline: Feb 4, 2026 · Polls updated as available</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.84rem;color:var(--muted);margin-bottom:6px;">Primary: May 5, 2026 · General: November 3, 2026</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;color:#666;margin-bottom:24px;">Filing deadline: Feb 4, 2026 · Polls updated as available</div>
 
       <!-- GOVERNOR -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Governor (Open Seat · DeWine Term-Limited) · Nominees Set May 5</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:16px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Governor (Open Seat · DeWine Term-Limited) · Nominees Set May 5</div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div>
@@ -1021,8 +1021,8 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <!-- US SENATE SPECIAL -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. Senate Special Election (Vance Vacancy) · Nominees Set May 5</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:12px;">JD Vance resigned Jan 10, 2025 to become VP. DeWine appointed Jon Husted. Special election Nov 3, 2026 fills remainder of term. Winner must run again in 2028 for a full six-year term.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:16px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. Senate Special Election (Vance Vacancy) · Nominees Set May 5</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:12px;">JD Vance resigned Jan 10, 2025 to become VP. DeWine appointed Jon Husted. Special election Nov 3, 2026 fills remainder of term. Winner must run again in 2028 for a full six-year term.</div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div>
@@ -1046,7 +1046,7 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <!-- US SENATE OTHER CANDIDATES -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:10px;margin-top:4px;padding-bottom:4px;border-bottom:1px solid var(--border);">Also on the Ballot · US Senate Special Election</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:#888;margin-bottom:10px;margin-top:4px;padding-bottom:4px;border-bottom:1px solid var(--border);">Also on the Ballot · US Senate Special Election</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:24px;">
         <div class="race-card" onclick="openCandidateModal('Greg Levy')" title="Click for quick facts">
           <div class="race-candidate-name">Greg Levy</div>
@@ -1057,8 +1057,8 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <!-- US HOUSE RACES -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:6px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. House Races · All 15 Ohio Districts · General: Nov 3, 2026</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">New redistricted maps in effect for 2026. Nominees confirmed May 5 primary. Incumbents: 10R / 5D. Competitive targets: OH-1, OH-9, OH-13, OH-15.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:6px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. House Races · All 15 Ohio Districts · General: Nov 3, 2026</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:16px;">New redistricted maps in effect for 2026. Nominees confirmed May 5 primary. Incumbents: 10R / 5D. Competitive targets: OH-1, OH-9, OH-13, OH-15.</div>
 
       <!-- Competitive races header -->
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:10px;">★ Key Competitive Races</div>
@@ -1071,12 +1071,12 @@ tr:hover td { background: var(--surface2); }
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
               <div style="font-size:0.82rem;font-weight:600;">Derek Merrin</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Fmr state rep · Toledo-area · Lost to Kaptur by &lt;1% in 2024</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Fmr state rep · Toledo-area · Lost to Kaptur by &lt;1% in 2024</div>
             </div>
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Marcy Kaptur</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Longest-serving woman in Congress · In office since 1983 · Barely survived 2024</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Longest-serving woman in Congress · In office since 1983 · Barely survived 2024</div>
             </div>
           </div>
           <div class="race-poll">Cook PVI: R+3 after redistricting · District redrawn to favor R · NRCC targeting · called a national toss-up. Merrin came within 2,400 votes in 2024.</div>
@@ -1092,12 +1092,12 @@ tr:hover td { background: var(--surface2); }
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
               <div style="font-size:0.82rem;font-weight:600;">Eric Conroy</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won May 5 R primary · District redrawn to expand R-friendly territory north to Warren/Clinton Co.</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Won May 5 R primary · District redrawn to expand R-friendly territory north to Warren/Clinton Co.</div>
             </div>
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Greg Landsman</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won with 54.6% in 2024 · Former Cincinnati City Council · District now R-leaning after remap</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Won with 54.6% in 2024 · Former Cincinnati City Council · District now R-leaning after remap</div>
             </div>
           </div>
           <div class="race-poll">Cook PVI: D+3 pre-remap, now R-leaning under new boundaries. Trump won the 2024 version of this district by ~3 pts. National Ds defending.</div>
@@ -1113,12 +1113,12 @@ tr:hover td { background: var(--surface2); }
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
               <div style="font-size:0.82rem;font-weight:600;">TBD</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Republican nominee TBD · District redrawn slightly more D per compromise map</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Republican nominee TBD · District redrawn slightly more D per compromise map</div>
             </div>
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Emilia Sykes</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won 51.1% in 2024 · Running for US Senate · if she wins Senate primary, seat becomes open</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Won 51.1% in 2024 · Running for US Senate · if she wins Senate primary, seat becomes open</div>
             </div>
           </div>
           <div class="race-poll">Sykes confirmed Senate candidacy · if she wins the Senate race, OH-13 becomes an open seat. District protected as D-leaning in redistricting deal. Watch this space.</div>
@@ -1134,12 +1134,12 @@ tr:hover td { background: var(--surface2); }
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Mike Carey</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Incumbent · R+4 PVI · Survived 2024 · Former coal lobbyist</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Incumbent · R+4 PVI · Survived 2024 · Former coal lobbyist</div>
             </div>
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat</div>
               <div style="font-size:0.82rem;font-weight:600;">Don Leonard</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won D primary over fmr. State Rep. Adam Miller · Expected to gain national D attention</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Won D primary over fmr. State Rep. Adam Miller · Expected to gain national D attention</div>
             </div>
           </div>
           <div class="race-poll">Cook PVI R+4. Vorys recap flagged this as a race "expected to gain national attention." D nominee Don Leonard bested Adam Miller in the primary.</div>
@@ -1185,7 +1185,7 @@ tr:hover td { background: var(--surface2); }
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:#555;line-height:1.6;margin-bottom:20px;">* OH-13: Emilia Sykes has declared for US Senate. If she wins the Senate Democratic primary, OH-13 becomes an open seat. TBD nominees = primary winner not confirmed in this build. Ratings reflect Cook PVI and post-primary conditions as of May 2026.</div>
 
       <!-- KEY DATES -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;margin-top:8px;padding-bottom:4px;border-bottom:1px solid var(--border);">Key Dates</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:12px;margin-top:8px;padding-bottom:4px;border-bottom:1px solid var(--border);">Key Dates</div>
       <div class="leg-grid">
         <div class="leg-card"><div class="leg-card-label">General Election</div><div class="leg-card-title">November 3, 2026</div><div class="leg-card-desc">General election · all offices on ballot. US Senate special election concurrent.</div></div>
         <div class="leg-card"><div class="leg-card-label">Redistricting Note</div><div class="leg-card-title">New Maps in Effect</div><div class="leg-card-desc">Ohio redistricted congressional maps Oct 2025. All US House races run under new boundaries in 2026.</div></div>
@@ -1309,7 +1309,7 @@ tr:hover td { background: var(--surface2); }
       <div style="font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:-0.3px;margin-bottom:6px;">Federal Delegation</div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);margin-bottom:24px;">119th Congress · Ohio: 10R / 5D in House · 2R in Senate</div>
 
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. Senate</div>
       <div class="officials-grid" style="margin-bottom:28px;">
         <div class="official-card">
           <div class="official-card-top">
@@ -1365,8 +1365,8 @@ tr:hover td { background: var(--surface2); }
         </div>
       </div>
 
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House · Ohio Delegation (119th Congress)</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections · current districts below are 118th/119th Congress boundaries.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House · Ohio Delegation (119th Congress)</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections · current districts below are 118th/119th Congress boundaries.</div>
       <div id="federal-house-grid-officials" class="officials-grid"></div>
     </div>
   </div>
@@ -2148,7 +2148,7 @@ function showDistrictInfo(distNum, chamber) {
 
   el.innerHTML = `
     <div class="info-dist">${chamberLabel.split(' ')[0][0]}D-${String(distNum).padStart(2,'0')}</div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:6px">${chamberLabel}</div>
+    <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:6px">${chamberLabel}</div>
     <div class="info-name">${data[1]}</div>
     <span class="info-party ${data[2]}">${partyFull}</span>
     <div class="info-row">${roleLabel}</div>
@@ -2505,6 +2505,7 @@ function showTab(name) {
   if (name==='senate' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderSenateCards(),50);
   if (name==='house' && typeof isMobile === 'function' && isMobile()) setTimeout(()=>renderHouseCards(),50);
   if (name==='federal') renderFederalHouse();
+  if (!window.__suppressHash && location.hash !== '#'+name) history.pushState(null, '', '#'+name);
 }
 
 // ═══ FIND MY REPS ════════════════════════════════════════════════════════════
@@ -4070,11 +4071,13 @@ function openCandidateModal(nameOrKey) {
 
   document.getElementById('candidate-modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  if (!window.__suppressHash) history.pushState(null, '', '#midterms/' + key);
 }
 
 function closeCandidateModal() {
   document.getElementById('candidate-modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
+  if (!window.__suppressHash && location.hash.indexOf('/') !== -1) history.pushState(null, '', '#midterms');
 }
 
 function handleModalOverlayClick(e) {
@@ -4087,6 +4090,30 @@ function handleModalOverlayClick(e) {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeCandidateModal();
 });
+
+// ═══ HASH ROUTING · makes tabs and candidate profiles directly linkable ═══
+// #senate → Senate tab · #midterms/brown → Midterms tab + Brown deep profile
+function applyHash() {
+  const VALID_TABS = ['map','senate','house','legislature','officials','resources','lookup','federal','midterms'];
+  const parts = location.hash.replace(/^#\/?/, '').split('/');
+  const tab = VALID_TABS.indexOf(parts[0]) !== -1 ? parts[0] : null;
+  if (!tab) return;
+  window.__suppressHash = true;
+  try {
+    showTab(tab);
+    if (typeof setBottomNav === 'function') setBottomNav(tab);
+    const overlay = document.getElementById('candidate-modal-overlay');
+    if (tab === 'midterms' && parts[1] && CANDIDATE_DATA[parts[1]]) {
+      openCandidateModal(parts[1]);
+    } else if (overlay && overlay.classList.contains('open')) {
+      closeCandidateModal();
+    }
+  } finally {
+    window.__suppressHash = false;
+  }
+}
+window.addEventListener('hashchange', applyHash);
+if (location.hash) applyHash();
 
 if (window.location.protocol === 'file:') {
   document.getElementById('file-warning').style.display = 'block';
