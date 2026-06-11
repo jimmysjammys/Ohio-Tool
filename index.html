@@ -138,6 +138,24 @@
 }
 .modal-link:hover { border-color: var(--accent); color: var(--accent); }
 .modal-link.primary { border-color: var(--accent); color: var(--accent); }
+
+/* ── DEEP PROFILE SECTIONS (candidate modal) ────────────────────────── */
+.modal-deep-section { border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; overflow: hidden; }
+.modal-deep-hdr { display: flex; align-items: center; gap: 8px; padding: 9px 12px; cursor: pointer; background: var(--surface2); -webkit-tap-highlight-color: transparent; }
+.modal-deep-hdr:hover .modal-deep-title { color: var(--text); }
+.modal-deep-title { flex: 1; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); }
+.modal-deep-tier { font-family: 'JetBrains Mono', monospace; font-size: 0.52rem; text-transform: uppercase; letter-spacing: 1px; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--border); flex-shrink: 0; }
+.modal-deep-tier.verified { background: #e8f5ee; color: #14683c; border-color: #bfe3cf; }
+.modal-deep-tier.record { background: #eef1f8; color: #1a2744; border-color: #ccd5e8; }
+.modal-deep-tier.inference { background: #fdf3e3; color: #8a5a12; border-color: #f0ddb8; }
+.modal-deep-chevron { color: var(--muted); font-size: 0.62rem; transition: transform 0.2s; flex-shrink: 0; }
+.modal-deep-section.open .modal-deep-chevron { transform: rotate(180deg); }
+.modal-deep-body { display: none; padding: 10px 12px 12px; }
+.modal-deep-section.open .modal-deep-body { display: block; }
+.modal-deep-body p { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--muted); line-height: 1.65; margin: 0 0 10px; }
+.modal-deep-body p:last-child { margin-bottom: 0; }
+.modal-deep-body p strong { color: var(--text); }
+.modal-deep-updated { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: #999; margin-top: 4px; }
 .race-card { cursor: pointer; transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s; }
 .race-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 18px rgba(240,192,64,0.12); }
 .race-card-hint { font-family: 'JetBrains Mono', monospace; font-size: 0.57rem; color: #4a4a4a; margin-top: 6px; }
@@ -576,7 +594,7 @@ tr:hover td { background: var(--surface2); }
   #map { min-height: 260px; flex: none; width: 100%; }
   .map-sidebar { width: 100%; border-left: none; border-top: 1px solid var(--border); max-height: 400px; overflow-y: auto; }
 
-  /* PROFILE GRID — single column */
+  /* PROFILE GRID · single column */
   .profile-grid { grid-template-columns: 1fr; gap: 0; }
   .profile-col { border-right: none !important; border-bottom: 1px solid var(--border); }
   .profile-col:last-child { border-bottom: none; }
@@ -593,7 +611,7 @@ tr:hover td { background: var(--surface2); }
   #pane-house .tbl-scroll { display: none; }
   #pane-house .senator-cards { display: flex; }
 
-  /* HOUSE TABLE — keep table but make it scroll */
+  /* HOUSE TABLE · keep table but make it scroll */
   .table-pane { padding: 12px 10px; }
   .controls { gap: 6px; }
   .tbl-search { width: 100%; }
@@ -837,7 +855,7 @@ tr:hover td { background: var(--surface2); }
       <th onclick="sortTbl('s',3)">Region / Counties</th>
     </tr></thead><tbody id="s-body"></tbody></table>
     </div>
-    <!-- MOBILE CARDS — rendered by renderSenateCards() -->
+    <!-- MOBILE CARDS · rendered by renderSenateCards() -->
     <div class="senator-cards" id="senator-cards"></div>
   </div>
 </div>
@@ -913,7 +931,7 @@ tr:hover td { background: var(--surface2); }
             <div class="official-name">Jon Husted</div>
             <span class="official-party R">Republican</span>
             <div class="official-bio">Appointed Jan 2025 · Replacing JD Vance (elected VP) · Former Lt. Governor 2019–2025 · Running for full term Nov 2026</div>
-            <div class="official-bio" style="margin-top:6px">Former Ohio House Speaker Pro Tem and SoS candidate. Appointed by DeWine when Vance resigned. Faces Sherrod Brown in 2026 special election — currently polling within margin of error.</div>
+            <div class="official-bio" style="margin-top:6px">Former Ohio House Speaker (2005–2008) and Secretary of State (2011–2019). Appointed by DeWine when Vance resigned. Faces Sherrod Brown in 2026 special election · Brown led the most recent Fox News poll by 8 · Cook rates the race a Toss Up.</div>
           </div>
           <div class="official-card-body">
             <div class="official-section"><div class="official-section-hdr">📋 Stated Priorities</div>
@@ -923,7 +941,7 @@ tr:hover td { background: var(--surface2); }
               <div class="official-item">→ Anti-abortion legislation</div>
             </div>
             <div class="official-section"><div class="official-section-hdr">📌 Actual Record</div>
-              <div class="official-item">→ Voted for H.R. 1 "One Big Beautiful Bill" — defense spending & SNAP cuts</div>
+              <div class="official-item">→ Voted for H.R. 1 "One Big Beautiful Bill" · defense spending & SNAP cuts</div>
               <div class="official-item">→ Voted against Medicaid expansion provisions</div>
               <div class="official-item">→ Endorsed Ramaswamy for governor (running for full Senate seat himself)</div>
               <div class="official-item">→ Supported Trump tariff agenda</div>
@@ -950,10 +968,10 @@ tr:hover td { background: var(--surface2); }
               <div class="official-item">→ Anti-abortion legislation</div>
             </div>
             <div class="official-section"><div class="official-section-hdr">📌 Actual Record</div>
-              <div class="official-item">→ Voted for H.R. 1 — supported $150B+ defense increase, SNAP & Medicaid cuts</div>
+              <div class="official-item">→ Voted for H.R. 1 · supported $150B+ defense increase, SNAP & Medicaid cuts</div>
               <div class="official-item">→ Voted to confirm all Trump cabinet nominees including Hegseth (Defense)</div>
               <div class="official-item">→ 100% Trump alignment on Senate votes through first session</div>
-              <div class="official-item">→ No independent legislation passed — first-term newcomer</div>
+              <div class="official-item">→ No independent legislation passed · first-term newcomer</div>
             </div>
           </div>
           <div class="official-links">
@@ -963,8 +981,8 @@ tr:hover td { background: var(--surface2); }
         </div>
       </div>
 
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House — Ohio Delegation (119th Congress)</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections — current districts below are 118th/119th Congress boundaries.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House · Ohio Delegation (119th Congress)</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections · current districts below are 118th/119th Congress boundaries.</div>
       <div id="federal-house-grid" class="officials-grid"></div>
     </div>
   </div>
@@ -979,7 +997,7 @@ tr:hover td { background: var(--surface2); }
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#666;margin-bottom:24px;">Filing deadline: Feb 4, 2026 · Polls updated as available</div>
 
       <!-- GOVERNOR -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Governor (Open Seat — DeWine Term-Limited) · Nominees Set May 5</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:16px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Governor (Open Seat · DeWine Term-Limited) · Nominees Set May 5</div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div>
@@ -987,7 +1005,7 @@ tr:hover td { background: var(--surface2); }
           <div class="race-card" onclick="openCandidateModal('Vivek Ramaswamy')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Vivek Ramaswamy</div>
             <div class="race-candidate-note">GOP NOMINEE · Won May 5 primary easily over Casey Putsch · Former biotech CEO, 2024 presidential candidate · Running mate: Rob McColley (Senate Pres)</div>
-            <div class="race-poll">General polling — RCP avg: Ramaswamy +1.0 (47.5 vs 46.5) · BGSU/YouGov Oct 2–14: Ramaswamy 50, Acton 47 · Emerson Dec 6–8: Acton 46, Vivek 45 · EMC Feb 2026 (D-commissioned): Acton +10 (53–43)</div>
+            <div class="race-poll">General polling · Fox News Jun 3: Acton +1 (statistical tie) · RCP avg: Ramaswamy +1.0 · BGSU Apr: Ramaswamy +1 · Emerson Dec: Acton +1 · Dead heat all cycle</div>
             <div class="race-links"><a href="https://vivekforohio.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
         </div>
@@ -996,7 +1014,7 @@ tr:hover td { background: var(--surface2); }
           <div class="race-card" onclick="openCandidateModal('Amy Acton')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Amy Acton</div>
             <div class="race-candidate-note">DEM NOMINEE · Uncontested Democratic primary · Former Ohio Health Director during COVID · Running mate: David Pepper</div>
-            <div class="race-poll">General polling — RCP avg: Ramaswamy +1.0 (47.5 vs 46.5) · BGSU/YouGov Oct 2–14: Ramaswamy 50, Acton 47 · Emerson Dec 6–8: Acton 46, Vivek 45 · EMC Feb 2026 (D-commissioned): Acton +10 (53–43)</div>
+            <div class="race-poll">General polling · Fox News Jun 3: Acton +1 (statistical tie) · RCP avg: Ramaswamy +1.0 · BGSU Apr: Ramaswamy +1 · Emerson Dec: Acton +1 · Dead heat all cycle</div>
             <div class="race-links"><a href="https://actonforgovernor.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
         </div>
@@ -1012,7 +1030,7 @@ tr:hover td { background: var(--surface2); }
           <div class="race-card" onclick="openCandidateModal('Jon Husted')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Jon Husted</div>
             <div class="race-candidate-note">GOP NOMINEE · Uncontested Republican primary · Incumbent (appointed) · Former Lt. Governor</div>
-            <div class="race-poll">General polling — RCP avg: Husted +1.0 (48.5 vs 47.5) · BGSU/YouGov Apr 14: Husted 50, Brown 47 · OnMessage Mar 3–8: Brown 47, Husted 45 · Emerson Dec 6–8: Husted 49, Brown 46</div>
+            <div class="race-poll">General polling · Fox News May 28–Jun 1: Brown 53, Husted 45 (Brown +8, first lead outside MoE) · BGSU Apr: Husted +3 · OnMessage Mar: Brown +2 · Cook Political: Toss Up</div>
             <div class="race-links"><a href="https://www.jonhustedforsenate.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
         </div>
@@ -1020,15 +1038,15 @@ tr:hover td { background: var(--surface2); }
           <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Nominee ✓</div>
           <div class="race-card" onclick="openCandidateModal('Sherrod Brown')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Sherrod Brown</div>
-            <div class="race-candidate-note">DEM NOMINEE · Easily won May 5 primary over Ron Kincaid · Former 3-term US Senator (2007–2025) · Lost to Moreno in 2024 by ~3pts · Endorsed by IUPAT</div>
-            <div class="race-poll">General polling — RCP avg: Husted +1.0 (48.5 vs 47.5) · BGSU/YouGov Apr 14: Husted 50, Brown 47 · OnMessage Mar 3–8: Brown 47, Husted 45 · Emerson Dec 6–8: Husted 49, Brown 46</div>
+            <div class="race-candidate-note">DEM NOMINEE · Easily won May 5 primary over Ron Kincaid · Former 3-term US Senator (2007–2025) · Lost to Moreno in 2024 by 3.6pts · Endorsed by IUPAT</div>
+            <div class="race-poll">General polling · Fox News May 28–Jun 1: Brown 53, Husted 45 (Brown +8, first lead outside MoE) · BGSU Apr: Husted +3 · OnMessage Mar: Brown +2 · Cook Political: Toss Up</div>
             <div class="race-links"><a href="https://www.sherrodbrown.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
         </div>
       </div>
 
       <!-- US SENATE OTHER CANDIDATES -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:10px;margin-top:4px;padding-bottom:4px;border-bottom:1px solid var(--border);">Also on the Ballot — US Senate Special Election</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:10px;margin-top:4px;padding-bottom:4px;border-bottom:1px solid var(--border);">Also on the Ballot · US Senate Special Election</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:24px;">
         <div class="race-card" onclick="openCandidateModal('Greg Levy')" title="Click for quick facts">
           <div class="race-candidate-name">Greg Levy</div>
@@ -1061,7 +1079,7 @@ tr:hover td { background: var(--surface2); }
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Longest-serving woman in Congress · In office since 1983 · Barely survived 2024</div>
             </div>
           </div>
-          <div class="race-poll">Cook PVI: R+3 after redistricting · District redrawn to favor R · NRCC targeting — called a national toss-up. Merrin came within 2,400 votes in 2024.</div>
+          <div class="race-poll">Cook PVI: R+3 after redistricting · District redrawn to favor R · NRCC targeting · called a national toss-up. Merrin came within 2,400 votes in 2024.</div>
           <div class="race-links">
             <a href="https://ballotpedia.org/Ohio%27s_9th_Congressional_District_election,_2026" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a>
           </div>
@@ -1100,10 +1118,10 @@ tr:hover td { background: var(--surface2); }
             <div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat (Incumbent)</div>
               <div style="font-size:0.82rem;font-weight:600;">Emilia Sykes</div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won 51.1% in 2024 · Running for US Senate — if she wins Senate primary, seat becomes open</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);">Won 51.1% in 2024 · Running for US Senate · if she wins Senate primary, seat becomes open</div>
             </div>
           </div>
-          <div class="race-poll">Sykes confirmed Senate candidacy — if she wins the Senate race, OH-13 becomes an open seat. District protected as D-leaning in redistricting deal. Watch this space.</div>
+          <div class="race-poll">Sykes confirmed Senate candidacy · if she wins the Senate race, OH-13 becomes an open seat. District protected as D-leaning in redistricting deal. Watch this space.</div>
           <div class="race-links">
             <a href="https://ballotpedia.org/Ohio%27s_13th_Congressional_District_election,_2026" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a>
           </div>
@@ -1133,7 +1151,7 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <!-- All districts table -->
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#888;margin-bottom:10px;">All 15 Districts — At a Glance</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#888;margin-bottom:10px;">All 15 Districts · At a Glance</div>
       <div style="overflow-x:auto;margin-bottom:24px;">
         <table style="width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">
           <thead>
@@ -1169,7 +1187,7 @@ tr:hover td { background: var(--surface2); }
       <!-- KEY DATES -->
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;margin-top:8px;padding-bottom:4px;border-bottom:1px solid var(--border);">Key Dates</div>
       <div class="leg-grid">
-        <div class="leg-card"><div class="leg-card-label">General Election</div><div class="leg-card-title">November 3, 2026</div><div class="leg-card-desc">General election — all offices on ballot. US Senate special election concurrent.</div></div>
+        <div class="leg-card"><div class="leg-card-label">General Election</div><div class="leg-card-title">November 3, 2026</div><div class="leg-card-desc">General election · all offices on ballot. US Senate special election concurrent.</div></div>
         <div class="leg-card"><div class="leg-card-label">Redistricting Note</div><div class="leg-card-title">New Maps in Effect</div><div class="leg-card-desc">Ohio redistricted congressional maps Oct 2025. All US House races run under new boundaries in 2026.</div></div>
       </div>
 
@@ -1193,11 +1211,11 @@ tr:hover td { background: var(--surface2); }
       <h2>Find My Representatives</h2>
       <p>Enter your street address or zip code to find your Ohio state legislators.<br>Results link directly to their official pages.</p>
       <div class="lookup-form">
-        <input class="lookup-input" type="text" id="lookup-addr" placeholder="123 Main St, Columbus, OH — or just: 44094" autocomplete="off"
+        <input class="lookup-input" type="text" id="lookup-addr" placeholder="123 Main St, Columbus, OH · or just: 44094" autocomplete="off"
           onkeydown="if(event.key==='Enter')doLookup()">
         <button class="lookup-btn" id="lookup-btn" onclick="doLookup()">Look Up</button>
       </div>
-      <div class="lookup-note">Free geocoding — no account needed. Street address gives more precise results than zip alone.</div>
+      <div class="lookup-note">Free geocoding · no account needed. Street address gives more precise results than zip alone.</div>
     </div>
     <div id="lookup-output"></div>
   </div>
@@ -1233,19 +1251,19 @@ tr:hover td { background: var(--surface2); }
         <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssembly=136&start=1&pageSize=25&sort=Number&extendedLegislationTypes=House%20Resolution" target="_blank" rel="noopener">
           <div class="leg-card-label">136th GA · House</div>
           <div class="leg-card-title">House Resolutions</div>
-          <div class="leg-card-desc">All House Resolutions from the 136th GA — ceremonial, concurrent, and policy resolutions</div>
+          <div class="leg-card-desc">All House Resolutions from the 136th GA · ceremonial, concurrent, and policy resolutions</div>
           <span class="leg-card-tag calendar">HR</span>
         </a>
         <a class="leg-card" href="https://legislature.ohio.gov/legislation/search?generalAssembly=136&start=1&pageSize=25&sort=Number&extendedLegislationTypes=Senate%20Resolution" target="_blank" rel="noopener">
           <div class="leg-card-label">136th GA · Senate</div>
           <div class="leg-card-title">Senate Resolutions</div>
-          <div class="leg-card-desc">All Senate Resolutions from the 136th GA — ceremonial, concurrent, and policy resolutions</div>
+          <div class="leg-card-desc">All Senate Resolutions from the 136th GA · ceremonial, concurrent, and policy resolutions</div>
           <span class="leg-card-tag calendar">SR</span>
         </a>
         <a class="leg-card" href="https://www.legislature.ohio.gov/schedules/session-schedule" target="_blank" rel="noopener">
           <div class="leg-card-label">Session Schedule</div>
           <div class="leg-card-title">Ohio Legislature Session Calendar</div>
-          <div class="leg-card-desc">Official combined session schedule — floor dates, committee weeks, and recess periods</div>
+          <div class="leg-card-desc">Official combined session schedule · floor dates, committee weeks, and recess periods</div>
           <span class="leg-card-tag calendar">Calendar</span>
         </a>
         <a class="leg-card" href="https://www.legislature.ohio.gov/committees/senate-committees" target="_blank" rel="noopener">
@@ -1263,13 +1281,13 @@ tr:hover td { background: var(--surface2); }
         <a class="leg-card" href="https://www.lsc.ohio.gov" target="_blank" rel="noopener">
           <div class="leg-card-label">Nonpartisan Research</div>
           <div class="leg-card-title">LSC Fiscal Notes &amp; Bill Analyses</div>
-          <div class="leg-card-desc">Legislative Service Commission — nonpartisan fiscal notes and bill analyses for all Ohio legislation</div>
+          <div class="leg-card-desc">Legislative Service Commission · nonpartisan fiscal notes and bill analyses for all Ohio legislation</div>
           <span class="leg-card-tag passed">LSC</span>
         </a>
         <a class="leg-card" href="https://codes.ohio.gov/ohio-revised-code" target="_blank" rel="noopener">
           <div class="leg-card-label">Ohio Law</div>
           <div class="leg-card-title">Ohio Revised Code</div>
-          <div class="leg-card-desc">Permanent statutory law — searchable by section with amendment history per provision</div>
+          <div class="leg-card-desc">Permanent statutory law · searchable by section with amendment history per provision</div>
           <span class="leg-card-tag passed">Law</span>
         </a>
       </div>
@@ -1308,7 +1326,7 @@ tr:hover td { background: var(--surface2); }
               <div class="official-item">→ Anti-abortion legislation</div>
             </div>
             <div class="official-section"><div class="official-section-hdr">📌 Actual Record</div>
-              <div class="official-item">→ Voted for H.R. 1 — defense spending &amp; SNAP cuts</div>
+              <div class="official-item">→ Voted for H.R. 1 · defense spending &amp; SNAP cuts</div>
               <div class="official-item">→ Voted against Medicaid expansion provisions</div>
               <div class="official-item">→ Endorsed Ramaswamy for governor while running for full Senate seat himself</div>
               <div class="official-item">→ Supported Trump tariff agenda; voted against ACA subsidy extension</div>
@@ -1335,7 +1353,7 @@ tr:hover td { background: var(--surface2); }
               <div class="official-item">→ Anti-abortion legislation</div>
             </div>
             <div class="official-section"><div class="official-section-hdr">📌 Actual Record</div>
-              <div class="official-item">→ Voted for H.R. 1 — $150B+ defense increase, SNAP &amp; Medicaid cuts</div>
+              <div class="official-item">→ Voted for H.R. 1 · $150B+ defense increase, SNAP &amp; Medicaid cuts</div>
               <div class="official-item">→ Voted to confirm all Trump cabinet nominees including Hegseth</div>
               <div class="official-item">→ 100% Trump alignment on Senate votes through first session</div>
             </div>
@@ -1347,8 +1365,8 @@ tr:hover td { background: var(--surface2); }
         </div>
       </div>
 
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House — Ohio Delegation (119th Congress)</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections — current districts below are 118th/119th Congress boundaries.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid var(--border);">U.S. House · Ohio Delegation (119th Congress)</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:16px;">Note: Ohio redistricted in Oct 2025. New maps take effect for 2026 elections · current districts below are 118th/119th Congress boundaries.</div>
       <div id="federal-house-grid-officials" class="officials-grid"></div>
     </div>
   </div>
@@ -1366,22 +1384,22 @@ tr:hover td { background: var(--surface2); }
       <div class="resources-grid">
         <a class="resource-card" href="https://www.ohiosenate.gov" target="_blank" rel="noopener">
           <div class="resource-card-title">Ohio Senate</div>
-          <div class="resource-card-desc">Official site — bill text, schedules, senator bios, committee rosters</div>
+          <div class="resource-card-desc">Official site · bill text, schedules, senator bios, committee rosters</div>
           <span class="resource-card-tag">Primary</span>
         </a>
         <a class="resource-card" href="https://www.ohiohouse.gov" target="_blank" rel="noopener">
           <div class="resource-card-title">Ohio House of Representatives</div>
-          <div class="resource-card-desc">Official site — legislation, member pages, floor session archives</div>
+          <div class="resource-card-desc">Official site · legislation, member pages, floor session archives</div>
           <span class="resource-card-tag">Primary</span>
         </a>
         <a class="resource-card" href="https://codes.ohio.gov/ohio-revised-code" target="_blank" rel="noopener">
           <div class="resource-card-title">Ohio Revised Code</div>
-          <div class="resource-card-desc">Full Ohio statutory law — searchable, with legislative history per section</div>
+          <div class="resource-card-desc">Full Ohio statutory law · searchable, with legislative history per section</div>
           <span class="resource-card-tag">Primary</span>
         </a>
         <a class="resource-card" href="https://legislature.ohio.gov/legislation/search" target="_blank" rel="noopener">
           <div class="resource-card-title">Ohio Legislation Search</div>
-          <div class="resource-card-desc">Search bills by keyword, sponsor, session, or status — current and prior sessions</div>
+          <div class="resource-card-desc">Search bills by keyword, sponsor, session, or status · current and prior sessions</div>
           <span class="resource-card-tag">Primary</span>
         </a>
         <a class="resource-card" href="https://www.ohioauditor.gov" target="_blank" rel="noopener">
@@ -1390,7 +1408,7 @@ tr:hover td { background: var(--surface2); }
           <span class="resource-card-tag">Primary</span>
         </a>
         <a class="resource-card" href="https://www.sos.state.oh.us/elections" target="_blank" rel="noopener">
-          <div class="resource-card-title">Ohio Secretary of State — Elections</div>
+          <div class="resource-card-title">Ohio Secretary of State · Elections</div>
           <div class="resource-card-desc">Voter registration, election results, candidate filings, and campaign finance reports</div>
           <span class="resource-card-tag">Primary</span>
         </a>
@@ -1401,23 +1419,23 @@ tr:hover td { background: var(--surface2); }
       <div class="resources-section-title">💰 Money &amp; Lobbying</div>
       <div class="resources-grid">
         <a class="resource-card" href="https://www.transparencyusa.org/oh" target="_blank" rel="noopener">
-          <div class="resource-card-title">Transparency USA — Ohio</div>
+          <div class="resource-card-title">Transparency USA · Ohio</div>
           <div class="resource-card-desc">Donor industry breakdowns, contribution histories, and PAC money by legislator</div>
           <span class="resource-card-tag">Campaign Finance</span>
         </a>
         <a class="resource-card" href="https://www.followthemoney.org/state-overview?s=OH" target="_blank" rel="noopener">
-          <div class="resource-card-title">Follow the Money — Ohio</div>
-          <div class="resource-card-desc">National Institute on Money in Politics — multi-cycle donor tracking</div>
+          <div class="resource-card-title">Follow the Money · Ohio</div>
+          <div class="resource-card-desc">National Institute on Money in Politics · multi-cycle donor tracking</div>
           <span class="resource-card-tag">Campaign Finance</span>
         </a>
         <a class="resource-card" href="https://www.opensecrets.org" target="_blank" rel="noopener">
           <div class="resource-card-title">OpenSecrets</div>
-          <div class="resource-card-desc">Federal PAC and lobbying data — useful for tracking national money flowing into state races</div>
+          <div class="resource-card-desc">Federal PAC and lobbying data · useful for tracking national money flowing into state races</div>
           <span class="resource-card-tag">Federal / PAC</span>
         </a>
         <a class="resource-card" href="https://www.jlec-olig.state.oh.us" target="_blank" rel="noopener">
-          <div class="resource-card-title">Ohio JLEC — Ethics Filings</div>
-          <div class="resource-card-desc">Joint Legislative Ethics Committee — lobbyist registrations, financial disclosure filings</div>
+          <div class="resource-card-title">Ohio JLEC · Ethics Filings</div>
+          <div class="resource-card-desc">Joint Legislative Ethics Committee · lobbyist registrations, financial disclosure filings</div>
           <span class="resource-card-tag">Ethics / Lobbying</span>
         </a>
       </div>
@@ -1428,32 +1446,32 @@ tr:hover td { background: var(--surface2); }
       <div class="resources-grid">
         <a class="resource-card" href="https://ohiocapitaljournal.com" target="_blank" rel="noopener">
           <div class="resource-card-title">Ohio Capital Journal</div>
-          <div class="resource-card-desc">Non-profit statehouse reporting — best independent coverage of the Ohio legislature</div>
+          <div class="resource-card-desc">Non-profit statehouse reporting · best independent coverage of the Ohio legislature</div>
           <span class="resource-card-tag">Journalism</span>
         </a>
         <a class="resource-card" href="https://www.cleveland.com/politics" target="_blank" rel="noopener">
-          <div class="resource-card-title">Cleveland.com — Politics</div>
+          <div class="resource-card-title">Cleveland.com · Politics</div>
           <div class="resource-card-desc">Northeast Ohio political coverage, statehouse bureau, Northeast Ohio voter data</div>
           <span class="resource-card-tag">Journalism</span>
         </a>
         <a class="resource-card" href="https://www.dispatch.com/politics" target="_blank" rel="noopener">
-          <div class="resource-card-title">Columbus Dispatch — Politics</div>
+          <div class="resource-card-title">Columbus Dispatch · Politics</div>
           <div class="resource-card-desc">Statehouse and Columbus political coverage; largest Ohio daily with Capitol bureau</div>
           <span class="resource-card-tag">Journalism</span>
         </a>
         <a class="resource-card" href="https://ideastream.org/politics-government" target="_blank" rel="noopener">
           <div class="resource-card-title">Ideastream Public Media</div>
-          <div class="resource-card-desc">Northeast Ohio NPR affiliate — statewide and local political accountability reporting</div>
+          <div class="resource-card-desc">Northeast Ohio NPR affiliate · statewide and local political accountability reporting</div>
           <span class="resource-card-tag">Public Media</span>
         </a>
         <a class="resource-card" href="https://www.cincinnati.com/politics" target="_blank" rel="noopener">
-          <div class="resource-card-title">Cincinnati Enquirer — Politics</div>
+          <div class="resource-card-title">Cincinnati Enquirer · Politics</div>
           <div class="resource-card-desc">Southwest Ohio coverage, SW delegation tracking, statehouse bureau</div>
           <span class="resource-card-tag">Journalism</span>
         </a>
         <a class="resource-card" href="https://www.propublica.org" target="_blank" rel="noopener">
           <div class="resource-card-title">ProPublica</div>
-          <div class="resource-card-desc">National investigative reporting — frequent Ohio coverage (gerrymandering, HB 6 scandal, etc.)</div>
+          <div class="resource-card-desc">National investigative reporting · frequent Ohio coverage (gerrymandering, HB 6 scandal, etc.)</div>
           <span class="resource-card-tag">Investigative</span>
         </a>
       </div>
@@ -1468,13 +1486,13 @@ tr:hover td { background: var(--surface2); }
           <span class="resource-card-tag">Mapping</span>
         </a>
         <a class="resource-card" href="https://ballotpedia.org/Ohio_elections" target="_blank" rel="noopener">
-          <div class="resource-card-title">Ballotpedia — Ohio Elections</div>
+          <div class="resource-card-title">Ballotpedia · Ohio Elections</div>
           <div class="resource-card-desc">Candidate profiles, ballot measures, primary and general election summaries</div>
           <span class="resource-card-tag">Elections</span>
         </a>
         <a class="resource-card" href="https://www.vote411.org" target="_blank" rel="noopener">
           <div class="resource-card-title">VOTE411 (LWV)</div>
-          <div class="resource-card-desc">League of Women Voters voter guide — nonpartisan candidate Q&amp;A by district</div>
+          <div class="resource-card-desc">League of Women Voters voter guide · nonpartisan candidate Q&amp;A by district</div>
           <span class="resource-card-tag">Voter Guide</span>
         </a>
         <a class="resource-card" href="https://redistricting.ohio.gov" target="_blank" rel="noopener">
@@ -1495,16 +1513,16 @@ tr:hover td { background: var(--surface2); }
         </a>
         <a class="resource-card" href="https://policymattersohio.org" target="_blank" rel="noopener">
           <div class="resource-card-title">Policy Matters Ohio</div>
-          <div class="resource-card-desc">Progressive policy research — taxes, labor, health, education; rigorous sourcing</div>
+          <div class="resource-card-desc">Progressive policy research · taxes, labor, health, education; rigorous sourcing</div>
           <span class="resource-card-tag">Policy Research</span>
         </a>
         <a class="resource-card" href="https://www.opportunityohio.org" target="_blank" rel="noopener">
           <div class="resource-card-title">Opportunity Ohio</div>
-          <div class="resource-card-desc">Center-right policy shop — useful for understanding conservative framing of Ohio legislation</div>
+          <div class="resource-card-desc">Center-right policy shop · useful for understanding conservative framing of Ohio legislation</div>
           <span class="resource-card-tag">Policy Research</span>
         </a>
         <a class="resource-card" href="https://www.brookings.edu/topic/ohio" target="_blank" rel="noopener">
-          <div class="resource-card-title">Brookings Institution — Ohio</div>
+          <div class="resource-card-title">Brookings Institution · Ohio</div>
           <div class="resource-card-desc">National center-left think tank with Ohio-relevant metro, economy, and workforce research</div>
           <span class="resource-card-tag">National Research</span>
         </a>
@@ -1512,30 +1530,30 @@ tr:hover td { background: var(--surface2); }
     </div>
 
     <div class="resources-section" id="marxist-lib">
-      <div class="resources-section-title" style="color:#c9a0dc;border-color:#3a2a4a;">☭ Marxist Library — Theoretical Foundations</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:16px;line-height:1.7;max-width:700px;">Primary texts for materialist analysis of state power, capital, and class — directly applicable to Ohio legislative commentary. All links open Marxists Internet Archive (marxists.org), the largest free digital library of socialist literature.</div>
+      <div class="resources-section-title" style="color:#c9a0dc;border-color:#3a2a4a;">☭ Marxist Library · Theoretical Foundations</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:16px;line-height:1.7;max-width:700px;">Primary texts for materialist analysis of state power, capital, and class · directly applicable to Ohio legislative commentary. All links open Marxists Internet Archive (marxists.org), the largest free digital library of socialist literature.</div>
 
       <div style="margin-bottom:20px;">
         <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Labor &amp; Class Struggle</div>
         <div class="resources-grid">
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1867-c1/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">Capital, Volume I — Marx</div>
-            <div class="resource-card-desc">The commodity, surplus value, the working day, primitive accumulation. The foundational text for understanding how capital extracts value from labor — directly applicable to Ohio wage suppression and right-to-work legislation.</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">Capital, Volume I · Marx</div>
+            <div class="resource-card-desc">The commodity, surplus value, the working day, primitive accumulation. The foundational text for understanding how capital extracts value from labor · directly applicable to Ohio wage suppression and right-to-work legislation.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1867</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1847/wage-labour/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">Wage Labour and Capital — Marx</div>
-            <div class="resource-card-desc">Concise explanation of the wage relation, competition between workers, and capital accumulation. Accessible entry point — maps directly onto Ohio labor law debates and union suppression.</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">Wage Labour and Capital · Marx</div>
+            <div class="resource-card-desc">Concise explanation of the wage relation, competition between workers, and capital accumulation. Accessible entry point · maps directly onto Ohio labor law debates and union suppression.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1847</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1865/value-price-profit/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">Value, Price and Profit — Marx</div>
-            <div class="resource-card-desc">Marx's clearest explanation of surplus value for a working-class audience. Short, readable, and devastating — useful for framing Ohio Chamber of Commerce-backed legislation.</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">Value, Price and Profit · Marx</div>
+            <div class="resource-card-desc">Marx's clearest explanation of surplus value for a working-class audience. Short, readable, and devastating · useful for framing Ohio Chamber of Commerce-backed legislation.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1865</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1848/communist-manifesto/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">The Communist Manifesto — Marx &amp; Engels</div>
-            <div class="resource-card-desc">Class struggle as the motor of history; the bourgeois state as an executive committee. The essential framing document — the Ohio Republican supermajority is a case study in this analysis.</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">The Communist Manifesto · Marx &amp; Engels</div>
+            <div class="resource-card-desc">Class struggle as the motor of history; the bourgeois state as an executive committee. The essential framing document · the Ohio Republican supermajority is a case study in this analysis.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx &amp; Engels · 1848</span>
           </a>
         </div>
@@ -1545,23 +1563,23 @@ tr:hover td { background: var(--surface2); }
         <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">State Power &amp; Bourgeois Democracy</div>
         <div class="resources-grid">
           <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1917/staterev/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">The State and Revolution — Lenin</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">The State and Revolution · Lenin</div>
             <div class="resource-card-desc">The state as an instrument of class rule, not a neutral arbiter. Essential for cutting through procedural arguments about Ohio redistricting, legislative process, and "democracy" rhetoric from Republicans.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Lenin · 1917</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1871/civil-war-france/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">The Civil War in France — Marx</div>
-            <div class="resource-card-desc">Marx on the Paris Commune — state power, bourgeois repression, and the difference between parliamentary and popular democracy. Frames questions about Ohio ballot initiative suppression.</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">The Civil War in France · Marx</div>
+            <div class="resource-card-desc">Marx on the Paris Commune · state power, bourgeois repression, and the difference between parliamentary and popular democracy. Frames questions about Ohio ballot initiative suppression.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1871</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/engels/works/1884/origin-family/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">The Origin of the Family, Private Property and the State — Engels</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">The Origin of the Family, Private Property and the State · Engels</div>
             <div class="resource-card-desc">How the state arose to protect private property and class interests. Relevant to Ohio property tax legislation, inheritance law, and the ideological function of "family values" legislation.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Engels · 1884</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/gramsci/selections.htm" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">Selections from the Prison Notebooks — Gramsci</div>
-            <div class="resource-card-desc">Hegemony, civil society, and the "war of position." Explains how Republican ideological dominance in Ohio is reproduced through media, education, and cultural institutions — not just legislation.</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">Selections from the Prison Notebooks · Gramsci</div>
+            <div class="resource-card-desc">Hegemony, civil society, and the "war of position." Explains how Republican ideological dominance in Ohio is reproduced through media, education, and cultural institutions · not just legislation.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Gramsci · 1929–35</span>
           </a>
         </div>
@@ -1571,17 +1589,17 @@ tr:hover td { background: var(--surface2); }
         <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Imperialism &amp; Military Spending</div>
         <div class="resources-grid">
           <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1916/imp-hsc/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">Imperialism, the Highest Stage of Capitalism — Lenin</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">Imperialism, the Highest Stage of Capitalism · Lenin</div>
             <div class="resource-card-desc">Finance capital, monopoly, and the export of capital as the basis of modern imperialism. The theoretical backbone for critiquing the defense budget, Pentagon contracting, and Ohio's military-industrial presence.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Lenin · 1916</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/luxemburg/1913/accumulation-capital/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">The Accumulation of Capital — Luxemburg</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">The Accumulation of Capital · Luxemburg</div>
             <div class="resource-card-desc">Militarism as a mechanism of capital accumulation. Directly applicable to the H.R. 1 defense spending mandate and the contradiction between military bloat and domestic austerity.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Luxemburg · 1913</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1867-c1/ch25.htm" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">Capital Ch. 25: The General Law of Capitalist Accumulation — Marx</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">Capital Ch. 25: The General Law of Capitalist Accumulation · Marx</div>
             <div class="resource-card-desc">The reserve army of labor, relative surplus population, and immiseration. Framework for understanding military recruitment pipelines from Ohio's working-class and rural communities.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1867</span>
           </a>
@@ -1592,22 +1610,22 @@ tr:hover td { background: var(--surface2); }
         <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:#c9a0dc;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #3a2a4a;">Party Organization &amp; Political Strategy</div>
         <div class="resources-grid">
           <a class="resource-card" href="https://www.marxists.org/archive/lenin/works/1902/witbd/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">What Is to Be Done? — Lenin</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">What Is to Be Done? · Lenin</div>
             <div class="resource-card-desc">Vanguard organization, trade union consciousness vs. socialist consciousness, and the role of political agitation. Relevant to questions about building effective Ohio political commentary and movement infrastructure.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Lenin · 1902</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1852/18th-brumaire/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">The 18th Brumaire of Louis Bonaparte — Marx</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">The 18th Brumaire of Louis Bonaparte · Marx</div>
             <div class="resource-card-desc">"History repeats itself, first as tragedy, then as farce." Marx on bonapartism, lumpenproletariat politics, and how reactionary movements use democratic forms. Essential for analyzing Trumpism and Ohio's MAGA apparatus.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1852</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/luxemburg/1918/russian-revolution/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">The Russian Revolution — Luxemburg</div>
-            <div class="resource-card-desc">Luxemburg's internal critique of Bolshevik methods — on democracy, freedom of the press, and socialist organization. A counterweight for dialectical thinking about ends and means in political strategy.</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">The Russian Revolution · Luxemburg</div>
+            <div class="resource-card-desc">Luxemburg's internal critique of Bolshevik methods · on democracy, freedom of the press, and socialist organization. A counterweight for dialectical thinking about ends and means in political strategy.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Luxemburg · 1918</span>
           </a>
           <a class="resource-card" href="https://www.marxists.org/archive/marx/works/1875/gotha/" target="_blank" rel="noopener" style="border-color:#3a2a4a;">
-            <div class="resource-card-title" style="color:#c9a0dc;">Critique of the Gotha Programme — Marx</div>
+            <div class="resource-card-title" style="color:#c9a0dc;">Critique of the Gotha Programme · Marx</div>
             <div class="resource-card-desc">Marx's sharpest attack on reformist socialism and bourgeois rights discourse. Directly applicable when evaluating Democratic Party compromises and liberal NGO framing in Ohio politics.</div>
             <span class="resource-card-tag" style="border-color:#3a2a4a;color:#c9a0dc;">Marx · 1875</span>
           </a>
@@ -1624,39 +1642,39 @@ function isMobile() { return window.innerWidth <= 768; }
 
 // ═══ DATA ════════════════════════════════════════════════════════════════════
 const SENATE = [
-  [1,"Rob McColley","R","NW Ohio — Henry, Defiance, Fulton, Williams, Paulding, Putnam, Van Wert"],
-  [2,"Theresa Gavarone","R","NW Ohio — Wood, Ottawa, Sandusky, Erie, Huron"],
-  [3,"Michele Reynolds","R","Central Ohio — Franklin Co. (Westerville/Gahanna area)"],
-  [4,"George F. Lang","R","SW Ohio — Butler Co. (West Chester)"],
-  [5,"Stephen A. Huffman","R","W Ohio — Auglaize, Mercer, Darke, part Shelby"],
-  [6,"Willis E. Blackshear Jr.","D","NW Ohio — Lucas Co. (Toledo)"],
-  [7,"Steve Wilson","R","SW Ohio — Warren Co."],
-  [8,"Louis W. Blessing III","R","SW Ohio — Hamilton Co. (eastern)"],
-  [9,"Catherine D. Ingram","D","SW Ohio — Hamilton Co. (Cincinnati)"],
-  [10,"Kyle Koehler","R","W Ohio — Clark, Champaign, Logan"],
-  [11,"Paula Hicks-Hudson","D","NW Ohio — Lucas Co. (Toledo)"],
-  [12,"Susan Manchester","R","NW Ohio — Allen, Hardin, Marion, Wyandot, Crawford, Morrow"],
-  [13,"Nathan H. Manning","R","NE Ohio — Lorain Co. (western)"],
-  [14,"Terry Johnson","R","S Ohio — Gallia, Jackson, Lawrence, Pike, Scioto"],
-  [15,"Hearcel F. Craig","D","Central Ohio — Franklin Co. (Columbus SE)"],
-  [16,"Beth Liston","D","Central Ohio — Franklin Co. (Dublin/Upper Arlington)"],
-  [17,"Shane Wilkin","R","S Ohio — Highland, Ross, Adams, Brown, Clinton"],
-  [18,"Jerry C. Cirino","R","NE Ohio — Lake, eastern Geauga"],
-  [19,"Andrew O. Brenner","R","Central Ohio — Delaware Co."],
-  [20,"Tim Schaffer","R","E Ohio — Licking, Knox, Holmes, Coshocton, Perry"],
-  [21,"Kent Smith","D","NE Ohio — Cuyahoga (Euclid/eastern suburbs)"],
-  [22,"Mark Romanchuk","R","N Ohio — Richland, Ashland, western Wayne"],
-  [23,"Nickie J. Antonio","D","NE Ohio — Cuyahoga (Lakewood/west Cleveland)"],
-  [24,"Thomas F. Patton","R","NE Ohio — Cuyahoga (Rocky River/Westlake)"],
-  [25,"William P. DeMora","D","Central Ohio — Franklin Co. (Columbus west/OSU area)"],
-  [26,"Bill Reineke","R","N Ohio — Seneca, Hancock, part Wyandot"],
-  [27,"Kristina D. Roegner","R","NE Ohio — Summit (eastern), Portage Co."],
-  [28,"Casey Weinstein","D","NE Ohio — Summit Co. (Akron/western)"],
-  [29,"Jane M. Timken","R","NE Ohio — part of Stark Co."],
-  [30,"Brian M. Chavez","R","NE Ohio — Trumbull Co. (Warren/Niles area)"],
-  [31,"Al Landis","R","E Ohio — Guernsey, Muskingum, Tuscarawas, Wayne, part Stark"],
-  [32,"Sandra O'Brien","R","NE Ohio — Ashtabula, northern Geauga, Trumbull"],
-  [33,"Al Cutrona","R","NE Ohio — Carroll, Columbiana, Mahoning"],
+  [1,"Rob McColley","R","NW Ohio · Henry, Defiance, Fulton, Williams, Paulding, Putnam, Van Wert"],
+  [2,"Theresa Gavarone","R","NW Ohio · Wood, Ottawa, Sandusky, Erie, Huron"],
+  [3,"Michele Reynolds","R","Central Ohio · Franklin Co. (Westerville/Gahanna area)"],
+  [4,"George F. Lang","R","SW Ohio · Butler Co. (West Chester)"],
+  [5,"Stephen A. Huffman","R","W Ohio · Auglaize, Mercer, Darke, part Shelby"],
+  [6,"Willis E. Blackshear Jr.","D","NW Ohio · Lucas Co. (Toledo)"],
+  [7,"Steve Wilson","R","SW Ohio · Warren Co."],
+  [8,"Louis W. Blessing III","R","SW Ohio · Hamilton Co. (eastern)"],
+  [9,"Catherine D. Ingram","D","SW Ohio · Hamilton Co. (Cincinnati)"],
+  [10,"Kyle Koehler","R","W Ohio · Clark, Champaign, Logan"],
+  [11,"Paula Hicks-Hudson","D","NW Ohio · Lucas Co. (Toledo)"],
+  [12,"Susan Manchester","R","NW Ohio · Allen, Hardin, Marion, Wyandot, Crawford, Morrow"],
+  [13,"Nathan H. Manning","R","NE Ohio · Lorain Co. (western)"],
+  [14,"Terry Johnson","R","S Ohio · Gallia, Jackson, Lawrence, Pike, Scioto"],
+  [15,"Hearcel F. Craig","D","Central Ohio · Franklin Co. (Columbus SE)"],
+  [16,"Beth Liston","D","Central Ohio · Franklin Co. (Dublin/Upper Arlington)"],
+  [17,"Shane Wilkin","R","S Ohio · Highland, Ross, Adams, Brown, Clinton"],
+  [18,"Jerry C. Cirino","R","NE Ohio · Lake, eastern Geauga"],
+  [19,"Andrew O. Brenner","R","Central Ohio · Delaware Co."],
+  [20,"Tim Schaffer","R","E Ohio · Licking, Knox, Holmes, Coshocton, Perry"],
+  [21,"Kent Smith","D","NE Ohio · Cuyahoga (Euclid/eastern suburbs)"],
+  [22,"Mark Romanchuk","R","N Ohio · Richland, Ashland, western Wayne"],
+  [23,"Nickie J. Antonio","D","NE Ohio · Cuyahoga (Lakewood/west Cleveland)"],
+  [24,"Thomas F. Patton","R","NE Ohio · Cuyahoga (Rocky River/Westlake)"],
+  [25,"William P. DeMora","D","Central Ohio · Franklin Co. (Columbus west/OSU area)"],
+  [26,"Bill Reineke","R","N Ohio · Seneca, Hancock, part Wyandot"],
+  [27,"Kristina D. Roegner","R","NE Ohio · Summit (eastern), Portage Co."],
+  [28,"Casey Weinstein","D","NE Ohio · Summit Co. (Akron/western)"],
+  [29,"Jane M. Timken","R","NE Ohio · part of Stark Co."],
+  [30,"Brian M. Chavez","R","NE Ohio · Trumbull Co. (Warren/Niles area)"],
+  [31,"Al Landis","R","E Ohio · Guernsey, Muskingum, Tuscarawas, Wayne, part Stark"],
+  [32,"Sandra O'Brien","R","NE Ohio · Ashtabula, northern Geauga, Trumbull"],
+  [33,"Al Cutrona","R","NE Ohio · Carroll, Columbiana, Mahoning"],
 ];
 
 const HOUSE = [
@@ -1769,7 +1787,7 @@ const HOUSE_PROFILES = {
     role: "Speaker of the House · HD-78 (Lima/Allen Co.)",
     tenure: "House 2007–2014, Senate President 2021–2024, Speaker 2025–present",
     stated: ["School choice & voucher expansion", "Fiscal conservatism", "Anti-DEI policy", "Parental rights"],
-    actual: ["Expanded EdChoice vouchers to universal eligibility — siphons public school funding", "Appointed cousin Stephen Huffman to chair Health Committee despite racism controversy", "Architect of 7 rejected gerrymandered maps — courts ruled unconstitutional", "Pushed August 2023 special election to suppress abortion rights vote (failed)", "Led SB 1 anti-DEI legislation through Senate in prior session"]
+    actual: ["Expanded EdChoice vouchers to universal eligibility · siphons public school funding", "Appointed cousin Stephen Huffman to chair Health Committee despite racism controversy", "Architect of 7 rejected gerrymandered maps · courts ruled unconstitutional", "Pushed August 2023 special election to suppress abortion rights vote (failed)", "Led SB 1 anti-DEI legislation through Senate in prior session"]
   },
   79: {
     role: "Speaker Pro Tempore · HD-79",
@@ -1781,13 +1799,13 @@ const HOUSE_PROFILES = {
     role: "House Minority Leader · HD-7 (Columbus/Upper Arlington)",
     tenure: "House 2017–present · Minority Leader 2025–present",
     stated: ["Healthcare access", "Education funding", "Women's rights", "Working families"],
-    actual: ["Leads 34-member Democratic caucus vs 65-R supermajority", "Championed reproductive rights after Issue 1 passage", "Strong public education funding advocate — opposed EdChoice expansion", "Voted against SB 1 anti-DEI legislation"]
+    actual: ["Leads 34-member Democratic caucus vs 65-R supermajority", "Championed reproductive rights after Issue 1 passage", "Strong public education funding advocate · opposed EdChoice expansion", "Voted against SB 1 anti-DEI legislation"]
   },
   4: {
     role: "Minority Whip · HD-4 (Columbus area)",
     tenure: "House 2019–present · Minority Whip",
     stated: ["Housing", "Working families", "Education equity"],
-    actual: ["Democratic Minority Whip — leads floor strategy for 34-member caucus", "Reliable vote on reproductive rights, public education, Medicaid expansion", "Franklin County focus — housing affordability key issue"]
+    actual: ["Democratic Minority Whip · leads floor strategy for 34-member caucus", "Reliable vote on reproductive rights, public education, Medicaid expansion", "Franklin County focus · housing affordability key issue"]
   },
   29: {
     role: "Assistant Majority Whip · HD-29 (Cincinnati/Hamilton Co.)",
@@ -1805,13 +1823,13 @@ const HOUSE_PROFILES = {
     role: "House Majority Floor Leader · HD-52 (Lorain/Cuyahoga Co.)",
     tenure: "House 2013–present",
     stated: ["Fiscal conservatism", "Pro-life", "2nd Amendment"],
-    actual: ["Majority Floor Leader — manages floor schedule and votes", "Voted for SB 1, EdChoice expansion, anti-abortion bills", "District covers suburban Lorain County — once competitive, now safe R"]
+    actual: ["Majority Floor Leader · manages floor schedule and votes", "Voted for SB 1, EdChoice expansion, anti-abortion bills", "District covers suburban Lorain County · once competitive, now safe R"]
   },
   87: {
     role: "Assistant Majority Floor Leader · HD-87 (Richland/Ashland Co.)",
     tenure: "House 2019–present",
     stated: ["Workforce development", "Agriculture", "Fiscal conservatism"],
-    actual: ["HB 275 — named highway bill sponsor (2025)", "Consistent conservative vote on education, budget, anti-DEI bills", "North-central Ohio rural district focus"]
+    actual: ["HB 275 · named highway bill sponsor (2025)", "Consistent conservative vote on education, budget, anti-DEI bills", "North-central Ohio rural district focus"]
   },
   95: {
     role: "Majority Whip · HD-95 (Warren Co.)",
@@ -1823,7 +1841,7 @@ const HOUSE_PROFILES = {
     role: "Former Speaker · HD-93 (Lawrence/Gallia Co.)",
     tenure: "House 2011–present · Speaker 2023–2024",
     stated: ["Economic development", "Rural communities", "Bipartisan cooperation"],
-    actual: ["Ousted as Speaker by Huffman Jan 2025 — lost 54-43 vote", "Attempted bipartisan coalitions as Speaker — signed some D priorities", "Rare Republican who worked across aisle — cost him the speakership"]
+    actual: ["Ousted as Speaker by Huffman Jan 2025 · lost 54-43 vote", "Attempted bipartisan coalitions as Speaker · signed some D priorities", "Rare Republican who worked across aisle · cost him the speakership"]
   },
   45: {
     role: "State Representative · HD-45 (Warren/Clinton Co.)",
@@ -1835,25 +1853,25 @@ const HOUSE_PROFILES = {
     role: "State Representative · HD-56 · Lt. Governor candidate 2026",
     tenure: "House 2023–present",
     stated: ["Pro-life", "Economic development", "Conservative values"],
-    actual: ["Republican nominee for Lt. Governor 2026 on Ramaswamy ticket — won May 5 primary", "Pro-Life Caucus member", "Voted for SB 1 anti-DEI", "Mahoning Valley focus — competitive area flipped R"]
+    actual: ["Republican nominee for Lt. Governor 2026 on Ramaswamy ticket · won May 5 primary", "Pro-Life Caucus member", "Voted for SB 1 anti-DEI", "Mahoning Valley focus · competitive area flipped R"]
   },
   64: {
     role: "State Representative · HD-64 (Trumbull Co.)",
     tenure: "House 2023–present",
     stated: ["Fiscal conservatism", "Economic development", "Public safety"],
-    actual: ["Represents Trumbull County — historically Dem territory gone Republican", "Voted with Republican caucus on SB 1, budget", "New member with limited independent bill record"]
+    actual: ["Represents Trumbull County · historically Dem territory gone Republican", "Voted with Republican caucus on SB 1, budget", "New member with limited independent bill record"]
   },
   67: {
     role: "Pro-Life Caucus Chair · HD-67 (Ashland/Wayne Co.)",
     tenure: "House 2023–present",
     stated: ["Pro-life", "Faith-based values", "Women's health (anti-choice framing)"],
-    actual: ["Chair of 31-member Pro-Life Caucus", "Executive Director of pregnancy care center — policy reflects that background", "Voted for every anti-abortion bill in 136th GA", "Opposes Issue 1 reproductive rights amendment implementation"]
+    actual: ["Chair of 31-member Pro-Life Caucus", "Executive Director of pregnancy care center · policy reflects that background", "Voted for every anti-abortion bill in 136th GA", "Opposes Issue 1 reproductive rights amendment implementation"]
   },
   88: {
     role: "State Representative · HD-88 (Sandusky/Erie Co.)",
     tenure: "House 2019–present",
     stated: ["Pro-life", "Religious liberty", "Fiscal conservatism"],
-    actual: ["Pro-Life Caucus member", "Opposed COVID vaccine mandates", "Pastor background — religious liberty bills primary focus", "Voted against expanded Medicaid coverage"]
+    actual: ["Pro-Life Caucus member", "Opposed COVID vaccine mandates", "Pastor background · religious liberty bills primary focus", "Voted against expanded Medicaid coverage"]
   },
   39: {
     role: "State Representative · HD-39 (Dayton/Montgomery Co.)",
@@ -1865,7 +1883,7 @@ const HOUSE_PROFILES = {
     role: "State Representative · HD-48 (Stark/Canton area)",
     tenure: "House 2009–present",
     stated: ["Fiscal conservatism", "Economic development", "Workforce"],
-    actual: ["One of longest-serving House members", "Voted for EdChoice, SB 1, anti-abortion bills consistently", "Former Speaker Pro Tempore — budget-adjacent committee influence"]
+    actual: ["One of longest-serving House members", "Voted for EdChoice, SB 1, anti-abortion bills consistently", "Former Speaker Pro Tempore · budget-adjacent committee influence"]
   },
   1: {
     role: "State Representative · HD-1 (Columbus/Franklin Co.)",
@@ -1877,13 +1895,13 @@ const HOUSE_PROFILES = {
     role: "State Representative · HD-38 (Dayton/Montgomery Co.)",
     tenure: "House 2023–present",
     stated: ["Working families", "Education", "Community investment"],
-    actual: ["Represents Dayton urban core — competitive swing district that went D", "Reliable Democratic vote on reproductive rights, education, Medicaid", "Part of expanded Democratic minority from 2024 gains"]
+    actual: ["Represents Dayton urban core · competitive swing district that went D", "Reliable Democratic vote on reproductive rights, education, Medicaid", "Part of expanded Democratic minority from 2024 gains"]
   },
   13: {
     role: "State Representative · HD-13 (Lakewood/Cleveland area)",
     tenure: "House 2023–present",
     stated: ["Working families", "Environment", "Education"],
-    actual: ["Lakewood/western Cuyahoga — reliably Democratic district", "Voted against SB 1, EdChoice expansion", "Supported Issue 1 reproductive rights amendment"]
+    actual: ["Lakewood/western Cuyahoga · reliably Democratic district", "Voted against SB 1, EdChoice expansion", "Supported Issue 1 reproductive rights amendment"]
   },
   34: {
     role: "State Representative · HD-34 (Akron/Summit area)",
@@ -1901,7 +1919,7 @@ const HOUSE_PROFILES = {
     role: "State Representative · HD-58 (Mahoning/Youngstown area)",
     tenure: "House 2023–present",
     stated: ["Working families", "Labor", "Economic development"],
-    actual: ["Represents Youngstown area — one of few D seats in NE Ohio", "Reliable Democratic vote", "Labor-focused — union district"]
+    actual: ["Represents Youngstown area · one of few D seats in NE Ohio", "Reliable Democratic vote", "Labor-focused · union district"]
   },
   41: {
     role: "State Representative · HD-41 (Cleveland/Cuyahoga)",
@@ -1913,7 +1931,7 @@ const HOUSE_PROFILES = {
     role: "State Representative · HD-43 (Toledo/Lucas Co.)",
     tenure: "House 2023–present",
     stated: ["Working families", "Education", "Environment"],
-    actual: ["Represents Toledo area — Democratic stronghold", "Reliable Democratic vote on labor, education, environment", "Lucas County urban focus"]
+    actual: ["Represents Toledo area · Democratic stronghold", "Reliable Democratic vote on labor, education, environment", "Lucas County urban focus"]
   }
 };
 
@@ -2182,7 +2200,7 @@ async function loadHouse() {
 
 async function loadFederal() {
   if (federalLayer) { federalLayer.addTo(map); return; }
-  // Inline WGS84 GeoJSON — Ohio congressional districts (2026-2032, adopted 10/31/2025)
+  // Inline WGS84 GeoJSON · Ohio congressional districts (2026-2032, adopted 10/31/2025)
   const geojson = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"dist":1,"CD119FP":"01"},"geometry":{"type":"Polygon","coordinates":[[[-84.82069386553866,39.305339242282415],[-84.35408564645647,39.292453346923466],[-84.33254988249882,39.54845313472134],[-84.36485352843528,39.544157836268354],[-84.36485352843528,39.589687999869994],[-83.5752088499885,39.544157836268354],[-83.58956602596025,39.378359315983154],[-83.78338790157902,39.263245317443165],[-83.81210225352253,39.22286951198512],[-83.86594166341663,39.246923183321826],[-84.26076400264002,39.27097685465854],[-84.32178200052,39.22372857167571],[-84.27512117861178,39.20397019879198],[-84.30024623656236,39.174762169311684],[-84.31819270652706,39.02184954438544],[-84.4294608203082,39.055352872318714],[-84.44381799627996,39.1146279909699],[-84.47253234822348,39.12150046849468],[-84.50483599415993,39.09486961808617],[-84.55149681606815,39.09916491653916],[-84.62328269592696,39.074252185511845],[-84.73096151571515,39.14469508014079],[-84.75608657366574,39.14641319952199],[-84.82069386553866,39.105178334373335],[-84.82069386553866,39.305339242282415]]]}},{"type":"Feature","properties":{"dist":2,"CD119FP":"02"},"geometry":{"type":"Polygon","coordinates":[[[-82.28665230652307,38.58287004249042],[-82.32254524645246,38.4488567307573],[-82.55226006200061,38.403326567155666],[-82.5953315899159,38.4222258803488],[-82.61686735387353,38.477205700546996],[-82.72454617366174,38.557957311463106],[-82.81427852348523,38.57084320682206],[-82.8465821694217,38.59489687815878],[-82.87888581535815,38.69025250381503],[-82.86811793337932,38.728051130201294],[-82.89324299132991,38.75640009999099],[-82.96861816518165,38.72891018989189],[-83.02245757507575,38.72891018989189],[-83.11936851288513,38.666198832478315],[-83.13731498284983,38.62840020609205],[-83.26652956659566,38.61809148980489],[-83.30960109451094,38.60091029599295],[-83.32754756447564,38.63784986268862],[-83.36702979839798,38.658467295262945],[-83.4675300302003,38.67564848907488],[-83.5213694400944,38.70313839917399],[-83.61469108391084,38.684239085980856],[-83.6469947298473,38.63699080299802],[-83.70442343373433,38.63956798206981],[-83.7654414316143,38.65245387742877],[-83.78338790157902,38.69540686195861],[-83.83722731147311,38.71774241391413],[-83.84799519345194,38.746950443394425],[-83.90542389733898,38.76842693565935],[-83.97720977719777,38.78732624885248],[-84.05258495104951,38.77100411473114],[-84.2141031807318,38.805366502355014],[-84.23204965069651,38.827702054310535],[-84.23922823868239,38.900722128011274],[-84.28947835458354,38.95570194820947],[-84.31819270652706,39.02184954438544],[-84.30024623656236,39.174762169311684],[-84.27512117861178,39.20397019879198],[-84.32178200052,39.22372857167571],[-84.26076400264002,39.27097685465854],[-83.86594166341663,39.246923183321826],[-83.87312025140251,39.02099048469484],[-83.6111017899179,39.01927236531365],[-83.38497626836268,39.055352872318714],[-83.34549403444034,39.250359422084216],[-83.39215485634855,39.26754061589615],[-83.37420838638386,39.37750025629256],[-83.26652956659566,39.516667926169255],[-82.99374322313223,39.50635920988209],[-82.99733251712517,39.47972835947359],[-82.74249264362643,39.46856058349583],[-82.73172476164761,39.56907056729567],[-82.62045664786648,39.56391620915208],[-82.61686735387353,39.608587313063126],[-82.49483135811357,39.60257389522894],[-82.49124206412064,39.66184901388013],[-82.37279536235361,39.654976536355356],[-82.3799739503395,39.59656047739477],[-82.26152724857248,39.59054705956059],[-82.26511654256542,39.56219808977089],[-82.04616960899608,39.551030313793134],[-82.02463384503845,39.724560371293705],[-82.07847325493255,39.727996610056096],[-82.0748839609396,39.770949594585936],[-81.64057938779388,39.753768400774],[-81.64416868178681,39.66528525264252],[-81.58673997789978,39.663567133261324],[-81.58673997789978,39.5871108207982],[-81.4718825701257,39.58367458203581],[-81.4718825701257,39.64638593944939],[-81.41445386623866,39.63092286501865],[-81.39650739627396,39.601714835538345],[-81.28523928249282,39.59226517894178],[-81.28164998849988,39.60601013399133],[-81.24575704857048,39.57937928358283],[-81.03757799697996,39.57250680605805],[-81.03757799697996,39.539862537815374],[-81.20986410864109,39.3929633307233],[-81.27088210652106,39.386090853198525],[-81.37138233832339,39.34227880897809],[-81.4359896301963,39.408426405154046],[-81.46829327613275,39.40413110670106],[-81.55802562595626,39.3388425702157],[-81.56879350793507,39.26754061589615],[-81.68006162171622,39.27355403373033],[-81.69082950369503,39.2263057507475],[-81.72672244362444,39.21599703446034],[-81.75543679556796,39.18077558714587],[-81.74825820758207,39.09572867777677],[-81.81286549945499,39.08198372272722],[-81.80209761747618,39.04504415603155],[-81.76620467754677,39.020131425004244],[-81.78056185351853,38.924775799347984],[-81.81286549945499,38.94625229161291],[-81.84516914539145,38.92907109780097],[-81.85593702737027,38.892990590795904],[-81.90977643726437,38.87838657605575],[-81.92772290722907,38.90158118770187],[-81.89900855528555,38.92563485903858],[-81.94208008320084,38.99350057459574],[-81.98156231712316,38.99435963428633],[-82.02822313903138,39.02872202191021],[-82.14308054680546,38.89814494893948],[-82.14308054680546,38.84058794966949],[-82.2184557206572,38.79591684575845],[-82.1825627807278,38.70571557824577],[-82.17179489874898,38.61895054949549],[-82.2184557206572,38.59146063939639],[-82.28665230652307,38.58287004249042]]]}},{"type":"Feature","properties":{"dist":3,"CD119FP":"03"},"geometry":{"type":"Polygon","coordinates":[[[-83.20551156871568,40.10770099329993],[-83.16961862878628,40.10684193360933],[-83.16961862878628,40.1429224406144],[-82.76043911359113,40.12574124680246],[-82.8035106415064,39.82335223571235],[-82.82504640546405,39.79500326592265],[-83.24499380263802,39.81218445973459],[-83.2521723906239,39.916989741987415],[-83.22704733267332,39.932452816418156],[-83.24858309663097,39.97025144280442],[-83.25576168461684,40.04842587464874],[-83.21269015670157,40.04842587464874],[-83.20551156871568,40.10770099329993]]]}},{"type":"Feature","properties":{"dist":4,"CD119FP":"04"},"geometry":{"type":"Polygon","coordinates":[[[-84.43305011430114,40.19704320112201],[-84.43305011430114,40.35425112450124],[-84.80274739557396,40.352533005120044],[-84.80274739557396,40.98909623585235],[-84.34331776447765,40.990814355233546],[-84.34331776447765,41.165203472424714],[-83.88029883938839,41.16778065149651],[-83.88029883938839,40.81986147680476],[-83.49624438214381,40.818143357423565],[-83.49624438214381,40.70131123950239],[-83.30601180051801,40.68670722476224],[-83.30601180051801,40.702170299192986],[-82.62763523585235,40.70904277671776],[-82.62404594185942,40.55011673395733],[-82.64199241182412,40.55011673395733],[-82.64558170581705,40.344801467904674],[-82.74608193761938,40.34995582604825],[-82.76043911359113,40.12574124680246],[-83.16961862878628,40.1429224406144],[-83.16961862878628,40.10684193360933],[-83.5034229701297,40.11113723206231],[-83.51778014610146,40.009768188571876],[-84.03463848108481,40.03983527774277],[-84.02387059910599,40.18415730576305],[-84.43305011430114,40.19704320112201]]]}},{"type":"Feature","properties":{"dist":5,"CD119FP":"05"},"geometry":{"type":"Polygon","coordinates":[[[-82.72813546765467,40.71161995578955],[-83.30601180051801,40.702170299192986],[-83.30601180051801,40.68670722476224],[-83.42086920829207,40.68670722476224],[-83.43881567825677,40.702170299192986],[-83.49624438214381,40.70131123950239],[-83.49624438214381,40.818143357423565],[-83.88029883938839,40.81986147680476],[-83.88029883938839,41.16778065149651],[-83.42086920829207,41.16692159180591],[-83.4136906203062,41.50023675175751],[-83.33831544645446,41.50109581144811],[-83.33831544645446,41.457283767227665],[-82.95067169521695,41.45814282691826],[-82.95426098920989,41.429793857128566],[-82.8465821694217,41.43065291681916],[-82.84299287542875,41.28976712756127],[-82.34408101041011,41.283753709727094],[-82.34767030440304,41.42807573774737],[-82.2543486605866,41.434089155581546],[-82.01027666906668,41.51569982618825],[-81.96720514115141,41.50625016959169],[-81.97079443514434,41.35161942528425],[-81.8774727913279,41.35076036559365],[-81.8774727913279,41.27516311282112],[-81.97079443514434,41.27516311282112],[-81.97438372913729,41.199565860048594],[-82.07129466694667,41.199565860048594],[-82.0748839609396,41.13685450263502],[-82.16820560475604,41.13685450263502],[-82.17179489874898,41.063834428934285],[-82.43740265422655,41.06555254831547],[-82.4338133602336,40.99253247461474],[-82.72454617366174,40.995968713377124],[-82.72813546765467,40.71161995578955]]]}},{"type":"Feature","properties":{"dist":6,"CD119FP":"06"},"geometry":{"type":"Polygon","coordinates":[[[-81.33907869238692,40.17213047009469],[-81.33907869238692,40.21422439493394],[-81.62263291782918,40.221096872458716],[-81.6154543298433,40.367996079550785],[-81.71236526765267,40.37057325862258],[-81.70877597365974,40.444452392013915],[-82.18615207472074,40.45647922768227],[-82.17897348673486,40.57331134560345],[-82.2184557206572,40.568156987459865],[-82.22204501465015,40.667807911569106],[-81.6513472697727,40.667807911569106],[-81.64775797577975,40.63516364332643],[-81.46829327613275,40.655781075900755],[-81.24216775457754,40.65062671775717],[-81.2385784605846,40.72364679145791],[-81.08782811288113,40.72794208991089],[-81.08782811288113,40.90147214741147],[-80.8975955312553,40.90061308772087],[-80.8975955312553,40.929821117201165],[-80.82222035740357,40.929821117201165],[-80.82222035740357,40.90061308772087],[-80.52071966199662,40.90061308772087],[-80.52071966199662,40.63859988208881],[-80.58532695386954,40.6154052704427],[-80.63557706977069,40.6162643301333],[-80.66788071570716,40.582761002200016],[-80.59609483584836,40.463351705207046],[-80.62839848178481,40.394626929959294],[-80.60686271782717,40.36971419893198],[-80.5996841298413,40.32074779656796],[-80.61763059980599,40.26490891667916],[-80.65352353973539,40.24515054379543],[-80.70377365563655,40.15752645535455],[-80.7073629496295,40.101687575465746],[-80.73966659556595,40.07591578474784],[-80.73966659556595,39.971110502495016],[-80.76479165351654,39.95392930868308],[-80.75761306553065,39.909258204772044],[-80.80427388743887,39.91870786136861],[-80.78991671146711,39.867164279932794],[-80.82222035740357,39.84998308612086],[-81.2385784605846,39.86802333962339],[-81.22422128461284,40.1704123507135],[-81.33907869238692,40.17213047009469]]]}},{"type":"Feature","properties":{"dist":7,"CD119FP":"07"},"geometry":{"type":"Polygon","coordinates":[[[-82.17179489874898,41.063834428934285],[-82.16820560475604,41.13685450263502],[-82.0748839609396,41.13685450263502],[-82.07129466694667,41.199565860048594],[-81.97438372913729,41.199565860048594],[-81.97079443514434,41.27516311282112],[-81.68365091570915,41.276881232202314],[-81.6872402097021,40.98823717616175],[-81.64775797577975,40.98823717616175],[-81.6513472697727,40.667807911569106],[-82.22204501465015,40.667807911569106],[-82.2184557206572,40.568156987459865],[-82.33690242242422,40.55527109210092],[-82.34049171641716,40.72708303022029],[-82.3799739503395,40.72708303022029],[-82.38715253832538,40.8078346411364],[-82.41945618426183,40.82329771556715],[-82.41945618426183,40.99253247461474],[-82.4338133602336,40.99253247461474],[-82.43740265422655,41.06555254831547],[-82.17179489874898,41.063834428934285]]]}},{"type":"Feature","properties":{"dist":8,"CD119FP":"08"},"geometry":{"type":"Polygon","coordinates":[[[-84.81351527755277,39.56735244791447],[-84.80274739557396,40.352533005120044],[-84.43305011430114,40.35425112450124],[-84.43305011430114,40.19704320112201],[-84.02387059910599,40.18415730576305],[-84.05258495104951,39.88005017529175],[-84.15667447684477,39.88520453343533],[-84.15667447684477,39.92300315982159],[-84.48688952419523,39.91870786136861],[-84.47971093620936,39.56907056729567],[-84.81351527755277,39.56735244791447]]]}},{"type":"Feature","properties":{"dist":9,"CD119FP":"09"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-84.80274739557396,40.98909623585235],[-84.80633668956689,41.696102361213605],[-83.45317285422854,41.73304192790927],[-83.4495835602356,41.710706375953755],[-83.37420838638386,41.68665270461704],[-83.32754756447564,41.70125671935719],[-83.2342259206592,41.64541783946839],[-83.06552910299102,41.595592377413766],[-83.0009218111181,41.53889443783437],[-82.93272522525226,41.51398170680706],[-82.86811793337932,41.53374007969079],[-82.86093934539345,41.576693064220635],[-82.83581428744287,41.587860840198395],[-82.78556417154171,41.54061255721557],[-82.71736758567586,41.54233067659676],[-82.69583182171822,41.49422333392333],[-82.5594386499865,41.399726767957674],[-82.48047418214182,41.38168651445514],[-82.34767030440304,41.42807573774737],[-82.34408101041011,41.283753709727094],[-82.84299287542875,41.28976712756127],[-82.8465821694217,41.43065291681916],[-82.95426098920989,41.429793857128566],[-82.95067169521695,41.45814282691826],[-83.33831544645446,41.457283767227665],[-83.33831544645446,41.50109581144811],[-83.4136906203062,41.50023675175751],[-83.42086920829207,41.16692159180591],[-84.34331776447765,41.165203472424714],[-84.34331776447765,40.990814355233546],[-84.80274739557396,40.98909623585235]]],[[[-82.67788535175352,41.61792792936929],[-82.6850639397394,41.5870017805078],[-82.73531405564056,41.60332391462914],[-82.67788535175352,41.61792792936929]]],[[[-82.84299287542875,41.62823664565645],[-82.84299287542875,41.64713595884958],[-82.8214571114711,41.7244513310033],[-82.78197487754878,41.69438424183241],[-82.7927427595276,41.66431715266152],[-82.84299287542875,41.62823664565645]]]]}},{"type":"Feature","properties":{"dist":10,"CD119FP":"10"},"geometry":{"type":"Polygon","coordinates":[[[-84.81351527755277,39.56735244791447],[-84.47971093620936,39.56907056729567],[-84.48688952419523,39.91870786136861],[-84.15667447684477,39.92300315982159],[-84.15667447684477,39.88520453343533],[-84.05258495104951,39.88005017529175],[-84.05258495104951,39.85084214581145],[-83.82645942949429,39.82249317602175],[-83.83004872348724,39.797580444994445],[-83.6469947298473,39.77266771396713],[-83.66853049380494,39.55017125410254],[-84.36485352843528,39.589687999869994],[-84.36485352843528,39.544157836268354],[-84.33254988249882,39.54845313472134],[-84.35408564645647,39.292453346923466],[-84.63046128391284,39.312211719807195],[-84.82069386553866,39.305339242282415],[-84.81351527755277,39.56735244791447]]]}},{"type":"Feature","properties":{"dist":11,"CD119FP":"11"},"geometry":{"type":"Polygon","coordinates":[[[-81.96720514115141,41.50625016959169],[-81.8774727913279,41.48305555794557],[-81.80927620546206,41.495941453304525],[-81.73749032560325,41.488209916089154],[-81.4898290400904,41.63167288441884],[-81.48623974609745,41.56982058669586],[-81.38932880828808,41.56982058669586],[-81.39291810228102,41.34818318652186],[-81.59750785987859,41.35076036559365],[-81.56520421394214,41.27774029189291],[-81.8774727913279,41.27516311282112],[-81.8774727913279,41.35076036559365],[-81.97079443514434,41.35161942528425],[-81.96720514115141,41.50625016959169]]]}},{"type":"Feature","properties":{"dist":12,"CD119FP":"12"},"geometry":{"type":"Polygon","coordinates":[[[-80.86888117931178,39.75720463953639],[-80.83298823938239,39.721124132531315],[-80.86529188531885,39.69191610305102],[-80.8796490612906,39.620614148731484],[-80.94425635316352,39.60686919368193],[-81.03757799697996,39.539862537815374],[-81.03757799697996,39.57250680605805],[-81.24575704857048,39.57937928358283],[-81.28164998849988,39.60601013399133],[-81.28523928249282,39.59226517894178],[-81.39650739627396,39.601714835538345],[-81.41445386623866,39.63092286501865],[-81.4718825701257,39.64638593944939],[-81.4718825701257,39.58367458203581],[-81.58673997789978,39.5871108207982],[-81.58673997789978,39.663567133261324],[-81.64416868178681,39.66528525264252],[-81.64057938779388,39.753768400774],[-82.0748839609396,39.770949594585936],[-82.07847325493255,39.727996610056096],[-82.02463384503845,39.724560371293705],[-82.04616960899608,39.551030313793134],[-82.26511654256542,39.56219808977089],[-82.26152724857248,39.59054705956059],[-82.3799739503395,39.59656047739477],[-82.37279536235361,39.654976536355356],[-82.49124206412064,39.66184901388013],[-82.49483135811357,39.60257389522894],[-82.61686735387353,39.608587313063126],[-82.62045664786648,39.56391620915208],[-82.84299287542875,39.5613390300803],[-82.82504640546405,39.79500326592265],[-82.8035106415064,39.82335223571235],[-82.78197487754878,39.939325293942936],[-82.74608193761938,40.34995582604825],[-82.64558170581705,40.344801467904674],[-82.64199241182412,40.55011673395733],[-82.37638465634656,40.55097579364793],[-82.17897348673486,40.57331134560345],[-82.18615207472074,40.45647922768227],[-81.70877597365974,40.444452392013915],[-81.71236526765267,40.37057325862258],[-81.6154543298433,40.367996079550785],[-81.62263291782918,40.221096872458716],[-81.33907869238692,40.21422439493394],[-81.33907869238692,40.17213047009469],[-81.22422128461284,40.1704123507135],[-81.2385784605846,39.86802333962339],[-80.82222035740357,39.84998308612086],[-80.82580965139651,39.79843950468504],[-80.86888117931178,39.75720463953639]]]}},{"type":"Feature","properties":{"dist":13,"CD119FP":"13"},"geometry":{"type":"Polygon","coordinates":[[[-81.64775797577975,40.63516364332643],[-81.64775797577975,40.98823717616175],[-81.6872402097021,40.98823717616175],[-81.68365091570915,41.276881232202314],[-81.56520421394214,41.27774029189291],[-81.59750785987859,41.35076036559365],[-81.00168505705057,41.34818318652186],[-81.00168505705057,40.987378116471156],[-81.08782811288113,40.98823717616175],[-81.08782811288113,40.72794208991089],[-81.2385784605846,40.72364679145791],[-81.24216775457754,40.65062671775717],[-81.46829327613275,40.655781075900755],[-81.64775797577975,40.63516364332643]]]}},{"type":"Feature","properties":{"dist":14,"CD119FP":"14"},"geometry":{"type":"Polygon","coordinates":[[[-81.00168505705057,40.987378116471156],[-81.00168505705057,41.34818318652186],[-81.39291810228102,41.34818318652186],[-81.38932880828808,41.56982058669586],[-81.48623974609745,41.56982058669586],[-81.4898290400904,41.63167288441884],[-81.44316821818218,41.672907749567486],[-81.28523928249282,41.760531838008376],[-81.24934634256343,41.76139089769897],[-81.00168505705057,41.85502840397403],[-80.90118482524825,41.868773359023585],[-80.52071966199662,41.97787393972939],[-80.52071966199662,40.90061308772087],[-80.82222035740357,40.90061308772087],[-80.82222035740357,40.929821117201165],[-80.8975955312553,40.929821117201165],[-80.8975955312553,40.90061308772087],[-81.08782811288113,40.90147214741147],[-81.08782811288113,40.98823717616175],[-81.00168505705057,40.987378116471156]]]}},{"type":"Feature","properties":{"dist":15,"CD119FP":"15"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-83.78338790157902,39.263245317443165],[-83.58956602596025,39.378359315983154],[-83.5752088499885,39.544157836268354],[-83.66853049380494,39.55017125410254],[-83.6469947298473,39.77266771396713],[-83.83004872348724,39.797580444994445],[-83.82645942949429,39.82249317602175],[-84.05258495104951,39.85084214581145],[-84.03463848108481,40.03983527774277],[-83.51778014610146,40.009768188571876],[-83.5034229701297,40.11113723206231],[-83.20551156871568,40.10770099329993],[-83.21269015670157,40.04842587464874],[-83.25576168461684,40.04842587464874],[-83.24858309663097,39.97025144280442],[-83.22704733267332,39.932452816418156],[-83.2521723906239,39.916989741987415],[-83.24499380263802,39.81218445973459],[-82.82504640546405,39.79500326592265],[-82.84299287542875,39.5613390300803],[-82.73172476164761,39.55446655255552],[-82.74249264362643,39.46856058349583],[-82.99733251712517,39.47972835947359],[-82.99374322313223,39.50635920988209],[-83.26652956659566,39.516667926169255],[-83.37420838638386,39.37750025629256],[-83.39215485634855,39.26754061589615],[-83.34549403444034,39.250359422084216],[-83.38497626836268,39.055352872318714],[-83.6111017899179,39.01927236531365],[-83.87312025140251,39.02099048469484],[-83.86594166341663,39.246923183321826],[-83.81210225352253,39.22286951198512],[-83.78338790157902,39.263245317443165]]],[[[-82.41945618426183,40.82329771556715],[-82.38715253832538,40.8078346411364],[-82.3799739503395,40.72708303022029],[-82.34049171641716,40.72708303022029],[-82.33690242242422,40.55527109210092],[-82.62404594185942,40.55011673395733],[-82.62763523585235,40.70904277671776],[-82.72813546765467,40.71161995578955],[-82.72454617366174,40.995968713377124],[-82.41945618426183,40.99253247461474],[-82.41945618426183,40.82329771556715]]]]}}]};
   federalLayer = L.geoJSON(geojson, {
     style: f => {
@@ -2241,7 +2259,7 @@ async function switchChamber(chamber) {
   if (attrNote) attrNote.textContent = noteText;
 }
 
-// Initial load — defer until map container is visible
+// Initial load · defer until map container is visible
 let mapInitialized = false;
 async function initMap() {
   if (mapInitialized) return;
@@ -2258,8 +2276,8 @@ async function initMap() {
   }
 }
 
-// On desktop, map tab is active on load — init immediately
-// On mobile, map is hidden on load — init when user navigates to map tab
+// On desktop, map tab is active on load · init immediately
+// On mobile, map is hidden on load · init when user navigates to map tab
 if (!isMobile()) {
   setTimeout(initMap, 100);
 }
@@ -2808,105 +2826,105 @@ const SENATOR_PROFILES = {
   1: {
     tenure: "Senate since Dec 2017 · Senate President (136th GA) · Republican nominee for Lt. Governor 2026 (Ramaswamy ticket)",
     stated: ["Flat income tax / tax reform", "Deregulation & small business", "School choice & parental rights"],
-    actual: ["Led SB 2 energy overhaul — favored utility/fossil fuel interests (Ohio Capital Journal)", "Co-sponsored Heartbeat Bill SB 23 (2019) — no rape/incest exceptions", "2021 bill letting county commissioners block wind/solar projects", "Defended gerrymandered redistricting maps through multiple court challenges"],
+    actual: ["Led SB 2 energy overhaul · favored utility/fossil fuel interests (Ohio Capital Journal)", "Co-sponsored Heartbeat Bill SB 23 (2019) · no rape/incest exceptions", "2021 bill letting county commissioners block wind/solar projects", "Defended gerrymandered redistricting maps through multiple court challenges"],
     phone: "(614) 466-8150", twitter: "@Rob_McColley", url: "https://ohiosenate.gov/members/rob-mccolley",
     committees: ["Senate President (presides over all)", "Rules & Reference", "Redistricting Commission"]
   },
   2: {
     tenure: "Senate since Feb 2019 · Senate Majority Floor Leader (136th GA)",
     stated: ["Election integrity & voter ID", "2nd Amendment protection", "Anti-abortion / pro-life", "Small business & deregulation"],
-    actual: ["Co-sponsored HB 6 — later at center of $60M FirstEnergy bribery scandal", "Received FirstEnergy PAC money 2018–2020", "Sponsored SB 52 (voting audit requirements) & SB 320 (photo voter ID)", "Pushed party affiliation labels on Supreme Court ballots"],
+    actual: ["Co-sponsored HB 6 · later at center of $60M FirstEnergy bribery scandal", "Received FirstEnergy PAC money 2018–2020", "Sponsored SB 52 (voting audit requirements) & SB 320 (photo voter ID)", "Pushed party affiliation labels on Supreme Court ballots"],
     phone: "(614) 466-8060", twitter: null, url: "https://ohiosenate.gov/members/theresa-gavarone",
     committees: ["Majority Floor Leader", "Government Oversight", "Finance"]
   },
   3: {
     tenure: "Senate since Jan 2023 · 1st term · First Black Republican woman elected in Franklin County",
     stated: ["Stable economy & affordable housing", "Public safety & responsive government", "Community reinvestment"],
-    actual: ["Residential stability zones bill (with Craig) — property tax exemptions for homeowners", "Conveyance fee bill (with Brenner) — county housing fund allocation", "Residential economic development districts & rural infrastructure grants", "Eviction law revisions & homeowner property tax deferral bill (with Craig)", "Tax credits for charitable housing organizations"],
+    actual: ["Residential stability zones bill (with Craig) · property tax exemptions for homeowners", "Conveyance fee bill (with Brenner) · county housing fund allocation", "Residential economic development districts & rural infrastructure grants", "Eviction law revisions & homeowner property tax deferral bill (with Craig)", "Tax credits for charitable housing organizations"],
     phone: "(614) 466-8064", twitter: null, url: "https://ohiosenate.gov/members/michele-reynolds",
     committees: ["Housing", "Commerce & Labor", "Finance"]
   },
   4: {
     tenure: "Senate since Jan 2021 · Senate Majority Whip (136th GA) · Appointed to House Sep 2017",
     stated: ["Most business-friendly state in the country", "Fiscal conservatism & deregulation", "Pro-life & 2nd Amendment"],
-    actual: ["SB 33 — employers may post labor law notices online instead of workplace (anti-worker)", "Permanent ban on local plastic bag bans — backed by Ohio Chamber of Commerce", "Publicly opposed COVID-19 vaccine; avoided masks during pandemic", "July 2024 rally: suggested 'civil war' if election lost — condemned by both parties", "SB 198 — inmate reentry resources (with Manning)"],
+    actual: ["SB 33 · employers may post labor law notices online instead of workplace (anti-worker)", "Permanent ban on local plastic bag bans · backed by Ohio Chamber of Commerce", "Publicly opposed COVID-19 vaccine; avoided masks during pandemic", "July 2024 rally: suggested 'civil war' if election lost · condemned by both parties", "SB 198 · inmate reentry resources (with Manning)"],
     phone: "(614) 466-8072", twitter: null, url: "https://ohiosenate.gov/members/george-f-lang",
     committees: ["Majority Whip", "Commerce & Labor", "Finance", "Rules & Reference"]
   },
   5: {
     tenure: "Senate since Jan 2019 · 3 terms total (House 2015–2018)",
     stated: ["Healthcare access & rural health", "Opioid crisis response", "Fiscal conservatism"],
-    actual: ["June 2020 hearing: asked if Black people contract COVID at higher rates because 'the colored population do not wash their hands as well' — widely condemned", "Anti-abortion votes; chaired Senate Health Committee (appointed by cousin Matt Huffman despite controversy)", "Medicare for All editorial drafted with pharmaceutical/insurance lobbyist (Washington Post, Dec 2019)", "Rural Health Transformation Program advocacy via 'One Big Beautiful Bill'"],
+    actual: ["June 2020 hearing: asked if Black people contract COVID at higher rates because 'the colored population do not wash their hands as well' · widely condemned", "Anti-abortion votes; chaired Senate Health Committee (appointed by cousin Matt Huffman despite controversy)", "Medicare for All editorial drafted with pharmaceutical/insurance lobbyist (Washington Post, Dec 2019)", "Rural Health Transformation Program advocacy via 'One Big Beautiful Bill'"],
     phone: "(614) 466-6247", twitter: null, url: "https://ohiosenate.gov/members/stephen-a-huffman",
     committees: ["Health (Chair)", "Veterans & Public Safety", "Finance"]
   },
   6: {
     tenure: "Senate since Jan 2025 · 1st term · House 2021–2024",
     stated: ["Affordable living & neighborhood reinvestment", "Mental health advocacy", "Gun safety", "Public education funding"],
-    actual: ["Introduced Statewide Youth Council bill (advisory body on youth legislation)", "Opposed SB 56 cannabis changes as undermining voter will on Issue 2", "Commended DeWine veto of child labor extension bill (SB 50)", "Co-sponsored SB 75 — increased penalties for failure to report lost/stolen firearms (with Ingram)"],
+    actual: ["Introduced Statewide Youth Council bill (advisory body on youth legislation)", "Opposed SB 56 cannabis changes as undermining voter will on Issue 2", "Commended DeWine veto of child labor extension bill (SB 50)", "Co-sponsored SB 75 · increased penalties for failure to report lost/stolen firearms (with Ingram)"],
     phone: "(614) 466-4538", twitter: null, url: "https://ohiosenate.gov/members/willis-e-blackshear-jr",
     committees: ["Education", "Health", "Finance"]
   },
   7: {
     tenure: "Senate since Jan 2017 · Dean of Senate (longest-serving) · Retired bank CEO",
     stated: ["Financial literacy & senior protection", "Workforce development", "Fiscal conservatism", "Trails & outdoor recreation"],
-    actual: ["100% conservative voting record (American Conservative Union)", "Co-sponsored Heartbeat Bill SB 23 (2019) — no rape/incest exceptions", "Chair, Financial Institutions, Insurance & Technology Committee", "Co-sponsored SB 33 — employers post labor notices online (with Lang)", "Founder of Ohio's Legislative Trails Caucus"],
+    actual: ["100% conservative voting record (American Conservative Union)", "Co-sponsored Heartbeat Bill SB 23 (2019) · no rape/incest exceptions", "Chair, Financial Institutions, Insurance & Technology Committee", "Co-sponsored SB 33 · employers post labor notices online (with Lang)", "Founder of Ohio's Legislative Trails Caucus"],
     phone: "(614) 466-9737", twitter: "@SteveWilsonOH", url: "https://ohiosenate.gov/members/steve-wilson",
     committees: ["Financial Institutions, Insurance & Technology (Chair)", "Ways & Means", "Judiciary"]
   },
   8: {
     tenure: "Senate since 2017 · Son of former Sen./Rep. Lou Blessing Jr. · Professional engineer",
     stated: ["Conservative fiscal policy", "Deregulation", "Pro-life"],
-    actual: ["Co-sponsored Heartbeat Bill SB 23 (2019) — no rape/incest exceptions", "Consistent conservative voting record aligned with Ohio Chamber of Commerce", "Cincinnati/Hamilton County focus"],
+    actual: ["Co-sponsored Heartbeat Bill SB 23 (2019) · no rape/incest exceptions", "Consistent conservative voting record aligned with Ohio Chamber of Commerce", "Cincinnati/Hamilton County focus"],
     phone: "(614) 466-8068", twitter: null, url: "https://ohiosenate.gov/members/louis-w-blessing-iii",
     committees: ["Transportation", "Energy & Public Utilities", "Finance"]
   },
   9: {
     tenure: "Senate since 2019 · House 2015–2018 · 20+ years Cincinnati Board of Education",
     stated: ["Education equity & public school investment", "Affordable housing", "Workforce development & healthcare access"],
-    actual: ["Ranking Member: Primary/Secondary Education, Workforce/Higher Education, and Medicaid Committees", "Co-sponsored SB 75 — lost/stolen firearm reporting penalties (with Hicks-Hudson)", "WorkOhio regional hub launch (workforce training)"],
+    actual: ["Ranking Member: Primary/Secondary Education, Workforce/Higher Education, and Medicaid Committees", "Co-sponsored SB 75 · lost/stolen firearm reporting penalties (with Hicks-Hudson)", "WorkOhio regional hub launch (workforce training)"],
     phone: "(614) 466-5980", twitter: null, url: "https://ohiosenate.gov/members/catherine-d-ingram",
     committees: ["Primary & Secondary Education (Ranking)", "Workforce Development & Higher Education (Ranking)", "Medicaid (Ranking)"]
   },
   10: {
     tenure: "Senate since Jan 2025 · 1st term in Senate · House 2015–2022 · Chairs Sunset Review Committee",
     stated: ["Consumer protection & payday lending reform", "Occupational licensing deregulation", "Agriculture & fiscal responsibility"],
-    actual: ["House HB 123 (2018) — landmark payday lending reform, capped interest rates", "Occupational licensing reform — reduced barriers to entry for trades", "Homestead exemption increase bill (Feb 2026) — property tax relief for seniors"],
+    actual: ["House HB 123 (2018) · landmark payday lending reform, capped interest rates", "Occupational licensing reform · reduced barriers to entry for trades", "Homestead exemption increase bill (Feb 2026) · property tax relief for seniors"],
     phone: "(614) 466-3780", twitter: null, url: "https://ohiosenate.gov/members/kyle-koehler",
     committees: ["Sunset Review (Chair)", "Agriculture", "Ways & Means"]
   },
   11: {
     tenure: "Senate since Nov 2022 · House Oct 2021–Nov 2022 · Former Mayor of Toledo (1st Black female mayor)",
     stated: ["Empowering people & quality of life", "Education as pathway to success", "Urban farming & environmental health"],
-    actual: ["Co-sponsored SB 75 — firearm loss/theft reporting (with Ingram)", "SB 120 — Urban Farming Act", "SB 236 — suicide prevention & mental health (with Craig)", "SB 329 — ban radioactive brine on roads (with Smith)"],
+    actual: ["Co-sponsored SB 75 · firearm loss/theft reporting (with Ingram)", "SB 120 · Urban Farming Act", "SB 236 · suicide prevention & mental health (with Craig)", "SB 329 · ban radioactive brine on roads (with Smith)"],
     phone: "(614) 466-5204", twitter: null, url: "https://ohiosenate.gov/members/paula-hicks-hudson",
     committees: ["Health", "Environment & Natural Resources", "Education"]
   },
   12: {
     tenure: "Senate since Jan 2025 · 1st term · House 2018–2024 · Worked for Jim Jordan · Trump 2016 field organizer",
     stated: ["Agriculture & family farming", "Child welfare & anti-trafficking", "Fiscal conservatism"],
-    actual: ["Created Ohio Youth and Family Ombudsman Office (DJF oversight)", "Beginning Farmer Tax Credit Program — intergenerational farm asset transfer", "Criminalized use of controlled substance addiction as human trafficking method"],
+    actual: ["Created Ohio Youth and Family Ombudsman Office (DJF oversight)", "Beginning Farmer Tax Credit Program · intergenerational farm asset transfer", "Criminalized use of controlled substance addiction as human trafficking method"],
     phone: "(614) 466-7584", twitter: null, url: "https://ohiosenate.gov/members/susan-manchester",
     committees: ["Agriculture (Chair)", "Housing", "Judiciary"]
   },
   13: {
     tenure: "Senate since Jan 2019 · House 2015–2018 · Running for House District 52 (2026, term-limited)",
     stated: ["Workforce development & job training", "Community college investment", "Public safety"],
-    actual: ["Co-sponsored SB 198 — inmate reentry resources (with Lang)", "Prosecutor background; North Ridgeville/Lorain County focus", "Championed Lorain County Community College and JVS funding"],
+    actual: ["Co-sponsored SB 198 · inmate reentry resources (with Lang)", "Prosecutor background; North Ridgeville/Lorain County focus", "Championed Lorain County Community College and JVS funding"],
     phone: "(614) 644-7613", twitter: null, url: "https://ohiosenate.gov/members/nathan-h-manning",
     committees: ["Judiciary (Chair)", "Criminal Justice", "Education"]
   },
   14: {
     tenure: "Senate since Sept 2019 (appointed) · Re-elected 2020, 2024 · House 2011–2018 · Retired D.O. & Army Colonel",
     stated: ["Opioid/addiction crisis response", "Healthcare access & rural medicine", "2nd Amendment & pro-life", "Veterans affairs"],
-    actual: ["Authored Anti-Pill Mill Bill (HB 93, 2011) — landmark opioid law, shut down pill mills in 5 months", "Expanded naloxone access — HB 170 (2013)", "Authored Ohio Constitutional Carry Law; NRA Defender of Freedom Award", "Co-sponsored SB 22 — legislative oversight of COVID emergency powers"],
+    actual: ["Authored Anti-Pill Mill Bill (HB 93, 2011) · landmark opioid law, shut down pill mills in 5 months", "Expanded naloxone access · HB 170 (2013)", "Authored Ohio Constitutional Carry Law; NRA Defender of Freedom Award", "Co-sponsored SB 22 · legislative oversight of COVID emergency powers"],
     phone: "(614) 466-8082", twitter: null, url: "https://ohiosenate.gov/members/terry-johnson",
     committees: ["Veterans & Public Safety (Chair)", "Health", "Agriculture"]
   },
   15: {
     tenure: "Senate since Jan 2019 · House 2015–2018 · Columbus City Council 2007–2014 · U.S. Army veteran",
     stated: ["Veterans affairs & community reinvestment", "Gun safety", "Housing affordability", "Mental health"],
-    actual: ["SB 235 — ban devices that accelerate firearm rate of fire (with Smith)", "SB 238 — safe firearm storage", "SB 98 — domestic violence conviction triggers firearm prohibition (with Weinstein)", "SB 236 — suicide prevention (with Hicks-Hudson)"],
+    actual: ["SB 235 · ban devices that accelerate firearm rate of fire (with Smith)", "SB 238 · safe firearm storage", "SB 98 · domestic violence conviction triggers firearm prohibition (with Weinstein)", "SB 236 · suicide prevention (with Hicks-Hudson)"],
     phone: "(614) 466-5131", twitter: "@HearcelCraig", url: "https://ohiosenate.gov/members/hearcel-f-craig",
     committees: ["Housing (Ranking)", "Veterans & Public Safety", "Environment & Natural Resources"]
   },
@@ -2920,21 +2938,21 @@ const SENATOR_PROFILES = {
   17: {
     tenure: "Senate since 2021 · House prior · Rural south-central Ohio",
     stated: ["Rural communities & agriculture", "Fiscal conservatism", "Local control"],
-    actual: ["Represents Fayette, Highland, Pike, Ross, and Vinton counties — deeply rural conservative district", "Consistent conservative voting record; aligned with agricultural and property interests", "Limited high-profile independent legislative record"],
+    actual: ["Represents Fayette, Highland, Pike, Ross, and Vinton counties · deeply rural conservative district", "Consistent conservative voting record; aligned with agricultural and property interests", "Limited high-profile independent legislative record"],
     phone: "(614) 466-8156", twitter: null, url: "https://ohiosenate.gov/members/shane-wilkin",
     committees: ["Agriculture", "Transportation", "Ways & Means"]
   },
   18: {
     tenure: "Senate since Jan 2023 · Lake County · Finance Committee Chair",
     stated: ["Education reform", "Fiscal responsibility", "Economic development"],
-    actual: ["Led SB 1 (135th GA) — 'anti-indoctrination' bill restricting DEI at public universities", "Finance Committee Chair — central to state budget negotiations", "Lake County suburban focus"],
+    actual: ["Led SB 1 (135th GA) · 'anti-indoctrination' bill restricting DEI at public universities", "Finance Committee Chair · central to state budget negotiations", "Lake County suburban focus"],
     phone: "(614) 644-7718", twitter: null, url: "https://ohiosenate.gov/members/jerry-c-cirino",
     committees: ["Finance", "Education", "Government Oversight"]
   },
   19: {
     tenure: "Senate since Jan 2019 · House 2011–2018 · Delaware County Recorder 2005–2010",
     stated: ["Education reform & school choice", "Deregulation & fiscal conservatism", "Housing policy"],
-    actual: ["Co-sponsored Heartbeat Bill SB 23 with Roegner (2019)", "April 2020 Facebook posts comparing Ohio COVID policy to Nazi Germany — day after Holocaust Remembrance Day, targeting Jewish Health Director Amy Acton", "Housing legislation: short-term rental regulation, conveyance fees with Reynolds"],
+    actual: ["Co-sponsored Heartbeat Bill SB 23 with Roegner (2019)", "April 2020 Facebook posts comparing Ohio COVID policy to Nazi Germany · day after Holocaust Remembrance Day, targeting Jewish Health Director Amy Acton", "Housing legislation: short-term rental regulation, conveyance fees with Reynolds"],
     phone: "(614) 466-8086", twitter: null, url: "https://ohiosenate.gov/members/andrew-o-brenner",
     committees: ["Primary & Secondary Education (Chair)", "Housing", "Ways & Means"]
   },
@@ -2948,7 +2966,7 @@ const SENATOR_PROFILES = {
   21: {
     tenure: "Senate since Jan 2025 · Air Force veteran · Euclid/northeast Cleveland suburbs",
     stated: ["Working families & labor rights", "Gun safety", "Environmental protection"],
-    actual: ["Co-sponsored SB 235 — ban devices that accelerate firearm rate of fire (with Craig)", "Co-sponsored SB 329 — ban radioactive brine on roads (with Hicks-Hudson)", "New senator; reliable Democratic caucus vote"],
+    actual: ["Co-sponsored SB 235 · ban devices that accelerate firearm rate of fire (with Craig)", "Co-sponsored SB 329 · ban radioactive brine on roads (with Hicks-Hudson)", "New senator; reliable Democratic caucus vote"],
     phone: "(614) 466-4857", twitter: null, url: "https://ohiosenate.gov/members/kent-smith",
     committees: ["Environment & Natural Resources", "Commerce & Labor", "Veterans & Public Safety"]
   },
@@ -2962,14 +2980,14 @@ const SENATOR_PROFILES = {
   23: {
     tenure: "Senate Minority Leader · Long-serving · Lakewood/west Cleveland suburbs",
     stated: ["LGBTQ+ equality & civil rights", "Healthcare access", "Working families & labor", "Education funding"],
-    actual: ["Senate Minority Leader — leads 9-member caucus against 24-R supermajority", "One of Ohio's longest-serving progressive voices", "LGBTQ+ protections sponsor over multiple sessions"],
+    actual: ["Senate Minority Leader · leads 9-member caucus against 24-R supermajority", "One of Ohio's longest-serving progressive voices", "LGBTQ+ protections sponsor over multiple sessions"],
     phone: "(614) 466-5123", twitter: null, url: "https://ohiosenate.gov/members/nickie-j-antonio",
     committees: ["Minority Leader (all committees ex officio)", "Rules & Reference", "Finance"]
   },
   24: {
     tenure: "Senate since 2019 · House prior · Cuyahoga County/west suburbs",
     stated: ["Public safety", "Fiscal conservatism", "Property tax relief"],
-    actual: ["SB 188 — increased criminal penalties for fugitives who barricade in structures", "Property tax freeze legislation (2025) for owner-occupied homes", "Consistent conservative voting record"],
+    actual: ["SB 188 · increased criminal penalties for fugitives who barricade in structures", "Property tax freeze legislation (2025) for owner-occupied homes", "Consistent conservative voting record"],
     phone: "(614) 466-8056", twitter: null, url: "https://ohiosenate.gov/members/thomas-f-patton",
     committees: ["Criminal Justice", "Finance", "Local Government & Elections"]
   },
@@ -2983,7 +3001,7 @@ const SENATOR_PROFILES = {
   26: {
     tenure: "Senate since Jan 2021 · House 2015–2020 · Senate President Pro Tempore · Partner, Reineke Family Dealerships",
     stated: ["100% pro-life & pro-2nd Amendment", "Tax cuts & deregulation", "Small business"],
-    actual: ["Senate President Pro Tempore — second in command to McColley", "100% pro-life and 2nd Amendment voting record", "Endorsed by Ohio Chamber of Commerce; auto dealership background informs regulatory positions"],
+    actual: ["Senate President Pro Tempore · second in command to McColley", "100% pro-life and 2nd Amendment voting record", "Endorsed by Ohio Chamber of Commerce; auto dealership background informs regulatory positions"],
     phone: "(614) 466-8049", twitter: null, url: "https://ohiosenate.gov/members/bill-reineke",
     committees: ["President Pro Tempore", "Finance", "Rules & Reference"]
   },
@@ -2997,21 +3015,21 @@ const SENATOR_PROFILES = {
   28: {
     tenure: "Senate since Jan 2025 · House 2018–2024 · U.S. Air Force veteran · Hudson/Akron area",
     stated: ["Veterans affairs & military families", "Education & children's healthcare", "Renewable energy", "Working families"],
-    actual: ["Co-sponsored SB 98 — domestic violence conviction triggers firearm prohibition (with Craig)", "Dog breeder regulation bill (Nov 2025) — high-volume breeder standards", "Data center regulation — water use, reliability, local control"],
+    actual: ["Co-sponsored SB 98 · domestic violence conviction triggers firearm prohibition (with Craig)", "Dog breeder regulation bill (Nov 2025) · high-volume breeder standards", "Data center regulation · water use, reliability, local control"],
     phone: "(614) 466-7041", twitter: null, url: "https://ohiosenate.gov/members/casey-weinstein",
     committees: ["Armed Services & Veterans Affairs (Ranking)", "Energy & Public Utilities", "Education"]
   },
   29: {
     tenure: "Appointed Jan 29, 2025 · Replacing late Sen. Kirk Schuring · Former Ohio Republican Party Chair 2017–2021",
     stated: ["Conservative economic development", "Public policy reform", "Stark County representation"],
-    actual: ["SB 158 passed — only confirmed significant bill in short tenure", "Very limited legislative record — appointed fewer than 14 months ago", "Known primarily as former state party chair"],
+    actual: ["SB 158 passed · only confirmed significant bill in short tenure", "Very limited legislative record · appointed fewer than 14 months ago", "Known primarily as former state party chair"],
     phone: "(614) 466-0626", twitter: null, url: "https://ohiosenate.gov/members/jane-m-timken",
     committees: ["Finance", "Economic Development", "Government Oversight"]
   },
   30: {
     tenure: "Senate since Jan 2025 · 1st term · NE Ohio/Trumbull County area",
     stated: ["Fiscal conservatism", "Economic development", "Northeast Ohio communities"],
-    actual: ["New senator; limited legislative record", "Represents Trumbull County (Warren/Niles) — historically competitive area gone Republican", "Part of Republican supermajority; voting record aligned with caucus"],
+    actual: ["New senator; limited legislative record", "Represents Trumbull County (Warren/Niles) · historically competitive area gone Republican", "Part of Republican supermajority; voting record aligned with caucus"],
     phone: "(614) 466-6508", twitter: null, url: "https://ohiosenate.gov/members/brian-m-chavez",
     committees: ["Transportation", "Agriculture", "Local Government & Elections"]
   },
@@ -3025,14 +3043,14 @@ const SENATOR_PROFILES = {
   32: {
     tenure: "Senate since prior session · Northeast Ohio · Ashtabula area",
     stated: ["Fiscal conservatism", "Agriculture & rural communities", "Northeast Ohio"],
-    actual: ["Represents Ashtabula, Geauga, Portage (part) counties — northeast corner of Ohio", "Consistent conservative voting record; agricultural interests", "Limited high-profile independent sponsorships"],
+    actual: ["Represents Ashtabula, Geauga, Portage (part) counties · northeast corner of Ohio", "Consistent conservative voting record; agricultural interests", "Limited high-profile independent sponsorships"],
     phone: "(614) 466-7182", twitter: null, url: "https://ohiosenate.gov/members/sandra-obrien",
     committees: ["Agriculture", "Finance", "Environment & Natural Resources"]
   },
   33: {
     tenure: "Senate since Jan 2025 · 1st term · Mahoning Valley/Youngstown area",
     stated: ["Fiscal conservatism", "Public safety", "Economic development"],
-    actual: ["Property tax reduction bill (May 2025) — reduction for owner-occupied homes", "Represents Mahoning County (Youngstown) and Columbiana County", "New senator; limited record beyond property tax bill; reliable Republican vote"],
+    actual: ["Property tax reduction bill (May 2025) · reduction for owner-occupied homes", "Represents Mahoning County (Youngstown) and Columbiana County", "New senator; limited record beyond property tax bill; reliable Republican vote"],
     phone: "(614) 466-8285", twitter: null, url: "https://ohiosenate.gov/members/al-cutrona",
     committees: ["Criminal Justice", "Economic Development", "Local Government & Elections"]
   }
@@ -3075,7 +3093,7 @@ function doLookup() {
       showLookupResults(zip, districts, out);
       return;
     }
-    // Zip found but not in Ohio — fall through to geocoder
+    // Zip found but not in Ohio · fall through to geocoder
   }
 
   // Geocode the address via Nominatim
@@ -3135,9 +3153,9 @@ const OFFICIALS = [
     name: "Mike DeWine",
     party: "R",
     since: "Jan 2019 · Re-elected Nov 2022",
-    bio: "Former U.S. Senator (1995–2007), Ohio AG (2011–2018). Moderate Republican with bipartisan moments on gun violence, children's welfare, and opioids — but signs nearly every Republican priority bill.",
+    bio: "Former U.S. Senator (1995–2007), Ohio AG (2011–2018). Moderate Republican with bipartisan moments on gun violence, children's welfare, and opioids · but signs nearly every Republican priority bill.",
     priorities: ["'Safer Ohio' public safety agenda", "Opioid/addiction crisis response", "Economic development & job creation", "Parental rights & abortion restriction"],
-    record: ["Vetoed child labor extension SB 50 (2024)", "Signed SB 22 — stripped COVID emergency powers from AG (2021)", "Signed HB 6 into law — later revealed as $60M bribery scheme (FirstEnergy)", "Signed near-total abortion ban after Issue 1 passed (constitutional conflict)", "Signed permitless carry gun law (2022)"],
+    record: ["Vetoed child labor extension SB 50 (2024)", "Signed SB 22 · stripped COVID emergency powers from AG (2021)", "Signed HB 6 into law · later revealed as $60M bribery scheme (FirstEnergy)", "Signed near-total abortion ban after Issue 1 passed (constitutional conflict)", "Signed permitless carry gun law (2022)"],
     links: [
       { label: "Official Site", url: "https://governor.ohio.gov", primary: true },
       { label: "Ballotpedia", url: "https://ballotpedia.org/Mike_DeWine" },
@@ -3149,7 +3167,7 @@ const OFFICIALS = [
     name: "Dave Yost",
     party: "R",
     since: "Jan 2019 · Re-elected Nov 2022",
-    bio: "Former Ohio Auditor (2011–2019). Known for aggressive anti-trust litigation against opioid manufacturers — but also aggressive challenges to Biden-era federal policy and litigation against Medicaid expansion.",
+    bio: "Former Ohio Auditor (2011–2019). Known for aggressive anti-trust litigation against opioid manufacturers · but also aggressive challenges to Biden-era federal policy and litigation against Medicaid expansion.",
     priorities: ["Consumer protection & anti-trust", "Opioid manufacturer accountability", "Fighting federal regulatory overreach", "Election integrity enforcement"],
     record: ["Led $26B national opioid settlement negotiations (2021)", "Sued Biden admin over vaccine mandates, student debt, Title IX rules", "Joined Texas lawsuit challenging 2020 election results", "Investigated ECOT online charter school fraud ($80M+ recovered)", "Challenged Columbus police reform consent decree"],
     links: [
@@ -3162,9 +3180,9 @@ const OFFICIALS = [
     name: "Keith Faber",
     party: "R",
     since: "Jan 2019 · Re-elected Nov 2022",
-    bio: "Former Senate President (2013–2016) and House member. As Senate President, was central architect of HB 6 — the FirstEnergy bribery vehicle. Now audits the agencies he once helped legislate.",
+    bio: "Former Senate President (2013–2016) and House member. As Senate President, was central architect of HB 6 · the FirstEnergy bribery vehicle. Now audits the agencies he once helped legislate.",
     priorities: ["Government efficiency & waste reduction", "Charter school accountability", "Local government fiscal health", "Transparency in public spending"],
-    record: ["As Senate President, instrumental in passing HB 6 ($60M bribery law)", "Audited ECOT online school — found $80M+ in overpayments", "Released audit of Ohio opioid spending (2023)", "Faced criticism for conflict of interest given HB 6 history", "Initiated performance audits of several state agencies"],
+    record: ["As Senate President, instrumental in passing HB 6 ($60M bribery law)", "Audited ECOT online school · found $80M+ in overpayments", "Released audit of Ohio opioid spending (2023)", "Faced criticism for conflict of interest given HB 6 history", "Initiated performance audits of several state agencies"],
     links: [
       { label: "Official Site", url: "https://www.ohioauditor.gov", primary: true },
       { label: "Ballotpedia", url: "https://ballotpedia.org/Keith_Faber" }
@@ -3175,7 +3193,7 @@ const OFFICIALS = [
     name: "Frank LaRose",
     party: "R",
     since: "Jan 2019 · Re-elected Nov 2022",
-    bio: "Former Ohio Senate (2012–2018). Failed 2024 U.S. Senate candidate (lost primary). Known for contradictory positions on voting access — expanded some, restricted others. Oversees all elections.",
+    bio: "Former Ohio Senate (2012–2018). Failed 2024 U.S. Senate candidate (lost primary). Known for contradictory positions on voting access · expanded some, restricted others. Oversees all elections.",
     priorities: ["Election security & voter ID", "Business filing modernization", "Military & overseas voting", "'Election integrity' enforcement"],
     record: ["Proposed raising Issue 1 supermajority threshold to block abortion amendment (failed)", "Supported photo voter ID requirements (SB 320)", "Moved 2023 special election to August to reduce turnout (cost $20M, widely condemned)", "Attempted to add partisan labels to Ohio Supreme Court ballots", "Expanded early voting access in some counties"],
     links: [
@@ -3203,7 +3221,7 @@ const OFFICIALS = [
     since: "Senate since Dec 2017 · Senate President since Jan 2023 · Running for Lt. Governor 2026 (Ramaswamy ticket)",
     bio: "District 1 (NW Ohio). Nominated for Lt. Governor on Ramaswamy's ticket after winning May 5 primary. Manages the 24-9 Republican supermajority. Architect of major energy, education, and electoral legislation.",
     priorities: ["Fiscal conservatism & tax reform", "School choice expansion", "Energy policy (fossil fuel aligned)", "Supermajority agenda management"],
-    record: ["Led SB 2 — major energy overhaul favoring utility/fossil fuel interests", "Defended gerrymandered legislative maps through years of court challenges", "Co-sponsored Heartbeat Bill SB 23 (2019)", "Chaired redistricting commission that drew maps courts rejected 7 times"],
+    record: ["Led SB 2 · major energy overhaul favoring utility/fossil fuel interests", "Defended gerrymandered legislative maps through years of court challenges", "Co-sponsored Heartbeat Bill SB 23 (2019)", "Chaired redistricting commission that drew maps courts rejected 7 times"],
     links: [
       { label: "Ohio Senate Bio", url: "https://www.ohiosenate.gov", primary: true },
       { label: "Transparency USA", url: "https://www.transparencyusa.org/oh/candidate/rob-mccolley" }
@@ -3216,7 +3234,7 @@ const OFFICIALS = [
     since: "House since 2011 · Senate President 2021–2022 · House Speaker since Jan 2023",
     bio: "District 78 (Lima/Allen Co.). Arguably the most powerful Republican in the General Assembly. Architect of school voucher expansion, anti-DEI legislation, and redistricting strategy.",
     priorities: ["School choice & voucher expansion", "Anti-DEI & 'parental rights'", "Fiscal conservatism", "Republican caucus discipline"],
-    record: ["Expanded EdChoice voucher program to universal eligibility — defunding public schools", "Appointed cousin Stephen Huffman to chair Health Committee despite 2020 racism controversy", "Architect of 2021/2022 redistricting maps courts rejected as unconstitutional gerrymanders", "Pushed August 2023 special election to block abortion rights amendment (failed)", "Led SB 1 (anti-DEI) through Senate in prior session"],
+    record: ["Expanded EdChoice voucher program to universal eligibility · defunding public schools", "Appointed cousin Stephen Huffman to chair Health Committee despite 2020 racism controversy", "Architect of 2021/2022 redistricting maps courts rejected as unconstitutional gerrymanders", "Pushed August 2023 special election to block abortion rights amendment (failed)", "Led SB 1 (anti-DEI) through Senate in prior session"],
     links: [
       { label: "Ohio House Bio", url: "https://www.ohiohouse.gov/members/matt-huffman", primary: true },
       { label: "Transparency USA", url: "https://www.transparencyusa.org/oh/legislator/matt-huffman" }
@@ -3292,7 +3310,7 @@ function setBottomNav(name) {
     const el = document.getElementById(`bnav-${key}`);
     if (el) el.classList.add('active');
   } else {
-    // map/legislature/resources — highlight More
+    // map/legislature/resources · highlight More
     const el = document.getElementById('bnav-more');
     if (el) el.classList.add('active');
   }
@@ -3396,7 +3414,7 @@ function toggleCardProfile(dist, btn) {
   btn.querySelector('span').textContent = isOpen ? '▲' : '▼';
 }
 
-// Hook renderSenate to also render cards on mobile — use wrapper, not reassignment
+// Hook renderSenate to also render cards on mobile · use wrapper, not reassignment
 const _senateRenderOrig = renderSenate;
 function renderSenateWithCards() { _senateRenderOrig(); if (isMobile()) renderSenateCards(); }
 
@@ -3428,18 +3446,18 @@ const OH_FEDERAL_HOUSE = [
   {dist:1, name:"Eric Conroy", party:"R", since:2027, region:"Cincinnati/Hamilton Co.", committee:"TBD", url:"https://ballotpedia.org/Eric_Conroy", ballotpedia:"https://ballotpedia.org/Eric_Conroy", stated:"Fiscal conservatism, border security, economic development", actual:"Won May 5, 2026 Republican primary for open OH-1 seat (Landsman not seeking re-election) · General election opponent TBD · No congressional voting record yet"},
   {dist:2, name:"David Taylor", party:"R", since:2025, region:"Southern OH / Scioto/Gallia", committee:"Judiciary", url:"https://davidtaylor.house.gov", ballotpedia:"https://ballotpedia.org/David_Taylor_(Ohio)", stated:"Border security, fiscal conservatism, 2nd Amendment", actual:"Voted for H.R. 1, Trump cabinet confirmations, anti-abortion legislation"},
   {dist:3, name:"Joyce Beatty", party:"D", since:2013, region:"Columbus/Franklin Co.", committee:"Financial Services", url:"https://beatty.house.gov", ballotpedia:"https://ballotpedia.org/Joyce_Beatty", stated:"Civil rights, economic equity, financial inclusion", actual:"Voted against H.R. 1, Dodd-Frank protections advocate, voting rights focus"},
-  {dist:4, name:"Jim Jordan", party:"R", since:2007, region:"NW Ohio — Champaign/Mercer/Logan", committee:"Judiciary (Chair)", url:"https://jordan.house.gov", ballotpedia:"https://ballotpedia.org/Jim_Jordan", stated:"Constitutional conservatism, anti-oversight, fiscal cuts", actual:"House Judiciary Chair — led Biden impeachment inquiry, Jan 6 committee opponent, voted for H.R. 1, 100% Trump alignment"},
-  {dist:5, name:"Bob Latta", party:"R", since:2007, region:"NW Ohio — Wood/Hancock/Lorain/Crawford", committee:"Energy & Commerce", url:"https://latta.house.gov", ballotpedia:"https://ballotpedia.org/Bob_Latta", stated:"Energy independence, rural broadband, fiscal conservatism", actual:"Voted for H.R. 1, consistent anti-regulation votes, opposed ACA expansion · New map adds Lorain County from old OH-9"},
-  {dist:6, name:"Michael Rulli", party:"R", since:2024, region:"NE Ohio — Mahoning/Trumbull/Columbiana", committee:"Armed Services", url:"https://rulli.house.gov", ballotpedia:"https://ballotpedia.org/Michael_Rulli", stated:"Workforce, manufacturing, border security", actual:"First-term member, voted for H.R. 1, Trump-aligned on all major votes, replaced Tim Ryan's old district"},
-  {dist:7, name:"Max Miller", party:"R", since:2023, region:"NE Ohio — Portage/Medina/Cuyahoga", committee:"Agriculture", url:"https://maxmiller.house.gov", ballotpedia:"https://ballotpedia.org/Max_Miller", stated:"Agriculture, fiscal conservatism, Israel support", actual:"Trump loyalist and former White House aide, voted for H.R. 1, anti-immigration bills"},
-  {dist:8, name:"Warren Davidson", party:"R", since:2016, region:"SW Ohio — Butler/Montgomery/Preble", committee:"Financial Services", url:"https://davidson.house.gov", ballotpedia:"https://ballotpedia.org/Warren_Davidson", stated:"Fiscal conservatism, cryptocurrency, 2nd Amendment", actual:"Freedom Caucus member — one of most conservative OH reps, voted for H.R. 1, crypto-friendly legislation"},
-  {dist:9, name:"Marcy Kaptur", party:"D", since:1983, region:"NW Ohio — Toledo/Lucas/Erie/Defiance/Williams", committee:"Appropriations", url:"https://kaptur.house.gov", ballotpedia:"https://ballotpedia.org/Marcy_Kaptur", stated:"Manufacturing, workers rights, Social Security, veterans", actual:"Dean of OH delegation (40+ years), voted against H.R. 1, strong labor record · New map adds deep-red rural NW Ohio counties — district now projected R+11 · Kaptur announced re-election bid despite unfavorable lines"},
-  {dist:10, name:"Mike Turner", party:"R", since:2003, region:"Dayton/Montgomery Co.", committee:"Intelligence", url:"https://turner.house.gov", ballotpedia:"https://ballotpedia.org/Mike_Turner", stated:"National security, veterans, defense", actual:"Former Intel Committee Chair — warned of Russian influence, now Trump-aligned, voted for H.R. 1"},
-  {dist:11, name:"Shontel Brown", party:"D", since:2021, region:"NE Ohio — Cleveland East/Cuyahoga", committee:"Agriculture; Oversight", url:"https://shontelbrown.house.gov", ballotpedia:"https://ballotpedia.org/Shontel_Brown", stated:"Economic equity, healthcare, voting rights", actual:"Voted against H.R. 1, strong progressive record, succeeded Marcia Fudge"},
-  {dist:12, name:"Troy Balderson", party:"R", since:2018, region:"Central/SE Ohio — Licking/Muskingum", committee:"Energy & Commerce", url:"https://balderson.house.gov", ballotpedia:"https://ballotpedia.org/Troy_Balderson", stated:"Fiscal conservatism, energy, agriculture", actual:"Voted for H.R. 1, consistent conservative record, supports fossil fuel interests"},
-  {dist:13, name:"Emilia Sykes", party:"D", since:2023, region:"NE Ohio — Akron/Summit/Stark", committee:"Education & Workforce", url:"https://sykes.house.gov", ballotpedia:"https://ballotpedia.org/Emilia_Sykes", stated:"Education, healthcare, workers rights, LGBTQ+ equality", actual:"Voted against H.R. 1, strong progressive votes, former OH House Minority Leader · Ran for US Senate 2026 but lost primary to Sherrod Brown · Returning to run for re-election in OH-13 under new lines (slightly more D-friendly after redistricting)"},
-  {dist:14, name:"David Joyce", party:"R", since:2013, region:"NE Ohio — Lake/Geauga/Ashtabula", committee:"Appropriations", url:"https://joyce.house.gov", ballotpedia:"https://ballotpedia.org/David_Joyce", stated:"Fiscal conservatism, rule of law, bipartisan Appropriations", actual:"More moderate OH Republican, supported some bipartisan funding deals, but voted for H.R. 1"},
-  {dist:15, name:"Mike Carey", party:"R", since:2021, region:"Central OH — Columbus suburbs/SE", committee:"Ways & Means", url:"https://carey.house.gov", ballotpedia:"https://ballotpedia.org/Mike_Carey", stated:"Tax cuts, energy, fiscal conservatism", actual:"Voted for H.R. 1, consistent conservative record, Ways & Means focus on tax policy"}
+  {dist:4, name:"Jim Jordan", party:"R", since:2007, region:"NW Ohio · Champaign/Mercer/Logan", committee:"Judiciary (Chair)", url:"https://jordan.house.gov", ballotpedia:"https://ballotpedia.org/Jim_Jordan", stated:"Constitutional conservatism, anti-oversight, fiscal cuts", actual:"House Judiciary Chair · led Biden impeachment inquiry, Jan 6 committee opponent, voted for H.R. 1, 100% Trump alignment"},
+  {dist:5, name:"Bob Latta", party:"R", since:2007, region:"NW Ohio · Wood/Hancock/Lorain/Crawford", committee:"Energy & Commerce", url:"https://latta.house.gov", ballotpedia:"https://ballotpedia.org/Bob_Latta", stated:"Energy independence, rural broadband, fiscal conservatism", actual:"Voted for H.R. 1, consistent anti-regulation votes, opposed ACA expansion · New map adds Lorain County from old OH-9"},
+  {dist:6, name:"Michael Rulli", party:"R", since:2024, region:"NE Ohio · Mahoning/Trumbull/Columbiana", committee:"Armed Services", url:"https://rulli.house.gov", ballotpedia:"https://ballotpedia.org/Michael_Rulli", stated:"Workforce, manufacturing, border security", actual:"First-term member, voted for H.R. 1, Trump-aligned on all major votes, replaced Tim Ryan's old district"},
+  {dist:7, name:"Max Miller", party:"R", since:2023, region:"NE Ohio · Portage/Medina/Cuyahoga", committee:"Agriculture", url:"https://maxmiller.house.gov", ballotpedia:"https://ballotpedia.org/Max_Miller", stated:"Agriculture, fiscal conservatism, Israel support", actual:"Trump loyalist and former White House aide, voted for H.R. 1, anti-immigration bills"},
+  {dist:8, name:"Warren Davidson", party:"R", since:2016, region:"SW Ohio · Butler/Montgomery/Preble", committee:"Financial Services", url:"https://davidson.house.gov", ballotpedia:"https://ballotpedia.org/Warren_Davidson", stated:"Fiscal conservatism, cryptocurrency, 2nd Amendment", actual:"Freedom Caucus member · one of most conservative OH reps, voted for H.R. 1, crypto-friendly legislation"},
+  {dist:9, name:"Marcy Kaptur", party:"D", since:1983, region:"NW Ohio · Toledo/Lucas/Erie/Defiance/Williams", committee:"Appropriations", url:"https://kaptur.house.gov", ballotpedia:"https://ballotpedia.org/Marcy_Kaptur", stated:"Manufacturing, workers rights, Social Security, veterans", actual:"Dean of OH delegation (40+ years), voted against H.R. 1, strong labor record · New map adds deep-red rural NW Ohio counties · district now projected R+11 · Kaptur announced re-election bid despite unfavorable lines"},
+  {dist:10, name:"Mike Turner", party:"R", since:2003, region:"Dayton/Montgomery Co.", committee:"Intelligence", url:"https://turner.house.gov", ballotpedia:"https://ballotpedia.org/Mike_Turner", stated:"National security, veterans, defense", actual:"Former Intel Committee Chair · warned of Russian influence, now Trump-aligned, voted for H.R. 1"},
+  {dist:11, name:"Shontel Brown", party:"D", since:2021, region:"NE Ohio · Cleveland East/Cuyahoga", committee:"Agriculture; Oversight", url:"https://shontelbrown.house.gov", ballotpedia:"https://ballotpedia.org/Shontel_Brown", stated:"Economic equity, healthcare, voting rights", actual:"Voted against H.R. 1, strong progressive record, succeeded Marcia Fudge"},
+  {dist:12, name:"Troy Balderson", party:"R", since:2018, region:"Central/SE Ohio · Licking/Muskingum", committee:"Energy & Commerce", url:"https://balderson.house.gov", ballotpedia:"https://ballotpedia.org/Troy_Balderson", stated:"Fiscal conservatism, energy, agriculture", actual:"Voted for H.R. 1, consistent conservative record, supports fossil fuel interests"},
+  {dist:13, name:"Emilia Sykes", party:"D", since:2023, region:"NE Ohio · Akron/Summit/Stark", committee:"Education & Workforce", url:"https://sykes.house.gov", ballotpedia:"https://ballotpedia.org/Emilia_Sykes", stated:"Education, healthcare, workers rights, LGBTQ+ equality", actual:"Voted against H.R. 1, strong progressive votes, former OH House Minority Leader · Ran for US Senate 2026 but lost primary to Sherrod Brown · Returning to run for re-election in OH-13 under new lines (slightly more D-friendly after redistricting)"},
+  {dist:14, name:"David Joyce", party:"R", since:2013, region:"NE Ohio · Lake/Geauga/Ashtabula", committee:"Appropriations", url:"https://joyce.house.gov", ballotpedia:"https://ballotpedia.org/David_Joyce", stated:"Fiscal conservatism, rule of law, bipartisan Appropriations", actual:"More moderate OH Republican, supported some bipartisan funding deals, but voted for H.R. 1"},
+  {dist:15, name:"Mike Carey", party:"R", since:2021, region:"Central OH · Columbus suburbs/SE", committee:"Ways & Means", url:"https://carey.house.gov", ballotpedia:"https://ballotpedia.org/Mike_Carey", stated:"Tax cuts, energy, fiscal conservatism", actual:"Voted for H.R. 1, consistent conservative record, Ways & Means focus on tax policy"}
 ];
 
 function renderFederalHouse() {
@@ -3484,17 +3502,59 @@ const CANDIDATE_DATA = {
     race: 'Governor · Democratic Nominee',
     tagline: 'Physician · Former Ohio Health Director · Youngstown native',
     facts: [
-      'Former Director, Ohio Dept of Health under Gov. DeWine (2019–2020)',
-      'Led Ohio COVID-19 response — DeWine made final policy calls but Acton was public face',
-      'MD from Northeast Ohio Medical University; practiced in underserved Youngstown communities',
+      'Former Director, Ohio Dept of Health under Gov. DeWine (2019–2020) · led COVID-19 response',
+      'Unopposed in May 5, 2026 Democratic primary · advances to November general',
       'Running mate: David Pepper (former Ohio Democratic Party Chair)',
-      'Has not held elected office — positioning as outsider vs. career politicians',
-      'Key strength: women voters (+14 net fav), independents (+21 net fav, OFT/Hart poll)',
-      'Key vulnerability: 36% of Ohio voters had never heard of her as of Dec 2025 vs 18% for Ramaswamy',
+      'MD from Northeast Ohio Medical University · practiced in underserved Youngstown communities',
+      'Pre-primary fundraising: $10.4M, a record for an Ohio Democrat at that stage · outraised Ramaswamy $5.19M to $5.01M in the most recent filing period',
+      'Donor base: 78,694 Ohio contributors vs Ramaswamy\'s 39,260 · 70% of funds from Ohio · 96% of contributions $100 or less',
+      'Endorsed by multiple labor unions, former Gov. Dick Celeste, and Republican former AG Jim Petro',
+      'Key strength: independents (+21), women (+14), suburban voters (+13) per OFT/Hart poll',
+      'Has not held elected office · would be first woman elected Ohio governor and first Jewish governor',
       'Democrats have not won an Ohio governor race since Ted Strickland in 2006',
-      'Ramaswamy attacking her over COVID school closures — ignores DeWine ordered them'
+      'Ramaswamy attacks her over COVID closures and her resignation · DeWine made final policy calls'
     ],
-    poll: 'RCP avg: Ramaswamy +1.0 (47.5 vs 46.5) · BGSU/YouGov Oct 2–14: Ramaswamy 50, Acton 47 · Emerson Dec 6–8: Acton 46, Vivek 45 · EMC Feb 2026 (D-commissioned): Acton +10 (53–43)',
+    poll: 'Fox News Jun 3: Acton +1 (statistical tie) · RCP avg: Ramaswamy +1.0 (47.5–46.5) · BGSU Apr: Ramaswamy +1 · Emerson Dec: Acton 46–45 · OFT/Hart internals: Acton +21 independents, +14 women, +13 suburban · Effective dead heat all cycle',
+    deepUpdated: 'June 11, 2026',
+    deep: [
+      {
+        hdr: 'Career Arc', tier: 'verified',
+        paras: [
+          `Born 1966 in Youngstown. Her childhood, which she has discussed extensively on the record, included poverty, housing instability, abuse, and a period of homelessness, including a winter living in a tent. MD from Northeast Ohio Medical University, MPH from Ohio State, preventive medicine residency. Practiced and taught in underserved communities in Youngstown and Columbus, then served on Ohio State's public health faculty and as a grantmaker at the Columbus Foundation.`,
+          `Appointed Director of the Ohio Department of Health by DeWine in February 2019, the first physician to hold the post in years. After resigning in June 2020 she returned to the Columbus Foundation and later led the RAPID 5 parks and greenways nonprofit. Declared for governor in January 2025, the first major candidate in the race, and was unopposed in the May 5, 2026 primary. Called herself a "scrappy kid from Youngstown" in her primary night speech.`
+        ]
+      },
+      {
+        hdr: 'The COVID Record', tier: 'verified',
+        paras: [
+          `As ODH director, Acton was the public face and medical architect of Ohio's early pandemic response. Ohio moved earlier than nearly every state in March 2020: first to close schools statewide, postponed its primary election, and issued early stay-home orders. The daily DeWine-Acton briefings drew national attention, and Ohio's early per-capita outcomes were widely credited at the time. DeWine has consistently said the final policy calls were his.`,
+          `The backlash was severe: armed protesters appeared at the Statehouse and outside her home, some carrying antisemitic signs (Acton is Jewish), and Republican legislators moved to strip ODH's emergency powers. She resigned in June 2020 after roughly 16 months in the role.`,
+          `Ramaswamy's attack frames the resignation, not the closures, as the disqualifier, calling her quitting the most damning indictment of someone who wants to lead the state. The record cuts the other way as well: the calls were made under armed intimidation, and the resignation came only after weeks of armed protesters outside her home.`
+        ]
+      },
+      {
+        hdr: 'Platform and Coalition', tier: 'verified',
+        paras: [
+          `Campaign centers affordability and cost of living, public education funding, healthcare access, and protecting reproductive rights following Ohio's 2023 Issue 1 constitutional amendment. Positions herself against the income tax elimination plan as a transfer that would force property and sales tax increases.`,
+          `Coalition signals: endorsements from multiple labor unions, former Democratic Gov. Dick Celeste, and Republican former AG Jim Petro. Polling internals show her strength concentrated exactly where statewide races are decided: independents (+21 net favorability), women (+14), and suburban voters (+13) per the OFT/Hart poll, despite lower name recognition than Ramaswamy.`
+        ]
+      },
+      {
+        hdr: 'The Money Map', tier: 'verified',
+        paras: [
+          `Pre-primary total: $10.4M, a record for an Ohio Democratic gubernatorial candidate at that stage. In the most recent filing period she outraised Ramaswamy $5.19M to $5.01M despite his overall total being nearly five times larger.`,
+          `The donor geography says more than the totals. She has 78,694 Ohio contributors to Ramaswamy's 39,260, with 70% of her money from Ohio residents against roughly 57% of his, and 96% of her contributions came in at $100 or less, averaging $28 at the grassroots level. She has twice his Ohio donors. He has roughly five times her money, half of it his own.`
+        ]
+      },
+      {
+        hdr: 'Structural Read', tier: 'inference',
+        paras: [
+          `No form of state capacity took more abuse after 2020 than public health, and Acton is running on it anyway. Her entire public profile was built on an argument for collective action, that what happens to any one person depends on shared sacrifice and institutions that work. Her opponent's profile was built on a stock portfolio. Part of what Ohio decides in November is which account of 2020 it wants to ratify.`,
+          `The limits are real. She comes out of foundation and nonprofit liberalism, not labor or any kind of machine, so the coalition rests on favorability rather than organization, and Ohio Democrats have no statewide infrastructure that has won anything since 2018. The donor map, twice his Ohio contributors and a fifth of his money, puts the small-donor class up against self-financing capital with nothing in between.`,
+          `Her biography carries more weight than the campaign admits. A physician shaped by childhood poverty in deindustrialized Youngstown is telling a materialist story about what systems do to people when they fail, even if the campaign packages it as personal resilience.`
+        ]
+      }
+    ],
     links: [
       { label: 'Campaign Site', url: 'https://actonforgovernor.com/', primary: true },
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Amy_Acton' }
@@ -3503,19 +3563,68 @@ const CANDIDATE_DATA = {
   ramaswamy: {
     name: 'Vivek Ramaswamy', party: 'R',
     race: 'Governor · Republican Nominee',
-    tagline: 'Biotech CEO · 2024 Presidential candidate · Trump-endorsed',
+    tagline: 'Biotech founder · 2024 Presidential candidate · Trump-endorsed',
     facts: [
-      'Founded Roivant Sciences (biotech) 2014; stepped back 2023 after selling stake',
-      'Dropped 2024 presidential primary and endorsed Trump; briefly co-led DOGE',
+      'Won May 5, 2026 Republican primary easily over Casey Putsch · Heather Hill ruled ineligible after her running mate withdrew',
       'Running mate: Rob McColley (Ohio Senate President, SD-1)',
-      'Signature policy: eliminate Ohio personal income tax (~$8-10B annual revenue)',
-      'Innovation Ohio analysis: plan creates ~$10B budget hole — requires 20% property tax hike or 65% sales tax increase',
-      'Endorsed by DeWine, Husted, LaRose, and Sprague',
-      'Launched $10M TV ad blitz in March 2026 — first major media buy of campaign',
-      'Drawing only 65% of Republicans in Feb 2026 EMC poll — consolidation problem',
-      'Net favorability: +8 (Emerson Dec 2025) vs Acton +14 among Ohio voters'
+      'Founded Roivant Sciences 2014 · Axovant subsidiary IPO\'d at ~$3B on a $5M Alzheimer\'s drug that failed Phase III in 2017',
+      'Founded Strive Asset Management 2022 (anti-ESG fund) · author of Woke, Inc.',
+      'Dropped 2024 presidential bid after Iowa, endorsed Trump · briefly co-led DOGE, exited Jan 2025 to run for governor',
+      'Signature policy: eliminate Ohio personal income tax (~$8–10B annual revenue)',
+      'Innovation Ohio analysis: plan creates ~$10B budget hole · requires major property or sales tax increases',
+      'Endorsed by Trump, DeWine, Husted, LaRose, and Sprague · state GOP endorsement May 2025 cleared the primary field (Yost dropped out)',
+      'Broke state fundraising records: $50M+ raised pre-primary, $30M cash on hand · $25M from personal funds',
+      'Donor geography: 39,260 Ohio contributors vs Acton\'s 78,694 · ~57% of funds from Ohio',
+      'Outraised by Acton $5.19M to $5.01M in the most recent filing period',
+      'Drawing only 65% of Republicans in Feb 2026 EMC poll · consolidation problem'
     ],
-    poll: 'RCP avg: Ramaswamy +1.0 (47.5 vs 46.5) · BGSU/YouGov Oct 2–14: Ramaswamy 50, Acton 47 · Emerson Dec 6–8: Acton 46, Vivek 45 · EMC Feb 2026 (D-commissioned): Acton +10 (53–43)',
+    poll: 'Fox News Jun 3: Acton +1 (statistical tie) · RCP avg: Ramaswamy +1.0 (47.5–46.5) · BGSU Apr: Ramaswamy +1 · Emerson Dec: Acton 46–45 · OFT/Hart internals: Acton +21 independents, +14 women, +13 suburban · Effective dead heat all cycle',
+    deepUpdated: 'June 11, 2026',
+    deep: [
+      {
+        hdr: 'Career Arc', tier: 'verified',
+        paras: [
+          `Born 1985 in Cincinnati to Indian immigrant parents; raised in Evendale, St. Xavier High School. Harvard biology, then a partner-track run at hedge fund QVT, then Yale Law on a Paul and Daisy Soros Fellowship for New Americans. Founded Roivant Sciences in 2014 on the thesis of acquiring shelved pharmaceutical assets cheaply. Stepped back from Roivant leadership in 2021, sold down his stake, and pivoted to politics via the 2021 book Woke, Inc. and Strive Asset Management in 2022.`,
+          `Ran for president in 2024, finished fourth in Iowa, dropped out and endorsed Trump. Named co-lead of DOGE with Elon Musk in November 2024, then exited in January 2025 before it began operating to run for governor, announcing in February 2025 in West Chester. The state GOP endorsed him in May 2025, roughly 18 months before the election, effectively clearing the field; AG Dave Yost dropped out shortly after. Would be Ohio's first Indian-American governor and the nation's first Hindu governor.`
+        ]
+      },
+      {
+        hdr: 'The Axovant Record', tier: 'verified',
+        paras: [
+          `The transaction that built his fortune, documented in trade press, Forbes tax-return reporting, and SEC filings: in late 2014, Roivant's subsidiary Axovant bought the Alzheimer's drug intepirdine from GSK for $5M upfront. GSK had shelved it after four failed clinical trials. Six months later, in June 2015, Axovant went public in what was then the largest biotech IPO in history, raising roughly $315M at a valuation near $3B, with eight employees, including Ramaswamy's mother and brother.`,
+          `Ramaswamy reported more than $38M in income that year, mostly capital gains, and his spokesperson later acknowledged he sold Roivant shares in 2015 as the Axovant hype peaked; Roivant also reduced its Axovant stake from 78% to roughly 25% over time. SoftBank led a $1.1B investment in Roivant in 2017. In September 2017 intepirdine failed its Phase III trial; the stock lost 75% of its value in one day, never recovered, and the drug was abandoned in early 2018. The company, later renamed Sio Gene Therapies, liquidated in 2023.`,
+          `His on-record defense: most drugs fail, Alzheimer's drugs fail at extraordinary rates, the trial was a clean experiment with a clear result, and he would not have done anything meaningfully differently. Critics, including in Forbes, describe the sequence as hype followed by exit at retail investors' expense. Both framings rest on the same documented record: the people who built the company made their money before the science came in, and the people who bought the story took the loss.`
+        ]
+      },
+      {
+        hdr: 'Strive and the Anti-ESG Business', tier: 'verified',
+        paras: [
+          `Strive Asset Management, founded 2022 in Columbus, markets index funds on an explicitly anti-ESG platform, urging companies to drop environmental and social commitments. Early backers included Peter Thiel, Bill Ackman, and JD Vance. The firm is the financial arm of the politics in Woke, Inc.: the argument that corporate social responsibility is an illegitimate constraint on shareholder primacy. He stepped back from Strive operations for the presidential run, and the firm has since moved into bitcoin treasury strategies.`
+        ]
+      },
+      {
+        hdr: 'Platform', tier: 'verified',
+        paras: [
+          `Signature pledge: eliminate Ohio's personal income tax, roughly $8–10B in annual revenue. Innovation Ohio's analysis projects an approximately $10B budget hole requiring either property tax increases around 20% or a sales tax increase around 65% to fill, both regressive substitutions. He pairs this with property tax relief rhetoric amid the 2026 property tax revolt; the two pledges have never been squared with each other.`,
+          `Education agenda: merit pay, phone bans, civics requirements, and sustained antagonism toward teachers' unions; the Ohio Federation of Teachers characterizes his agenda as ending collective bargaining for teachers. On record from December 2024: his viral comments that American culture venerates mediocrity over excellence, which drew backlash across the spectrum and which Democrats have used to frame his view of Ohio workers. Strong alignment with the data center and AI buildout, framed as making Ohio the heartland tech hub.`
+        ]
+      },
+      {
+        hdr: '2026 Race: State of Play', tier: 'verified',
+        paras: [
+          `Money: state records broken. $50M+ raised before the primary with $30M cash on hand, $25M of it his own money, plus $19.8M raised in calendar 2025 alone, the most in state history at that stage. A supporting super PAC operates on top of that. Yet in the most recent filing period Acton outraised him $5.19M to $5.01M, and the donor geography runs against him: 39,260 Ohio contributors to her 78,694, with only ~57% of his funds from Ohio.`,
+          `Polling: effective dead heat all cycle despite an 8-point GOP party-ID advantage and far higher name recognition. The Fox News poll released June 3 put Acton up one. His persistent weaknesses: independents (-14 net favorability in the OFT/Hart poll), suburban voters, and incomplete Republican consolidation (65% of Republicans in the Feb EMC poll). The structural advantages of the state's partisan lean are real, which is why forecasters still treat him as a slight favorite.`
+        ]
+      },
+      {
+        hdr: 'Structural Read', tier: 'inference',
+        paras: [
+          `With Ramaswamy, capital is not working through a politician. It is running for office itself. Husted spent decades administering the pay-to-play state; Ramaswamy bought in at the top. Half his campaign money is his own. His program, ending the income tax, fighting ESG, breaking the teachers' unions, is a shareholder agenda restated as state policy. And the same machine implicated in HB6 (DeWine, Husted, LaRose, the state party clearing the field 18 months early) handed him the nomination.`,
+          `The Axovant pattern carries over almost intact. Pick up an undervalued asset cheap, in this case a cleared primary. Promote it hard, here with record ad spending. Collect, whether or not the product ever works. The income tax plan runs on the same arithmetic: a cut concentrated at the top, backfilled with property and sales taxes paid by everyone else, and marketed as populism.`,
+          `His weaknesses are structural too. He has never won an election. The voters who decide Ohio statewide races, independents and suburbanites, view him persistently negatively. And nothing in his biography gives a deindustrialized electorate much to recognize. The race comes down to whether the state's partisan lean can carry a record of financial engineering past a record of public service performed under armed threat.`
+        ]
+      }
+    ],
     links: [
       { label: 'Campaign Site', url: 'https://vivekforohio.com/', primary: true },
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Vivek_Ramaswamy' }
@@ -3530,12 +3639,12 @@ const CANDIDATE_DATA = {
       'Led $26 billion national opioid settlement negotiations (2021)',
       'Filed dozens of lawsuits against Biden admin (vaccine mandates, Title IX, student debt)',
       'Joined Texas Supreme Court suit challenging 2020 election results',
-      'Has not formally declared — still "exploring" as of March 2026',
+      'Has not formally declared · still "exploring" as of March 2026',
       'Considered more traditional conservative than Ramaswamy',
       'Would face an uphill primary against Ramaswamy who has near-full establishment backing',
       'ECOT charter school fraud recovery: $80M+ under his oversight as Auditor'
     ],
-    poll: 'No head-to-head general election polling yet — exploratory phase only',
+    poll: 'No head-to-head general election polling yet · exploratory phase only',
     links: [
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Dave_Yost', primary: true }
     ]
@@ -3546,10 +3655,10 @@ const CANDIDATE_DATA = {
     tagline: 'Lt. Governor · Former OSU Football Coach · High statewide approval',
     facts: [
       'Current Ohio Lt. Governor (2025–present) under Gov. DeWine',
-      'Former Ohio State head football coach 2001–2010 — won 2002 BCS national championship',
+      'Former Ohio State head football coach 2001–2010 · won 2002 BCS national championship',
       'Resigned from OSU in 2010 amid NCAA violations (player benefits/tattoo scandal)',
       'Later served as president of Youngstown State University 2014–2023',
-      'Has high public approval statewide due to football legacy — especially in SE and NE Ohio',
+      'Has high public approval statewide due to football legacy · especially in SE and NE Ohio',
       'Has not formally declared for governor race as of March 2026',
       'Would face primary against Ramaswamy who already has DeWine endorsement',
       'Running for governor would require resigning as Lt. Governor'
@@ -3561,15 +3670,15 @@ const CANDIDATE_DATA = {
   },
   larose: {
     name: 'Frank LaRose', party: 'R',
-    race: 'Governor · Not running — endorsed Ramaswamy, running for Auditor',
+    race: 'Governor · Not running · endorsed Ramaswamy, running for Auditor',
     tagline: 'Current SoS · Running for Auditor instead · Endorsed Ramaswamy',
     facts: [
-      'Will NOT run for governor — announced candidacy for Ohio Auditor of State instead',
+      'Will NOT run for governor · announced candidacy for Ohio Auditor of State instead',
       'Endorsed Vivek Ramaswamy for governor',
       'Current Ohio Secretary of State since Jan 2019',
-      'Failed 2024 US Senate primary candidate — lost to Bernie Moreno by wide margin',
+      'Failed 2024 US Senate primary candidate · lost to Bernie Moreno by wide margin',
       'Known for: proposing 60% supermajority to block 2023 abortion amendment (failed)',
-      'Moved 2023 special election to August to depress turnout — cost $20M, broadly condemned',
+      'Moved 2023 special election to August to depress turnout · cost $20M, broadly condemned',
       'Attempted to add partisan labels to Ohio Supreme Court ballots',
       '2024 Senate primary loss significantly diminished his political standing'
     ],
@@ -3584,15 +3693,15 @@ const CANDIDATE_DATA = {
     tagline: 'Former US Rep OH-13 · 2022 Senate candidate · Has not declared',
     facts: [
       'Former US Representative for Ohio\'s 13th district (Youngstown area) 2003–2023',
-      'Lost 2022 US Senate race to JD Vance by 6.1 points — significantly outperformed top of ticket',
+      'Lost 2022 US Senate race to JD Vance by 6.1 points · significantly outperformed top of ticket',
       'Has explored both governor and Senate 2026 races without committing to either',
       'Strong union credibility and working-class brand in northeast Ohio',
-      'Moderate Democrat — opposed Medicare for All, positioned as pragmatist on trade',
-      'Would face Acton in Democratic primary if he declared — she is considered the frontrunner',
+      'Moderate Democrat · opposed Medicare for All, positioned as pragmatist on trade',
+      'Would face Acton in Democratic primary if he declared · she is considered the frontrunner',
       'His indecision has frustrated Ohio Democrats who need early field clarity',
       'Also being tracked as potential Senate candidate'
     ],
-    poll: 'Not declared — no head-to-head general election polling',
+    poll: 'Not declared · no head-to-head general election polling',
     links: [
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Tim_Ryan', primary: true }
     ]
@@ -3603,10 +3712,10 @@ const CANDIDATE_DATA = {
     tagline: 'Former Dayton Mayor · 2022 Dem nominee · Lost to DeWine by 25pts',
     facts: [
       'Former Mayor of Dayton, Ohio 2014–2021',
-      '2022 Democratic nominee for governor — lost to Mike DeWine 62% to 38% (25 points)',
+      '2022 Democratic nominee for governor · lost to Mike DeWine 62% to 38% (25 points)',
       'First woman nominated by Ohio Democrats for governor',
       'Dayton focus: national attention after August 2019 mass shooting response',
-      'Won 2022 Democratic primary over John Cranley — became first woman nominated by Ohio Dems for governor',
+      'Won 2022 Democratic primary over John Cranley · became first woman nominated by Ohio Dems for governor',
       'Her 2022 loss margin raises questions about electability for 2026 cycle',
       'Would need to overcome significant deficit in name recognition vs Acton nationally'
     ],
@@ -3617,48 +3726,152 @@ const CANDIDATE_DATA = {
   },
   husted: {
     name: 'Jon Husted', party: 'R',
-    race: 'US Senate Special Election · Republican Nominee',
-    tagline: 'Appointed Jan 2025 · Former Lt. Governor · Running for full term',
+    race: 'US Senate Special Election · Republican Nominee (Incumbent)',
+    tagline: 'Appointed Senator · Former Lt. Governor · Running for full term',
     facts: [
       'Appointed to US Senate by Gov. DeWine in Jan 2025 to fill JD Vance vacancy',
-      'Ran uncontested in May 5, 2026 Republican primary — advances to November general',
-      'Former Ohio Lt. Governor 2019–2025 under DeWine',
-      'Former Ohio Secretary of State 2011–2018; Ohio House Speaker Pro Tem before that',
-      'Running for full term in Nov 2026 special election — winner serves through 2028, must run again',
-      'Has Trump endorsement for the 2026 race',
-      'Voted for H.R. 1 (One Big Beautiful Bill) — $150B+ defense increase, SNAP and Medicaid cuts',
-      'Voted against extending ACA premium subsidies — then proposed a partial two-year freeze',
-      'Fundraising: raised $3.7M in Q3 2025 alone — record for OH Republican Senate candidate at that stage',
-      'Net favorability: -3 (21% fav, 24% unfav, 40% never heard of him) per Emerson Dec 2025'
+      'Ran unopposed in May 5, 2026 Republican primary · Has Trump endorsement',
+      'Former Lt. Governor 2019–2025, Secretary of State 2011–2019, Ohio Senate 2009–2011, Ohio House Speaker 2005–2008',
+      'Testified via Zoom on March 11, 2026 as a sitting US Senator in the FirstEnergy executives\' HB6 bribery trial (as witness; never charged, denies wrongdoing)',
+      'Court records confirm he is "State Official 2" in FirstEnergy case documents',
+      'Cleveland.com: FirstEnergy made a secret $1M dark money payment for the "Husted campaign" in 2017',
+      'Voted for H.R. 1 (One Big Beautiful Bill) · $150B+ defense increase, SNAP and Medicaid cuts',
+      'Voted against extending ACA premium subsidies, then proposed a partial two-year freeze',
+      'Q1 2026 fundraising: $2.9M raised, $8.2M cash on hand · Brown raised $10.1M with $16.5M CoH',
+      'Senate Leadership Fund (GOP super PAC) committed $79M in outside spending to defend the seat',
+      'Donor base: 584 unique itemized donors through Q4 2025 vs 6,700+ for Brown · ~52% of funds from large gifts and PACs',
+      'Net favorability: -3 (21% fav, 24% unfav, 40% never heard of him) per Emerson Dec 2025',
+      'Winner of Nov 2026 special election serves through 2028, must run again for full term'
     ],
-    poll: 'RCP avg: Husted +1.0 (48.5 vs 47.5) · BGSU/YouGov Apr 14: Husted 50, Brown 47 · OnMessage Mar 3–8: Brown 47, Husted 45 · Emerson Dec 6–8: Husted 49, Brown 46',
+    poll: 'Fox News May 28–Jun 1: Brown 53, Husted 45 (Brown +8, first lead outside MoE) · BGSU/YouGov Apr: Husted 50–47 · OnMessage Mar: Brown 47–45 · Emerson Dec: Husted 49–46 · Cook Political: Toss Up (moved from Lean R, April 2026) · Trump OH favorability down 20+ pts since 2024',
+    deepUpdated: 'June 11, 2026',
+    deep: [
+      {
+        hdr: 'Career Arc', tier: 'verified',
+        paras: [
+          `Born 1967, adopted as an infant, raised in Montpelier (Williams County). University of Dayton, member of the 1989 national championship football team. Ohio House from 2001, Speaker 2005–2008. Ohio Senate 2009–2011. Secretary of State 2011–2019. Ran for governor in 2018, then merged his campaign onto DeWine's ticket as lieutenant governor, serving 2019–2025 and running the InnovateOhio office. Appointed to the US Senate by DeWine in January 2025 when Vance became vice president.`,
+          `Twenty-five years in state government without losing an election in his own right, and without ever winning a federal one. The 2026 special election is his first time before voters since the FirstEnergy records became public.`
+        ]
+      },
+      {
+        hdr: 'HB6 / FirstEnergy: The Documented Record', tier: 'verified',
+        paras: [
+          `The frame: FirstEnergy spent roughly $61M in the scheme that produced HB6, a bailout worth over $1B to its failing nuclear plants, paid by ratepayers. House Speaker Larry Householder got 20 years in federal prison. FirstEnergy admitted to the conduct in a deferred prosecution agreement and paid a $230M penalty.`,
+          `Husted's documented connections, per court records, public records requests, and trial evidence: he is "State Official 2" in case documents. Cleveland.com reported FirstEnergy made a secret $1M dark money payment for the "Husted campaign" in 2017. Ohio Capital Journal records requests show FirstEnergy executives spent at least $3.5M through dark money groups to help fund the DeWine-Husted 2018 campaign. A Dowling email before HB6 passed said the governor left the details of HB6 to others, naming Husted and Dan McCarthy (DeWine's legislative director, formerly a FirstEnergy lobbyist).`,
+          `Trial evidence from early 2026: messages describing DeWine and Husted performing "battlefield triage" to install Sam Randazzo as PUCO chair (Randazzo had received $4.3M from FirstEnergy weeks before his appointment). Messages showing Husted pushed to extend the bailout in the lead-up to HB6's July 2019 passage. A 2019 calendar showing a scheduled Husted meeting with Randazzo two days before HB6 was introduced. Call logs showing dozens of conversations among Husted, Randazzo, and FirstEnergy leaders. Jones texted that Husted and others were fighting to the end for the bill.`,
+          `The caveat, always attached: Husted has continuously denied knowledge of the bribery scheme, has never been charged, and law enforcement has not accused him of wrongdoing. Every claim above is sourced to court records, released texts, calendars, and campaign finance documents, not to any legal finding against him.`
+        ]
+      },
+      {
+        hdr: 'Trial Status: Live Through Election Season', tier: 'verified',
+        paras: [
+          `Jones and Dowling stood trial in Summit County in Feb–Mar 2026 on racketeering, conspiracy, and bribery charges. Husted testified remotely via Zoom on March 11, 2026, as a sitting US Senator. After nine days of deliberation the jury deadlocked on all counts; a mistrial was declared April 1. AG Yost immediately pledged a retrial.`,
+          `On June 3, 2026, a Summit County grand jury returned a new indictment, unsealed June 4: it restates the prior charges, expands the scope to include allegations involving Householder, and adds obstruction and evidence-tampering charges against Jones. The retrial track now runs directly through the 2026 campaign, keeping HB6 in the news cycle while Husted is on the ballot.`
+        ]
+      },
+      {
+        hdr: 'Secretary of State Record', tier: 'verified',
+        paras: [
+          `As SoS, Husted built Ohio's aggressive voter roll purge process: registered voters who skipped elections and failed to return a mailer were removed. The policy was challenged and upheld 5–4 by the US Supreme Court in Husted v. A. Philip Randolph Institute (2018), making Ohio's "use it or lose it" purge a national model. Hundreds of thousands of Ohio registrations were cancelled under the process, with documented disproportionate impact on urban, low-income, and Black voters per analyses reported at the time.`,
+          `As House Speaker in the 2000s he was a leading champion of charter school expansion during the era of ECOT and major charter operator donations to Ohio Republicans; Ohio Capital Journal has catalogued his connections to both the energy and charter school scandals.`
+        ]
+      },
+      {
+        hdr: 'Senate Record and 2026 Money', tier: 'verified',
+        paras: [
+          `Senate votes: for H.R. 1 (One Big Beautiful Bill), including the $150B+ defense increase and SNAP and Medicaid cuts. Against extending ACA premium subsidies, followed by a proposed partial two-year freeze. Endorsed Ramaswamy for governor. Supported the Trump tariff agenda. In March 2026 he appeared at a White House "Ratepayer Protection Pledge" event, a notable choice of branding for the politician most documented in the HB6 ratepayer bailout records.`,
+          `Money: $2.9M raised in Q1 2026 with $8.2M cash on hand, against Brown's $10.1M and $16.5M. Donor composition: 584 unique itemized donors through Q4 2025, with roughly 52% of funds from large gifts and PACs. The Senate Leadership Fund's $79M commitment means the bulk of his campaign's firepower arrives as outside money.`
+        ]
+      },
+      {
+        hdr: 'Structural Read', tier: 'inference',
+        paras: [
+          `If the argument is that the system worked as designed, Husted is the through-line. He spent twenty-five years rising through every chamber of a state government where a regulated monopoly could buy a billion-dollar bailout, pick its own regulator, and fund the executive ticket with dark money, and none of the officials involved ever faced charges. Householder went to prison. The machine that produced Householder sent Husted to the United States Senate.`,
+          `HB6 was a class transfer in plain terms. Ratepayers, disproportionately working-class households for whom the utility bill takes a bigger share of income, were made to subsidize the shareholders of a failing utility. The voter purge record runs on the same logic in a different register: the people most likely to object, administratively removed from the rolls.`,
+          `As for 2026, the shape of the race is a candidate with 584 itemized donors being defended by $79 million in outside money against an opponent with a hundred thousand small ones. Win or lose, that spending pattern shows plainly whose seat this is understood to be.`
+        ]
+      }
+    ],
     links: [
       { label: 'Campaign Site', url: 'https://www.jonhustedforsenate.com/', primary: true },
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Jon_Husted' },
-      { label: 'Senate Record', url: 'https://www.congress.gov/member/jon-husted/H001100' }
+      { label: 'Senate Record', url: 'https://www.congress.gov/member/jon-husted/H001100' },
+      { label: 'OCJ: HB6 Coverage', url: 'https://ohiocapitaljournal.com/?s=husted+firstenergy' }
     ]
   },
   brown: {
     name: 'Sherrod Brown', party: 'D',
     race: 'US Senate Special Election · Democratic Nominee',
-    tagline: 'Former 3-term US Senator · Lost 2024 by 3.5pts · IUPAT endorsed',
+    tagline: 'Former 3-term US Senator · Lost 2024 by 3.6pts · Won May 5 primary',
     facts: [
-      'Former US Senator for Ohio 2007–2025 — served 3 terms, won in cycles that went heavily Republican',
-      'Won May 5, 2026 Democratic primary easily over Ron Kincaid — advances to November general',
-      'Lost 2024 Senate re-election to Bernie Moreno by 3.5 points despite Trump winning Ohio by 11',
+      'Former US Senator for Ohio 2007–2025 · served 3 terms, won in cycles that went heavily Republican',
+      'Won May 5, 2026 Democratic primary easily over Ron Kincaid · advances to November general',
+      'Lost 2024 Senate re-election to Bernie Moreno by 3.6 points while Trump won Ohio by 11 (outran Harris by ~7.5pts)',
+      'Q1 2026 fundraising: raised $10.1M, $16.5M cash on hand · Husted raised $2.9M, $8.2M CoH',
+      'Donor base: 100,000+ Q1 contributors, ~59,000 first-time, avg gift ~$35',
+      'GOP Senate Leadership Fund committed $79M in outside spending for Husted (April 2026)',
+      'Cook Political Report moved race from Lean R to Toss Up (April 2026)',
+      'Senate record: chaired Banking Committee 2021–2025, Finance, Agriculture · Butch Lewis Act pension rescue, anti-NAFTA/PNTR votes, Buy American provisions',
+      'Net favorability: +7 (42% fav, 35% unfav) per Emerson Dec 2025 · well above Husted',
       'Endorsed by IUPAT (International Union of Painters and Allied Trades)',
-      'Raised $8 million in early campaign fundraising largely from small-dollar donors',
-      'Senate record: Appropriations Committee, Finance Committee, Banking Committee (chair)',
-      'Known for: China trade legislation, Buy American provisions, steel/manufacturing advocacy',
-      'Net favorability: +7 (42% fav, 35% unfav) per Emerson Dec 2025 — well above Husted',
-      'Leads independents, suburban voters, and women in multiple polls',
-      'Winner of Nov 2026 special election must run AGAIN in 2028 for a full 6-year term',
-      'Key vulnerability: Ohio\'s growing Republican lean at federal level (Trump +11 in 2024)'
+      'Winner of Nov 2026 special election serves through 2028, must run again for full term'
     ],
-    poll: 'RCP avg: Husted +1.0 (48.5 vs 47.5) · BGSU/YouGov Apr 14: Husted 50, Brown 47 · OnMessage Mar 3–8: Brown 47, Husted 45 · Emerson Dec 6–8: Husted 49, Brown 46',
+    poll: 'Fox News May 28–Jun 1: Brown 53, Husted 45 (Brown +8, first lead outside MoE) · BGSU/YouGov Apr: Husted 50–47 · OnMessage Mar: Brown 47–45 · Emerson Dec: Husted 49–46 · Cook Political: Toss Up (moved from Lean R, April 2026) · Trump OH favorability down 20+ pts since 2024',
+    deepUpdated: 'June 11, 2026',
+    deep: [
+      {
+        hdr: 'Career Arc', tier: 'verified',
+        paras: [
+          `Born 1952 in Mansfield. Ohio House at age 22 (1974). Ohio Secretary of State 1983–1991, losing re-election to Bob Taft in 1990, his only defeat before 2024. US House 1993–2007 representing the Lorain-anchored 13th district, where the canvas jacket and union-hall identity was forged. US Senate 2007–2025, three terms. Chaired Senate Banking 2021–2025. Lives in Cleveland.`,
+          `His "dignity of work" framing is borrowed explicitly from MLK and the 1968 Memphis sanitation strike. Fifty years in Ohio politics makes him the longest-running statewide Democratic brand in the state.`
+        ]
+      },
+      {
+        hdr: 'Record: What He Delivered', tier: 'verified',
+        paras: [
+          `Voted against NAFTA (1993) and China PNTR (2000) when most Democrats went the other way. Voted against the Iraq War authorization, the 2005 bankruptcy bill, and the Bush tax cuts. Opposed the 2018 bank deregulation bill (S.2155) when 17 Senate Democrats defected.`,
+          `Butch Lewis Act (2021): roughly $90B rescuing multiemployer pensions for Teamsters, miners, and other union retirees. Arguably his single largest material delivery. Also: EITC and Child Tax Credit expansion advocacy, PRO Act co-sponsorship, CHIPS Act implementation in Ohio, executive clawback push after SVB collapse as Banking chair.`
+        ]
+      },
+      {
+        hdr: 'Record: Contradictions', tier: 'record',
+        paras: [
+          `Israel: conventional pro-Israel Democrat. Voted for supplemental aid packages including during the Gaza war and declined to support conditioning aid. AIPAC did not target him in 2024, which tells you where he sits.`,
+          `2024 rightward pivot: re-election campaign ran heavily on fentanyl interdiction and border security, with sheriff-endorsement ads. Defensive triangulation that conceded the terrain rather than contesting it.`,
+          `Crypto: a skeptic as Banking chair, but softened notably in 2024 as crypto PAC money flooded the race. Fairshake and allied crypto PACs spent roughly $40M for Moreno anyway, the largest single-industry intervention of the cycle.`,
+          `Trade politics consistently framed as economic nationalism (Buy American, anti-China) rather than internationalism, leaving the lane partially absorbable by Trump-era tariff politics.`
+        ]
+      },
+      {
+        hdr: 'Anatomy of the 2024 Loss', tier: 'verified',
+        paras: [
+          `Lost to Moreno 50.1 to 46.5 while Trump carried Ohio by 11. Brown outran Harris by roughly 7.5 points, the largest overperformance of any Senate Democrat in a contested 2024 race. He outraised Moreno nearly 4-to-1 in hard money; outside spending, crypto money foremost, closed the gap.`,
+          `Structural story: collapse of ticket-splitting plus completed white working-class realignment. No personal brand survives an 11-point top-of-ticket deficit in a presidential year. That is also why 2026 is a different race. No Trump on the ballot, and a midterm environment running against the party in power.`
+        ]
+      },
+      {
+        hdr: '2026 Race: State of Play', tier: 'verified',
+        paras: [
+          `Launched August 2025 after Schumer recruited him personally (two Ohio trips), choosing Senate over the open governor race. Won the May 5 primary over Ron Kincaid; Husted was unopposed with Trump's endorsement.`,
+          `Money: Q1 2026 Brown raised $10.1M with $16.5M cash on hand, vs Husted's $2.9M raised and $8.2M CoH. Brown's Q1 donor base: 100,000+ contributors, ~59,000 first-time, ~$35 average gift. Husted's network showed only 584 unique itemized donors through Q4 2025, with ~52% of funds from large gifts and PACs.`,
+          `Capital's answer, same as 2024: Senate Leadership Fund committed $79M in outside spending for Husted. Brown's response on record names Wall Street, the drug companies, the oil industry, and big insurance as the spenders, saying they know he will take them on.`,
+          `Mechanics: special election for the remainder of Vance's term. Winner serves through January 2029 and must immediately run again in 2028 for a full term. Brown, 73, is potentially signing up for three statewide races in four years.`
+        ]
+      },
+      {
+        hdr: 'Structural Read', tier: 'inference',
+        paras: [
+          `Brown marks the left edge of what American electoral politics will tolerate, and his fifty years show both what that position can win and what it cannot touch.`,
+          `What it can win: he proved plain class language holds up in a deindustrialized state, beating the generic Democratic number by high single digits for two decades while the party's consultants kept telling candidates to soften. The money in this race tells the same story from another angle. A hundred thousand donors giving thirty-five dollars apiece on one side, 584 itemized donors on the other, and a $79 million super PAC brought in to make up the difference. That last figure is what it now costs to hold a Senate seat against a social democrat.`,
+          `What it cannot touch: the half century of dignity-of-work politics ran alongside Lorain's steel collapse, stagnant Ohio wages, and the realignment that finally beat him. His trade record turned working-class anger into Buy American nationalism instead of anything internationalist, which left that whole lane open for Trump to walk into. When the 2024 race tightened, he pivoted to border ads rather than fight on his own ground. And on foreign policy, Israel above all, he has voted conventionally his entire career. The Senate has always sold the social democratic domestic program and the imperial consensus as a package, and Brown bought the package. The reforms were real. Butch Lewis is rent and groceries for several hundred thousand retirees. The tendency behind them never disturbed anything structural.`,
+          `One thing to watch: this race pairs the appointed product of Ohio's pay-to-play machine with the state's last labor Democrat, and FirstEnergy's shadow falls on only one of them. Whether Brown's campaign prosecutes HB6 hard or handles Husted gently will say a lot about what the party thinks the race is about.`
+        ]
+      }
+    ],
     links: [
       { label: 'Campaign Site', url: 'https://www.sherrodbrown.com/', primary: true },
-      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Sherrod_Brown' }
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Sherrod_Brown' },
+      { label: 'FEC Filings', url: 'https://www.fec.gov/data/candidate/S6OH00163/' }
     ]
   },
   dolan: {
@@ -3669,9 +3882,9 @@ const CANDIDATE_DATA = {
       'Former Ohio State Senator, Senate District 24',
       'Lost 2022 Republican Senate primary to JD Vance',
       'Lost 2024 Republican Senate primary to Bernie Moreno',
-      'Considered a more moderate Republican — opposed Trump\'s 2020 election claims',
+      'Considered a more moderate Republican · opposed Trump\'s 2020 election claims',
       'Cleveland Indians/Guardians ownership family connection (Cleveland Guardians minority owner)',
-      'May challenge Husted in 2026 primary — has not formally declared',
+      'May challenge Husted in 2026 primary · has not formally declared',
       'Would face significant headwinds against Husted who has Trump endorsement'
     ],
     poll: 'No head-to-head polling vs Brown yet',
@@ -3686,13 +3899,13 @@ const CANDIDATE_DATA = {
     facts: [
       'Former US Rep for Ohio\'s 13th district (Youngstown/Mahoning Valley) 2003–2023',
       'Lost 2022 US Senate race to JD Vance by 6.1 points',
-      'Has explored both governor and Senate 2026 races — has not declared either',
-      'Strong labor credibility — Mahoning Valley union households',
-      'If he enters Senate race, would face Sherrod Brown in primary — Brown is frontrunner',
+      'Has explored both governor and Senate 2026 races · has not declared either',
+      'Strong labor credibility · Mahoning Valley union households',
+      'If he enters Senate race, would face Sherrod Brown in primary · Brown is frontrunner',
       'Moderate positioning on trade (pro-tariff) could complicate Democratic primary',
       'His 2022 campaign raised record amounts and came closer than any Ohio Dem in years'
     ],
-    poll: 'Not declared — no polling',
+    poll: 'Not declared · no polling',
     links: [
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Tim_Ryan', primary: true }
     ]
@@ -3706,8 +3919,8 @@ const CANDIDATE_DATA = {
       'Former Ohio House Minority Leader',
       'Formally declared Senate candidacy',
       'Running for Senate means she would vacate her House seat if she wins',
-      'Strong progressive record — education, healthcare, workers rights, LGBTQ+ equality',
-      'Would face Sherrod Brown in Democratic primary — Brown is considered overwhelming frontrunner',
+      'Strong progressive record · education, healthcare, workers rights, LGBTQ+ equality',
+      'Would face Sherrod Brown in Democratic primary · Brown is considered overwhelming frontrunner',
       'Daughter of Vernon Sykes (Ohio state senator) and Barbara Sykes (former state rep)'
     ],
     poll: 'Head-to-head general polling not yet available for this matchup',
@@ -3718,20 +3931,53 @@ const CANDIDATE_DATA = {
   },
   levy: {
     name: 'Greg Levy', party: 'I',
-    race: 'US Senate Special Election · General Election Only (Independent)',
+    race: 'US Senate Special Election · Independent (PSL)',
     tagline: 'Party for Socialism and Liberation · Veteran, organizer, musician · Akron native',
     facts: [
-      'Running as independent in the general election only — no primary (filed directly for general)',
-      'Candidate of the Party for Socialism and Liberation (PSL)',
-      'Born and raised in Akron\'s Joy Park housing projects — third of six brothers',
+      'Candidate of the Party for Socialism and Liberation · on the ballot as an independent because Ohio does not recognize PSL as a qualified party',
+      'General election only (no primary) · faces Brown (D) and Husted (R) in November',
+      'Campaign reported passing 10,000 petition signatures in April 2026, roughly double the 5,000 required for statewide independents · Ballotpedia lists him among November general election candidates',
+      'Born and raised in Akron\'s Joy Park housing projects · third of six brothers',
       'Father was a union electrician at Ford for 30 years; mother was a nurse',
-      'US military veteran',
-      'Community organizer and founder of the Paul Robeson Revolutionary Choir',
-      'Platform: seize the 100 largest corporations, raise wages, protect rural hospitals, end US wars abroad, end the war on Black America',
+      'US military veteran · community organizer · founder of the Paul Robeson Revolutionary Choir',
+      'Platform: constitutional rights to guaranteed income, housing, and healthcare · nationalize the 100 largest corporations · raise wages · protect rural hospitals from Medicaid cuts · end US wars abroad',
       'Campaign slogan: Ohio for the Workers, Not the Billionaires',
-      'Running in the general — faces Brown (D) and Husted (R) in November'
+      'Excluded from all major head-to-head polling and debate invitations'
     ],
-    poll: 'No polling — independent third-party candidate. Not included in major head-to-head polls.',
+    poll: 'Excluded from major head-to-head polling · No public survey this cycle has included him as a named option alongside Brown and Husted',
+    deepUpdated: 'June 11, 2026',
+    deep: [
+      {
+        hdr: 'Career Arc', tier: 'verified',
+        paras: [
+          `Born in Akron's Joy Park housing projects, the third of six boys. His father worked as a union electrician at Ford for 30 years and served as minister of music at the family's church; his mother was a nurse. The brothers grew up performing, and Levy's music and politics merged in the Paul Robeson Revolutionary Choir, which he founded and which tours church and community venues performing in Robeson's tradition of political music.`,
+          `He is a US military veteran and a longtime community and Black liberation organizer in Northeast Ohio. The Party for Socialism and Liberation announced him as its Senate candidate in October 2025.`
+        ]
+      },
+      {
+        hdr: 'Campaign and Ballot Access', tier: 'verified',
+        paras: [
+          `Because Ohio does not recognize PSL as a ballot-qualified party, Levy runs as an independent, which requires petition signatures rather than a primary. His campaign held a Columbus event on April 18, 2026 marking 10,000 signatures collected, roughly double the statewide independent requirement, with PSL's 2024 vice presidential candidate Karina Garcia appearing. Ballotpedia lists him among the November 3 general election candidates.`,
+          `His formal Cleveland launch came February 21, 2026 at Holy Trinity Church in the Fairfax neighborhood, where he invoked Cleveland's Underground Railroad codename: "Ohio and Cleveland were once Station Hope. Let them be Station Hope again." The campaign runs on volunteer organizing and small donations, with no PAC or institutional money.`,
+          `He has been excluded from every major head-to-head poll and debate framework this cycle. That is standard treatment for minor-party candidates in Ohio, and it means his support has never been measured, only assumed to be small.`
+        ]
+      },
+      {
+        hdr: 'Platform', tier: 'verified',
+        paras: [
+          `The program, published in detail on his campaign site, proposes constitutional rights to a guaranteed income, housing, and healthcare. Alongside that: raising wages, protecting rural hospitals from Medicaid cuts, nationalizing the 100 largest corporations (the PSL national program), ending US wars abroad, and what the campaign frames as ending the war on Black America.`,
+          `His stated theory of the race, on record from his announcement: every injustice working people experience comes down to who has power, and billionaires have gutted Ohio's cities of jobs while politicians backed by big money refuse to meet people's needs. The campaign describes itself as an organizing vehicle to mobilize working people, not only an electoral bid.`
+        ]
+      },
+      {
+        hdr: 'Structural Read', tier: 'inference',
+        paras: [
+          `Levy is the only candidate in the race who disputes the premises instead of trading within them. Brown says capital has too much influence over the state. Levy says capital owns it. The gap between those two claims is the full ideological width of the November ballot, and it exists only because a volunteer operation cleared a petition threshold neither major party ever has to think about.`,
+          `The architecture around him says as much as the campaign does. Ohio hands the two parties automatic ballot lines and makes everyone else petition. Pollsters and debate organizers then leave petition candidates out because they poll low, in surveys that never offered them as an option. Whatever number Levy posts in November will measure name exposure under those conditions, not how much appetite exists for the politics.`,
+          `Set against the money elsewhere on this ballot, $79 million in outside spending on one side and $16.5 million in candidate cash on the other, a campaign made of petition signatures, church venues, and a choir is plainly not playing the same game. PSL is explicit that it is not trying to. The campaign doubles as organizing infrastructure meant to outlast the count.`
+        ]
+      }
+    ],
     links: [
       { label: 'Campaign Site', url: 'https://www.greg4senate.com', primary: true },
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Gregory_Levy' }
@@ -3745,10 +3991,10 @@ const CANDIDATE_DATA = {
       'Ohio State Senator from Senate District 28 (Akron/Summit County western area)',
       'Formally declared Senate candidacy',
       'Air Force veteran',
-      'Co-sponsored SB 98 — domestic violence conviction triggers firearm prohibition',
-      'Co-sponsored SB on data center regulation — water use, reliability, local control',
-      'Dog breeder regulation bill (Nov 2025) — high-volume breeder standards',
-      'Would face Sherrod Brown in Democratic primary — Brown is overwhelming frontrunner',
+      'Co-sponsored SB 98 · domestic violence conviction triggers firearm prohibition',
+      'Co-sponsored SB on data center regulation · water use, reliability, local control',
+      'Dog breeder regulation bill (Nov 2025) · high-volume breeder standards',
+      'Would face Sherrod Brown in Democratic primary · Brown is overwhelming frontrunner',
       'Running for Senate means he would vacate SD-28 if he wins'
     ],
     poll: 'No head-to-head general election polling yet',
@@ -3793,6 +4039,22 @@ function openCandidateModal(nameOrKey) {
     `<a class="modal-link${l.primary?' primary':''}" href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`
   ).join('');
 
+  const tierLabel = { verified: 'Verified', record: 'On Record', inference: 'Analysis' };
+  const deepHTML = d.deep ? `
+    <div class="modal-section">
+      <div class="modal-section-hdr">🔍 Deep Profile · tap sections to expand</div>
+      ${d.deep.map(s => `
+        <div class="modal-deep-section">
+          <div class="modal-deep-hdr" onclick="this.parentElement.classList.toggle('open')">
+            <div class="modal-deep-title">${s.hdr}</div>
+            <span class="modal-deep-tier ${s.tier}">${tierLabel[s.tier] || s.tier}</span>
+            <span class="modal-deep-chevron">▼</span>
+          </div>
+          <div class="modal-deep-body">${s.paras.map(p => `<p>${p}</p>`).join('')}</div>
+        </div>`).join('')}
+      ${d.deepUpdated ? `<div class="modal-deep-updated">Deep profile last updated: ${d.deepUpdated}</div>` : ''}
+    </div>` : '';
+
   document.getElementById('modal-body').innerHTML = `
     <div class="modal-section">
       <div class="modal-section-hdr">Quick Facts</div>
@@ -3802,6 +4064,7 @@ function openCandidateModal(nameOrKey) {
       <div class="modal-section-hdr">📊 Current Polling</div>
       <div class="modal-poll-bar">${d.poll}</div>
     </div>
+    ${deepHTML}
     <div class="modal-links">${linksHTML}</div>
   `;
 
@@ -3830,7 +4093,7 @@ if (window.location.protocol === 'file:') {
   // Also warn on the map tab
   const loadingEl = document.getElementById('loading');
   if (loadingEl) {
-    loadingEl.textContent = '⚠ Map requires a web server. Run: python3 -m http.server 8000 — then open http://localhost:8000';
+    loadingEl.textContent = '⚠ Map requires a web server. Run: python3 -m http.server 8000 · then open http://localhost:8000';
     loadingEl.style.fontSize = '0.8rem';
     loadingEl.style.padding = '20px';
   }
