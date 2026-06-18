@@ -1647,7 +1647,7 @@ const SENATE = [
   [3,"Michele Reynolds","R","Central Ohio · Franklin Co. (Westerville/Gahanna area)"],
   [4,"George F. Lang","R","SW Ohio · Butler Co. (West Chester)"],
   [5,"Stephen A. Huffman","R","W Ohio · Auglaize, Mercer, Darke, part Shelby"],
-  [6,"Willis E. Blackshear Jr.","D","NW Ohio · Lucas Co. (Toledo)"],
+  [6,"Willis E. Blackshear Jr.","D","W Ohio · Montgomery Co. (Dayton, Kettering, Centerville)"],
   [7,"Steve Wilson","R","SW Ohio · Warren Co."],
   [8,"Louis W. Blessing III","R","SW Ohio · Hamilton Co. (eastern)"],
   [9,"Catherine D. Ingram","D","SW Ohio · Hamilton Co. (Cincinnati)"],
@@ -1704,7 +1704,7 @@ const HOUSE = [
   [23,"Daniel P. Troy","D","(614) 466-7251","rep23@ohiohouse.gov"],
   [24,"Dani Isaacsohn","D","(614) 466-5786","rep24@ohiohouse.gov"],
   [25,"Cecil Thomas","D","(614) 466-1645","rep25@ohiohouse.gov"],
-  [26,"Sedrick Denson","D","(614) 466-1308","rep26@ohiohouse.gov"],
+  [26,"Ashley Bryant Bailey","D","(614) 466-1308","rep26@ohiohouse.gov"],
   [27,"Rachel B. Baker","D","(614) 644-6886","rep27@ohiohouse.gov"],
   [28,"Karen Brownlee","D","(614) 466-8120","rep28@ohiohouse.gov"],
   [29,"Cindy Abrams","R","(614) 466-9091","rep29@ohiohouse.gov"],
@@ -2492,8 +2492,11 @@ function sortTbl(tbl, col) {
 
 // ═══ TABS ════════════════════════════════════════════════════════════════════
 function showTab(name) {
-  const tabs = ['map','senate','house','legislature','officials','resources','lookup','federal','midterms'];
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', tabs[i]===name));
+  document.querySelectorAll('.tab').forEach(t => {
+    const oc = t.getAttribute('onclick') || '';
+    const m = oc.match(/showTab\('([^']+)'\)/);
+    t.classList.toggle('active', m && m[1] === name);
+  });
   document.getElementById('pane-map').classList.toggle('active', name==='map');
   ['senate','house','lookup','officials','resources','legislature','federal','midterms'].forEach(p => {
     const el = document.getElementById(`pane-${p}`);
@@ -3219,7 +3222,7 @@ const OFFICIALS = [
     title: "Senate President",
     name: "Rob McColley",
     party: "R",
-    since: "Senate since Dec 2017 · Senate President since Jan 2023 · Running for Lt. Governor 2026 (Ramaswamy ticket)",
+    since: "Senate since Dec 2017 · Senate President since Jan 2025 · Running for Lt. Governor 2026 (Ramaswamy ticket)",
     bio: "District 1 (NW Ohio). Nominated for Lt. Governor on Ramaswamy's ticket after winning May 5 primary. Manages the 24-9 Republican supermajority. Architect of major energy, education, and electoral legislation.",
     priorities: ["Fiscal conservatism & tax reform", "School choice expansion", "Energy policy (fossil fuel aligned)", "Supermajority agenda management"],
     record: ["Led SB 2 · major energy overhaul favoring utility/fossil fuel interests", "Defended gerrymandered legislative maps through years of court challenges", "Co-sponsored Heartbeat Bill SB 23 (2019)", "Chaired redistricting commission that drew maps courts rejected 7 times"],
@@ -3232,7 +3235,7 @@ const OFFICIALS = [
     title: "House Speaker",
     name: "Matt Huffman",
     party: "R",
-    since: "House since 2011 · Senate President 2021–2022 · House Speaker since Jan 2023",
+    since: "Ohio House 2007–2014 · Ohio Senate 2017–2025 · Senate President 2021–2024 · House Speaker since Jan 2025",
     bio: "District 78 (Lima/Allen Co.). Arguably the most powerful Republican in the General Assembly. Architect of school voucher expansion, anti-DEI legislation, and redistricting strategy.",
     priorities: ["School choice & voucher expansion", "Anti-DEI & 'parental rights'", "Fiscal conservatism", "Republican caucus discipline"],
     record: ["Expanded EdChoice voucher program to universal eligibility · defunding public schools", "Appointed cousin Stephen Huffman to chair Health Committee despite 2020 racism controversy", "Architect of 2021/2022 redistricting maps courts rejected as unconstitutional gerrymanders", "Pushed August 2023 special election to block abortion rights amendment (failed)", "Led SB 1 (anti-DEI) through Senate in prior session"],
@@ -3444,7 +3447,7 @@ window.addEventListener('load', function() {
 
 // ═══ FEDERAL HOUSE DELEGATION ════════════════════════════════════════════════
 const OH_FEDERAL_HOUSE = [
-  {dist:1, name:"Eric Conroy", party:"R", since:2027, region:"Cincinnati/Hamilton Co.", committee:"TBD", url:"https://ballotpedia.org/Eric_Conroy", ballotpedia:"https://ballotpedia.org/Eric_Conroy", stated:"Fiscal conservatism, border security, economic development", actual:"Won May 5, 2026 Republican primary for open OH-1 seat (Landsman not seeking re-election) · General election opponent TBD · No congressional voting record yet"},
+  {dist:1, name:"Greg Landsman", party:"D", since:2023, region:"Cincinnati/Hamilton + Warren/Clinton", committee:"Energy & Commerce", url:"https://landsman.house.gov", ballotpedia:"https://ballotpedia.org/Greg_Landsman", stated:"Lowering costs, protecting democracy, bipartisan problem-solving", actual:"Centrist New Democrat (Problem Solvers Caucus) · appointed to Energy & Commerce in 2025 · one of four House Democrats who backed the 2026 Iran strikes · OH-1 redrawn R-leaning (Trump +2.5 on new lines, added Clinton Co.) · faces Trump-endorsed Eric Conroy (R) in Nov 2026"},
   {dist:2, name:"David Taylor", party:"R", since:2025, region:"Southern OH / Scioto/Gallia", committee:"Judiciary", url:"https://davidtaylor.house.gov", ballotpedia:"https://ballotpedia.org/David_Taylor_(Ohio)", stated:"Border security, fiscal conservatism, 2nd Amendment", actual:"Voted for H.R. 1, Trump cabinet confirmations, anti-abortion legislation"},
   {dist:3, name:"Joyce Beatty", party:"D", since:2013, region:"Columbus/Franklin Co.", committee:"Financial Services", url:"https://beatty.house.gov", ballotpedia:"https://ballotpedia.org/Joyce_Beatty", stated:"Civil rights, economic equity, financial inclusion", actual:"Voted against H.R. 1, Dodd-Frank protections advocate, voting rights focus"},
   {dist:4, name:"Jim Jordan", party:"R", since:2007, region:"NW Ohio · Champaign/Mercer/Logan", committee:"Judiciary (Chair)", url:"https://jordan.house.gov", ballotpedia:"https://ballotpedia.org/Jim_Jordan", stated:"Constitutional conservatism, anti-oversight, fiscal cuts", actual:"House Judiciary Chair · led Biden impeachment inquiry, Jan 6 committee opponent, voted for H.R. 1, 100% Trump alignment"},
