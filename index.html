@@ -325,6 +325,12 @@ tr:hover td { background: var(--surface2); }
 .leg-card-tag.passed { border-color: #7dbf7d; color: #7dbf7d; }
 .leg-card-tag.vote { border-color: var(--accent); color: var(--accent); }
 .leg-card-tag.calendar { border-color: #c9a0dc; color: #c9a0dc; }
+.watch-item { border: 1px solid var(--border); border-radius: 6px; background: var(--surface2); margin-bottom: 12px; overflow: hidden; }
+.watch-hdr { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border); background: #fff; }
+.watch-title { font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--accent); flex: 1; line-height: 1.35; }
+.watch-body { padding: 12px 14px 4px; }
+.watch-body p { font-family: 'Inter', sans-serif; font-size: 0.8rem; line-height: 1.65; color: var(--text); margin: 0 0 10px; }
+.watch-body strong { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
 .leg-divider { border: none; border-top: 2px solid var(--border); margin: 32px 0; max-width: 1100px; }
 .leg-federal-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; padding: 2px 8px; border-radius: 3px; background: #1a1000; border: 1px solid var(--accent); color: var(--accent); margin-left: 10px; vertical-align: middle; letter-spacing: 1px; }
 
@@ -994,7 +1000,11 @@ tr:hover td { background: var(--surface2); }
     <div class="leg-section">
       <div class="leg-section-title" style="font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);letter-spacing:-0.3px;margin-bottom:6px;">2026 Ohio Midterms</div>
       <div style="font-family:'Inter',sans-serif;font-size:0.84rem;color:var(--muted);margin-bottom:6px;">Primary: May 5, 2026 · General: November 3, 2026</div>
-      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;color:#666;margin-bottom:24px;">Filing deadline: Feb 4, 2026 · Polls updated as available</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;color:#666;margin-bottom:8px;">Candidate filing closed Feb 4, 2026 · Nominees confirmed May 5 · Data current as of July 20, 2026</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:#555;line-height:1.7;margin-bottom:24px;padding:10px 12px;background:#f7f6f3;border-left:3px solid var(--accent);border-radius:4px;">
+        NEXT CAMPAIGN FINANCE FILINGS · State (Ohio SoS): July 31, Oct 22, Dec 11, Jan 29 2027 · Federal (FEC): Q3 due Oct 15, pre-general due Oct 22.<br>
+        State candidates do not file again until October, so gubernatorial figures below reflect activity through early June.
+      </div>
 
       <!-- GOVERNOR -->
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:16px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Governor (Open Seat · DeWine Term-Limited) · Nominees Set May 5</div>
@@ -1005,7 +1015,7 @@ tr:hover td { background: var(--surface2); }
           <div class="race-card" onclick="openCandidateModal('Vivek Ramaswamy')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Vivek Ramaswamy</div>
             <div class="race-candidate-note">GOP NOMINEE · Won May 5 primary easily over Casey Putsch · Former biotech CEO, 2024 presidential candidate · Running mate: Rob McColley (Senate Pres)</div>
-            <div class="race-poll">General polling · Fox News Jun 3: Acton +1 (statistical tie) · RCP avg: Ramaswamy +1.0 · BGSU Apr: Ramaswamy +1 · Emerson Dec: Acton +1 · Dead heat all cycle</div>
+            <div class="race-poll">RATING: Cook Political Report moved this race from Lean R to TOSS UP in July 2026 · first Toss Up rating on an Ohio governor's race since 2018.<br>Polling · AARP/Impact-Fabrizio: Acton +3 (47–44) · Fox News Jun 3: Acton +1 · BGSU Apr: Ramaswamy +1 · Dead heat all cycle.<br>Money (through early June, state filings) · Acton $10.58M raised in 2026 vs Ramaswamy $10.29M, excluding Ramaswamy's $25M personal contribution. Acton ~$16M total since launch, avg gift $24, ~100,556 in-state donations. Ramaswamy leads on cash on hand.</div>
             <div class="race-links"><a href="https://vivekforohio.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
         </div>
@@ -1014,7 +1024,7 @@ tr:hover td { background: var(--surface2); }
           <div class="race-card" onclick="openCandidateModal('Amy Acton')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Amy Acton</div>
             <div class="race-candidate-note">DEM NOMINEE · Uncontested Democratic primary · Former Ohio Health Director during COVID · Running mate: David Pepper</div>
-            <div class="race-poll">General polling · Fox News Jun 3: Acton +1 (statistical tie) · RCP avg: Ramaswamy +1.0 · BGSU Apr: Ramaswamy +1 · Emerson Dec: Acton +1 · Dead heat all cycle</div>
+            <div class="race-poll">RATING: Cook Political Report moved this race from Lean R to TOSS UP in July 2026 · first Toss Up rating on an Ohio governor's race since 2018.<br>Polling · AARP/Impact-Fabrizio: Acton +3 (47–44) · Fox News Jun 3: Acton +1 · BGSU Apr: Ramaswamy +1 · Dead heat all cycle.<br>Money (through early June, state filings) · Acton $10.58M raised in 2026 vs Ramaswamy $10.29M, excluding Ramaswamy's $25M personal contribution. Acton ~$16M total since launch, avg gift $24, ~100,556 in-state donations. Ramaswamy leads on cash on hand.</div>
             <div class="race-links"><a href="https://actonforgovernor.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
         </div>
@@ -1030,7 +1040,7 @@ tr:hover td { background: var(--surface2); }
           <div class="race-card" onclick="openCandidateModal('Jon Husted')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Jon Husted</div>
             <div class="race-candidate-note">GOP NOMINEE · Uncontested Republican primary · Incumbent (appointed) · Former Lt. Governor</div>
-            <div class="race-poll">General polling · Fox News May 28–Jun 1: Brown 53, Husted 45 (Brown +8, first lead outside MoE) · BGSU Apr: Husted +3 · OnMessage Mar: Brown +2 · Cook Political: Toss Up</div>
+            <div class="race-poll">RATING: Cook Political Report · TOSS UP. RCP average: Brown +0.6.<br>Polling · Fox News May 28–Jun 1: Brown 53, Husted 45 (Brown +8, first lead outside MoE) · BGSU Apr: Husted +3 · OnMessage Mar: Brown +2.<br>Money (Q2 FEC, filed July 15) · Brown $17.1M raised Apr 1–Jun 30 ($14.1M principal committee + ~$3M affiliated) vs Husted $7.7M, more than double his Q1. Husted cash on hand above $11M. Fourth straight quarter Brown has outraised him.</div>
             <div class="race-links"><a href="https://www.jonhustedforsenate.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
         </div>
@@ -1039,7 +1049,7 @@ tr:hover td { background: var(--surface2); }
           <div class="race-card" onclick="openCandidateModal('Sherrod Brown')" title="Click for quick facts">
             <div class="race-candidate-name">✓ Sherrod Brown</div>
             <div class="race-candidate-note">DEM NOMINEE · Easily won May 5 primary over Ron Kincaid · Former 3-term US Senator (2007–2025) · Lost to Moreno in 2024 by 3.6pts · Endorsed by IUPAT</div>
-            <div class="race-poll">General polling · Fox News May 28–Jun 1: Brown 53, Husted 45 (Brown +8, first lead outside MoE) · BGSU Apr: Husted +3 · OnMessage Mar: Brown +2 · Cook Political: Toss Up</div>
+            <div class="race-poll">RATING: Cook Political Report · TOSS UP. RCP average: Brown +0.6.<br>Polling · Fox News May 28–Jun 1: Brown 53, Husted 45 (Brown +8, first lead outside MoE) · BGSU Apr: Husted +3 · OnMessage Mar: Brown +2.<br>Money (Q2 FEC, filed July 15) · Brown $17.1M raised Apr 1–Jun 30 ($14.1M principal committee + ~$3M affiliated) vs Husted $7.7M, more than double his Q1. Husted cash on hand above $11M. Fourth straight quarter Brown has outraised him.</div>
             <div class="race-links"><a href="https://www.sherrodbrown.com/" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
           </div>
         </div>
@@ -1054,6 +1064,89 @@ tr:hover td { background: var(--surface2); }
           <div class="race-links"><a href="https://www.greg4senate.com" target="_blank" rel="noopener" class="race-link">Campaign →</a><a href="https://ballotpedia.org/Gregory_Levy" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a></div>
           <div class="race-card-hint">tap for details</div>
         </div>
+      </div>
+
+      <!-- DOWNBALLOT STATEWIDE -->
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:6px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">Downballot Statewide Executive · All Four Offices Open</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:16px;">
+        Every statewide executive officeholder elected in 2018 is term-limited. Republicans responded by rotating: the sitting Auditor runs for AG, the sitting Secretary of State runs for Auditor, the sitting Treasurer runs for Secretary of State. None of the four Republican nominees is defending the office they currently hold.
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:16px;">
+
+        <div class="race-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">Attorney General · OPEN</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
+              <div style="font-size:0.82rem;font-weight:600;">Keith Faber</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Sitting Auditor of State · Former Senate President · Was Senate President during the HB 6 era</div>
+            </div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat</div>
+              <div style="font-size:0.82rem;font-weight:600;">John Kulewicz</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Upper Arlington City Council · Retired Vorys attorney · Beat Elliot Forhan in the primary with ODP endorsement</div>
+            </div>
+          </div>
+          <div class="race-poll">Seat currently held by appointee Andy Wilson, who is not a candidate. Whoever wins is sworn in Jan 11, 2027. The office controls the state side of the FirstEnergy prosecution.</div>
+        </div>
+
+        <div class="race-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">Auditor of State · OPEN</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
+              <div style="font-size:0.82rem;font-weight:600;">Frank LaRose</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Sitting Secretary of State · Lost the 2024 US Senate primary · Ran the August 2023 special election</div>
+            </div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat</div>
+              <div style="font-size:0.82rem;font-weight:600;">Annette Blackwell</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Mayor of Maple Heights · Retired financial analyst</div>
+            </div>
+          </div>
+          <div class="race-poll">The Auditor sits on the Ohio Redistricting Commission. This is the least-watched seat with the most direct bearing on the next map cycle.</div>
+        </div>
+
+        <div class="race-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">Secretary of State · OPEN</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
+              <div style="font-size:0.82rem;font-weight:600;">Robert Sprague</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Sitting Treasurer · Beat Marcell Strbich in the primary · Anti-ESG investment record</div>
+            </div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat</div>
+              <div style="font-size:0.82rem;font-weight:600;">Allison Russo</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">House Minority Leader · HD-7 · Beat Bryan Hambley in the primary · 2021 US House nominee</div>
+            </div>
+          </div>
+          <div class="race-poll">Tom Pruss (L) also on the ballot. Russo running statewide means HD-7 is open and House Democratic leadership turns over regardless of the outcome. Office administers elections and campaign finance disclosure.</div>
+        </div>
+
+        <div class="race-card">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:6px;">Treasurer of State · OPEN</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican</div>
+              <div style="font-size:0.82rem;font-weight:600;">Jay Edwards</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Former state rep, HD-94 (Athens/SE Ohio) · Won a heavily contested primary over Roegner and Antani</div>
+            </div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat</div>
+              <div style="font-size:0.82rem;font-weight:600;">Seth Walsh</div>
+              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Cincinnati City Council · Former community development executive</div>
+            </div>
+          </div>
+          <div class="race-poll">Manages the state investment portfolio and sits on public pension oversight. Ohio Democrats outraised Republicans across downballot statewide offices in the first half of 2026 but remain far behind on cash on hand.</div>
+        </div>
+
+      </div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#888;margin-bottom:10px;">Ohio Supreme Court · Two Seats</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:24px;">
+        Two justice seats are on the November ballot, listed with party labels under the 2021 law. Republicans currently hold a 6-1 majority after sweeping all three seats in 2024. Candidate detail pending verification against SoS filings · not yet listed here rather than listed wrong.
       </div>
 
       <!-- US HOUSE RACES -->
@@ -1192,7 +1285,8 @@ tr:hover td { background: var(--surface2); }
       </div>
 
       <div style="margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:#555;line-height:1.7;">
-        Polling sources: Emerson College (Aug & Dec 2025), RealClearPolling average (Mar 2026). Nominees confirmed May 5, 2026. General election polling updates pending post-primary cycle.
+        SOURCING · Ratings: Cook Political Report (governor moved to Toss Up July 2026; Senate rated Toss Up). Polling: Fox News (May 28-Jun 1 and Jun 3), AARP / Impact Research-Fabrizio Ward, BGSU (Apr 2026), OnMessage (Mar 2026), RealClearPolling average. Federal money: FEC Q2 reports filed July 15, 2026. State money: Ohio SoS filings through early June 2026 as reported by NBC4 and Signal Ohio · treated as directional pending direct verification against the SoS portal. Ad spending: AdImpact 2026 Political Ad Spending Report.<br><br>
+        Nominees confirmed May 5, 2026. Next data refresh keyed to the July 31 state filing deadline.
       </div>
     </div>
   </div>
@@ -1223,6 +1317,79 @@ tr:hover td { background: var(--surface2); }
 <!-- LEGISLATURE TAB -->
 <div id="pane-legislature" class="pane" style="display:none;overflow-y:auto;">
   <div class="leg-pane">
+
+    <!-- STATEHOUSE WATCH -->
+    <div class="leg-section">
+      <div class="leg-section-title">Statehouse Watch</div>
+      <div class="leg-section-sub">Live accountability threads, organized by legislative action · updated July 20, 2026 · sourcing tier noted on each item</div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;line-height:1.7;color:#555;margin-bottom:18px;padding:10px 12px;background:#f7f6f3;border-left:3px solid var(--accent);border-radius:4px;">
+        <span class="modal-deep-tier verified">Verified</span> primary government record.
+        <span class="modal-deep-tier record">On Record</span> reported by named outlets, publicly stated, or filed.
+        <span class="modal-deep-tier inference">Analysis</span> interpretation, clearly separated from fact.<br>
+        Dollar figures below are from reporting on state filings and are treated as directional until confirmed against the Ohio SoS portal.
+      </div>
+
+      <div class="watch-item">
+        <div class="watch-hdr">
+          <div class="watch-title">HB 173 · Submetering · Vetoed, override live</div>
+          <span class="modal-deep-tier record">On Record</span>
+        </div>
+        <div class="watch-body">
+          <p><strong>Action:</strong> Passed June 2026, sponsored by Rep. David Thomas (R-Jefferson, HD-65). Would have exempted submetering companies from public utility regulation while requiring PUCO registration and a complaint process. DeWine vetoed it roughly two weeks later, calling the model fundamentally flawed and citing loss of supplier choice and assistance program access for submetered tenants.</p>
+          <p><strong>Money:</strong> Nationwide Energy Partners CEO Michael DeAscentis II and his wife Melanie gave $25,000 to Vivek Ramaswamy on June 5, the same week the bill moved. Same-week contributions also went to House Speaker Matt Huffman and Sen. Shane Wilkin. Cleveland.com reported apartment utility industry donors gave close to $72,000 to top Ohio lawmakers and Ramaswamy around passage. Legislative leaders sharply denied any connection. No one has been charged with anything.</p>
+          <p><strong>Status:</strong> The veto leaves the Ohio Supreme Court ruling in place, so companies that buy power wholesale and resell it at a profit remain regulated as public utilities. The sponsor says he will keep working on it and an override is possible before session ends in December. Rival approach: HB 265 (Fischer, R-Boardman / Brennan, D-Parma) would regulate submeterers as public utilities outright.</p>
+          <p><strong>Read:</strong> <span style="color:#8a5a12;">The veto reads as the system working. It is closer to arbitration. Capital fractions collided, the executive picked one, and the underlying arrangement is untouched pending December. Meanwhile PJM capacity prices went from roughly $29 per megawatt-day two years ago to more than $329, and the bill lands on tenants either way.</span></p>
+        </div>
+      </div>
+
+      <div class="watch-item">
+        <div class="watch-hdr">
+          <div class="watch-title">Joint Data Center Committee · Omnibus on a fast track</div>
+          <span class="modal-deep-tier record">On Record</span>
+        </div>
+        <div class="watch-body">
+          <p><strong>Composition:</strong> Seated May 2026. Co-chairs Sen. Brian Chavez (R-Marietta) and Rep. Adam Holmes (R-Nashport). Six Republicans, two Democrats: Reps. Claggett, Workman, and Glassburn (D-North Olmsted); Sens. Reineke, Wilkin, and Blackshear (D-Dayton). Multiple public hearings since late May with testimony from residents, environmental researchers, anti-data-center organizers, and lobbyists for Amazon, Google, Meta, and Microsoft.</p>
+          <p><strong>Action:</strong> In June, Chavez took testimony from the committee and grafted a substantial policy rewrite onto a measure originally written only to study the issue. It touches tax breaks, nondisclosure agreements, water use and testing, utility billing, and local government impacts. Sen. Bill DeMora (D-Columbus) objected to a timeline that contemplated a floor vote a day after introduction.</p>
+          <p><strong>Conflicts on the record:</strong> Chavez chairs Senate Energy and Public Utilities and owns Reno Oil &amp; Gas and Chavez Well Service, and is CEO of Deeprock Disposal Solutions. A January 2026 ethics complaint from Washington County for Safe Drinking Water alleged undisclosed stakes in five oil and gas companies. JLEC took no action within the 14-day statutory window and the complaint expired without investigation. It was never adjudicated on the merits. Chavez denies wrongdoing; Senate Republicans called the filing a smear. Holmes has publicly announced a Vistra/Meta nuclear arrangement in his region.</p>
+          <p><strong>Related:</strong> Ohio EPA is still reviewing a proposed permit changing data center water discharge rules. Google is building a $500 million, 373-acre data center in northwest Ohio over neighbor objections and two tax abatements. Conserve Ohio's 25MW ban amendment failed to reach the ballot.</p>
+        </div>
+      </div>
+
+      <div class="watch-item">
+        <div class="watch-hdr">
+          <div class="watch-title">HB 6 · FirstEnergy retrial · September 28</div>
+          <span class="modal-deep-tier verified">Verified</span>
+        </div>
+        <div class="watch-body">
+          <p><strong>Calendar:</strong> Judge Susan Baker Ross, Summit County Common Pleas. Jury selection expected Sept 18, retrial set for Sept 28. The first trial of former FirstEnergy CEO Chuck Jones and former SVP Michael Dowling ended in a hung jury in March 2026 after nine days of deliberation, with 10 of 12 jurors favoring guilt. A Summit County grand jury reindicted both on expanded charges in early June. Both have pleaded not guilty in the state case and in a pending federal case that has no trial date and appears to be waiting on the state outcome.</p>
+          <p><strong>New:</strong> On June 29, US District Judge J. Philip Calabrese dismissed a $20 million suit against Jones, ruling he had no legal duty to disclose the dark money payments to the SEC and investors. Larry Householder, serving 20 years, is seeking a pardon from President Trump through counsel.</p>
+          <p><strong>What jurors did not hear the first time:</strong> Householder's status as a convicted recipient of FirstEnergy money was excluded, as were statements by FirstEnergy lawyers identifying Jones and Dowling as the people who made the payments, and the company's deferred prosecution agreement admission that it paid $4.3 million to Sam Randazzo's firm.</p>
+          <p><strong>Ohio Watch note:</strong> Trial exhibits included messages in which Dowling described DeWine and Husted performing "battlefield triage" to install Randazzo as PUCO chair. Jon Husted has never been charged with any crime in connection with HB 6 and denies wrongdoing.</p>
+        </div>
+      </div>
+
+      <div class="watch-item">
+        <div class="watch-hdr">
+          <div class="watch-title">Ratepayer and labor conditions · context for everything above</div>
+          <span class="modal-deep-tier record">On Record</span>
+        </div>
+        <div class="watch-body">
+          <p>PJM capacity prices have set records in back-to-back auctions, rising from about $29 per megawatt-day two years ago to more than $329, driven largely by data center demand. Reporting in July put some Ohio summer electric bills above $800. Nine Ohio companies filed WARN notices in June affecting more than 900 workers, including Schwebel Baking Company closures hitting 480 workers in Hebron and Youngstown. AdImpact projects $749 million in Ohio political advertising this cycle.</p>
+        </div>
+      </div>
+
+      <div class="watch-item">
+        <div class="watch-hdr">
+          <div class="watch-title">Open threads · not yet substantiated enough to publish</div>
+          <span class="modal-deep-tier inference">Analysis</span>
+        </div>
+        <div class="watch-body">
+          <p>Sean Dunn, Husted adviser, and his reported paid relationship with a Columbus lobbying firm. FBI search activity involving an Ohio voting rights organization. Ohio Supreme Court candidate fields for the two 2026 seats. Chavez data center omnibus bill number and current floor status. Each is held here rather than published until confirmed against primary records.</p>
+        </div>
+      </div>
+
+    </div>
 
     <!-- OHIO STATE LEGISLATURE -->
     <div class="leg-section">
@@ -1647,7 +1814,7 @@ const SENATE = [
   [3,"Michele Reynolds","R","Central Ohio · Franklin Co. (Westerville/Gahanna area)"],
   [4,"George F. Lang","R","SW Ohio · Butler Co. (West Chester)"],
   [5,"Stephen A. Huffman","R","W Ohio · Auglaize, Mercer, Darke, part Shelby"],
-  [6,"Willis E. Blackshear Jr.","D","W Ohio · Montgomery Co. (Dayton, Kettering, Centerville)"],
+  [6,"Willis E. Blackshear Jr.","D","NW Ohio · Lucas Co. (Toledo)"],
   [7,"Steve Wilson","R","SW Ohio · Warren Co."],
   [8,"Louis W. Blessing III","R","SW Ohio · Hamilton Co. (eastern)"],
   [9,"Catherine D. Ingram","D","SW Ohio · Hamilton Co. (Cincinnati)"],
@@ -1671,7 +1838,7 @@ const SENATE = [
   [27,"Kristina D. Roegner","R","NE Ohio · Summit (eastern), Portage Co."],
   [28,"Casey Weinstein","D","NE Ohio · Summit Co. (Akron/western)"],
   [29,"Jane M. Timken","R","NE Ohio · part of Stark Co."],
-  [30,"Brian M. Chavez","R","NE Ohio · Trumbull Co. (Warren/Niles area)"],
+  [30,"Brian M. Chavez","R","SE Ohio · Washington, Athens, Belmont, Meigs, Morgan, Monroe, Noble, Harrison, Jefferson, part Guernsey"],
   [31,"Al Landis","R","E Ohio · Guernsey, Muskingum, Tuscarawas, Wayne, part Stark"],
   [32,"Sandra O'Brien","R","NE Ohio · Ashtabula, northern Geauga, Trumbull"],
   [33,"Al Cutrona","R","NE Ohio · Carroll, Columbiana, Mahoning"],
@@ -1704,7 +1871,7 @@ const HOUSE = [
   [23,"Daniel P. Troy","D","(614) 466-7251","rep23@ohiohouse.gov"],
   [24,"Dani Isaacsohn","D","(614) 466-5786","rep24@ohiohouse.gov"],
   [25,"Cecil Thomas","D","(614) 466-1645","rep25@ohiohouse.gov"],
-  [26,"Ashley Bryant Bailey","D","(614) 466-1308","rep26@ohiohouse.gov"],
+  [26,"Sedrick Denson","D","(614) 466-1308","rep26@ohiohouse.gov"],
   [27,"Rachel B. Baker","D","(614) 644-6886","rep27@ohiohouse.gov"],
   [28,"Karen Brownlee","D","(614) 466-8120","rep28@ohiohouse.gov"],
   [29,"Cindy Abrams","R","(614) 466-9091","rep29@ohiohouse.gov"],
@@ -3031,16 +3198,16 @@ const SENATOR_PROFILES = {
     committees: ["Finance", "Economic Development", "Government Oversight"]
   },
   30: {
-    tenure: "Senate since Jan 2025 · 1st term · NE Ohio/Trumbull County area",
-    stated: ["Fiscal conservatism", "Economic development", "Northeast Ohio communities"],
-    actual: ["New senator; limited legislative record", "Represents Trumbull County (Warren/Niles) · historically competitive area gone Republican", "Part of Republican supermajority; voting record aligned with caucus"],
+    tenure: "Appointed Dec 2023 replacing retired Sen. Frank Hoagland · Won full term Nov 2024 with 69% over Ari Faber · Term ends Dec 31, 2028",
+    stated: ["Energy production and Ohio's natural resources", "Appalachian and rural southeast Ohio", "Economic development"],
+    actual: ["Chairs Senate Energy & Public Utilities · the committee with jurisdiction over the industry he owns businesses in", "Owner of Reno Oil & Gas LLC and Chavez Well Service LLC · CEO of Deeprock Disposal Solutions LLC", "Co-chairs the Joint Data Center Committee with Rep. Adam Holmes (R-Nashport), seated May 2026", "Ethics complaint filed Jan 2026 by Washington County for Safe Drinking Water alleging undisclosed stakes in five oil and gas companies · JLEC took no action within the 14-day statutory window and the complaint expired · never investigated, never adjudicated on the merits · Chavez denies wrongdoing and Senate Republicans called the filing a smear", "Authored the June 2026 data center omnibus, grafting substantive policy onto a measure originally written only to study the issue", "Served on the state Oil and Gas Commission and as an Ohio Oil and Gas Association trustee for over a decade before his appointment"],
     phone: "(614) 466-6508", twitter: null, url: "https://ohiosenate.gov/members/brian-m-chavez",
-    committees: ["Transportation", "Agriculture", "Local Government & Elections"]
+    committees: ["Energy & Public Utilities (Chair)", "Joint Data Center Committee (Co-Chair)"]
   },
   31: {
-    tenure: "Senate since prior session · Rural east-central Ohio · Coshocton/Tuscarawas area",
+    tenure: "Senate since Jan 2023 · Succeeded Jay Hottinger · Ohio House 2011–2018 (HD-96, HD-98) · East-central Ohio",
     stated: ["Fiscal conservatism", "Rural communities", "Agriculture"],
-    actual: ["Represents Coshocton, Guernsey, Muskingum, Tuscarawas, and Morgan counties", "Consistent conservative voting record; agricultural and small-business aligned", "Limited high-profile independent sponsorships"],
+    actual: ["Represents all of Tuscarawas, Wayne and Muskingum counties plus parts of Stark and Guernsey (per official Senate bio)", "Consistent conservative voting record; agricultural and small-business aligned", "As a state rep, supported SB 5 · the 2011 collective bargaining rollback voters repealed by referendum", "Limited high-profile independent sponsorships"],
     phone: "(614) 466-5838", twitter: null, url: "https://ohiosenate.gov/members/al-landis",
     committees: ["Agriculture", "Energy & Public Utilities", "Ways & Means"]
   },
@@ -3167,23 +3334,36 @@ const OFFICIALS = [
     ]
   },
   {
-    title: "Attorney General",
-    name: "Dave Yost",
+    title: "Lieutenant Governor",
+    name: "Jim Tressel",
     party: "R",
-    since: "Jan 2019 · Re-elected Nov 2022",
-    bio: "Former Ohio Auditor (2011–2019). Known for aggressive anti-trust litigation against opioid manufacturers · but also aggressive challenges to Biden-era federal policy and litigation against Medicaid expansion.",
-    priorities: ["Consumer protection & anti-trust", "Opioid manufacturer accountability", "Fighting federal regulatory overreach", "Election integrity enforcement"],
-    record: ["Led $26B national opioid settlement negotiations (2021)", "Sued Biden admin over vaccine mandates, student debt, Title IX rules", "Joined Texas lawsuit challenging 2020 election results", "Investigated ECOT online charter school fraud ($80M+ recovered)", "Challenged Columbus police reform consent decree"],
+    since: "Appointed 2025 · Succeeded Jon Husted after Husted's Senate appointment",
+    bio: "Former Ohio State head football coach (2001–2010) and Youngstown State University president (2014–2023). Appointed to an office with almost no independent constitutional power. Statewide name recognition rests on the 2002 national championship rather than any policy record.",
+    priorities: ["Workforce development", "Higher education & training pipelines", "Appalachian and Mahoning Valley outreach"],
+    record: ["Resigned from Ohio State in 2011 amid NCAA violations involving player benefits", "Did not run for governor in 2026 despite persistent speculation", "No independent legislative or regulatory record · the office has no constitutional authority beyond succession and assigned duties", "Ticket note: the next Lt. Governor will be either Rob McColley (Ramaswamy ticket) or David Pepper (Acton ticket)"],
+    links: [
+      { label: "Official Site", url: "https://ltgovernor.ohio.gov", primary: true },
+      { label: "Ballotpedia", url: "https://ballotpedia.org/Jim_Tressel" }
+    ]
+  },
+  {
+    title: "Attorney General",
+    name: "Andy Wilson",
+    party: "R",
+    since: "Sworn in June 2026 · Appointed, not elected · Term ends Jan 11, 2027",
+    bio: "Ohio's 52nd attorney general. Former Clark County prosecutor (appointed 2011, then elected twice) and Director of the Ohio Department of Public Safety from Dec 2022. Appointed by DeWine after Dave Yost resigned mid-term. Not a candidate in November · this is a caretaker term.",
+    priorities: ["Continuity of office operations through the transition", "Criminal justice & law enforcement", "Crime victim services"],
+    record: ["Appointed May 11, 2026 · four days after Yost announced his resignation · sworn in the weekend before June 8", "Yost resigned effective June 7 to become VP of strategic research and innovation at Alliance Defending Freedom", "DeWine passed over AG nominee Keith Faber, saying it would have cascaded into appointing LaRose, Sprague and Jay Edwards · making all four GOP statewide nominees incumbents before the election", "Oversees ~1,500 employees across 30 divisions including BCI and the Health Care Fraud Section", "Career prosecutor · specialized in crimes against children as a Clark County trial prosecutor from 2002", "No independent statewide policy record · interim appointment"],
     links: [
       { label: "Official Site", url: "https://www.ohioattorneygeneral.gov", primary: true },
-      { label: "Ballotpedia", url: "https://ballotpedia.org/Dave_Yost" }
+      { label: "Ballotpedia", url: "https://ballotpedia.org/Andy_Wilson" }
     ]
   },
   {
     title: "Auditor of State",
     name: "Keith Faber",
     party: "R",
-    since: "Jan 2019 · Re-elected Nov 2022",
+    since: "Jan 2019 · Term-limited · Republican nominee for Attorney General, Nov 2026",
     bio: "Former Senate President (2013–2016) and House member. As Senate President, was central architect of HB 6 · the FirstEnergy bribery vehicle. Now audits the agencies he once helped legislate.",
     priorities: ["Government efficiency & waste reduction", "Charter school accountability", "Local government fiscal health", "Transparency in public spending"],
     record: ["As Senate President, instrumental in passing HB 6 ($60M bribery law)", "Audited ECOT online school · found $80M+ in overpayments", "Released audit of Ohio opioid spending (2023)", "Faced criticism for conflict of interest given HB 6 history", "Initiated performance audits of several state agencies"],
@@ -3196,7 +3376,7 @@ const OFFICIALS = [
     title: "Secretary of State",
     name: "Frank LaRose",
     party: "R",
-    since: "Jan 2019 · Re-elected Nov 2022",
+    since: "Jan 2019 · Term-limited · Republican nominee for Auditor of State, Nov 2026",
     bio: "Former Ohio Senate (2012–2018). Failed 2024 U.S. Senate candidate (lost primary). Known for contradictory positions on voting access · expanded some, restricted others. Oversees all elections.",
     priorities: ["Election security & voter ID", "Business filing modernization", "Military & overseas voting", "'Election integrity' enforcement"],
     record: ["Proposed raising Issue 1 supermajority threshold to block abortion amendment (failed)", "Supported photo voter ID requirements (SB 320)", "Moved 2023 special election to August to reduce turnout (cost $20M, widely condemned)", "Attempted to add partisan labels to Ohio Supreme Court ballots", "Expanded early voting access in some counties"],
@@ -3209,7 +3389,7 @@ const OFFICIALS = [
     title: "State Treasurer",
     name: "Robert Sprague",
     party: "R",
-    since: "Jan 2019 · Re-elected Nov 2022",
+    since: "Jan 2019 · Term-limited · Republican nominee for Secretary of State, Nov 2026",
     bio: "Former House member (2011–2018). Manages Ohio's $20B+ investment portfolio. Lower-profile office; mostly technocratic financial management with some policy positions on ESG investing.",
     priorities: ["State investment management", "Financial literacy programs", "Anti-ESG investing mandates", "Local government financial assistance"],
     record: ["Signed onto multi-state letter opposing BlackRock ESG investment practices (2022)", "Launched 'STABLE Account' program for Ohioans with disabilities", "Directed Ohio pension divestment from Russian assets after 2022 invasion", "Supported legislation restricting ESG criteria in state investment decisions"],
@@ -3222,10 +3402,10 @@ const OFFICIALS = [
     title: "Senate President",
     name: "Rob McColley",
     party: "R",
-    since: "Senate since Dec 2017 · Senate President since Jan 2025 · Running for Lt. Governor 2026 (Ramaswamy ticket)",
+    since: "Senate since Dec 2017 · Majority Leader 2023–2025 · Senate President since Jan 6, 2025 · Running for Lt. Governor 2026 (Ramaswamy ticket)",
     bio: "District 1 (NW Ohio). Nominated for Lt. Governor on Ramaswamy's ticket after winning May 5 primary. Manages the 24-9 Republican supermajority. Architect of major energy, education, and electoral legislation.",
     priorities: ["Fiscal conservatism & tax reform", "School choice expansion", "Energy policy (fossil fuel aligned)", "Supermajority agenda management"],
-    record: ["Led SB 2 · major energy overhaul favoring utility/fossil fuel interests", "Defended gerrymandered legislative maps through years of court challenges", "Co-sponsored Heartbeat Bill SB 23 (2019)", "Chaired redistricting commission that drew maps courts rejected 7 times"],
+    record: ["Led SB 2 · major energy overhaul favoring utility/fossil fuel interests", "Defended gerrymandered legislative maps through years of court challenges", "Co-sponsored Heartbeat Bill SB 23 (2019)", "Chaired redistricting commission that drew maps courts rejected 7 times", "One of the few Senate Republicans to vote against HB 6 in 2019 · opposed on free-market grounds, not corruption grounds", "Received donations from apartment submetering industry figures around the June 2026 passage of HB 173 (see Statehouse Watch)"],
     links: [
       { label: "Ohio Senate Bio", url: "https://www.ohiosenate.gov", primary: true },
       { label: "Transparency USA", url: "https://www.transparencyusa.org/oh/candidate/rob-mccolley" }
@@ -3235,7 +3415,7 @@ const OFFICIALS = [
     title: "House Speaker",
     name: "Matt Huffman",
     party: "R",
-    since: "Ohio House 2007–2014 · Ohio Senate 2017–2025 · Senate President 2021–2024 · House Speaker since Jan 2025",
+    since: "House 2007–2014 · Senate 2017–2025 · Senate President Jan 2021–Jan 2025 · House Speaker since Jan 6, 2025",
     bio: "District 78 (Lima/Allen Co.). Arguably the most powerful Republican in the General Assembly. Architect of school voucher expansion, anti-DEI legislation, and redistricting strategy.",
     priorities: ["School choice & voucher expansion", "Anti-DEI & 'parental rights'", "Fiscal conservatism", "Republican caucus discipline"],
     record: ["Expanded EdChoice voucher program to universal eligibility · defunding public schools", "Appointed cousin Stephen Huffman to chair Health Committee despite 2020 racism controversy", "Architect of 2021/2022 redistricting maps courts rejected as unconstitutional gerrymanders", "Pushed August 2023 special election to block abortion rights amendment (failed)", "Led SB 1 (anti-DEI) through Senate in prior session"],
@@ -3447,7 +3627,7 @@ window.addEventListener('load', function() {
 
 // ═══ FEDERAL HOUSE DELEGATION ════════════════════════════════════════════════
 const OH_FEDERAL_HOUSE = [
-  {dist:1, name:"Greg Landsman", party:"D", since:2023, region:"Cincinnati/Hamilton + Warren/Clinton", committee:"Energy & Commerce", url:"https://landsman.house.gov", ballotpedia:"https://ballotpedia.org/Greg_Landsman", stated:"Lowering costs, protecting democracy, bipartisan problem-solving", actual:"Centrist New Democrat (Problem Solvers Caucus) · appointed to Energy & Commerce in 2025 · one of four House Democrats who backed the 2026 Iran strikes · OH-1 redrawn R-leaning (Trump +2.5 on new lines, added Clinton Co.) · faces Trump-endorsed Eric Conroy (R) in Nov 2026"},
+  {dist:1, name:"Eric Conroy", party:"R", since:2027, region:"Cincinnati/Hamilton Co.", committee:"TBD", url:"https://ballotpedia.org/Eric_Conroy", ballotpedia:"https://ballotpedia.org/Eric_Conroy", stated:"Fiscal conservatism, border security, economic development", actual:"Won May 5, 2026 Republican primary for open OH-1 seat (Landsman not seeking re-election) · General election opponent TBD · No congressional voting record yet"},
   {dist:2, name:"David Taylor", party:"R", since:2025, region:"Southern OH / Scioto/Gallia", committee:"Judiciary", url:"https://davidtaylor.house.gov", ballotpedia:"https://ballotpedia.org/David_Taylor_(Ohio)", stated:"Border security, fiscal conservatism, 2nd Amendment", actual:"Voted for H.R. 1, Trump cabinet confirmations, anti-abortion legislation"},
   {dist:3, name:"Joyce Beatty", party:"D", since:2013, region:"Columbus/Franklin Co.", committee:"Financial Services", url:"https://beatty.house.gov", ballotpedia:"https://ballotpedia.org/Joyce_Beatty", stated:"Civil rights, economic equity, financial inclusion", actual:"Voted against H.R. 1, Dodd-Frank protections advocate, voting rights focus"},
   {dist:4, name:"Jim Jordan", party:"R", since:2007, region:"NW Ohio · Champaign/Mercer/Logan", committee:"Judiciary (Chair)", url:"https://jordan.house.gov", ballotpedia:"https://ballotpedia.org/Jim_Jordan", stated:"Constitutional conservatism, anti-oversight, fiscal cuts", actual:"House Judiciary Chair · led Biden impeachment inquiry, Jan 6 committee opponent, voted for H.R. 1, 100% Trump alignment"},
@@ -3635,27 +3815,30 @@ const CANDIDATE_DATA = {
     ]
   },
   yost: {
+    archived: true,
     name: 'Dave Yost', party: 'R',
-    race: 'Governor · Republican Primary (exploring)',
-    tagline: 'Ohio Attorney General · Strong name recognition statewide',
+    race: 'RESOLVED · Suspended gubernatorial bid, then resigned as AG',
+    tagline: 'Former Ohio AG (2019–June 2026) · Now VP of strategic research and innovation at Alliance Defending Freedom',
     facts: [
-      'Current Ohio AG since Jan 2019; former Ohio Auditor 2011–2018',
+      'Ohio Attorney General Jan 2019 – June 7, 2026; former Ohio Auditor 2011–2018',
+      'Suspended his campaign for governor in May 2025 after Ramaswamy entered the race',
+      'Announced his resignation May 7, 2026, effective June 7 · left with roughly seven months on his term',
+      'Left to become vice president of strategic research and innovation at Alliance Defending Freedom',
+      'DeWine appointed Public Safety Director Andy Wilson to serve out the term through Jan 11, 2027',
       'Led $26 billion national opioid settlement negotiations (2021)',
-      'Filed dozens of lawsuits against Biden admin (vaccine mandates, Title IX, student debt)',
-      'Joined Texas Supreme Court suit challenging 2020 election results',
-      'Has not formally declared · still "exploring" as of March 2026',
-      'Considered more traditional conservative than Ramaswamy',
-      'Would face an uphill primary against Ramaswamy who has near-full establishment backing',
+      'Filed dozens of lawsuits against the Biden administration (vaccine mandates, Title IX, student debt)',
+      'Joined the Texas Supreme Court suit challenging 2020 election results',
       'ECOT charter school fraud recovery: $80M+ under his oversight as Auditor'
     ],
-    poll: 'No head-to-head general election polling yet · exploratory phase only',
+    poll: 'Not a candidate · resigned from office mid-term',
     links: [
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Dave_Yost', primary: true }
     ]
   },
   tressel: {
+    archived: true,
     name: 'Jim Tressel', party: 'R',
-    race: 'Governor · Republican Primary (potential)',
+    race: 'RESOLVED · Never entered the race · Remains Lt. Governor',
     tagline: 'Lt. Governor · Former OSU Football Coach · High statewide approval',
     facts: [
       'Current Ohio Lt. Governor (2025–present) under Gov. DeWine',
@@ -3663,7 +3846,7 @@ const CANDIDATE_DATA = {
       'Resigned from OSU in 2010 amid NCAA violations (player benefits/tattoo scandal)',
       'Later served as president of Youngstown State University 2014–2023',
       'Has high public approval statewide due to football legacy · especially in SE and NE Ohio',
-      'Has not formally declared for governor race as of March 2026',
+      'Never entered the 2026 governor race · remains Lt. Governor through Jan 2027',
       'Would face primary against Ramaswamy who already has DeWine endorsement',
       'Running for governor would require resigning as Lt. Governor'
     ],
@@ -3673,8 +3856,9 @@ const CANDIDATE_DATA = {
     ]
   },
   larose: {
+    archived: true,
     name: 'Frank LaRose', party: 'R',
-    race: 'Governor · Not running · endorsed Ramaswamy, running for Auditor',
+    race: 'RESOLVED · Republican nominee for Auditor of State · See downballot races',
     tagline: 'Current SoS · Running for Auditor instead · Endorsed Ramaswamy',
     facts: [
       'Will NOT run for governor · announced candidacy for Ohio Auditor of State instead',
@@ -3692,9 +3876,10 @@ const CANDIDATE_DATA = {
     ]
   },
   ryan_gov: {
+    archived: true,
     name: 'Tim Ryan', party: 'D',
-    race: 'Governor · Democratic Primary (not declared)',
-    tagline: 'Former US Rep OH-13 · 2022 Senate candidate · Has not declared',
+    race: 'RESOLVED · Announced he would not run · Cleared the field for Acton',
+    tagline: 'Former US Rep OH-13 · 2022 Senate candidate · Declined the 2026 race',
     facts: [
       'Former US Representative for Ohio\'s 13th district (Youngstown area) 2003–2023',
       'Lost 2022 US Senate race to JD Vance by 6.1 points · significantly outperformed top of ticket',
@@ -3711,8 +3896,9 @@ const CANDIDATE_DATA = {
     ]
   },
   whaley: {
+    archived: true,
     name: 'Nan Whaley', party: 'D',
-    race: 'Governor · Democratic Primary',
+    race: 'RESOLVED · Did not run in 2026',
     tagline: 'Former Dayton Mayor · 2022 Dem nominee · Lost to DeWine by 25pts',
     facts: [
       'Former Mayor of Dayton, Ohio 2014–2021',
@@ -3879,8 +4065,9 @@ const CANDIDATE_DATA = {
     ]
   },
   dolan: {
+    archived: true,
     name: 'Matt Dolan', party: 'R',
-    race: 'US Senate Special Election · Republican Primary (potential)',
+    race: 'RESOLVED · Never filed · Husted ran unopposed in the GOP primary',
     tagline: 'Former State Senator · 2022 and 2024 Senate primary candidate',
     facts: [
       'Former Ohio State Senator, Senate District 24',
@@ -3897,13 +4084,14 @@ const CANDIDATE_DATA = {
     ]
   },
   ryan_sen: {
+    archived: true,
     name: 'Tim Ryan', party: 'D',
-    race: 'US Senate Special Election · Democratic Primary (potential)',
+    race: 'RESOLVED · Did not enter the Senate race',
     tagline: 'Former US Rep · 2022 Senate candidate · Also exploring governor',
     facts: [
       'Former US Rep for Ohio\'s 13th district (Youngstown/Mahoning Valley) 2003–2023',
       'Lost 2022 US Senate race to JD Vance by 6.1 points',
-      'Has explored both governor and Senate 2026 races · has not declared either',
+      'Explored both the governor and Senate races in 2026 and entered neither',
       'Strong labor credibility · Mahoning Valley union households',
       'If he enters Senate race, would face Sherrod Brown in primary · Brown is frontrunner',
       'Moderate positioning on trade (pro-tariff) could complicate Democratic primary',
@@ -4059,7 +4247,13 @@ function openCandidateModal(nameOrKey) {
       ${d.deepUpdated ? `<div class="modal-deep-updated">Deep profile last updated: ${d.deepUpdated}</div>` : ''}
     </div>` : '';
 
+  const archivedHTML = d.archived ? `
+    <div style="margin:0 0 14px;padding:10px 12px;background:#f4f4f2;border-left:3px solid #999;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:0.62rem;line-height:1.6;color:#555;">
+      ARCHIVED · This candidacy is resolved and no longer live. Retained as a record of the 2026 primary cycle.
+    </div>` : '';
+
   document.getElementById('modal-body').innerHTML = `
+    ${archivedHTML}
     <div class="modal-section">
       <div class="modal-section-hdr">Quick Facts</div>
       ${factsHTML}
