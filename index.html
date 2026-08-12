@@ -1153,31 +1153,36 @@ tr:hover td { background: var(--surface2); }
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:6px;margin-top:8px;padding-bottom:4px;border-bottom:2px solid var(--accent);">U.S. House Races · All 15 Ohio Districts · General: Nov 3, 2026</div>
       <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:16px;">New redistricted maps in effect for 2026. Nominees confirmed May 5 primary. Incumbents: 10R / 5D. Competitive targets: OH-1, OH-7, OH-9, OH-13, OH-15.</div>
 
+      <!-- OH-7 SPOTLIGHT -->
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:#c0392b;margin-bottom:8px;padding-bottom:4px;border-bottom:2px solid #c0392b;">★ OH-7 Spotlight · SW/W Cuyahoga · Medina · Wayne · TOSS UP ▲</div>
+      <div style="font-family:'Inter',sans-serif;font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:12px;">Cook moved this from Likely R to Toss Up on Aug 11, the day the ballot-withdrawal deadline passed with Miller still in. Trump carried the district by 11 in 2024. The shift is candidate-specific. Tap either card for the full profile.</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #3d1010;">Republican (Incumbent)</div>
+          <div class="race-card" onclick="openCandidateModal('Max Miller')" title="Click for full profile">
+            <div class="race-candidate-name">Max Miller</div>
+            <div class="race-candidate-note">Former Trump White House aide · In office since 2022 · Under House Ethics investigation · refusing to drop out</div>
+            <div class="race-poll">RATING: Cook Political Report · TOSS UP ▲ (moved from Likely R on Aug 11).<br>Poll · co/efficient (R), completed Aug 6: Poindexter 47, Miller 33 · PollingSource average D+8.<br>House Ethics Committee opened a probe Aug 4 into whether Miller "may have engaged in domestic violence and abuse or illegal drug use," at Miller's own request. He denies all allegations and notes no charge has been filed. Trump is standing by him.</div>
+            <div class="race-links"><a href="https://maxmiller.house.gov" target="_blank" rel="noopener" class="race-link">Official →</a></div>
+            <div class="race-card-hint">tap for details</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:#2471a3;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #0d1e35;">Democratic Nominee ✓</div>
+          <div class="race-card" onclick="openCandidateModal('Brian Poindexter')" title="Click for full profile">
+            <div class="race-candidate-name">✓ Brian Poindexter</div>
+            <div class="race-candidate-note">Union ironworker · Ironworkers Local 17 apprenticeship instructor · Brook Park city councilman · DCCC Red to Blue · Sanders and WFP endorsed</div>
+            <div class="race-poll">RATING: Cook Political Report · TOSS UP ▲.<br>Poll · co/efficient (R), completed Aug 6: Poindexter 47, Miller 33 · PollingSource average D+8, rated Likely D.<br>Won the May 5 Democratic primary with 36.55% over FitzGerald and Eisner. Also on the November ballot: independent Andrey Martinichin.</div>
+            <div class="race-links"><a href="https://poindexterforcongress.com" target="_blank" rel="noopener" class="race-link">Campaign →</a></div>
+            <div class="race-card-hint">tap for details</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Competitive races header -->
       <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:10px;">★ Key Competitive Races</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-bottom:24px;">
-
-        <!-- OH-7 -->
-        <div class="race-card" style="border-color:#f5b8b8;">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:0.56rem;text-transform:uppercase;letter-spacing:1.5px;color:#c0392b;margin-bottom:6px;">OH-7 · SW/W Cuyahoga · Medina · Wayne · TOSS UP ▲</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
-            <div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#991b1b;text-transform:uppercase;margin-bottom:3px;">Republican (Incumbent)</div>
-              <div style="font-size:0.82rem;font-weight:600;">Max Miller</div>
-              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Former Trump White House aide · In office since 2022 · Under House Ethics investigation · refusing to drop out</div>
-            </div>
-            <div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1e40af;text-transform:uppercase;margin-bottom:3px;">Democrat</div>
-              <div style="font-size:0.82rem;font-weight:600;">Brian Poindexter</div>
-              <div style="font-family:'Inter',sans-serif;font-size:0.72rem;line-height:1.5;color:var(--muted);">Union ironworker · Ironworkers Local 17 apprenticeship instructor · Brook Park city councilman · DCCC Red to Blue · Sanders and WFP endorsed</div>
-            </div>
-          </div>
-          <div class="race-poll">Cook moved this from Likely R to TOSS UP on Aug 11, the day the ballot-withdrawal deadline passed with Miller still in. Trump carried the district by 11 in 2024; Miller won it 51 to 36. Poll: co/efficient (R), completed Aug 6, Poindexter 47 / Miller 33 · PollingSource average D+8. Also on the ballot: independent Andrey Martinichin.<br><br><span style="color:#8a5a12;">The collapse is candidate-specific, not a partisan shift. The House Ethics Committee opened a probe Aug 4 into whether Miller "may have engaged in domestic violence and abuse or illegal drug use," after Miller requested it himself. The allegations come from his ex-wife Emily Moreno, daughter of Sen. Bernie Moreno, who has publicly called on Miller to step down. Miller denies all of it and notes no charge has ever been filed. Trump is standing by him.</span></div>
-          <div class="race-links">
-            <a href="https://ballotpedia.org/Ohio%27s_7th_Congressional_District_election,_2026" target="_blank" rel="noopener" class="race-link">Ballotpedia →</a>
-            <a href="https://poindexterforcongress.com" target="_blank" rel="noopener" class="race-link">Poindexter →</a>
-          </div>
-        </div>
 
         <!-- OH-9 -->
         <div class="race-card" style="border-color:#fde68a;">
@@ -4202,6 +4207,108 @@ const CANDIDATE_DATA = {
       { label: 'Ballotpedia', url: 'https://ballotpedia.org/Gregory_Levy' }
     ]
   },
+  poindexter: {
+    name: 'Brian Poindexter', party: 'D',
+    race: 'U.S. House · OH-7 · Democratic Nominee',
+    tagline: 'Union ironworker · Brook Park city councilman · DCCC Red to Blue',
+    facts: [
+      'At-large member of Brook Park City Council · union ironworker, age 46',
+      'Apprenticeship instructor at Ironworkers Local 17 · former union organizer',
+      'Earned an associate degree in Applied Industrial Technology through his apprenticeship',
+      'Won the May 5 Democratic primary with 36.55% (16,509 votes) over Matthew FitzGerald and Solon\'s Eisner',
+      'Endorsed by Bernie Sanders (rally in May 2026), the Working Families Party (April 1), and the Congressional Progressive Caucus PAC',
+      'Added to the DCCC Red to Blue program in August 2026 · the party\'s top tier of House targets',
+      'Runs on a labor and cost-of-living message · frames the race as real representation for working people',
+      'Faces incumbent Max Miller (R) and independent Andrey Martinichin in November'
+    ],
+    poll: 'co/efficient (R), completed Aug 6: Poindexter 47, Miller 33 · PollingSource average D+8, rated Likely D · expert consensus had been Safe R before the Miller allegations',
+    deepUpdated: 'August 12, 2026',
+    deep: [
+      {
+        hdr: 'Who He Is', tier: 'verified',
+        paras: [
+          `Poindexter is a union ironworker from Brook Park, the legacy Ford factory town in southern Cuyahoga County. He went through an apprenticeship program while earning an associate degree in Applied Industrial Technology, spent years as a union organizer, and now works as an apprenticeship instructor at Ironworkers Local 17. He holds an at-large seat on Brook Park City Council.`,
+          `He won a three-way Democratic primary on May 5 with 36.55%, ahead of Matthew FitzGerald and a candidate from Solon named Eisner. His campaign presents him as a father, tradesman, and local official rather than a career politician.`
+        ]
+      },
+      {
+        hdr: 'The District', tier: 'verified',
+        paras: [
+          `Ohio's 7th covers southern and western Cuyahoga County, all of Medina and Wayne counties, and a small slice of northern Holmes. Cities include Parma, Brook Park, Brecksville, Broadview Heights, North Royalton, Independence, and Solon. Trump carried it by 11 points in 2024, and Miller won the seat that year 51 to 36 over Democrat Matthew Diemer, with Dennis Kucinich taking 12.8% as an independent.`,
+          `On paper this is not a swing district. It became one because of the incumbent, not because the electorate moved.`
+        ]
+      },
+      {
+        hdr: 'Why It Is Suddenly Competitive', tier: 'record',
+        paras: [
+          `Miller is under a House Ethics Committee investigation opened Aug 4 into domestic violence and drug use allegations made by his ex-wife Emily Moreno. As the story escalated and the ballot-withdrawal deadline passed with Miller refusing to leave, Cook Political Report moved the race from Likely R to Toss Up on Aug 11.`,
+          `A co/efficient poll completed Aug 6 put Poindexter ahead 47 to 33, a swing from a roughly 5-point margin the week before. National Democrats responded by adding him to the DCCC Red to Blue list, the program reserved for the party's most closely watched House contests. Sanders, the Working Families Party, and the Congressional Progressive Caucus PAC had already lined up behind him earlier in the cycle.`
+        ]
+      },
+      {
+        hdr: 'Structural Read', tier: 'inference',
+        paras: [
+          `The opening here is real but conditional. It exists because of an incumbent scandal, not because a blue-collar, labor-backed Democrat suddenly became viable in an R+11 seat on the merits of the program. If the ethics story fades or Miller is somehow replaced, the structural lean reasserts itself. The polling gap is a referendum on Miller, and referendums on a person are not the same as a durable coalition.`,
+          `What makes Poindexter more than a beneficiary of someone else's collapse is the profile: an actual ironworker and apprenticeship instructor, endorsed by Sanders and the WFP, running a cost-of-living campaign in a Ford town. That is the kind of candidate the party's institutional wing usually recruits around, not from. Reporting has also flagged the thinness of his operation, with one longtime friend serving as manager, communications, and finance at once. Whether the national money now flowing in builds something that lasts past November, or just rents the seat for one cycle, is the open question.`
+        ]
+      }
+    ],
+    links: [
+      { label: 'Campaign Site', url: 'https://poindexterforcongress.com', primary: true },
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Brian_Poindexter' }
+    ]
+  },
+  miller: {
+    name: 'Max Miller', party: 'R',
+    race: 'U.S. House · OH-7 · Republican Incumbent',
+    tagline: 'Former Trump White House aide · Under House Ethics investigation',
+    facts: [
+      'U.S. Representative for OH-7 since 2022 · former aide in the first Trump White House',
+      'Ran unopposed in the May 5 Republican primary',
+      'House Ethics Committee opened an investigation Aug 4, 2026 into allegations he "may have engaged in domestic violence and abuse or illegal drug use"',
+      'The probe followed Miller\'s own request that the committee investigate him to clear his name',
+      'Allegations come from ex-wife Emily Moreno, daughter of Sen. Bernie Moreno (R-OH)',
+      'Miller denies all allegations · states no criminal charge has ever been filed and no agency has substantiated abuse',
+      'Refused to withdraw before the ballot deadline · a growing number of Republicans have called on him to step down',
+      'President Trump has stood by him'
+    ],
+    poll: 'co/efficient (R), completed Aug 6: Poindexter 47, Miller 33 · Cook Political Report moved OH-7 to Toss Up on Aug 11',
+    deepUpdated: 'August 12, 2026',
+    deep: [
+      {
+        hdr: 'Background', tier: 'verified',
+        paras: [
+          `Miller is a former aide in the first Trump administration who has represented Ohio's 7th Congressional District since 2022. He ran without opposition in the May 5 Republican primary and is seeking a third term.`
+        ]
+      },
+      {
+        hdr: 'The Allegations and the Ethics Probe', tier: 'record',
+        paras: [
+          `Miller's ex-wife, Emily Moreno, is the daughter of Ohio Republican Sen. Bernie Moreno. She filed for divorce in 2024 and has alleged in court and police records that Miller threw scalding water on her, held a gun to her head, pushed her into a wall, and broke their daughter's collarbone. Reporting from Mother Jones added that Moreno told police she could not rule out Miller's involvement in the child's injury.`,
+          `The allegations exploded into national view when Miller addressed them in a weekend livestream in early August and posted a folder of documents his attorneys assembled. Emily Moreno's lawyers then accused him of publishing unredacted images of their child. On Aug 2, Bernie Moreno publicly denounced Miller, saying he needs psychological help and should not serve in the House.`,
+          `On Aug 4, the House Ethics Committee announced it was investigating whether Miller violated congressional conduct rules through domestic violence, abuse, or illegal drug use. Unusually, Miller had asked for the investigation himself, saying he had nothing to hide. He denies every allegation and stresses that no criminal charge has ever been filed against him.`
+        ]
+      },
+      {
+        hdr: 'The Political Situation', tier: 'record',
+        paras: [
+          `The deadline for Miller to withdraw and be replaced on the ballot passed in early August with him still in the race. That timing matters: because no Republican can now take his place, the party is stuck with a nominee under active ethics investigation in a seat it would otherwise hold comfortably. Cook Political Report moved the race from Likely R to Toss Up on Aug 11.`,
+          `A growing number of Republicans have called on him to resign. Trump has continued to stand by him. Polling since the allegations shows him trailing Poindexter by double digits.`
+        ]
+      },
+      {
+        hdr: 'Analytical Note', tier: 'inference',
+        paras: [
+          `Accountability framing on this tool applies the same standard regardless of party: what is alleged versus what is proven. The allegations against Miller are serious and detailed, they come from named court and police records, and they have triggered a formal congressional investigation. None of that is a finding of guilt. No charge has been filed and the ethics process is not complete. Both facts belong in the same sentence.`,
+          `The structurally interesting part is the party's exposure. A safe seat is only safe as long as the nameplate is fungible. Once the withdrawal window closed, the district's partisan lean stopped protecting the incumbent and started trapping the party, which now defends a candidate it cannot swap. That is the mechanism converting a private scandal into a live pickup opportunity, independent of anything the challenger did.`
+        ]
+      }
+    ],
+    links: [
+      { label: 'Official Site', url: 'https://maxmiller.house.gov', primary: true },
+      { label: 'Ballotpedia', url: 'https://ballotpedia.org/Max_Miller' }
+    ]
+  },
   weinstein: {
     name: 'Casey Weinstein', party: 'D',
     race: 'US Senate Special Election · Democratic Primary',
@@ -4238,6 +4345,8 @@ const CANDIDATE_KEY_MAP = {
   'Emilia Sykes': 'sykes',
   'Casey Weinstein': 'weinstein',
   'Greg Levy': 'levy',
+  'Brian Poindexter': 'poindexter',
+  'Max Miller': 'miller',
   'ryan_sen': 'ryan_sen'
 };
 
